@@ -63,7 +63,12 @@
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
 
-    dataArray = [[NSArray arrayWithObjects:@"合肥下雪", @"合肥下雨", @"合肥下冰雹", nil] retain];
+    dataArray = [[NSArray arrayWithObjects:@"合肥下雪", @"合肥下雨", @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
+                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
+                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
+                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
+                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
+                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", nil] retain];
 }
 
 /*

@@ -500,7 +500,7 @@
 	1AC0556514E3BDBE0026B115 /* NewsClueSearchViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {766, 812}}";
-			sepNavSelRange = "{177, 53}";
+			sepNavSelRange = "{177, 0}";
 			sepNavVisRange = "{59, 346}";
 		};
 	};
@@ -548,21 +548,21 @@
 		isa = PBXBookmark;
 		fRef = 1A95F71114DE5AF000603053 /* box1@2x.png */;
 	};
-	1ADAB04714E680FB00AB1B96 /* PBXTextBookmark */ = {
+	1ADAB06114E694D300AB1B96 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1AC0556514E3BDBE0026B115 /* NewsClueSearchViewController.h */;
 		name = "NewsClueSearchViewController.h: 10";
 		rLen = 53;
 		rLoc = 177;
 		rType = 0;
-		vrLen = 378;
+		vrLen = 346;
 		vrLoc = 59;
 	};
-	1ADAB04F14E6820800AB1B96 /* PBXTextBookmark */ = {
+	1ADAB06914E694F800AB1B96 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1AC0556514E3BDBE0026B115 /* NewsClueSearchViewController.h */;
 		name = "NewsClueSearchViewController.h: 10";
-		rLen = 53;
+		rLen = 0;
 		rLoc = 177;
 		rType = 0;
 		vrLen = 346;
@@ -715,8 +715,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 350650886;
-			PBXWorkspaceStateSaveDate = 350650886;
+			PBXPerProjectTemplateStateSaveDate = 350655720;
+			PBXWorkspaceStateSaveDate = 350655720;
 		};
 		perUserProjectItems = {
 			1A8BCDF414E596C000879C3F /* PBXTextBookmark */ = 1A8BCDF414E596C000879C3F /* PBXTextBookmark */;
@@ -753,8 +753,8 @@
 			1AC5EC6514E2BE6800440EA7 /* PBXBookmark */ = 1AC5EC6514E2BE6800440EA7 /* PBXBookmark */;
 			1AC5EC6714E2BE6800440EA7 /* PBXBookmark */ = 1AC5EC6714E2BE6800440EA7 /* PBXBookmark */;
 			1AC5EC6814E2BE6800440EA7 /* PBXBookmark */ = 1AC5EC6814E2BE6800440EA7 /* PBXBookmark */;
-			1ADAB04714E680FB00AB1B96 /* PBXTextBookmark */ = 1ADAB04714E680FB00AB1B96 /* PBXTextBookmark */;
-			1ADAB04F14E6820800AB1B96 /* PBXTextBookmark */ = 1ADAB04F14E6820800AB1B96 /* PBXTextBookmark */;
+			1ADAB06114E694D300AB1B96 /* PBXTextBookmark */ = 1ADAB06114E694D300AB1B96 /* PBXTextBookmark */;
+			1ADAB06914E694F800AB1B96 /* PBXTextBookmark */ = 1ADAB06914E694F800AB1B96 /* PBXTextBookmark */;
 			1ADB081114E2140200170DFC /* PBXTextBookmark */ = 1ADB081114E2140200170DFC /* PBXTextBookmark */;
 			1ADB081314E2140200170DFC /* PBXTextBookmark */ = 1ADB081314E2140200170DFC /* PBXTextBookmark */;
 			1ADB081414E2140200170DFC /* PBXTextBookmark */ = 1ADB081414E2140200170DFC /* PBXTextBookmark */;
