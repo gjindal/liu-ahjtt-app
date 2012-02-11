@@ -58,6 +58,8 @@
 		B90ABD7614E65CA400641FE1 /* button_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7314E65CA400641FE1 /* button_video.png */; };
 		B90ABD7914E6745500641FE1 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7814E6745500641FE1 /* form_textview.png */; };
 		B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */; };
+		B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90ABD8614E6B6C300641FE1 /* MyAlertView.m */; };
+		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +132,9 @@
 		B90ABD7314E65CA400641FE1 /* button_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_video.png; sourceTree = "<group>"; };
 		B90ABD7814E6745500641FE1 /* form_textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_textview.png; sourceTree = "<group>"; };
 		B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B90ABD8514E6B6C300641FE1 /* MyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlertView.h; sourceTree = "<group>"; };
+		B90ABD8614E6B6C300641FE1 /* MyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlertView.m; sourceTree = "<group>"; };
+		B90ABD8814E6B98A00641FE1 /* microphone 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone 1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +181,8 @@
 			children = (
 				1A9DE9C914E1773C006E21E8 /* MD5EncryptProcess.h */,
 				1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */,
+				B90ABD8514E6B6C300641FE1 /* MyAlertView.h */,
+				B90ABD8614E6B6C300641FE1 /* MyAlertView.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 		1AC0537B14E3A5FA0026B115 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				B90ABD8814E6B98A00641FE1 /* microphone 1.png */,
 				B90ABD7814E6745500641FE1 /* form_textview.png */,
 				B90ABD7114E65CA400641FE1 /* button_photo.png */,
 				B90ABD7214E65CA400641FE1 /* button_sound.png */,
@@ -380,6 +388,7 @@
 				B90ABD7514E65CA400641FE1 /* button_sound.png in Resources */,
 				B90ABD7614E65CA400641FE1 /* button_video.png in Resources */,
 				B90ABD7914E6745500641FE1 /* form_textview.png in Resources */,
+				B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +415,7 @@
 				1AAB807214E4183B00F61582 /* NewsAllocDetailViewController.m in Sources */,
 				1AAB807714E418B600F61582 /* DocWriteDetailViewController.m in Sources */,
 				1AAB807C14E4192200F61582 /* DocChangeDetailViewController.m in Sources */,
+				B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

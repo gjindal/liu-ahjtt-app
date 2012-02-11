@@ -7,6 +7,7 @@
 //
 
 #import "DocWriteDetailViewController.h"
+#import "MyAlertView.h"
 
 
 @implementation DocWriteDetailViewController
@@ -26,7 +27,28 @@
 
 -(IBAction) getRecord{
 
-
+    MyAlertView *alertView = [[MyAlertView alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"开始",@"退出", nil];
+    alertView.cancelButtonIndex = 1;
+    alertView.delegate = self;
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
+    imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
+    [alertView addSubview:imgView];
+    [imgView release];
+//    for (UIView *subView in alertView.subviews) {
+//        if(subView.tag == 1)
+//        {
+//            [subView setBackgroundColor:[UIColor redColor]];
+//            if([subView respondsToSelector:@selector(setTitle:)]) {
+//                
+//                [subView performSelector:@selector(setTitle:) withObject:@"xxxxx"];
+//            }
+//        }
+//    }
+    
+    [alertView show];
+    
+    
 }
 
 -(IBAction) getVideo{
@@ -45,6 +67,23 @@
 
 -(void)submitDoc{
 
+}
+
+#pragma -
+#pragma UIAlertView Delegate.
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if(buttonIndex == 0){ 
+    
+        NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
+        NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [imageName appendFormat:@"Audio_%@",[df stringFromDate:[NSDate date]]];
+        
+        [(NSMutableArray *)self.attachArray addObject:imageName];
+        [imageName release];
+        [self.attachTable reloadData];
+    }
 }
 
 #pragma -

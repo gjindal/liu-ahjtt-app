@@ -14,7 +14,7 @@ typedef enum {
     DOCTYPE_DELETED,
 } DOCTYPE;
 
-@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
+@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate> {
 
 	IBOutlet UITextField *fdTitle;
 	IBOutlet UITextField *fdDocType;
