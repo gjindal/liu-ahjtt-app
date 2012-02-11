@@ -67,7 +67,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 416.0f)];
 	[scrollView setContentSize:CGSizeMake(320, 1200)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
@@ -76,6 +76,7 @@
 	self.fdDocType.delegate = self;
 	self.fdKeyword.delegate = self;
 	self.fdDocSource.delegate = self;
+    contents.delegate = self;
 	
 	keyboardShown = NO;  
     [self performSelector:@selector(registerForKeyboardNotifications)];  
@@ -91,6 +92,8 @@
 	
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
+    
+    [self.scrollView addSubview:attachTable];
 }
 
 #pragma mark -
@@ -143,14 +146,13 @@
 	
 	if (indexPath.row == 1) {
 	}
-	
-	
 }
 
 
 #pragma mark - UITextField Delegate  
 -(void)textFieldDidBeginEditing:(UITextField *)textField  
 {  
+    isTextView = NO;
     activeField = textField;  
 }  
 
@@ -163,122 +165,80 @@
 {  
     [textField resignFirstResponder];  
     return YES;  
-}  
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"scroll detected");
 }
 
-// 触摸屏幕并拖拽画面，再松开，最后停止时，触发该函数
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"scrollViewDidEndDragging  -  End of Scrolling.");
-}
-
-// 滚动停止时，触发该函数
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidEndDecelerating  -   End of Scrolling.");
-}
-
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidEndScrollingAnimation  -   End of Scrolling.");
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    
+    [activeView release];
+    activeView = nil;
+    isTextView = YES;
+    activeView = [textView retain];
+    return YES;
 }
 
 // Call this method somewhere in your view controller setup code.  
-- (void)registerForKeyboardNotifications  
-{  
-    [[NSNotificationCenter defaultCenter] addObserver:self  
-                                             selector:@selector(keyboardWasShown:)  
-                                                 name:UIKeyboardDidShowNotification object:nil];  
-	
-    [[NSNotificationCenter defaultCenter] addObserver:self  
-                                             selector:@selector(keyboardWasHidden:)  
-                                                 name:UIKeyboardDidHideNotification object:nil];  
-}  
-// Called when the UIKeyboardDidShowNotification is sent.  
-- (void)keyboardWasShown:(NSNotification*)aNotification  
-{  
-    NSLog(@"-------");  
-    if (keyboardShown)  
-        return;  
-	
-    NSDictionary* info = [aNotification userInfo];  
-	
-    // Get the size of the keyboard.  
-    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];  
-    CGSize keyboardSize = [aValue CGRectValue].size;  
-	
-    // Resize the scroll view (which is the root view of the window)  
-    CGRect viewFrame = [scrollView frame];  
-    viewFrame.size.height -= keyboardSize.height;  
-    scrollView.frame = viewFrame;  
-	
-	
-    // Scroll the active text field into view.  
-    CGRect textFieldRect = [activeField frame];  
-    [scrollView scrollRectToVisible:textFieldRect animated:YES];  
-	
-    oldContentOffsetValue = [scrollView contentOffset].y;  
-	
-	
-    CGFloat value = (activeField.frame.origin.y+scrollView.frame.origin.y+activeField.frame.size.height - self.view.frame.size.height + keyboardSize.height)+2.0f;  
-    if (value > 0) {  
-        [scrollView setContentOffset:CGPointMake(0, value) animated:YES];  
-        isNeedSetOffset = YES;  
-    }  
-	
-	
-    keyboardShown = YES;  
-}  
-
-
-// Called when the UIKeyboardDidHideNotification is sent  
-- (void)keyboardWasHidden:(NSNotification*)aNotification  
-{  
-	
-    NSDictionary* info = [aNotification userInfo];  
-	
-    // Get the size of the keyboard.  
-    NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];  
-    CGSize keyboardSize = [aValue CGRectValue].size;  
-	
-    // Reset the height of the scroll view to its original value  
-    CGRect viewFrame = [scrollView frame];  
-    viewFrame.size.height += keyboardSize.height;  
-    scrollView.frame = viewFrame;  
-	
-    if (isNeedSetOffset) {  
-        [scrollView setContentOffset:CGPointMake(0, oldContentOffsetValue) animated:YES];  
-    }  
-	
-    isNeedSetOffset = NO;  
-	
-    keyboardShown = NO;  
-}  
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
     
-    // Release any cached data, images, etc that aren't in use.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasHidden:)
+                                                 name:UIKeyboardDidHideNotification object:nil];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    if (keyboardShown)
+        return;
+    
+    NSDictionary* info = [aNotification userInfo];
+    
+    // Get the size of the keyboard.
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    
+    // Resize the scroll view (which is the root view of the window)
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height -= keyboardSize.height;
+    scrollView.frame = viewFrame;
+    
+    // Scroll the active text field into view.
+    if(isTextView) {
+        
+        CGRect textFieldRect = [activeView frame];
+        [scrollView scrollRectToVisible:textFieldRect animated:YES];
+    }else {
+        CGRect textFieldRect = [activeField frame];
+        [scrollView scrollRectToVisible:textFieldRect animated:YES];
+    }
+
+    keyboardShown = YES;
 }
 
+
+// Called when the UIKeyboardDidHideNotification is sent
+- (void)keyboardWasHidden:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    
+    // Get the size of the keyboard.
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    
+    // Reset the height of the scroll view to its original value
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height += keyboardSize.height;
+    scrollView.frame = viewFrame;
+    
+    keyboardShown = NO;
+}
 
 - (void)dealloc {
+    
     [super dealloc];
 }
 

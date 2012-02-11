@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource> {
+@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate> {
 
 	IBOutlet UITextField *fdTitle;
 	IBOutlet UITextField *fdDocType;
@@ -25,7 +25,9 @@
 	BOOL keyboardShown;
 	CGFloat oldContentOffsetValue;
 	BOOL isNeedSetOffset; 
-	
+	bool isTextView;
+    UITextView *activeView;
+    
 	IBOutlet UIButton *btRecorder;
 	IBOutlet UIButton *btCamera;
 	IBOutlet UIButton *btVideo;
