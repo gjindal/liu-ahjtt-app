@@ -57,6 +57,7 @@
             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 
                 imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+                //imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
                 [self presentModalViewController:imgPickerCtrl animated:YES];
                 [imgPickerCtrl release];
             }
@@ -83,6 +84,13 @@
     [imageName release];
     [self.attachTable reloadData];
     
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissModalViewControllerAnimated:YES];
+
+        
 }
 
 -(void)recoverDoc{
