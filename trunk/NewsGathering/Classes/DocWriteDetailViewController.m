@@ -18,7 +18,10 @@
 
 -(IBAction) getPhoto{
 
-
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
 }
 
 -(IBAction) getRecord{
@@ -33,6 +36,53 @@
 
 -(void)submitDoc{
 
+}
+
+#pragma -
+#pragma UIActionSheet Delegate.
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+    imgPickerCtrl.delegate = self;
+    switch (buttonIndex) {
+        case 0:
+            
+            [self presentModalViewController:imgPickerCtrl animated:YES];
+            //[self.navigationController pushViewController:imgPickerCtrl animated:YES];
+            [imgPickerCtrl release];
+            break;
+        
+        case 1:
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                
+                imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentModalViewController:imgPickerCtrl animated:YES];
+                [imgPickerCtrl release];
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma -
+#pragma UIImagePickerController Delegate.
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    
+    [picker dismissModalViewControllerAnimated:YES];
+    NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
+    
+    [(NSMutableArray *)self.attachArray addObject:imageName];
+    [imageName release];
+    [self.attachTable reloadData];
+    
 }
 
 -(void)recoverDoc{
@@ -76,7 +126,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 416.0f)];
+	//[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 460.0f)];
 	[scrollView setContentSize:CGSizeMake(320, 1200)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
@@ -94,11 +144,11 @@
 	if(imgContentsBgd.image != nil)
 	[self.contents setBackgroundColor:[UIColor clearColor]];
 	
-	self.attachArray = [NSArray arrayWithObjects:	@"Voice_2012-02-05 08:30:00",
-													@"Video_2012_02-05 09:00:00",
-													@"Image_2012_02-06 10:00:01",
-													nil];
-	
+//	self.attachArray = [NSArray arrayWithObjects:	@"Voice_2012-02-05 08:30:00",
+//													@"Video_2012_02-05 09:00:00",
+//													@"Image_2012_02-06 10:00:01",
+//													nil];
+	self.attachArray = [[NSMutableArray alloc] initWithCapacity:0];
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     
@@ -157,6 +207,23 @@
 	}
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+    }   
+    //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    //    }   
+}
 
 #pragma mark - UITextField Delegate  
 -(void)textFieldDidBeginEditing:(UITextField *)textField  

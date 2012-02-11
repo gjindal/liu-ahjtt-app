@@ -53,6 +53,10 @@
 		2899E5220DE3E06400AC0155 /* NewsGatheringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* NewsGatheringViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* NewsGatheringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NewsGatheringViewController.m */; };
+		B90ABD7414E65CA400641FE1 /* button_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7114E65CA400641FE1 /* button_photo.png */; };
+		B90ABD7514E65CA400641FE1 /* button_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7214E65CA400641FE1 /* button_sound.png */; };
+		B90ABD7614E65CA400641FE1 /* button_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7314E65CA400641FE1 /* button_video.png */; };
+		B90ABD7914E6745500641FE1 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7814E6745500641FE1 /* form_textview.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +124,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* NewsGathering_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGathering_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NewsGathering-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NewsGathering-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B90ABD7114E65CA400641FE1 /* button_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_photo.png; sourceTree = "<group>"; };
+		B90ABD7214E65CA400641FE1 /* button_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_sound.png; sourceTree = "<group>"; };
+		B90ABD7314E65CA400641FE1 /* button_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_video.png; sourceTree = "<group>"; };
+		B90ABD7814E6745500641FE1 /* form_textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_textview.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +220,10 @@
 		1AC0537B14E3A5FA0026B115 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				B90ABD7814E6745500641FE1 /* form_textview.png */,
+				B90ABD7114E65CA400641FE1 /* button_photo.png */,
+				B90ABD7214E65CA400641FE1 /* button_sound.png */,
+				B90ABD7314E65CA400641FE1 /* button_video.png */,
 				1AAB7FF314E40AD800F61582 /* form_textview.png */,
 				1AC5ECFF14E2C99000440EA7 /* xwpd.png */,
 				1AC5ED0014E2C99000440EA7 /* rxxw.png */,
@@ -318,6 +330,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NewsGathering" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
@@ -359,6 +372,10 @@
 				1AAB807314E4183B00F61582 /* NewsAllocDetailViewController.xib in Resources */,
 				1AAB807814E418B600F61582 /* DocWriteDetailViewController.xib in Resources */,
 				1AAB807D14E4192200F61582 /* DocChangeDetailViewController.xib in Resources */,
+				B90ABD7414E65CA400641FE1 /* button_photo.png in Resources */,
+				B90ABD7514E65CA400641FE1 /* button_sound.png in Resources */,
+				B90ABD7614E65CA400641FE1 /* button_video.png in Resources */,
+				B90ABD7914E6745500641FE1 /* form_textview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,12 +439,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "59476B43-36E9-4977-8718-1D8F1FF23518";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -435,13 +454,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "59476B43-36E9-4977-8718-1D8F1FF23518";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

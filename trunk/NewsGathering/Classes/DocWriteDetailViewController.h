@@ -13,7 +13,7 @@ typedef enum {
     DOCTYPE_DELETED,
 } DOCTYPE;
 
-@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate> {
+@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
 
 	IBOutlet UITextField *fdTitle;
 	IBOutlet UITextField *fdDocType;
@@ -23,7 +23,8 @@ typedef enum {
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
 	IBOutlet UITableView *attachTable;
-	NSArray *attachArray;
+	NSMutableArray *attachArray;
+    
 	
 	UITextField * activeField;  
 	BOOL keyboardShown;

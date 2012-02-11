@@ -108,12 +108,14 @@
 -(IBAction)gotoDocChange{
 	DocChangeListViewController *viewCtrl = [[DocChangeListViewController alloc] initWithNibName:@"DocChangeListViewController" bundle:nil] ;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
+    [viewCtrl release];
 }
 
 
 -(IBAction)gotoRecycle{
 	RecycleListViewController *viewCtrl = [[RecycleListViewController alloc] initWithNibName:@"RecycleListViewController" bundle:nil] ;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
+    [viewCtrl release];
 }
 
 - (void)back:(id)sender {  
