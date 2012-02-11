@@ -1,697 +1,0 @@
-TNewsGathering
-v7
-r0
-t350406519.278913
-cCheck dependencies
-cProcessInfoPlistFile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist NewsGathering-Info.plist
-cCompileXIB /Project/JiaoTongNews/NewsGathering/MainWindow.xib
-cCompileXIB /Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib
-cCpResource build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png box1@2x.png
-cCpResource build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png box2@2x.png
-cCompileXIB /Project/JiaoTongNews/NewsGathering/MainPanelView.xib
-cCompileXIB /Project/JiaoTongNews/NewsGathering/NewsClueView.xib
-cCpResource build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png mainbackground.png
-cProcessPCH /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch.gch NewsGathering_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o /Project/JiaoTongNews/NewsGathering/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o /Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o /Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk
-c000000004C8EA3B80000000000000132
-t1284416440
-s306
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
-c000000004BFDFE57000000000018BC00
-t1274936919
-s1620992
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c000000004BFDFE39000000000027C7D0
-t1274936889
-s2607056
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004BFDFE7C000000000029D5D0
-t1274936956
-s2741712
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
-c000000004BFDFE6E0000000000001466
-t1274936942
-s5222
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
-c000000004BFDFF120000000000019D60
-t1274937106
-s105824
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
-c000000004C0458E90000000000151D30
-t1275353321
-s1383728
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
-c000000004BFDFDAA000000000005E690
-t1274936746
-s386704
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
-c000000004C0470BB00000000000009CD
-t1275359419
-s2509
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c000000004C0471620000000001D47210
-t1275359586
-s30700048
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/usr/lib/libz.1.2.3.dylib
-c000000004AD4F6ED0000000000005D2C
-t1255470829
-s23852
-
-N/Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m
-c000000004F328F1F00000000000008C9
-t1328713503
-s2249
-i"MainPanelViewController.h"
-
-N/Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.xib
-c000000004F3286B70000000000001880
-t1328711351
-s6272
-
-N/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.h
-c000000004F31DA94000000000000010F
-t1328667284
-s271
-i<Foundation/Foundation.h>
-
-N/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m
-c000000004F31DA9B00000000000002C5
-t1328667291
-s709
-i"MD5EncryptProcess.h"
-
-N/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.h
-c000000004F2FE638000000000000022A
-t1328539192
-s554
-i<UIKit/UIKit.h>
-
-N/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m
-c000000004F3133190000000000000BBE
-t1328624409
-s3006
-i"NewsGatheringAppDelegate.h"
-i"NewsGatheringViewController.h"
-
-N/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.h
-c000000004F31DB7A00000000000002CE
-t1328667514
-s718
-i<UIKit/UIKit.h>
-
-N/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m
-c000000004F328FE50000000000001842
-t1328713701
-s6210
-i"NewsGatheringViewController.h"
-i"MD5EncryptProcess.h"
-i"MainPanelViewController.h"
-
-N/Project/JiaoTongNews/NewsGathering/MainPanelView.xib
-c000000004F328D6D0000000000008D0C
-t1328713069
-s36108
-
-N/Project/JiaoTongNews/NewsGathering/MainPanelViewController.h
-c000000004F3289AD00000000000002AB
-t1328712109
-s683
-i<UIKit/UIKit.h>
-
-N/Project/JiaoTongNews/NewsGathering/MainPanelViewController.m
-c000000004F3286B700000000000005B4
-t1328711351
-s1460
-i"MainPanelViewController.h"
-
-N/Project/JiaoTongNews/NewsGathering/MainPanelViewController.xib
-c000000004F3286B70000000000001880
-t1328711351
-s6272
-
-N/Project/JiaoTongNews/NewsGathering/MainWindow.xib
-c000000004F2E1EB00000000000004E71
-t1328422576
-s20081
-
-N/Project/JiaoTongNews/NewsGathering/NewsClueView.xib
-c000000004F2E3BCE000000000000537D
-t1328430030
-s21373
-
-N/Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib
-c000000004F313D8B00000000000082B9
-t1328627083
-s33465
-
-N/Project/JiaoTongNews/NewsGathering/NewsGathering_Prefix.pch
-c000000004F2E1EB000000000000000C3
-t1328422576
-s195
-i<Foundation/Foundation.h>
-i<UIKit/UIKit.h>
-
-N/Project/JiaoTongNews/NewsGathering/box1@2x.png
-c000000004D95771000000000000003A5
-t1301640976
-s933
-
-N/Project/JiaoTongNews/NewsGathering/box2@2x.png
-c000000004D9576A4000000000000010B
-t1301640868
-s267
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
-t2
-s0
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM
-t2
-s0
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist
-t1328713717
-s615
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainPanelView.nib
-t1328713718
-s3318
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainPanelViewController.nib
-t2
-s0
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainWindow.nib
-t1328713718
-s1135
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueView.nib
-t1328713718
-s2534
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
-t2
-s0
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGatheringViewController.nib
-t1328713718
-s3077
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/PkgInfo
-t1328713717
-s8
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png
-t1328713718
-s933
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png
-t1328713718
-s267
-
-N/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png
-t1328713718
-s596423
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o
-t1328713719
-s7788
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o
-t1328713719
-s44408
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGathering.LinkFileList
-c000000004F328FF500000000000002DA
-t1328713717
-s730
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o
-t1328713719
-s51648
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o
-t2
-s0
-
-N/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o
-t1328713719
-s6296
-
-N/Project/JiaoTongNews/NewsGathering/main.m
-c000000004F2E1EB0000000000000016C
-t1328422576
-s364
-i<UIKit/UIKit.h>
-
-N/Project/JiaoTongNews/NewsGathering/mainbackground.png
-c000000004F326FDA00000000000919C7
-t1328705498
-s596423
-
-N/var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch.gch
-t1328536356
-s15232016
-
-NNewsGathering-Info.plist
-c000000004F2E1EB0000000000000038D
-t1328422576
-s909
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies350406517#350406517#0(0"0(0#1#0"8641879488#0"0#
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o /Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s350406519.153171
-e350406519.213783
-r1
-xCompileC
-xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o
-x/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-o/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m: In function '+[MD5EncryptProcess md5:]':
-o/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m:23: warning: implicit declaration of function 'CC_MD5'
-lSLF07#2@71"Compile /Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m350406519#350406519#0(225"/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m: In function '+[MD5EncryptProcess md5:]':/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m:23: warning: implicit declaration of function 'CC_MD5'1(22@41"Implicit declaration of function 'CC_MD5'350406519#106#119#0(6@63"/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m350360091#23#0#23#0#36"implicit declaration of function '*'0(0#0#63"/Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m8645070272#2022"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch -c /Project/JiaoTongNews/NewsGathering/Classes/MD5EncryptProcess.m -o /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o0#
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o /Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s350406519.193579
-e350406519.278654
-r1
-xCompileC
-xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o
-x/Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@80"Compile /Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m350406519#350406519#0(0"0(0#0#72"/Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m8641998080#2037"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch -c /Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.m -o /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o0#
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o /Project/JiaoTongNews/NewsGathering/MainPanelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s350406519.045820
-e350406519.153068
-r1
-xCompileC
-xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o
-x/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@78"Compile /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m350406519#350406519#0(0"0(0#0#70"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m8643756704#2036"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch -c /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringAppDelegate.m -o /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o0#
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s350406519.102876
-e350406519.193471
-r0
-xCompileC
-xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o
-x/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m: In function '-[NewsGatheringViewController loginSystem:]':
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: 'CATransition' undeclared (first use in this function)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: (Each undeclared identifier is reported only once
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: for each function it appears in.)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: 'transition' undeclared (first use in this function)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:120: error: 'CAMediaTimingFunction' undeclared (first use in this function)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:120: error: 'kCAMediaTimingFunctionDefault' undeclared (first use in this function)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:122: error: 'kCATransitionFromRight' undeclared (first use in this function)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: no '-addAnimation:forKey:' method found
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: (Messages without a matching method signature
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: will be assumed to return 'id' and accept
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: '...' as arguments.)
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m: At top level:
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:198: warning: property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation
-o/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:198: warning: property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation
-o{standard input}:968:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_25" minus "L00000000005$pb"
-o{standard input}:968:symbol: "L_OBJC_SELECTOR_REFERENCES_25" can't be undefined in a subtraction expression
-o{standard input}:961:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_24" minus "L00000000005$pb"
-o{standard input}:961:symbol: "L_OBJC_SELECTOR_REFERENCES_24" can't be undefined in a subtraction expression
-o{standard input}:957:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_7" minus "L00000000005$pb"
-o{standard input}:957:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_7" can't be undefined in a subtraction expression
-o{standard input}:951:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" minus "L00000000005$pb"
-o{standard input}:951:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" can't be undefined in a subtraction expression
-o{standard input}:944:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"
-o{standard input}:944:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression
-o{standard input}:933:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_25" minus "L00000000005$pb"
-o{standard input}:933:symbol: "L_OBJC_SELECTOR_REFERENCES_25" can't be undefined in a subtraction expression
-o{standard input}:926:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_24" minus "L00000000005$pb"
-o{standard input}:926:symbol: "L_OBJC_SELECTOR_REFERENCES_24" can't be undefined in a subtraction expression
-o{standard input}:922:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_7" minus "L00000000005$pb"
-o{standard input}:922:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_7" can't be undefined in a subtraction expression
-o{standard input}:916:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" minus "L00000000005$pb"
-o{standard input}:916:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" can't be undefined in a subtraction expression
-o{standard input}:909:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"
-o{standard input}:909:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression
-o{standard input}:900:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"
-o{standard input}:900:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression
-o{standard input}:850:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000004$pb"
-o{standard input}:850:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression
-o{standard input}:847:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"
-o{standard input}:847:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:823:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000004$pb"
-o{standard input}:823:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression
-o{standard input}:817:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"
-o{standard input}:817:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:809:non-relocatable subtraction expression, "LC23" minus "L00000000004$pb"
-o{standard input}:809:symbol: "LC23" can't be undefined in a subtraction expression
-o{standard input}:785:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"
-o{standard input}:785:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:779:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"
-o{standard input}:779:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:767:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"
-o{standard input}:767:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:761:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"
-o{standard input}:761:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:752:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000004$pb"
-o{standard input}:752:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression
-o{standard input}:749:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"
-o{standard input}:749:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:741:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000004$pb"
-o{standard input}:741:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression
-o{standard input}:737:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"
-o{standard input}:737:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:733:non-relocatable subtraction expression, "LC20" minus "L00000000004$pb"
-o{standard input}:733:symbol: "LC20" can't be undefined in a subtraction expression
-o{standard input}:722:non-relocatable subtraction expression, "LC25" minus "L00000000004$pb"
-o{standard input}:722:symbol: "LC25" can't be undefined in a subtraction expression
-o{standard input}:712:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"
-o{standard input}:712:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:706:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"
-o{standard input}:706:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:700:non-relocatable subtraction expression, "LC24" minus "L00000000004$pb"
-o{standard input}:700:symbol: "LC24" can't be undefined in a subtraction expression
-o{standard input}:690:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"
-o{standard input}:690:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:614:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_23" minus "L00000000003$pb"
-o{standard input}:614:symbol: "L_OBJC_SELECTOR_REFERENCES_23" can't be undefined in a subtraction expression
-o{standard input}:607:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000003$pb"
-o{standard input}:607:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression
-o{standard input}:604:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"
-o{standard input}:604:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:582:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000003$pb"
-o{standard input}:582:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression
-o{standard input}:576:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"
-o{standard input}:576:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:568:non-relocatable subtraction expression, "LC23" minus "L00000000003$pb"
-o{standard input}:568:symbol: "LC23" can't be undefined in a subtraction expression
-o{standard input}:565:non-relocatable subtraction expression, "LC23" minus "L00000000003$pb"
-o{standard input}:565:symbol: "LC23" can't be undefined in a subtraction expression
-o{standard input}:553:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000003$pb"
-o{standard input}:553:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:547:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"
-o{standard input}:547:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:537:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000003$pb"
-o{standard input}:537:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:531:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"
-o{standard input}:531:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:522:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000003$pb"
-o{standard input}:522:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression
-o{standard input}:519:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"
-o{standard input}:519:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:511:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000003$pb"
-o{standard input}:511:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression
-o{standard input}:507:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"
-o{standard input}:507:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:503:non-relocatable subtraction expression, "LC20" minus "L00000000003$pb"
-o{standard input}:503:symbol: "LC20" can't be undefined in a subtraction expression
-o{standard input}:443:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000002$pb"
-o{standard input}:443:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression
-o{standard input}:440:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"
-o{standard input}:440:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:426:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000002$pb"
-o{standard input}:426:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression
-o{standard input}:420:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000002$pb"
-o{standard input}:420:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:412:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_18" minus "L00000000002$pb"
-o{standard input}:412:symbol: "L_OBJC_SELECTOR_REFERENCES_18" can't be undefined in a subtraction expression
-o{standard input}:408:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"
-o{standard input}:408:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:401:non-relocatable subtraction expression, "LC19" minus "L00000000002$pb"
-o{standard input}:401:symbol: "LC19" can't be undefined in a subtraction expression
-o{standard input}:399:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000002$pb"
-o{standard input}:399:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression
-o{standard input}:396:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"
-o{standard input}:396:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:388:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000002$pb"
-o{standard input}:388:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression
-o{standard input}:384:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"
-o{standard input}:384:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression
-o{standard input}:366:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000002$pb"
-o{standard input}:366:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression
-o{standard input}:360:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000002$pb"
-o{standard input}:360:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression
-o{standard input}:355:non-relocatable subtraction expression, "LC16" minus "L00000000002$pb"
-o{standard input}:355:symbol: "LC16" can't be undefined in a subtraction expression
-o{standard input}:313:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_15" minus "L00000000001$pb"
-o{standard input}:313:symbol: "L_OBJC_SELECTOR_REFERENCES_15" can't be undefined in a subtraction expression
-o{standard input}:302:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_14" minus "L00000000001$pb"
-o{standard input}:302:symbol: "L_OBJC_SELECTOR_REFERENCES_14" can't be undefined in a subtraction expression
-o{standard input}:298:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_5" minus "L00000000001$pb"
-o{standard input}:298:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_5" can't be undefined in a subtraction expression
-o{standard input}:290:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_13" minus "L00000000001$pb"
-o{standard input}:290:symbol: "L_OBJC_SELECTOR_REFERENCES_13" can't be undefined in a subtraction expression
-o{standard input}:281:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_12" minus "L00000000001$pb"
-o{standard input}:281:symbol: "L_OBJC_SELECTOR_REFERENCES_12" can't be undefined in a subtraction expression
-o{standard input}:269:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_12" minus "L00000000001$pb"
-o{standard input}:269:symbol: "L_OBJC_SELECTOR_REFERENCES_12" can't be undefined in a subtraction expression
-o{standard input}:260:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_11" minus "L00000000001$pb"
-o{standard input}:260:symbol: "L_OBJC_SELECTOR_REFERENCES_11" can't be undefined in a subtraction expression
-o{standard input}:251:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_10" minus "L00000000001$pb"
-o{standard input}:251:symbol: "L_OBJC_SELECTOR_REFERENCES_10" can't be undefined in a subtraction expression
-o{standard input}:244:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_9" minus "L00000000001$pb"
-o{standard input}:244:symbol: "L_OBJC_SELECTOR_REFERENCES_9" can't be undefined in a subtraction expression
-o{standard input}:240:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_4" minus "L00000000001$pb"
-o{standard input}:240:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_4" can't be undefined in a subtraction expression
-o{standard input}:232:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_8" minus "L00000000001$pb"
-o{standard input}:232:symbol: "L_OBJC_SELECTOR_REFERENCES_8" can't be undefined in a subtraction expression
-o{standard input}:226:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_7" minus "L00000000001$pb"
-o{standard input}:226:symbol: "L_OBJC_SELECTOR_REFERENCES_7" can't be undefined in a subtraction expression
-o{standard input}:220:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"
-o{standard input}:220:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
-o{standard input}:217:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_3" minus "L00000000001$pb"
-o{standard input}:217:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_3" can't be undefined in a subtraction expression
-o{standard input}:208:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_6" minus "L00000000001$pb"
-o{standard input}:208:symbol: "L_OBJC_SELECTOR_REFERENCES_6" can't be undefined in a subtraction expression
-o{standard input}:201:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000001$pb"
-o{standard input}:201:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression
-o{standard input}:197:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_0" minus "L00000000001$pb"
-o{standard input}:197:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_0" can't be undefined in a subtraction expression
-o{standard input}:188:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_5" minus "L00000000001$pb"
-o{standard input}:188:symbol: "L_OBJC_SELECTOR_REFERENCES_5" can't be undefined in a subtraction expression
-o{standard input}:182:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_3" minus "L00000000001$pb"
-o{standard input}:182:symbol: "L_OBJC_SELECTOR_REFERENCES_3" can't be undefined in a subtraction expression
-o{standard input}:175:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000001$pb"
-o{standard input}:175:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression
-o{standard input}:171:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_2" minus "L00000000001$pb"
-o{standard input}:171:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_2" can't be undefined in a subtraction expression
-o{standard input}:161:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_2" minus "L00000000001$pb"
-o{standard input}:161:symbol: "L_OBJC_SELECTOR_REFERENCES_2" can't be undefined in a subtraction expression
-o{standard input}:151:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_1" minus "L00000000001$pb"
-o{standard input}:151:symbol: "L_OBJC_SELECTOR_REFERENCES_1" can't be undefined in a subtraction expression
-o{standard input}:148:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_1" minus "L00000000001$pb"
-o{standard input}:148:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_1" can't be undefined in a subtraction expression
-o{standard input}:142:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"
-o{standard input}:142:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression
-o{standard input}:139:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_0" minus "L00000000001$pb"
-o{standard input}:139:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_0" can't be undefined in a subtraction expression
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_0
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_1
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_2
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_6
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_3
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_7
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_8
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_4
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_9
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_10
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_11
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_12
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_13
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_5
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_14
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_15
-o{standard input}:unknown:Undefined local symbol LC16
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_22
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_21
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_6
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_16
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_17
-o{standard input}:unknown:Undefined local symbol LC19
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_18
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_19
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_20
-o{standard input}:unknown:Undefined local symbol LC20
-o{standard input}:unknown:Undefined local symbol LC23
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_23
-o{standard input}:unknown:Undefined local symbol LC24
-o{standard input}:unknown:Undefined local symbol LC25
-o{standard input}:unknown:Undefined local symbol L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr
-o{standard input}:unknown:Undefined local symbol L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr
-o{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_7
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_24
-o{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_25
-lSLF07#2@81"Compile /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406519#350406519#0(24703"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m: In function '-[NewsGatheringViewController loginSystem:]':/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: 'CATransition' undeclared (first use in this function)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: (Each undeclared identifier is reported only once/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: for each function it appears in.)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:118: error: 'transition' undeclared (first use in this function)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:120: error: 'CAMediaTimingFunction' undeclared (first use in this function)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:120: error: 'kCAMediaTimingFunctionDefault' undeclared (first use in this function)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:122: error: 'kCATransitionFromRight' undeclared (first use in this function)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: no '-addAnimation:forKey:' method found/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: (Messages without a matching method signature/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: will be assumed to return 'id' and accept/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:124: warning: '...' as arguments.)/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m: At top level:/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:198: warning: property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m:198: warning: property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation{standard input}:968:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_25" minus "L00000000005$pb"{standard input}:968:symbol: "L_OBJC_SELECTOR_REFERENCES_25" can't be undefined in a subtraction expression{standard input}:961:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_24" minus "L00000000005$pb"{standard input}:961:symbol: "L_OBJC_SELECTOR_REFERENCES_24" can't be undefined in a subtraction expression{standard input}:957:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_7" minus "L00000000005$pb"{standard input}:957:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_7" can't be undefined in a subtraction expression{standard input}:951:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" minus "L00000000005$pb"{standard input}:951:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" can't be undefined in a subtraction expression{standard input}:944:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"{standard input}:944:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression{standard input}:933:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_25" minus "L00000000005$pb"{standard input}:933:symbol: "L_OBJC_SELECTOR_REFERENCES_25" can't be undefined in a subtraction expression{standard input}:926:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_24" minus "L00000000005$pb"{standard input}:926:symbol: "L_OBJC_SELECTOR_REFERENCES_24" can't be undefined in a subtraction expression{standard input}:922:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_7" minus "L00000000005$pb"{standard input}:922:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_7" can't be undefined in a subtraction expression{standard input}:916:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" minus "L00000000005$pb"{standard input}:916:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr" can't be undefined in a subtraction expression{standard input}:909:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"{standard input}:909:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression{standard input}:900:non-relocatable subtraction expression, "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" minus "L00000000005$pb"{standard input}:900:symbol: "L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr" can't be undefined in a subtraction expression{standard input}:850:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000004$pb"{standard input}:850:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression{standard input}:847:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"{standard input}:847:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:823:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000004$pb"{standard input}:823:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression{standard input}:817:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"{standard input}:817:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:809:non-relocatable subtraction expression, "LC23" minus "L00000000004$pb"{standard input}:809:symbol: "LC23" can't be undefined in a subtraction expression{standard input}:785:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"{standard input}:785:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:779:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"{standard input}:779:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:767:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"{standard input}:767:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:761:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"{standard input}:761:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:752:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000004$pb"{standard input}:752:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression{standard input}:749:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"{standard input}:749:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:741:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000004$pb"{standard input}:741:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression{standard input}:737:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000004$pb"{standard input}:737:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:733:non-relocatable subtraction expression, "LC20" minus "L00000000004$pb"{standard input}:733:symbol: "LC20" can't be undefined in a subtraction expression{standard input}:722:non-relocatable subtraction expression, "LC25" minus "L00000000004$pb"{standard input}:722:symbol: "LC25" can't be undefined in a subtraction expression{standard input}:712:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"{standard input}:712:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:706:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000004$pb"{standard input}:706:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:700:non-relocatable subtraction expression, "LC24" minus "L00000000004$pb"{standard input}:700:symbol: "LC24" can't be undefined in a subtraction expression{standard input}:690:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000004$pb"{standard input}:690:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:614:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_23" minus "L00000000003$pb"{standard input}:614:symbol: "L_OBJC_SELECTOR_REFERENCES_23" can't be undefined in a subtraction expression{standard input}:607:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000003$pb"{standard input}:607:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression{standard input}:604:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"{standard input}:604:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:582:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000003$pb"{standard input}:582:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression{standard input}:576:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"{standard input}:576:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:568:non-relocatable subtraction expression, "LC23" minus "L00000000003$pb"{standard input}:568:symbol: "LC23" can't be undefined in a subtraction expression{standard input}:565:non-relocatable subtraction expression, "LC23" minus "L00000000003$pb"{standard input}:565:symbol: "LC23" can't be undefined in a subtraction expression{standard input}:553:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000003$pb"{standard input}:553:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:547:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"{standard input}:547:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:537:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000003$pb"{standard input}:537:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:531:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000003$pb"{standard input}:531:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:522:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000003$pb"{standard input}:522:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression{standard input}:519:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"{standard input}:519:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:511:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000003$pb"{standard input}:511:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression{standard input}:507:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000003$pb"{standard input}:507:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:503:non-relocatable subtraction expression, "LC20" minus "L00000000003$pb"{standard input}:503:symbol: "LC20" can't be undefined in a subtraction expression{standard input}:443:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_20" minus "L00000000002$pb"{standard input}:443:symbol: "L_OBJC_SELECTOR_REFERENCES_20" can't be undefined in a subtraction expression{standard input}:440:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"{standard input}:440:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:426:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_19" minus "L00000000002$pb"{standard input}:426:symbol: "L_OBJC_SELECTOR_REFERENCES_19" can't be undefined in a subtraction expression{standard input}:420:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000002$pb"{standard input}:420:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:412:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_18" minus "L00000000002$pb"{standard input}:412:symbol: "L_OBJC_SELECTOR_REFERENCES_18" can't be undefined in a subtraction expression{standard input}:408:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"{standard input}:408:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:401:non-relocatable subtraction expression, "LC19" minus "L00000000002$pb"{standard input}:401:symbol: "LC19" can't be undefined in a subtraction expression{standard input}:399:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_17" minus "L00000000002$pb"{standard input}:399:symbol: "L_OBJC_SELECTOR_REFERENCES_17" can't be undefined in a subtraction expression{standard input}:396:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"{standard input}:396:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:388:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_16" minus "L00000000002$pb"{standard input}:388:symbol: "L_OBJC_SELECTOR_REFERENCES_16" can't be undefined in a subtraction expression{standard input}:384:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_6" minus "L00000000002$pb"{standard input}:384:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_6" can't be undefined in a subtraction expression{standard input}:366:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_21" minus "L00000000002$pb"{standard input}:366:symbol: "L_OBJC_SELECTOR_REFERENCES_21" can't be undefined in a subtraction expression{standard input}:360:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_22" minus "L00000000002$pb"{standard input}:360:symbol: "L_OBJC_SELECTOR_REFERENCES_22" can't be undefined in a subtraction expression{standard input}:355:non-relocatable subtraction expression, "LC16" minus "L00000000002$pb"{standard input}:355:symbol: "LC16" can't be undefined in a subtraction expression{standard input}:313:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_15" minus "L00000000001$pb"{standard input}:313:symbol: "L_OBJC_SELECTOR_REFERENCES_15" can't be undefined in a subtraction expression{standard input}:302:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_14" minus "L00000000001$pb"{standard input}:302:symbol: "L_OBJC_SELECTOR_REFERENCES_14" can't be undefined in a subtraction expression{standard input}:298:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_5" minus "L00000000001$pb"{standard input}:298:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_5" can't be undefined in a subtraction expression{standard input}:290:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_13" minus "L00000000001$pb"{standard input}:290:symbol: "L_OBJC_SELECTOR_REFERENCES_13" can't be undefined in a subtraction expression{standard input}:281:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_12" minus "L00000000001$pb"{standard input}:281:symbol: "L_OBJC_SELECTOR_REFERENCES_12" can't be undefined in a subtraction expression{standard input}:269:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_12" minus "L00000000001$pb"{standard input}:269:symbol: "L_OBJC_SELECTOR_REFERENCES_12" can't be undefined in a subtraction expression{standard input}:260:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_11" minus "L00000000001$pb"{standard input}:260:symbol: "L_OBJC_SELECTOR_REFERENCES_11" can't be undefined in a subtraction expression{standard input}:251:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_10" minus "L00000000001$pb"{standard input}:251:symbol: "L_OBJC_SELECTOR_REFERENCES_10" can't be undefined in a subtraction expression{standard input}:244:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_9" minus "L00000000001$pb"{standard input}:244:symbol: "L_OBJC_SELECTOR_REFERENCES_9" can't be undefined in a subtraction expression{standard input}:240:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_4" minus "L00000000001$pb"{standard input}:240:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_4" can't be undefined in a subtraction expression{standard input}:232:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_8" minus "L00000000001$pb"{standard input}:232:symbol: "L_OBJC_SELECTOR_REFERENCES_8" can't be undefined in a subtraction expression{standard input}:226:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_7" minus "L00000000001$pb"{standard input}:226:symbol: "L_OBJC_SELECTOR_REFERENCES_7" can't be undefined in a subtraction expression{standard input}:220:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"{standard input}:220:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression{standard input}:217:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_3" minus "L00000000001$pb"{standard input}:217:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_3" can't be undefined in a subtraction expression{standard input}:208:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_6" minus "L00000000001$pb"{standard input}:208:symbol: "L_OBJC_SELECTOR_REFERENCES_6" can't be undefined in a subtraction expression{standard input}:201:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000001$pb"{standard input}:201:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression{standard input}:197:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_0" minus "L00000000001$pb"{standard input}:197:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_0" can't be undefined in a subtraction expression{standard input}:188:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_5" minus "L00000000001$pb"{standard input}:188:symbol: "L_OBJC_SELECTOR_REFERENCES_5" can't be undefined in a subtraction expression{standard input}:182:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_3" minus "L00000000001$pb"{standard input}:182:symbol: "L_OBJC_SELECTOR_REFERENCES_3" can't be undefined in a subtraction expression{standard input}:175:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_4" minus "L00000000001$pb"{standard input}:175:symbol: "L_OBJC_SELECTOR_REFERENCES_4" can't be undefined in a subtraction expression{standard input}:171:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_2" minus "L00000000001$pb"{standard input}:171:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_2" can't be undefined in a subtraction expression{standard input}:161:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_2" minus "L00000000001$pb"{standard input}:161:symbol: "L_OBJC_SELECTOR_REFERENCES_2" can't be undefined in a subtraction expression{standard input}:151:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_1" minus "L00000000001$pb"{standard input}:151:symbol: "L_OBJC_SELECTOR_REFERENCES_1" can't be undefined in a subtraction expression{standard input}:148:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_1" minus "L00000000001$pb"{standard input}:148:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_1" can't be undefined in a subtraction expression{standard input}:142:non-relocatable subtraction expression, "L_OBJC_SELECTOR_REFERENCES_0" minus "L00000000001$pb"{standard input}:142:symbol: "L_OBJC_SELECTOR_REFERENCES_0" can't be undefined in a subtraction expression{standard input}:139:non-relocatable subtraction expression, "L_OBJC_CLASSLIST_REFERENCES_$_0" minus "L00000000001$pb"{standard input}:139:symbol: "L_OBJC_CLASSLIST_REFERENCES_$_0" can't be undefined in a subtraction expression{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_0{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_0{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_1{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_1{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_2{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_4{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_3{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_5{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_6{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_3{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_7{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_8{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_4{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_9{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_10{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_11{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_12{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_13{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_5{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_14{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_15{standard input}:unknown:Undefined local symbol LC16{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_22{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_21{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_6{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_16{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_17{standard input}:unknown:Undefined local symbol LC19{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_18{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_19{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_20{standard input}:unknown:Undefined local symbol LC20{standard input}:unknown:Undefined local symbol LC23{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_23{standard input}:unknown:Undefined local symbol LC24{standard input}:unknown:Undefined local symbol LC25{standard input}:unknown:Undefined local symbol L_OBJC_IVAR_$_NewsGatheringViewController.isRemember$non_lazy_ptr{standard input}:unknown:Undefined local symbol L_OBJC_IVAR_$_NewsGatheringViewController.rememberOrNot$non_lazy_ptr{standard input}:unknown:Undefined local symbol L_OBJC_CLASSLIST_REFERENCES_$_7{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_24{standard input}:unknown:Undefined local symbol L_OBJC_SELECTOR_REFERENCES_2510(4@54"'CATransition' undeclared (first use in this function)350406519#134#141#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#118#0#118#0#43"'*' undeclared (first use in this function)0(4@52"'transition' undeclared (first use in this function)350406519#531#139#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#118#0#118#0#43"'*' undeclared (first use in this function)0(4@63"'CAMediaTimingFunction' undeclared (first use in this function)350406519#670#150#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#120#0#120#0#43"'*' undeclared (first use in this function)0(4@71"'kCAMediaTimingFunctionDefault' undeclared (first use in this function)350406519#820#158#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#120#0#120#0#43"'*' undeclared (first use in this function)0(4@64"'kCATransitionFromRight' undeclared (first use in this function)350406519#978#151#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#122#0#122#0#43"'*' undeclared (first use in this function)0(22@39"No '-addAnimation:forKey:' method found350406519#1129#128#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#124#0#124#0#19"no '*' method found0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)350406519#1257#134#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#124#0#124#0#0"0(23@13"At top level:350406519#1630#89#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#0#0#0#0#0"0(22@134"Property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation350406519#1719#223#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#198#0#198#0#0"0(22@141"Property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation350406519#1942#230#0(6@73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m350406501#198#0#198#0#0"0(0#0#73"/Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m8603879648#2042"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch -c /Project/JiaoTongNews/NewsGathering/Classes/NewsGatheringViewController.m -o /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o1#
-
-CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o /Project/JiaoTongNews/NewsGathering/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s350406519.044586
-e350406519.102770
-r1
-xCompileC
-xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o
-x/Project/JiaoTongNews/NewsGathering/main.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@50"Compile /Project/JiaoTongNews/NewsGathering/main.m350406519#350406519#0(0"0(0#0#42"/Project/JiaoTongNews/NewsGathering/main.m8644993568#1988"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch -c /Project/JiaoTongNews/NewsGathering/main.m -o /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o0#
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/Classes/../MainPanelViewController.xib
-r0
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/MainPanelView.xib
-s350406518.114161
-e350406518.973592
-r1
-xCompileXIB
-x/Project/JiaoTongNews/NewsGathering/MainPanelView.xib
-oCouldn't open shared capabilities memory GSCapabilities (No such file or directory)
-lSLF07#2@28"CompileXIB MainPanelView.xib350406518#350406518#0(84"Couldn't open shared capabilities memory GSCapabilities (No such file or directory)0(0#0#53"/Project/JiaoTongNews/NewsGathering/MainPanelView.xib8644457664#573"    cd /Project/JiaoTongNews/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainPanelView.nib /Project/JiaoTongNews/NewsGathering/MainPanelView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/MainPanelViewController.xib
-r0
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/MainWindow.xib
-s350406517.452329
-e350406518.109785
-r1
-xCompileXIB
-x/Project/JiaoTongNews/NewsGathering/MainWindow.xib
-oCouldn't open shared capabilities memory GSCapabilities (No such file or directory)
-lSLF07#2@25"CompileXIB MainWindow.xib350406517#350406518#0(84"Couldn't open shared capabilities memory GSCapabilities (No such file or directory)0(0#0#50"/Project/JiaoTongNews/NewsGathering/MainWindow.xib29273895800471624#567"    cd /Project/JiaoTongNews/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainWindow.nib /Project/JiaoTongNews/NewsGathering/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/NewsClueView.xib
-s350406518.355963
-e350406519.044365
-r1
-xCompileXIB
-x/Project/JiaoTongNews/NewsGathering/NewsClueView.xib
-oCouldn't open shared capabilities memory GSCapabilities (No such file or directory)
-lSLF07#2@27"CompileXIB NewsClueView.xib350406518#350406519#0(84"Couldn't open shared capabilities memory GSCapabilities (No such file or directory)0(0#0#52"/Project/JiaoTongNews/NewsGathering/NewsClueView.xib8642281696#571"    cd /Project/JiaoTongNews/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueView.nib /Project/JiaoTongNews/NewsGathering/NewsClueView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
-
-CCompileXIB /Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib
-s350406517.453090
-e350406518.355873
-r1
-xCompileXIB
-x/Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib
-oCouldn't open shared capabilities memory GSCapabilities (No such file or directory)
-lSLF07#2@42"CompileXIB NewsGatheringViewController.xib350406517#350406518#0(84"Couldn't open shared capabilities memory GSCapabilities (No such file or directory)0(0#0#67"/Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib8644049696#601"    cd /Project/JiaoTongNews/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGatheringViewController.nib /Project/JiaoTongNews/NewsGathering/NewsGatheringViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
-
-CCpResource build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png box1@2x.png
-s350406518.109874
-e350406518.148961
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/NewsGathering.app/box1@2x.png
-xbox1@2x.png
-lSLF07#2@16"Copy box1@2x.png350406518#350406518#0(0"0(0#0#47"/Project/JiaoTongNews/NewsGathering/box1@2x.png8645179168#452"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/JiaoTongNews/NewsGathering/box1@2x.png /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
-
-CCpResource build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png box2@2x.png
-s350406518.111660
-e350406518.150461
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/NewsGathering.app/box2@2x.png
-xbox2@2x.png
-lSLF07#2@16"Copy box2@2x.png350406518#350406518#0(0"0(0#0#47"/Project/JiaoTongNews/NewsGathering/box2@2x.png8644891648#452"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/JiaoTongNews/NewsGathering/box2@2x.png /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
-
-CCpResource build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png mainbackground.png
-s350406518.973768
-e350406518.980513
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/NewsGathering.app/mainbackground.png
-xmainbackground.png
-lSLF07#2@23"Copy mainbackground.png350406518#350406518#0(0"0(0#0#54"/Project/JiaoTongNews/NewsGathering/mainbackground.png8619439104#459"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/JiaoTongNews/NewsGathering/mainbackground.png /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
-
-CGenerateDSYMFile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
-s350375040.228426
-e350375040.247854
-r1
-xGenerateDSYMFile
-x/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM
-x/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
-lSLF07#2@127"GenerateDSYMFile build/Debug-iphonesimulator/NewsGathering.app.dSYM build/Debug-iphonesimulator/NewsGathering.app/NewsGathering350375040#350375040#0(0"0(0#0#95"/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering8617940992#392"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering -o /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM0#
-
-CLd /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering normal i386
-s350375040.197610
-e350375040.228327
-r1
-xLd
-x/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
-xnormal
-xi386
-lSLF07#2@100"Link /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering350375040#350375040#0(0"0(0#0#0"8604492576#977"    cd /Project/JiaoTongNews/NewsGathering    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -L/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -filelist /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGathering.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CFNetwork -framework SystemConfiguration -lz.1.2.3 -o /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering0#
-
-CProcessInfoPlistFile /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist NewsGathering-Info.plist
-s350406517.447076
-e350406517.452235
-r1
-xProcessInfoPlistFile
-x/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist
-xNewsGathering-Info.plist
-lSLF07#2@32"Process NewsGathering-Info.plist350406517#350406517#0(0"0(0#0#60"/Project/JiaoTongNews/NewsGathering/NewsGathering-Info.plist8640910720#488"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility NewsGathering-Info.plist -genpkginfo /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist0#
-
-CProcessPCH /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch.gch NewsGathering_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s350229153.959769
-e350229157.296842
-r1
-xProcessPCH
-x/var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch.gch
-xNewsGathering_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@35"Precompile NewsGathering_Prefix.pch350229153#350229157#0(0"0(0#0#60"/Project/JiaoTongNews/NewsGathering/NewsGathering_Prefix.pch8626759360#1877"    cd /Project/JiaoTongNews/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator -I/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/include -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/JiaoTongNews/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -c /Project/JiaoTongNews/NewsGathering/NewsGathering_Prefix.pch -o /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-afxsgzihklbqeycavmpofklcbguo/NewsGathering_Prefix.pch.gch0#
-
-CTouch /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
-s350399847.094020
-e350399847.122840
-r1
-xTouch
-x/Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
-lSLF07#2@87"Touch /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app350399847#350399847#0(0"0(0#0#0"8604009024#278"    cd /Project/JiaoTongNews/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Project/JiaoTongNews/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
-
