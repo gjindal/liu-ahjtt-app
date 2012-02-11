@@ -11,6 +11,7 @@
 
 @interface RecycleListViewController : UITableViewController {
 
+    NSArray *dataArray;
 }
 
 -(void)deleteAll;

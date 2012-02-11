@@ -11,6 +11,7 @@
 
 @interface DocChangeListViewController : UITableViewController {
 
+	NSArray *dataArray;
 }
 
 @end

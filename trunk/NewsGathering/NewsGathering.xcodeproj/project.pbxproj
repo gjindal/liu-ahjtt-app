@@ -15,7 +15,6 @@
 		1A9DE9CB14E1773C006E21E8 /* MD5EncryptProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */; };
 		1A9DE9D314E17AD1006E21E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D214E17AD1006E21E8 /* CFNetwork.framework */; };
 		1A9DE9D514E17AD1006E21E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */; };
-		1A9DE9D714E17AD1006E21E8 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D614E17AD1006E21E8 /* libz.1.2.3.dylib */; };
 		1AAB7FF414E40AD800F61582 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB7FF314E40AD800F61582 /* form_textview.png */; };
 		1AAB804614E415B400F61582 /* NewsAllocListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB804414E415B400F61582 /* NewsAllocListViewController.m */; };
 		1AAB804714E415B400F61582 /* NewsAllocListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB804514E415B400F61582 /* NewsAllocListViewController.xib */; };
@@ -35,8 +34,6 @@
 		1AAB807814E418B600F61582 /* DocWriteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB807614E418B600F61582 /* DocWriteDetailViewController.xib */; };
 		1AAB807C14E4192200F61582 /* DocChangeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */; };
 		1AAB807D14E4192200F61582 /* DocChangeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB807B14E4192200F61582 /* DocChangeDetailViewController.xib */; };
-		1AAB808114E4195D00F61582 /* RecycleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB807F14E4195D00F61582 /* RecycleDetailViewController.m */; };
-		1AAB808214E4195D00F61582 /* RecycleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB808014E4195D00F61582 /* RecycleDetailViewController.xib */; };
 		1AC0537814E3A37B0026B115 /* NewsCLueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */; };
 		1AC0537914E3A37B0026B115 /* NewsCLueListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */; };
 		1AC0556714E3BDBE0026B115 /* NewsClueSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0556614E3BDBE0026B115 /* NewsClueSearchViewController.m */; };
@@ -68,7 +65,6 @@
 		1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5EncryptProcess.m; sourceTree = "<group>"; };
 		1A9DE9D214E17AD1006E21E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1A9DE9D614E17AD1006E21E8 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		1AAB7FF314E40AD800F61582 /* form_textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_textview.png; sourceTree = "<group>"; };
 		1AAB804314E415B400F61582 /* NewsAllocListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsAllocListViewController.h; sourceTree = "<group>"; };
 		1AAB804414E415B400F61582 /* NewsAllocListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsAllocListViewController.m; sourceTree = "<group>"; };
@@ -97,9 +93,6 @@
 		1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocChangeDetailViewController.h; sourceTree = "<group>"; };
 		1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocChangeDetailViewController.m; sourceTree = "<group>"; };
 		1AAB807B14E4192200F61582 /* DocChangeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DocChangeDetailViewController.xib; path = Classes/DocChangeDetailViewController.xib; sourceTree = "<group>"; };
-		1AAB807E14E4195D00F61582 /* RecycleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleDetailViewController.h; sourceTree = "<group>"; };
-		1AAB807F14E4195D00F61582 /* RecycleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleDetailViewController.m; sourceTree = "<group>"; };
-		1AAB808014E4195D00F61582 /* RecycleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecycleDetailViewController.xib; path = Classes/RecycleDetailViewController.xib; sourceTree = "<group>"; };
 		1AC0537514E3A37B0026B115 /* NewsCLueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCLueListViewController.h; sourceTree = "<group>"; };
 		1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCLueListViewController.m; sourceTree = "<group>"; };
 		1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsCLueListViewController.xib; path = Classes/NewsCLueListViewController.xib; sourceTree = "<group>"; };
@@ -139,7 +132,6 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				1A9DE9D314E17AD1006E21E8 /* CFNetwork.framework in Frameworks */,
 				1A9DE9D514E17AD1006E21E8 /* SystemConfiguration.framework in Frameworks */,
-				1A9DE9D714E17AD1006E21E8 /* libz.1.2.3.dylib in Frameworks */,
 				1AC5ECCD14E2C74400440EA7 /* OpenGLES.framework in Frameworks */,
 				1AC5ECD314E2C76100440EA7 /* QuartzCore.framework in Frameworks */,
 			);
@@ -213,8 +205,6 @@
 				1AAB807014E4183B00F61582 /* NewsAllocDetailViewController.m */,
 				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
 				1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */,
-				1AAB807E14E4195D00F61582 /* RecycleDetailViewController.h */,
-				1AAB807F14E4195D00F61582 /* RecycleDetailViewController.m */,
 			);
 			name = ViewContoller;
 			sourceTree = "<group>";
@@ -238,7 +228,6 @@
 		1AC0537C14E3A6120026B115 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				1AAB808014E4195D00F61582 /* RecycleDetailViewController.xib */,
 				1AAB805414E4166C00F61582 /* RecycleListViewController.xib */,
 				1AAB807B14E4192200F61582 /* DocChangeDetailViewController.xib */,
 				1AAB804F14E4162600F61582 /* DocChangeListViewController.xib */,
@@ -297,7 +286,6 @@
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				1A9DE9D214E17AD1006E21E8 /* CFNetwork.framework */,
 				1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */,
-				1A9DE9D614E17AD1006E21E8 /* libz.1.2.3.dylib */,
 				1AC5ECCC14E2C74400440EA7 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
@@ -331,6 +319,9 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NewsGathering" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,7 +359,6 @@
 				1AAB807314E4183B00F61582 /* NewsAllocDetailViewController.xib in Resources */,
 				1AAB807814E418B600F61582 /* DocWriteDetailViewController.xib in Resources */,
 				1AAB807D14E4192200F61582 /* DocChangeDetailViewController.xib in Resources */,
-				1AAB808214E4195D00F61582 /* RecycleDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +385,6 @@
 				1AAB807214E4183B00F61582 /* NewsAllocDetailViewController.m in Sources */,
 				1AAB807714E418B600F61582 /* DocWriteDetailViewController.m in Sources */,
 				1AAB807C14E4192200F61582 /* DocChangeDetailViewController.m in Sources */,
-				1AAB808114E4195D00F61582 /* RecycleDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

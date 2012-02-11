@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    DOCTYPE_DRAFT,    // shows glow when pressed
+    DOCTYPE_DELETED,
+} DOCTYPE;
 
 @interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate> {
 
@@ -31,8 +35,11 @@
 	IBOutlet UIButton *btRecorder;
 	IBOutlet UIButton *btCamera;
 	IBOutlet UIButton *btVideo;
+    
+    DOCTYPE docType;
 }
 
+@property (nonatomic) DOCTYPE docType;
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
 

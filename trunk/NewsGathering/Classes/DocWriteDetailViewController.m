@@ -13,7 +13,7 @@
 @synthesize fdTitle,fdDocType,fdKeyword,fdDocSource,
 			contents,btRecorder,btCamera,btVideo,
 			scrollView,keyboardShown,activeField,
-			attachTable,attachArray;
+			attachTable,attachArray,docType;
 
 
 -(IBAction) getPhoto{
@@ -32,6 +32,10 @@
 }
 
 -(void)submitDoc{
+
+}
+
+-(void)recoverDoc{
 
 }
 
@@ -56,13 +60,18 @@
 	self.title= @"稿件撰写";
 	self.navigationController.navigationBar.hidden=NO;
 	
-	UIBarButtonItem *submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitDoc)];
+    UIBarButtonItem *submitButton;
+    if (docType == DOCTYPE_DELETED) {
+        submitButton=[[UIBarButtonItem alloc]initWithTitle: @"恢复" style:UIBarButtonItemStyleBordered target:self action:@selector(recoverDoc)];
+    }
+    else{
+        submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitDoc)];
+    }
 	submitButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=submitButton;
 	[submitButton release];
 	
 }
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
