@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "350665226.817207"
+         timestampString = "350669444.267271"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "-getRecord"
          landmarkType = "5">
       </FileBreakpoint>

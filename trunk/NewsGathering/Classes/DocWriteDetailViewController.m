@@ -27,7 +27,7 @@
 
 -(IBAction) getRecord{
 
-    MyAlertView *alertView = [[MyAlertView alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"开始",@"退出", nil];
+    MyAlertView *alertView = [[MyAlertView alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
     alertView.cancelButtonIndex = 1;
     alertView.delegate = self;
     
@@ -35,6 +35,20 @@
     imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
     [alertView addSubview:imgView];
     [imgView release];
+    
+    UIView *subView = [alertView viewWithTag:1];
+    if(subView != nil) {
+        
+        UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
+        theTitle.text = @"开始";
+        theTitle.tag = 101;
+        [theTitle setTextColor:[UIColor whiteColor]];
+        [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+        [theTitle setBackgroundColor:[UIColor clearColor]];             
+        [theTitle setTextAlignment:UITextAlignmentCenter];
+        [subView addSubview:theTitle];
+    }
+
 //    for (UIView *subView in alertView.subviews) {
 //        if(subView.tag == 1)
 //        {
