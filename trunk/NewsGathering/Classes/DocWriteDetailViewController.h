@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 typedef enum {
     DOCTYPE_DRAFT,    // shows glow when pressed

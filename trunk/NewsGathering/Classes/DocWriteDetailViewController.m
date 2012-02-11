@@ -31,6 +31,15 @@
 
 -(IBAction) getVideo{
 
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
+        videoCtrl.delegate = self;
+        videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+        videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        [self presentModalViewController:videoCtrl animated:YES];
+        [videoCtrl release];
+    }
 
 }
 
@@ -57,7 +66,7 @@
             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 
                 imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
-                //imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+                imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
                 [self presentModalViewController:imgPickerCtrl animated:YES];
                 [imgPickerCtrl release];
             }
@@ -89,8 +98,19 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [picker dismissModalViewControllerAnimated:YES];
-
+    NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
+    
+        [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
+    }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
+        [imageName appendFormat:@"Video_%@",[df stringFromDate:[NSDate date]]];
+    }
+    [(NSMutableArray *)self.attachArray addObject:imageName];
+    [imageName release];
+    [self.attachTable reloadData];
 }
 
 -(void)recoverDoc{

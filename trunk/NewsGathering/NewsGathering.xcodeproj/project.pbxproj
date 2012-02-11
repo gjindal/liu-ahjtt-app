@@ -57,6 +57,7 @@
 		B90ABD7514E65CA400641FE1 /* button_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7214E65CA400641FE1 /* button_sound.png */; };
 		B90ABD7614E65CA400641FE1 /* button_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7314E65CA400641FE1 /* button_video.png */; };
 		B90ABD7914E6745500641FE1 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7814E6745500641FE1 /* form_textview.png */; };
+		B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		B90ABD7214E65CA400641FE1 /* button_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_sound.png; sourceTree = "<group>"; };
 		B90ABD7314E65CA400641FE1 /* button_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_video.png; sourceTree = "<group>"; };
 		B90ABD7814E6745500641FE1 /* form_textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_textview.png; sourceTree = "<group>"; };
+		B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -266,7 +269,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				1AC5ECD214E2C76100440EA7 /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -293,6 +295,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AC5ECD214E2C76100440EA7 /* QuartzCore.framework */,
+				B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
