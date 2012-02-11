@@ -15,6 +15,46 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+
+
+
+-(void)deleteAll
+{
+
+}
+
+- (void)back:(id)sender {  
+    [self.navigationController popViewControllerAnimated:YES];  
+}
+
+// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+		// 下一个界面的返回按钮  
+        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
+        temporaryBarButtonItem.title = @"返回";  
+        temporaryBarButtonItem.target = self;  
+        temporaryBarButtonItem.action = @selector(back:);  
+        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        [temporaryBarButtonItem release]; 
+    }
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	
+	self.title= @"回收站";
+	self.navigationController.navigationBar.hidden=NO;
+	
+	UIBarButtonItem *cleanButton=[[UIBarButtonItem alloc]initWithTitle: @"清空" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteAll)];
+	cleanButton.style=UIBarButtonItemStylePlain;
+	self.navigationItem.rightBarButtonItem=cleanButton;
+	[cleanButton release];
+	
+}
+
+
 /*
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -13,4 +13,6 @@
 
 }
 
+-(void)deleteAll;
+- (void)back:(id)sender;
 @end

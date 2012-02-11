@@ -10,8 +10,7 @@
 
 
 @interface DocWriteListViewController : UITableViewController {
-@private
-    NSArray *dataArray;
+
 }
 
 -(void)writeNewsDoc;

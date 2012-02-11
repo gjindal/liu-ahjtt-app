@@ -11,6 +11,8 @@
 #import "NewsCLueListViewController.h"
 #import "NewsAllocListViewController.h"
 #import "DocWriteListViewController.h"
+#import "DocChangeListViewController.h"
+#import "RecycleListViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -86,19 +88,33 @@
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
 }
+
+
 -(IBAction)gotoNewsAlloc{
-	NewsAllocListViewController *viewCtrl = [[NewsAllocListViewController alloc] initWithNibName:@"NewsCLueListViewController" bundle:nil] ;
+	NewsAllocListViewController *viewCtrl = [[NewsAllocListViewController alloc] initWithNibName:@"NewsAllocListViewController" bundle:nil] ;
 
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
 }
+
+
 -(IBAction)gotoDocWrite{
-	DocWriteListViewController *viewCtrl = [[DocWriteListViewController alloc] initWithNibName:@"NewsCLueListViewController" bundle:nil] ;
+	DocWriteListViewController *viewCtrl = [[DocWriteListViewController alloc] initWithNibName:@"DocWriteListViewController" bundle:nil] ;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
 }
--(IBAction)gotoDocChange{}
--(IBAction)gotoRecycle{}
+
+
+-(IBAction)gotoDocChange{
+	DocChangeListViewController *viewCtrl = [[DocChangeListViewController alloc] initWithNibName:@"DocChangeListViewController" bundle:nil] ;
+	[self.navigationController pushViewController:viewCtrl animated:YES];
+}
+
+
+-(IBAction)gotoRecycle{
+	RecycleListViewController *viewCtrl = [[RecycleListViewController alloc] initWithNibName:@"RecycleListViewController" bundle:nil] ;
+	[self.navigationController pushViewController:viewCtrl animated:YES];
+}
 
 - (void)back:(id)sender {  
     [self.navigationController popViewControllerAnimated:YES];  
