@@ -60,6 +60,7 @@
 		B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */; };
 		B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90ABD8614E6B6C300641FE1 /* MyAlertView.m */; };
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
+		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +136,8 @@
 		B90ABD8514E6B6C300641FE1 /* MyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlertView.h; sourceTree = "<group>"; };
 		B90ABD8614E6B6C300641FE1 /* MyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlertView.m; sourceTree = "<group>"; };
 		B90ABD8814E6B98A00641FE1 /* microphone 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone 1.png"; sourceTree = "<group>"; };
+		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
+		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,8 @@
 				1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */,
 				B90ABD8514E6B6C300641FE1 /* MyAlertView.h */,
 				B90ABD8614E6B6C300641FE1 /* MyAlertView.m */,
+				B9E84CA914EA92D6005CA5FE /* StorageHelper.h */,
+				B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				1AAB807714E418B600F61582 /* DocWriteDetailViewController.m in Sources */,
 				1AAB807C14E4192200F61582 /* DocChangeDetailViewController.m in Sources */,
 				B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */,
+				B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
