@@ -8,7 +8,7 @@
 
 #import "DocWriteDetailViewController.h"
 #import "MyAlertView.h"
-
+#import "StorageHelper.h"
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle,fdDocType,fdKeyword,fdDocSource,
@@ -61,7 +61,7 @@
 //    }
     
     [alertView show];
-    
+    [alertView release];
     
 }
 
@@ -149,7 +149,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
+                                                                                                                                                                                                                                                                                                                     
     [picker dismissModalViewControllerAnimated:YES];
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
@@ -157,9 +157,17 @@
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
     
         [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        StorageHelper *helper = [[StorageHelper alloc] init];
+        
+        [helper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
         [imageName appendFormat:@"Video_%@",[df stringFromDate:[NSDate date]]];
+        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        StorageHelper *helper = [[StorageHelper alloc] init];
+        [helper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
     [(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
