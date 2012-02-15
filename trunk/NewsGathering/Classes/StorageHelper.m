@@ -10,6 +10,8 @@
 
 @implementation StorageHelper
 
+@synthesize baseDirectory = _baseDirectory;
+
 - (id)init {
     
     self = [super init];

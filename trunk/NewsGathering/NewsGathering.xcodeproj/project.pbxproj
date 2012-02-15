@@ -73,6 +73,7 @@
 		B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */; };
 		B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90ABD8614E6B6C300641FE1 /* MyAlertView.m */; };
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
+		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		B90ABD8514E6B6C300641FE1 /* MyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlertView.h; sourceTree = "<group>"; };
 		B90ABD8614E6B6C300641FE1 /* MyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlertView.m; sourceTree = "<group>"; };
 		B90ABD8814E6B98A00641FE1 /* microphone 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone 1.png"; sourceTree = "<group>"; };
+		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */,
 				B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -349,6 +352,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B994796614EBF20000E3A68F /* AVFoundation.framework */,
 				1AC5ECD214E2C76100440EA7 /* QuartzCore.framework */,
 				B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,

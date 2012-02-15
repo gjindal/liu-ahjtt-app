@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface MyAlertView : UIAlertView
+@interface MyAlertView : UIAlertView <AVAudioRecorderDelegate> {
 
+@private
+    AVAudioRecorder *_recorder;
+    NSString *_fileName;
+}
 @end

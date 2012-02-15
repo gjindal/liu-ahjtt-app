@@ -14,6 +14,8 @@
     
 }
 
+@property (nonatomic, retain) NSString *baseDirectory;
+
 - (NSArray *)getSubFiles;
 - (BOOL)createFileWithName:(NSString *)fileName data:(NSData *)data;
 - (BOOL)deleteFileWithName:(NSString *)fileName;
