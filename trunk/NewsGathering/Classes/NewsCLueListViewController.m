@@ -9,6 +9,7 @@
 #import "NewsCLueListViewController.h"
 #import "NewsClueSearchViewController.h"
 #import "NewsClueDetailViewController.h"
+#import "UITableViewCellEx.h"
 
 @implementation NewsCLueListViewController
 
@@ -69,6 +70,8 @@
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", nil] retain];
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    //self.tableView.backgroundColor = [UIColor grayColor];
 }
 
 /*
@@ -110,6 +113,11 @@
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0;
+}
+
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -117,12 +125,21 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //[cell setBackgroundImageByName:@"list_item_background.png"];
+
     }
-    
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     // Configure the cell...
     cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
-    
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.text = @"2012-02-09";
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    //cell.backgroundColor = [UIColor grayColor];
+    [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
     return cell;
 }
 

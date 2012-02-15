@@ -9,6 +9,7 @@
 #import "NewsAllocListViewController.h"
 #import "NewsClueSearchViewController.h"
 #import "NewsAllocDetailViewController.h"
+#import "NewsClueDetailViewController.h"
 
 @implementation NewsAllocListViewController
 
@@ -170,10 +171,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NewsClueDetailViewController *newClueDetailCtrl = [[NewsClueDetailViewController alloc] initWithNibName:@"NewsClueDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:newClueDetailCtrl animated:YES];
+    [newClueDetailCtrl release];
+    
+    /*
     NewsAllocDetailViewController *detailViewCtrl = [[NewsAllocDetailViewController alloc] initWithNibName:@"NewsAllocDetailViewController" bundle:nil];
     [self.navigationController pushViewController:detailViewCtrl animated:YES];
     [detailViewCtrl release];
-    
+    */
     // Navigation logic may go here. Create and push another view controller.
 	/*
 	 DetailViewController *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

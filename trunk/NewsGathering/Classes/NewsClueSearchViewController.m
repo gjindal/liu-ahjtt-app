@@ -36,8 +36,10 @@
 
 	self.navigationController.navigationBar.hidden=NO;
 	
-		originalContentHeight = [scrollView contentSize].height;
-	
+    originalContentHeight = [scrollView contentSize].height;
+    
+    
+
 }
 
 #pragma -
