@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import <MediaPlayer/MediaPlayer.h>
+
+@class StorageHelper;
 
 typedef enum {
     DOCTYPE_DRAFT,    // shows glow when pressed
@@ -24,7 +27,7 @@ typedef enum {
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
 	IBOutlet UITableView *attachTable;
-	NSMutableArray *attachArray;
+	NSArray *attachArray;
     
 	
 	UITextField * activeField;  
@@ -39,6 +42,8 @@ typedef enum {
 	IBOutlet UIButton *btVideo;
     
     DOCTYPE docType;
+    
+    StorageHelper *_storeHelper;
 }
 
 @property (nonatomic) DOCTYPE docType;

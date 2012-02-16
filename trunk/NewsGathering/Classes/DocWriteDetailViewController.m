@@ -9,6 +9,11 @@
 #import "DocWriteDetailViewController.h"
 #import "MyAlertView.h"
 #import "StorageHelper.h"
+#import "ImagePlayViewController.h"
+
+#define kMediaType_Image @"Image"
+#define kMediaType_Video @"Video"
+#define kMediaType_Audio @"Audio"
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle,fdDocType,fdKeyword,fdDocSource,
@@ -17,7 +22,7 @@
 			attachTable,attachArray,docType;
 
 
--(IBAction) getPhoto{
+-(IBAction) getPhoto {
 
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
     actionSheet.delegate = self;
@@ -25,7 +30,7 @@
     [actionSheet release];
 }
 
--(IBAction) getRecord{
+-(IBAction) getRecord {
 
     MyAlertView *alertView = [[MyAlertView alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
     alertView.cancelButtonIndex = 1;
@@ -65,7 +70,7 @@
     
 }
 
--(IBAction) getVideo{
+-(IBAction) getVideo {
 
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
@@ -158,18 +163,19 @@
     
         [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        
+                      
         StorageHelper *helper = [[StorageHelper alloc] init];
         
         [helper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Video_%@",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"Video_%@.MOV",[df stringFromDate:[NSDate date]]];
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         StorageHelper *helper = [[StorageHelper alloc] init];
         [helper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
-    [(NSMutableArray *)self.attachArray addObject:imageName];
+    [self setAttachArray:[_storeHelper getSubFiles]];
+    //[(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
     [self.attachTable reloadData];
 }
@@ -191,7 +197,6 @@
     }
     return self;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -237,11 +242,12 @@
 //													@"Video_2012_02-05 09:00:00",
 //													@"Image_2012_02-06 10:00:01",
 //													nil];
-	self.attachArray = [[NSMutableArray alloc] initWithCapacity:0];
+    _storeHelper = [[StorageHelper alloc] init];
+    self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     
-    [self.scrollView addSubview:attachTable];
+    //[self.scrollView addSubview:attachTable];
 }
 
 #pragma mark -
@@ -252,12 +258,13 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    
+    //NSLog(@"%@", [self.attachArray count]);
+    
     return [self.attachArray count];
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -272,6 +279,7 @@
 	cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -280,20 +288,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	for (int i = 0; i < [self.attachArray count]; i++) {
-		UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-		if (i != indexPath.row) {
-			//cell.accessoryType = UITableViewCellAccessoryNone;
-		}
-	}
-	
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	
-	if (indexPath.row == 0) {
-	}
-	
-	if (indexPath.row == 1) {
-	}
+    //NSLog(@"%@", indexPath.row);
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(cell != nil) {
+        
+        NSString *fileName = cell.textLabel.text;
+        NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
+        
+        NSData *data = [_storeHelper readFileWithName:fileName];
+        if(data != nil) {
+            
+            if([fileType isEqualToString:kMediaType_Image]) {
+            
+                UIImage *image = [[UIImage alloc] initWithData:data];
+                ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
+                //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
+                imagePlayCtrl.image = image;
+                //[self presentModalViewController:imagePlayCtrl animated:YES];
+                [self.navigationController pushViewController:imagePlayCtrl animated:YES];
+                [image release];
+                [imagePlayCtrl release];
+                
+            }else if([fileType isEqualToString:kMediaType_Video]) {
+            
+                NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName];
+                MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
+                //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
+                //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
+                [self presentMoviePlayerViewControllerAnimated:videoPlayCtrl];
+                [videoPlayCtrl release];
+                
+            }else if([fileType isEqualToString:kMediaType_Audio]) {
+            
+                
+            }
+        }
+    }
 }
 
 // Override to support conditional editing of the table view.
@@ -315,24 +345,22 @@
 }
 
 #pragma mark - UITextField Delegate  
--(void)textFieldDidBeginEditing:(UITextField *)textField  
-{  
+-(void)textFieldDidBeginEditing:(UITextField *)textField {  
+    
     isTextView = NO;
     activeField = textField;  
 }  
 
--(void)textFieldDidEndEditing:(UITextField *)textField  
-{  
+-(void)textFieldDidEndEditing:(UITextField *)textField {  
     activeField = nil;  
 }  
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField  
-{  
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {  
     [textField resignFirstResponder];  
     return YES;  
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
     [activeView release];
     activeView = nil;
@@ -342,8 +370,8 @@
 }
 
 // Call this method somewhere in your view controller setup code.  
-- (void)registerForKeyboardNotifications
-{
+- (void)registerForKeyboardNotifications {
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -353,10 +381,8 @@
                                                  name:UIKeyboardDidHideNotification object:nil];
 }
 
-
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
     if (keyboardShown)
         return;
     
@@ -384,10 +410,8 @@
     keyboardShown = YES;
 }
 
-
 // Called when the UIKeyboardDidHideNotification is sent
-- (void)keyboardWasHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWasHidden:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     
     // Get the size of the keyboard.
@@ -406,6 +430,4 @@
     
     [super dealloc];
 }
-
-
 @end
