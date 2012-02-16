@@ -73,6 +73,9 @@
 		B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */; };
 		B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B90ABD8614E6B6C300641FE1 /* MyAlertView.m */; };
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
+		B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97D155114ED455E005E0A41 /* VideoPlayViewController.m */; };
+		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
+		B98C31CC14ED345F0064FC89 /* ImagePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
@@ -164,6 +167,11 @@
 		B90ABD8514E6B6C300641FE1 /* MyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAlertView.h; sourceTree = "<group>"; };
 		B90ABD8614E6B6C300641FE1 /* MyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAlertView.m; sourceTree = "<group>"; };
 		B90ABD8814E6B98A00641FE1 /* microphone 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone 1.png"; sourceTree = "<group>"; };
+		B97D155014ED455E005E0A41 /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
+		B97D155114ED455E005E0A41 /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
+		B97D155414ED48B7005E0A41 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B98C31CA14ED345F0064FC89 /* ImagePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayViewController.h; sourceTree = "<group>"; };
+		B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayViewController.m; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */,
 				B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */,
 				B90ABD8414E6A0CC00641FE1 /* MobileCoreServices.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -260,6 +269,10 @@
 				1AAB807014E4183B00F61582 /* NewsAllocDetailViewController.m */,
 				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
 				1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */,
+				B98C31CA14ED345F0064FC89 /* ImagePlayViewController.h */,
+				B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */,
+				B97D155014ED455E005E0A41 /* VideoPlayViewController.h */,
+				B97D155114ED455E005E0A41 /* VideoPlayViewController.m */,
 			);
 			name = ViewContoller;
 			sourceTree = "<group>";
@@ -352,6 +365,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B97D155414ED48B7005E0A41 /* MediaPlayer.framework */,
 				B994796614EBF20000E3A68F /* AVFoundation.framework */,
 				1AC5ECD214E2C76100440EA7 /* QuartzCore.framework */,
 				B90ABD8314E6A0CC00641FE1 /* MobileCoreServices.framework */,
@@ -480,6 +494,8 @@
 				B90ABD8714E6B6C300641FE1 /* MyAlertView.m in Sources */,
 				B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */,
 				1AC71F9014EBEABF00DD873F /* UITableViewCellEx.m in Sources */,
+				B98C31CC14ED345F0064FC89 /* ImagePlayViewController.m in Sources */,
+				B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,8 +506,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanntuu Corp,Inc";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -499,8 +515,8 @@
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 			};
 			name = Debug;
 		};
@@ -508,13 +524,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -523,14 +539,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanntuu Corp,Inc";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
+				PROVISIONING_PROFILE = "59476B43-36E9-4977-8718-1D8F1FF23518";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "59476B43-36E9-4977-8718-1D8F1FF23518";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -539,15 +555,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanntuu Corp,Inc";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ABB7558E-47C9-4629-94EE-FC7C6B417318";
+				PROVISIONING_PROFILE = "59476B43-36E9-4977-8718-1D8F1FF23518";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "59476B43-36E9-4977-8718-1D8F1FF23518";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
