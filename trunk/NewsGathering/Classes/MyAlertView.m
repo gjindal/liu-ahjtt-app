@@ -35,7 +35,7 @@
             }else {
                 
                 [self stop];
-                //[super dismissWithClickedButtonIndex:buttonIndex animated:animated];
+                [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
             }
 //            if([[subView performSelector:@selector(title)] isEqualToString:@"开始"]) {
 //                
@@ -100,25 +100,25 @@
     }
     NSString *baseDirectory = [NSString stringWithFormat:@"%@/StoreMedia", [paths objectAtIndex:0]];
     //_fileName = [[baseDirectory stringByAppendingString:] retain];
-    _fileName = [[baseDirectory stringByAppendingString:@"/2.caf"] retain];
-    //_fileName = [[NSString stringWithFormat:@"%@/Audio_%@", baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
+    //_fileName = [[baseDirectory stringByAppendingString:@"/2.mp3"] retain];
+    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.mp3", baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
 
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:YES error:nil];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
     
-    NSDictionary *recordSettings =
-    [[NSDictionary alloc] initWithObjectsAndKeys:
-     [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-     [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-     [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-     [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-     nil];
+    NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
+                                   [NSNumber numberWithInt:AVAudioQualityMax], AVEncoderAudioQualityKey,
+                                   [NSNumber numberWithInt:24], AVEncoderBitRateKey,
+                                   [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                   [NSNumber numberWithFloat:22050.0f], AVSampleRateKey,
+                                   nil];
 
     _recorder = [[AVAudioRecorder alloc] initWithURL: [NSURL URLWithString:_fileName]
                                                                settings: recordSettings
                                                                   error: nil];
-    _recorder.delegate = self;
+    //_recorder.delegate = self;
     if( [_recorder prepareToRecord] == YES) {
     
         [_recorder record];
@@ -135,9 +135,11 @@
         [_recorder stop];
         [_recorder release];
         _recorder = nil;
-        [[AVAudioSession sharedInstance] setActive: NO error: nil];
         
-
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        //[audioSession setActive:YES error:nil];
+        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+        //[[AVAudioSession sharedInstance] setActive: NO error: nil];
     }
 }
 

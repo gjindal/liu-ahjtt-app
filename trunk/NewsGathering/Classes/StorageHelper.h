@@ -11,13 +11,16 @@
 @interface StorageHelper : NSObject {
 @private
     NSString *_baseDirectory;
-    
+    NSString *_userDirectory;
 }
 
 @property (nonatomic, retain) NSString *baseDirectory;
+@property (nonatomic, retain) NSString *userDirectory;
 
 - (NSArray *)getSubFiles;
 - (BOOL)createFileWithName:(NSString *)fileName data:(NSData *)data;
 - (BOOL)deleteFileWithName:(NSString *)fileName;
 - (NSData *)readFileWithName:(NSString *)fileName;
+- (void)checkUserFloder:(NSString *)userName;
+
 @end

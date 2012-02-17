@@ -11,6 +11,7 @@
 @implementation StorageHelper
 
 @synthesize baseDirectory = _baseDirectory;
+@synthesize userDirectory = _userDirectory;
 
 - (id)init {
     
@@ -61,6 +62,30 @@
     NSString *readFile = [_baseDirectory stringByAppendingPathComponent:fileName];
     NSData *fileData = [[[NSData alloc] initWithContentsOfFile:readFile] autorelease];
     return fileData;
+}
+
+- (void)checkUserFloder:(NSString *)userName {
+
+    if(userName == nil) {
+        
+        return;
+    }
+    NSString *userFloderPath = [_baseDirectory stringByAppendingFormat:@"/%@", userName];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:userFloderPath]) {
+    
+        if([[NSFileManager defaultManager] createDirectoryAtPath:userFloderPath withIntermediateDirectories:YES attributes:nil error:nil] == YES) {
+        
+            _userDirectory = [userFloderPath retain];
+        }
+    }
+}
+
+- (void)dealloc {
+
+    [_baseDirectory release];
+    [_userDirectory release];
+    
+    [super release];
 }
 
 @end
