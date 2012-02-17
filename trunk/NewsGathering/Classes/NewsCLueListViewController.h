@@ -12,9 +12,10 @@
 @interface NewsCLueListViewController : UITableViewController {
 @private
     NSArray *dataArray;
+    UISegmentedControl *segmentCtrl;
 }
 
--(void)searchNews;
+-(void)segmentAction:(id)sender;
 - (void)back:(id)sender;
 
 @end

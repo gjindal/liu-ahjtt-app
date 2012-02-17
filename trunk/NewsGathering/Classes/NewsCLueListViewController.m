@@ -26,12 +26,20 @@
 }
 */
 
--(void)searchNews
+-(void)segmentAction:(id)sender
 {
-	NewsClueSearchViewController *viewCtrl = [[NewsClueSearchViewController alloc] initWithNibName:@"NewsClueView" bundle:nil] ;
-	viewCtrl.nSearchType = SEARCHTYPE_CLUE;
-	[self.navigationController pushViewController:viewCtrl animated:YES];
-	[viewCtrl release];
+    segmentCtrl = (UISegmentedControl *)sender;
+    if (segmentCtrl.selectedSegmentIndex == 0) {
+
+    }
+    
+    if (segmentCtrl.selectedSegmentIndex == 1) {
+        NewsClueSearchViewController *viewCtrl = [[NewsClueSearchViewController alloc] initWithNibName:@"NewsClueView" bundle:nil] ;
+        viewCtrl.nSearchType = SEARCHTYPE_CLUE;
+        [self.navigationController pushViewController:viewCtrl animated:YES];
+        [viewCtrl release];
+    }
+
 }
 
 - (void)back:(id)sender {  
@@ -59,10 +67,14 @@
 	self.title= @"新闻线索";
 	self.navigationController.navigationBar.hidden=NO;
 
-	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchNews)];
-	searchButton.style=UIBarButtonItemStylePlain;
-	self.navigationItem.rightBarButtonItem=searchButton;
-	[searchButton release];
+    segmentCtrl= [[UISegmentedControl alloc]
+                 initWithFrame:CGRectMake(225.0f, 6.0, 90.0f, 32.0f)];
+	[segmentCtrl insertSegmentWithTitle:@"增加" atIndex:0 animated:YES]; 
+	[segmentCtrl insertSegmentWithTitle:@"搜索" atIndex:1 animated:YES];	
+	segmentCtrl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[segmentCtrl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+	segmentCtrl.selectedSegmentIndex = -1;
+	[self.navigationController.navigationBar addSubview: segmentCtrl];
 
     dataArray = [[NSArray arrayWithObjects:@"合肥下雪", @"合肥下雨", @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
@@ -70,8 +82,6 @@
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
                   @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", nil] retain];
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
-    //self.tableView.backgroundColor = [UIColor grayColor];
 }
 
 /*
@@ -79,11 +89,19 @@
     [super viewDidAppear:animated];
 }
 */
-/*
+
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    for (UIView *views in self.navigationController.navigationBar.subviews) {
+        if ([views isKindOfClass:[UISegmentedControl class]]) {
+            NSLog(@"找到啦");
+            [views removeFromSuperview];
+        }
+    }
+
     [super viewWillDisappear:animated];
 }
-*/
+
 /*
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -221,6 +239,7 @@
 
 
 - (void)dealloc {
+    [segmentCtrl release];
     [super dealloc];
 }
 

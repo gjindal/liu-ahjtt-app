@@ -11,7 +11,7 @@
 #define SEARCHTYPE_CLUE 1
 #define SEARCHTYPE_ALLOC 2
 
-@interface NewsClueSearchViewController : UIViewController<UITextFieldDelegate, UITextViewDelegate,UIActionSheetDelegate> {
+@interface NewsClueSearchViewController : UIViewController<UITextFieldDelegate, UITextViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate> {
 
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIButton *startTime;
@@ -45,10 +45,13 @@
 @property(nonatomic,retain) IBOutlet UIImageView *contentsBackground;
 
 
--(IBAction)setDateTime:(id)sender;
+-(IBAction)setStartDateTime:(id)sender;
+
+-(IBAction)setEndDateTime:(id)sender;
 //- (void)textFieldDidBeginEditing:(UITextField *)textField;
-- (void)scrollViewToCenterOfScreen:(UIView *)theView;
+//- (void)scrollViewToCenterOfScreen:(UIView *)theView;
 //- (void)textViewDidBeginEditing: (UITextView *) textView;
-- (void)confirm;
+- (IBAction)confirm;
+
 
 @end

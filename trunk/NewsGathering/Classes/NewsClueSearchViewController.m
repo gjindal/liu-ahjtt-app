@@ -7,10 +7,15 @@
 //
 
 #import "NewsClueSearchViewController.h"
+#import "DatePicker.h"
+
+#define START_TIME_PICKER   101
+#define END_TIME_PICKER	    102
 
 
 @implementation NewsClueSearchViewController
-@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType;
+
+@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground;
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -122,55 +127,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	[contents setFont:[UIFont fontWithName:nil size:14]];
+	[contents setFont:[UIFont fontWithName:nil size:16]];
 	
-	UIImageView *txtViewBkImageView = [[UIImageView alloc] initWithFrame:CGRectMake(18,240,284,118)];
-	[txtViewBkImageView setImage:[[UIImage imageNamed:@"form_textview.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0]];
-	if(txtViewBkImageView.image != nil)
+	//contentsBackground = [[UIImageView alloc] initWithFrame:CGRectMake(18,240,284,118)];
+	[contentsBackground setImage:[[UIImage imageNamed:@"form_textview.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0]];
+	if(contentsBackground.image != nil)
 		[self.contents setBackgroundColor:[UIColor clearColor]];
 	
-	[self.view insertSubview:txtViewBkImageView belowSubview:self.contents];
-	[txtViewBkImageView release];
-    
-    [btConfirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
-    
-    //startTime.delegate = self;
-    //endTime.delegate = self;
     newsTitle.delegate = self;
     newsType.delegate = self;
     newsStatus.delegate = self;
     contents.delegate = self;
     
-    scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
-	[scrollView setContentSize:CGSizeMake(320, 416)];
+    scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+	[scrollView setContentSize:CGSizeMake(320, 460)];
     
     for (UIView *subView in self.view.subviews) {
-//        if([subView isKindOfClass:[UITextField class]]){
-//            ((UITextField *)subView).delegate = self;
-//            NSLog(@"%@", subView);
-//        }
         [scrollView addSubview:subView];
     }
-    
-    [scrollView addSubview:btConfirm];
-    
+
     [self.view addSubview:scrollView];
     
     keyboardShown = NO;
     [self registerForKeyboardNotifications];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(isTextView) {
-        
-        [activeView resignFirstResponder];
-        activeView = nil;
-    }else {
-    
-        [activeField resignFirstResponder];
-        activeField = nil;
-    }
-}
 
 - (void) viewWillDisappear:(BOOL)animated {
     
@@ -208,11 +189,11 @@
     return YES;
 }
 
-//- (void)textFieldDidEndEditing:(UITextField *)textField {
-//    
-//    [activeField resignFirstResponder];
-//    activeField = nil;
-//}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    [activeField resignFirstResponder];
+    activeField = nil;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
@@ -228,52 +209,76 @@
     return YES;
 }
 
-//- (void)textViewDidEndEditing:(UITextView *)textView {
-//    
-//    [textView resignFirstResponder];
-//    activeView = nil;
-//}
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    
+    [textView resignFirstResponder];
+    activeView = nil;
+}
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-        {
-            UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:101];
-            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-            formatter.dateFormat = @"MM/dd/YYYY hh:mm:ss";
-            strTimes = [formatter stringFromDate:datePicker.date];
-            
-            NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-            [formatter setTimeZone:timeZone];
 
-            NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"CN"];
-            [formatter setLocale:locale];
-            startTime.titleLabel.text = strTimes;
-            [actionSheet release];
-        }
-            break;
-            
-        case 2:
-            break;
-        default:
-            break;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    if(isTextView) {
+        
+        [activeView resignFirstResponder];
+        activeView = nil;
+    }else {
+        
+        [activeField resignFirstResponder];
+        activeField = nil;
     }
+	
 }
 
-- (IBAction)setDateTime:(id)sender{
-
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\r\r\r\r\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
-	[actionSheet showInView:self.view];
-    
-	UIDatePicker *datePicker = [[[UIDatePicker alloc] init] autorelease];
-	datePicker.tag = 101;
-	datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-	[actionSheet addSubview:datePicker];
-    
+-(IBAction)setStartDateTime:(id)sender{
+		
+		DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
+																message:@"\n\n\n\n\n\n\n\n" 
+															   delegate:self 
+													  cancelButtonTitle:@"关闭" 
+													  otherButtonTitles:@"确定",nil];
+		startDatePicker.tag = START_TIME_PICKER;
+		if(startTime.titleLabel.text.length > 0){
+			startDatePicker.selectedDate = startTime.titleLabel.text;
+		}
+		[startDatePicker show];
+		[startDatePicker release];
 }
 
-- (void)confirm{
+-(IBAction)setEndDateTime:(id)sender{
+    
+    DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
+                                                            message:@"\n\n\n\n\n\n\n\n" 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"关闭" 
+                                                  otherButtonTitles:@"确定",nil];
+    startDatePicker.tag = END_TIME_PICKER;
+    if(endTime.titleLabel.text.length > 0){
+        startDatePicker.selectedDate = endTime.titleLabel.text;
+    }
+    [startDatePicker show];
+    [startDatePicker release];
+}
+
+- (void)datePciker:(DatePicker *)datePicker didFinishedSelectDate:(NSString *)selectedDate {
+    
+	if([datePicker tag] == START_TIME_PICKER){
+        
+		startTime.titleLabel.textColor = [UIColor blackColor];
+		startTime.titleLabel.text = selectedDate;
+		
+	}
+	
+	if([datePicker tag] == END_TIME_PICKER){
+		
+		endTime.titleLabel.textColor = [UIColor blackColor];
+		endTime.titleLabel.text = selectedDate;
+
+	}
+}
+
+
+- (IBAction)confirm{
     
     [self.navigationController popViewControllerAnimated:YES];
 }
