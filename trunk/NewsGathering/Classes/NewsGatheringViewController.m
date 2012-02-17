@@ -9,6 +9,8 @@
 #import "NewsGatheringViewController.h"
 #import "MD5EncryptProcess.h"
 #import "MainPanelViewController.h"
+#import "NewsGatheringAppDelegate.h"
+#import "NetRequest.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -17,31 +19,28 @@
 @synthesize fdUserpassword;
 
 
-
-
 ////////////////
 
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password{
 	
-	NSString *post = nil;  
-	post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",@"1",[MD5EncryptProcess md5:password]];
-	NSData *postData =[NSData dataWithBytes:[post UTF8String] length:[post length]];
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
-	//[post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];  
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
-	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];  
-	[request setURL:[NSURL URLWithString:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"]];  
-	[request setHTTPMethod:@"POST"]; 
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];  
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];  
-	[request setHTTPBody:postData];  
+	//appDelegate.networkActivityIndicatorVisible = YES;
+    
+    
+	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"];
 
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
-	
+	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
+    //记下用户名密码，以便发送请求时带上
+	appDelegate.username = username;
+    appDelegate.password = [MD5EncryptProcess md5:password];
+    
+   // appDelegate.networkActivityIndicatorVisible = NO;
 	[post release]; 
+    [url release];
 	return returnData;
 
-	
 }
 
 /////////////////////////////
@@ -109,13 +108,13 @@
 	[fdUsername resignFirstResponder];
     [fdUserpassword resignFirstResponder];
 
-	/*
+	
 	NSData *resultData = [self login:fdUsername.text andpassword:fdUserpassword.text];
 	NSString *result = [[NSString alloc] initWithData:resultData
 											 encoding:NSUTF8StringEncoding];
 	NSLog(@"Result = %@",result);
 	
-	*/
+	
 	MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
 	
 	CATransition *transition = [CATransition animation];

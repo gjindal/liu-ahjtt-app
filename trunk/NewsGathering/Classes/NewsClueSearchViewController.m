@@ -38,7 +38,6 @@
 	
     originalContentHeight = [scrollView contentSize].height;
     
-    
 
 }
 
@@ -135,8 +134,8 @@
     
     [btConfirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     
-    startTime.delegate = self;
-    endTime.delegate = self;
+    //startTime.delegate = self;
+    //endTime.delegate = self;
     newsTitle.delegate = self;
     newsType.delegate = self;
     newsStatus.delegate = self;
@@ -234,6 +233,45 @@
 //    [textView resignFirstResponder];
 //    activeView = nil;
 //}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:101];
+            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            formatter.dateFormat = @"MM/dd/YYYY hh:mm:ss";
+            strTimes = [formatter stringFromDate:datePicker.date];
+            
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+            [formatter setTimeZone:timeZone];
+
+            NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"CN"];
+            [formatter setLocale:locale];
+            startTime.titleLabel.text = strTimes;
+            [actionSheet release];
+        }
+            break;
+            
+        case 2:
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)setDateTime:(id)sender{
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\r\r\r\r\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+	[actionSheet showInView:self.view];
+    
+	UIDatePicker *datePicker = [[[UIDatePicker alloc] init] autorelease];
+	datePicker.tag = 101;
+	datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+	[actionSheet addSubview:datePicker];
+    
+}
 
 - (void)confirm{
     

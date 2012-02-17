@@ -47,6 +47,8 @@
 	//    UIBarButtonItemStyleDone,
 	self.navigationItem.rightBarButtonItem=quitButton;
 	[quitButton release];
+    
+    [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"panel_background1.png"]]];
 	
 }
 

@@ -7,17 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
 
 @class NewsGatheringViewController;
+
 
 @interface NewsGatheringAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     NewsGatheringViewController *viewController;
 	UINavigationController *navController;
+    
+    NSString *username;
+    NSString *password;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet NewsGatheringViewController *viewController;
+
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
 
 
 

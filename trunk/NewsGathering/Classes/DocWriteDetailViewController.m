@@ -9,6 +9,8 @@
 #import "DocWriteDetailViewController.h"
 #import "MyAlertView.h"
 #import "StorageHelper.h"
+#import "NetRequest.h"
+#import "NewsGatheringAppDelegate.h"
 #import "ImagePlayViewController.h"
 
 #define kMediaType_Image @"Image"
@@ -85,7 +87,39 @@
 }
 
 -(void)submitDoc{
+  
+    /*
+    8080/editmobile/mobile/contriM!submit_pass.do稿件内容接口地址，
+     参数userid用户编号，
+     pwd加密密码，
+     title标题，
+     type稿件类型（字典表配置），
+     keyword关键字，
+     source稿源，
+     note内容，
+     level稿件审批流程（字典表配置），
+     flowid稿件与附件关联表，要求上传时候能有对应的处理。
+     */
+    
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	
+	//appDelegate.networkActivityIndicatorVisible = YES;
+    
+    
+	NSString *post = [[NSString alloc] initWithFormat:@"&userid=%@&pwd=%@&title=%@&type=%@&keyword=%@&source=%@&note=%@&level=%@&flowid=%@",appDelegate.username,appDelegate.password,fdTitle.text,fdDocType.text,fdKeyword.text,fdDocSource.text,contents.text,@"2",@"1234567890123456"];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submit_pass.do"];
+    
+	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
 
+    NSString *result = [[NSString alloc] initWithData:returnData
+											 encoding:NSUTF8StringEncoding];
+	NSLog(@"Result = %@",result);
+    // appDelegate.networkActivityIndicatorVisible = NO;
+	[post release]; 
+    [url release];
+	return returnData;
+
+    
 }
 
 #pragma -
@@ -238,10 +272,7 @@
 	if(imgContentsBgd.image != nil)
 	[self.contents setBackgroundColor:[UIColor clearColor]];
 	
-//	self.attachArray = [NSArray arrayWithObjects:	@"Voice_2012-02-05 08:30:00",
-//													@"Video_2012_02-05 09:00:00",
-//													@"Image_2012_02-06 10:00:01",
-//													nil];
+
     _storeHelper = [[StorageHelper alloc] init];
     self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
 	self.attachTable.delegate = self;

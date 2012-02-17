@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>新闻采集</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>simplenote-icon.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>Sanntuu.GeniusPhone.SantelBusiness</string>
 	<key>CFBundleInfoDictionaryVersion</key>

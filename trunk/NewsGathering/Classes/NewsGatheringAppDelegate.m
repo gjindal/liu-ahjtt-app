@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize username,password;
 
 
 #pragma mark -

@@ -11,11 +11,11 @@
 #define SEARCHTYPE_CLUE 1
 #define SEARCHTYPE_ALLOC 2
 
-@interface NewsClueSearchViewController : UIViewController<UITextFieldDelegate, UITextViewDelegate> {
+@interface NewsClueSearchViewController : UIViewController<UITextFieldDelegate, UITextViewDelegate,UIActionSheetDelegate> {
 
 	IBOutlet UIScrollView *scrollView;
-	IBOutlet UITextField *startTime;
-	IBOutlet UITextField *endTime;
+	IBOutlet UIButton *startTime;
+	IBOutlet UIButton *endTime;
 	IBOutlet UITextField *newsTitle;
 	IBOutlet UITextField *newsType;
 	IBOutlet UITextField *newsStatus;
@@ -24,7 +24,7 @@
 	IBOutlet UIImageView *contentsBackground;
 	
 	int nSearchType;
-	
+	NSString *strTimes;
 	float originalContentHeight;
     
     bool isTextView;
@@ -35,8 +35,8 @@
 
 @property(nonatomic) int nSearchType;
 @property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
-@property(nonatomic,retain) IBOutlet UITextField *startTime;
-@property(nonatomic,retain) IBOutlet UITextField *endTime;
+@property(nonatomic,retain) IBOutlet UIButton *startTime;
+@property(nonatomic,retain) IBOutlet UIButton *endTime;
 @property(nonatomic,retain) IBOutlet UITextField *newsTitle;
 @property(nonatomic,retain) IBOutlet UITextField *newsType;
 @property(nonatomic,retain) IBOutlet UITextField *newsStatus;
@@ -44,6 +44,8 @@
 @property(nonatomic,retain) IBOutlet UIButton *btConfirm;
 @property(nonatomic,retain) IBOutlet UIImageView *contentsBackground;
 
+
+-(IBAction)setDateTime:(id)sender;
 //- (void)textFieldDidBeginEditing:(UITextField *)textField;
 - (void)scrollViewToCenterOfScreen:(UIView *)theView;
 //- (void)textViewDidBeginEditing: (UITextView *) textView;
