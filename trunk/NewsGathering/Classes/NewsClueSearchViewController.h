@@ -48,6 +48,8 @@ typedef enum{
     NSString *tmpCellString;
     NSIndexPath *lastIndexPath;
     
+    BOOL bTimeAlertView;
+    
 }
 
 @property(nonatomic,retain) NSIndexPath *lastIndexPath;

@@ -7,7 +7,8 @@
 //
 
 #import "ClueWriteDetailViewController.h"
-#import "MyAlertView.h"
+#import "AudioRecorder.h"
+#import "AudioPlayer.h"
 #import "NetRequest.h"
 #import "NewsGatheringAppDelegate.h"
 #import "UIAlertTableView.h"
@@ -31,7 +32,7 @@
      flowid稿件与附件关联表，要求上传时候能有对应的处理。
      */
     
-    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+ //   NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	//appDelegate.networkActivityIndicatorVisible = YES;
     

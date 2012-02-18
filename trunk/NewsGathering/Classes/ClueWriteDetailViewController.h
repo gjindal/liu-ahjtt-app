@@ -14,7 +14,7 @@
     IBOutlet UITextField *clueTitle;
     IBOutlet UIButton   *clueType;
     IBOutlet UITextView *contents;
-    UIImageView *imgContentsBgd;
+    IBOutlet UIImageView *imgContentsBgd;
     
     NSString *tmpCellString;
     NSArray *array;
@@ -34,7 +34,7 @@
 @property(nonatomic,retain) IBOutlet UITextField *clueTitle;
 @property(nonatomic,retain) IBOutlet UIButton *clueType;
 @property(nonatomic,retain) IBOutlet UITextView *contents;
-@property(nonatomic,retain) UIImageView *imgContentsBgd;
+@property(nonatomic,retain) IBOutlet UIImageView *imgContentsBgd;
 
 -(IBAction)setType:(id)sender;
 

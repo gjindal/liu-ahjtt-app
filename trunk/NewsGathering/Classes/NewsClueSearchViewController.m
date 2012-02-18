@@ -40,6 +40,8 @@
 			break;
 	}
     
+    bTimeAlertView = TRUE;
+    
 	self.navigationController.navigationBar.hidden=NO;
     originalContentHeight = [scrollView contentSize].height;
     
@@ -229,22 +231,24 @@
 }
 
 -(IBAction)setStartDateTime:(id)sender{
-		
-		DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
+        
+    bTimeAlertView = YES;
+    DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
 																message:@"\n\n\n\n\n\n\n\n" 
 															   delegate:self 
 													  cancelButtonTitle:@"关闭" 
 													  otherButtonTitles:@"确定",nil];
-		startDatePicker.tag = START_TIME_PICKER;
-		if(startTime.titleLabel.text.length > 0){
-			startDatePicker.selectedDate = startTime.titleLabel.text;
-		}
-		[startDatePicker show];
-		[startDatePicker release];
+    startDatePicker.tag = START_TIME_PICKER;
+    if(startTime.titleLabel.text.length > 0){
+        startDatePicker.selectedDate = startTime.titleLabel.text;
+    }
+    [startDatePicker show];
+    [startDatePicker release];
 }
 
 -(IBAction)setEndDateTime:(id)sender{
     
+    bTimeAlertView = YES;
     DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
                                                             message:@"\n\n\n\n\n\n\n\n" 
                                                            delegate:self 
@@ -316,6 +320,9 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (bTimeAlertView) {
+        return;
+    }
     if (buttonIndex == 1) {
     
         if (tableType == TABLETYPE_CLUETYPE) {
@@ -371,6 +378,7 @@
 
 -(IBAction)setType:(id)sender{
     
+    bTimeAlertView = NO;
     tableType = TABLETYPE_CLUETYPE;
     //TEST DATA
     typeArray = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
@@ -393,6 +401,7 @@
 
 -(IBAction)setStatus:(id)sender{
 
+    bTimeAlertView = NO;
     tableType = TABLETYPE_CLUESTATUS;
     //TEST DATA
     statusArray = [[NSArray alloc] initWithObjects:@"已处理",@"未处理", nil ];
@@ -436,6 +445,10 @@
 
 
 - (void)dealloc {
+    [array release];
+    [statusArray release];
+    [typeArray release];
+    [scrollView release];
     [super dealloc];
 }
 
