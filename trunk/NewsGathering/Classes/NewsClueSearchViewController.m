@@ -8,6 +8,7 @@
 
 #import "NewsClueSearchViewController.h"
 #import "DatePicker.h"
+#import "UIAlertTableView.h"
 
 #define START_TIME_PICKER   101
 #define END_TIME_PICKER	    102
@@ -15,7 +16,7 @@
 
 @implementation NewsClueSearchViewController
 
-@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground;
+@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground,typeArray,statusArray,lastIndexPath;
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -29,18 +30,17 @@
     [super viewWillAppear:animated];
 	
 	switch (nSearchType) {
-		case 1:
+		case SEARCHTYPE_CLUE:
 			self.title= @"搜索新闻线索";
 			break;
-		case 2:
+		case SEARCHTYPE_ALLOC:
 			self.title= @"搜索新闻派单";
 			break;
 		default:
 			break;
 	}
-
+    
 	self.navigationController.navigationBar.hidden=NO;
-	
     originalContentHeight = [scrollView contentSize].height;
     
 
@@ -135,8 +135,6 @@
 		[self.contents setBackgroundColor:[UIColor clearColor]];
 	
     newsTitle.delegate = self;
-    newsType.delegate = self;
-    newsStatus.delegate = self;
     contents.delegate = self;
     
     scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
@@ -275,6 +273,146 @@
 		endTime.titleLabel.text = selectedDate;
 
 	}
+}
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return [array count];
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+	cell.textLabel.text = [array objectAtIndex:indexPath.row];
+    
+    // Configure the cell...
+	
+	NSUInteger row = [indexPath row];
+	NSUInteger oldRow = [lastIndexPath row];
+	cell.textLabel.text = [array objectAtIndex:row];
+	cell.accessoryType = (row == oldRow && lastIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    
+    return cell;
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+    
+        if (tableType == TABLETYPE_CLUETYPE) {
+            newsType.titleLabel.text =  tmpCellString;
+        }
+        if (tableType == TABLETYPE_CLUESTATUS) {
+            newsStatus.titleLabel.text = tmpCellString;
+        }
+    }
+	printf("User Pressed Button %d\n",buttonIndex+1);
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+	//NSInteger row=[indexPath row];
+	
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	//NSLog(@"----hello----,%@",indexPath);
+	return indexPath;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 35;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    int newRow = [indexPath row];
+	int oldRow = [lastIndexPath row];
+    
+	if ((newRow == 0 && oldRow == 0) || (newRow != oldRow)){
+		
+		UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+		newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+		//newCell.textLabel.textColor=[UIColor redColor];
+		
+		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: lastIndexPath]; 
+		oldCell.accessoryType = UITableViewCellAccessoryNone;
+		//oldCell.textLabel.textColor=[UIColor blackColor];
+		lastIndexPath = [indexPath retain];	
+        
+         tmpCellString = newCell.textLabel.text;
+		
+		NSLog(@"-----text---,%@",newCell.textLabel.text);
+	}
+	
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+-(IBAction)setType:(id)sender{
+    
+    tableType = TABLETYPE_CLUETYPE;
+    //TEST DATA
+    typeArray = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
+    
+    tmpCellString = [[NSString alloc] initWithString:@""];
+    array = [[NSArray alloc] initWithArray:typeArray];
+    
+    UIAlertTableView *alert = [[UIAlertTableView alloc] initWithTitle:@"选择线索类型"
+															  message:nil
+															 delegate:self
+													cancelButtonTitle:@"取消"
+													otherButtonTitles:@"完成", nil];
+	alert.tableDelegate = self;
+	alert.dataSource = self;
+	alert.tableHeight = 120;
+	[alert show];
+	[alert release];
+    
+}
+
+-(IBAction)setStatus:(id)sender{
+
+    tableType = TABLETYPE_CLUESTATUS;
+    //TEST DATA
+    statusArray = [[NSArray alloc] initWithObjects:@"已处理",@"未处理", nil ];
+    
+    tmpCellString = [[NSString alloc] initWithString:@""];
+
+    array = [[NSArray alloc] initWithArray:statusArray];
+
+    UIAlertTableView *alert = [[UIAlertTableView alloc] initWithTitle:@"选择线索状态"
+															  message:nil
+															 delegate:self
+													cancelButtonTitle:@"取消"
+													otherButtonTitles:@"完成", nil];
+	alert.tableDelegate = self;
+	alert.dataSource = self;
+	alert.tableHeight = 120;
+	[alert show];
+	[alert release];
+
+
 }
 
 

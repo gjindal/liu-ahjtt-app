@@ -10,6 +10,7 @@
 #import "NewsClueSearchViewController.h"
 #import "NewsClueDetailViewController.h"
 #import "UITableViewCellEx.h"
+#import "ClueWriteDetailViewController.h"
 
 @implementation NewsCLueListViewController
 
@@ -30,7 +31,9 @@
 {
     segmentCtrl = (UISegmentedControl *)sender;
     if (segmentCtrl.selectedSegmentIndex == 0) {
-
+        ClueWriteDetailViewController *clueDetailCtrl = [[ClueWriteDetailViewController alloc] initWithNibName:@"ClueWriteDetailViewController" bundle:nil];
+        [self.navigationController pushViewController:clueDetailCtrl animated:YES];
+        [clueDetailCtrl release];
     }
     
     if (segmentCtrl.selectedSegmentIndex == 1) {
