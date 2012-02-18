@@ -115,7 +115,7 @@
     NSString *result = [[NSString alloc] initWithData:returnData
 											 encoding:NSUTF8StringEncoding];
 	NSLog(@"Result = %@",result);
-    // appDelegate.networkActivityIndicatorVisible = NO;
+     // appDelegate.networkActivityIndicatorVisible = NO;
 	[post release]; 
     [url release];
 	return returnData;
@@ -190,13 +190,14 @@
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
-    
-        [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
+        
+        [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
                       
         //StorageHelper *helper = [[StorageHelper alloc] init];
         
-        [_storeHelper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
+//        [_storeHelper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
+        [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 1.0)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
         [imageName appendFormat:@"Video_%@.mp4",[df stringFromDate:[NSDate date]]];
@@ -209,6 +210,7 @@
     [imageName release];
     [self.attachTable reloadData];
 }
+
 
 -(void)recoverDoc{
 
