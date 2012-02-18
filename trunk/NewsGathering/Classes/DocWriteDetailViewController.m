@@ -7,7 +7,8 @@
 //
 
 #import "DocWriteDetailViewController.h"
-#import "MyAlertView.h"
+#import "AudioRecorder.h"
+#import "AudioPlayer.h"
 #import "StorageHelper.h"
 #import "NetRequest.h"
 #import "NewsGatheringAppDelegate.h"
@@ -34,7 +35,7 @@
 
 -(IBAction) getRecord {
 
-    MyAlertView *alertView = [[MyAlertView alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+    AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
     alertView.cancelButtonIndex = 1;
     alertView.delegate = self;
     
@@ -124,17 +125,12 @@
 
 #pragma -
 #pragma UIAlertView Delegate.
+
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if(buttonIndex == 0){ 
     
-        NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
-        NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        [imageName appendFormat:@"Audio_%@",[df stringFromDate:[NSDate date]]];
-        
-        [(NSMutableArray *)self.attachArray addObject:imageName];
-        [imageName release];
+        self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
         [self.attachTable reloadData];
     }
 }
@@ -198,15 +194,15 @@
         [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
                       
-        StorageHelper *helper = [[StorageHelper alloc] init];
+        //StorageHelper *helper = [[StorageHelper alloc] init];
         
-        [helper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
+        [_storeHelper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Video_%@.MOV",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"Video_%@.mp4",[df stringFromDate:[NSDate date]]];
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        StorageHelper *helper = [[StorageHelper alloc] init];
-        [helper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
+        //StorageHelper *helper = [[StorageHelper alloc] init];
+        [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
     [self setAttachArray:[_storeHelper getSubFiles]];
     //[(NSMutableArray *)self.attachArray addObject:imageName];
@@ -351,7 +347,31 @@
                 
             }else if([fileType isEqualToString:kMediaType_Audio]) {
             
+                AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+                alertView.cancelButtonIndex = 1;
+                alertView.audioData = data;
+                //alertView.delegate = self;
                 
+                UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
+                imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
+                [alertView addSubview:imgView];
+                [imgView release];
+                
+                UIView *subView = [alertView viewWithTag:1];
+                if(subView != nil) {
+                    
+                    UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
+                    theTitle.text = @"开始";
+                    theTitle.tag = 101;
+                    [theTitle setTextColor:[UIColor whiteColor]];
+                    [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+                    [theTitle setBackgroundColor:[UIColor clearColor]];             
+                    [theTitle setTextAlignment:UITextAlignmentCenter];
+                    [subView addSubview:theTitle];
+                }
+                
+                [alertView show];
+                [alertView release];
             }
         }
     }

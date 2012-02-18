@@ -7,11 +7,11 @@
 //
 
 #import "StorageHelper.h"
+#import "UserHelper.h"
 
 @implementation StorageHelper
 
 @synthesize baseDirectory = _baseDirectory;
-@synthesize userDirectory = _userDirectory;
 
 - (id)init {
     
@@ -25,7 +25,10 @@
         // Check if the directory already exists
         if (![[NSFileManager defaultManager] fileExistsAtPath:_baseDirectory]) {
             // Directory does not exist so create it
-            [[NSFileManager defaultManager] createDirectoryAtPath:_baseDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+            if([[NSFileManager defaultManager] createDirectoryAtPath:_baseDirectory withIntermediateDirectories:YES attributes:nil error:nil] == YES) {
+            
+                [self checkUserFloder:[UserHelper userName]];
+            }
         }
     }
     
@@ -46,12 +49,12 @@
 
 - (BOOL)deleteFileWithName:(NSString *)fileName {
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSSharedPublicDirectory, NSUserDomainMask, YES);
-    NSString *sharedPublicDirectory = [paths objectAtIndex:0];
-    if(!sharedPublicDirectory) {
-        return NO;
-    }
-    NSString *deleteFile = [sharedPublicDirectory stringByAppendingPathComponent:fileName];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSSharedPublicDirectory, NSUserDomainMask, YES);
+//    NSString *sharedPublicDirectory = [paths objectAtIndex:0];
+//    if(!sharedPublicDirectory) {
+//        return NO;
+//    }
+    NSString *deleteFile = [_baseDirectory stringByAppendingPathComponent:fileName];
     return  [[NSFileManager defaultManager] removeItemAtPath:deleteFile error:nil];
 }
 
@@ -66,8 +69,8 @@
 
 - (void)checkUserFloder:(NSString *)userName {
 
-    if(userName == nil) {
-        
+    if(userName == nil || [userName isEqualToString:@""]) {
+        //_userDirectory = [_baseDirectory retain];
         return;
     }
     NSString *userFloderPath = [_baseDirectory stringByAppendingFormat:@"/%@", userName];
@@ -75,7 +78,9 @@
     
         if([[NSFileManager defaultManager] createDirectoryAtPath:userFloderPath withIntermediateDirectories:YES attributes:nil error:nil] == YES) {
         
-            _userDirectory = [userFloderPath retain];
+            [_baseDirectory release];
+            _baseDirectory = nil;
+            _baseDirectory = [userFloderPath retain];
         }
     }
 }
@@ -83,7 +88,6 @@
 - (void)dealloc {
 
     [_baseDirectory release];
-    [_userDirectory release];
     
     [super release];
 }

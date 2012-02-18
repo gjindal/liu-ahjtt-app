@@ -6,17 +6,18 @@
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MyAlertView.h"
+#import "AudioRecorder.h"
 #import "StorageHelper.h"
 
-@interface MyAlertView (PrivateMethod)
+@interface AudioRecorder (PrivateMethod)
 
 - (void)start;
 - (void)stop;
 
 @end
 
-@implementation MyAlertView
+@implementation AudioRecorder
+
 
 -(void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
     
@@ -29,7 +30,6 @@
             if([subLabel.text isEqualToString:@"开始"]) {
                 
                 [self start];
-                
                 [subView setBackgroundColor:[UIColor redColor]];
                 subLabel.text = @"停止";
             }else {
@@ -89,36 +89,34 @@
     _fileName = nil;
     
     NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
-    [dataFormatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *temp = [[NSString stringWithFormat:@"%@/StoreMedia", [paths objectAtIndex:0]] retain];
-    
-    // Check if the directory already exists
-    if (![[NSFileManager defaultManager] fileExistsAtPath:temp]) {
-        // Directory does not exist so create it
-        [[NSFileManager defaultManager] createDirectoryAtPath:temp withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    NSString *baseDirectory = [NSString stringWithFormat:@"%@/StoreMedia", [paths objectAtIndex:0]];
+    [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+//    NSString *temp = [[NSString stringWithFormat:@"%@/StoreMedia", [paths objectAtIndex:0]] retain];
+//    
+//    // Check if the directory already exists
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:temp]) {
+//        // Directory does not exist so create it
+//        [[NSFileManager defaultManager] createDirectoryAtPath:temp withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
+//    NSString *baseDirectory = [NSString stringWithFormat:@"%@/StoreMedia", [paths objectAtIndex:0]];
     //_fileName = [[baseDirectory stringByAppendingString:] retain];
     //_fileName = [[baseDirectory stringByAppendingString:@"/2.mp3"] retain];
-    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.mp3", baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
-
+    StorageHelper *storeHelper = [[StorageHelper alloc] init];
+    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.caf", storeHelper.baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:YES error:nil];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
     
-    NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
-                                   [NSNumber numberWithInt:AVAudioQualityMax], AVEncoderAudioQualityKey,
-                                   [NSNumber numberWithInt:24], AVEncoderBitRateKey,
-                                   [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                   [NSNumber numberWithFloat:22050.0f], AVSampleRateKey,
-                                   nil];
+    NSDictionary *recordSettings = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+                                    [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                                    [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+                                    [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                                    nil];
 
-    _recorder = [[AVAudioRecorder alloc] initWithURL: [NSURL URLWithString:_fileName]
+    _recorder = [[AVAudioRecorder alloc] initWithURL: [NSURL fileURLWithPath:_fileName]
                                                                settings: recordSettings
                                                                   error: nil];
-    //_recorder.delegate = self;
     if( [_recorder prepareToRecord] == YES) {
     
         [_recorder record];
@@ -136,24 +134,7 @@
         [_recorder release];
         _recorder = nil;
         
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        //[audioSession setActive:YES error:nil];
-        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-        //[[AVAudioSession sharedInstance] setActive: NO error: nil];
     }
-}
-
--(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
-{
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setActive:YES error:nil];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    NSData *data = [NSData dataWithContentsOfFile:_fileName ];
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data error:nil];
-    [player setVolume:1.0];
-    [player prepareToPlay];
-    [player play];
 }
 
 @end
