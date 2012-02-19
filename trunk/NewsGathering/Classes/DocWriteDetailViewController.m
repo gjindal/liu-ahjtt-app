@@ -35,7 +35,7 @@
 
 -(IBAction) getRecord {
 
-    AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+    AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
     alertView.cancelButtonIndex = 1;
     alertView.delegate = self;
     
@@ -349,7 +349,7 @@
                 
             }else if([fileType isEqualToString:kMediaType_Audio]) {
             
-                AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+                AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
                 alertView.cancelButtonIndex = 1;
                 alertView.audioData = data;
                 //alertView.delegate = self;

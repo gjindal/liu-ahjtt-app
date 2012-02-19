@@ -14,6 +14,9 @@
     NSData *_audioData;
     AVAudioPlayer *_player;
     BOOL _playing;
+    UILabel             *_timeLabel;
+    NSTimer             *_timer;
+    NSDate              *_fireDate;
 }
 
 @property (nonatomic, retain) NSData *audioData;

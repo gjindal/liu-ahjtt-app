@@ -12,7 +12,10 @@
 @interface AudioRecorder : UIAlertView {
 
 @private
-    AVAudioRecorder *_recorder;
-    NSString *_fileName;
+    AVAudioRecorder     *_recorder;
+    NSString            *_fileName;
+    UILabel             *_timeLabel;
+    NSTimer             *_timer;
+    NSDate              *_fireDate;
 }
 @end
