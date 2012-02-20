@@ -96,6 +96,8 @@
 		B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C41D714EF62C20064E622 /* AudioPlayer.m */; };
 		B98C743114F222D1001E9398 /* DocDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743014F222D1001E9398 /* DocDetail.m */; };
 		B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743414F23228001E9398 /* DocDetailHelper.m */; };
+		B98D841814F27F92007AE435 /* LoginResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D841714F27F92007AE435 /* LoginResultInfo.m */; };
+		B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D841A14F280AE007AE435 /* LoginParserHelper.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
@@ -221,6 +223,11 @@
 		B98C743014F222D1001E9398 /* DocDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetail.m; sourceTree = "<group>"; };
 		B98C743314F23228001E9398 /* DocDetailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailHelper.h; sourceTree = "<group>"; };
 		B98C743414F23228001E9398 /* DocDetailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailHelper.m; sourceTree = "<group>"; };
+		B98D841614F27F92007AE435 /* LoginResultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginResultInfo.h; sourceTree = "<group>"; };
+		B98D841714F27F92007AE435 /* LoginResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginResultInfo.m; sourceTree = "<group>"; };
+		B98D841914F280AE007AE435 /* LoginParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParserHelper.h; sourceTree = "<group>"; };
+		B98D841A14F280AE007AE435 /* LoginParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParserHelper.m; sourceTree = "<group>"; };
+		B98D841C14F280E9007AE435 /* LoginParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParserHelperDelegate.h; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
@@ -281,6 +288,9 @@
 				B2AF5E9314EE5CB1006A9B8E /* UserHelper.m */,
 				B98C743314F23228001E9398 /* DocDetailHelper.h */,
 				B98C743414F23228001E9398 /* DocDetailHelper.m */,
+				B98D841914F280AE007AE435 /* LoginParserHelper.h */,
+				B98D841A14F280AE007AE435 /* LoginParserHelper.m */,
+				B98D841C14F280E9007AE435 /* LoginParserHelperDelegate.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -290,6 +300,8 @@
 			children = (
 				B98C742F14F222D1001E9398 /* DocDetail.h */,
 				B98C743014F222D1001E9398 /* DocDetail.m */,
+				B98D841614F27F92007AE435 /* LoginResultInfo.h */,
+				B98D841714F27F92007AE435 /* LoginResultInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -602,6 +614,8 @@
 				B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */,
 				B98C743114F222D1001E9398 /* DocDetail.m in Sources */,
 				B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */,
+				B98D841814F27F92007AE435 /* LoginResultInfo.m in Sources */,
+				B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,8 +626,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -621,8 +635,8 @@
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 			};
 			name = Debug;
 		};
@@ -630,15 +644,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

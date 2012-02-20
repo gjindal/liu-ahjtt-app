@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate> {
+#import "LoginParserHelperDelegate.h"
+#import "LoginParserHelper.h"
+
+@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate, LoginParserHelperDelegate> {
 
 	UIButton *btLogin;
 	UITextField *fdUsername;
 	UITextField *fdUserpassword;
+    LoginParserHelper *_loginParserHelper;
 	IBOutlet UIButton *rememberOrNot;
 	BOOL isRemember;
 	

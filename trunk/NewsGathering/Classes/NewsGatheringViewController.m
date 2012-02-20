@@ -11,8 +11,15 @@
 #import "MainPanelViewController.h"
 #import "NewsGatheringAppDelegate.h"
 #import "NetRequest.h"
+#import "LoginResultInfo.h"
 
 #import <QuartzCore/QuartzCore.h>
+
+@interface NewsGatheringViewController (PrivateMethods)
+
+- (void)alertInfo:(NSString *)info;
+
+@end
 
 @implementation NewsGatheringViewController
 @synthesize fdUsername;
@@ -104,28 +111,25 @@
 	[fdUsername resignFirstResponder];
     [fdUserpassword resignFirstResponder];
 
+    if([fdUsername.text length] < 1) {
+        
+        [self alertInfo:@"用户名不可为空!"];
+        return;
+    }
+    
+    if([fdUserpassword.text length] < 1) {
+        
+        [self alertInfo:@"密码不可为空!"];
+        return;
+    }
 	
 	NSData *resultData = [self login:fdUsername.text andpassword:fdUserpassword.text];
 	NSString *result = [[NSString alloc] initWithData:resultData
 											 encoding:NSUTF8StringEncoding];
-	NSLog(@"Result = %@",result);
-	
-	
-	MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
-	
-	CATransition *transition = [CATransition animation];
-	transition.duration = 1.2f;
-	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-	transition.type = @"cube";
-	transition.subtype = kCATransitionFromRight;
-	transition.delegate = self;
-	[self.navigationController.view.layer addAnimation:transition forKey:nil];
-	
-	
-	[self.navigationController pushViewController:viewCtrl animated:YES];
-	[viewCtrl release];
-	
-	
+    
+    _loginParserHelper = [[LoginParserHelper alloc] init];
+    _loginParserHelper.delegate = self;
+    [_loginParserHelper startWithString:result];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -149,6 +153,49 @@
 
     }
     return self;
+}
+
+#pragma -
+#pragma LoginParserHelper Delegate.
+
+- (void)parserDidFinished:(LoginResultInfo *)resultInfo {
+
+    if(resultInfo != nil) {
+    
+        if(resultInfo.isLoginSuccess == YES) {
+        
+            MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
+            
+            CATransition *transition = [CATransition animation];
+            transition.duration = 1.2f;
+            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+            transition.type = @"cube";
+            transition.subtype = kCATransitionFromRight;
+            transition.delegate = self;
+            [self.navigationController.view.layer addAnimation:transition forKey:nil];
+            
+            
+            [self.navigationController pushViewController:viewCtrl animated:YES];
+            [viewCtrl release];
+        }else {
+        
+            NSString *alertMessage = [resultInfo.message stringByAppendingString:@"!"];
+            [self alertInfo:alertMessage];
+        }
+    }
+}
+
+#pragma -
+#pragma Private Methods.
+
+- (void)alertInfo:(NSString *)info {
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登陆失败" message:info
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"关闭" 
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
 }
 
 
