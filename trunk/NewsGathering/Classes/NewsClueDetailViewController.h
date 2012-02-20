@@ -9,8 +9,53 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NewsClueDetailViewController : UIViewController {
+@interface NewsClueDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate> {
 
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UITextField *clueTitle;
+    IBOutlet UIButton *clueType;
+    IBOutlet UILabel *author;
+    IBOutlet UILabel *createTime;
+    IBOutlet UILabel *status;
+    IBOutlet UITextView *contents;
+    IBOutlet UIImageView *imgContentsBgd;
+    IBOutlet UIButton *btConfirm;
+    
+    BOOL bEnableChange;     //是否具有修改功能
+    BOOL bEnableAudit;
+    
+    NSString *tmpCellString;
+    NSArray *array;
+    
+	UITextField * activeField;  
+	BOOL keyboardShown;
+	CGFloat oldContentOffsetValue;
+	BOOL isNeedSetOffset; 
+	bool isTextView;
+    UITextView *activeView;
+    
+    NSIndexPath *lastIndexPath;
 }
+
+@property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic,retain) IBOutlet UITextField *clueTitle;
+@property(nonatomic,retain) IBOutlet UIButton *clueType;
+@property(nonatomic,retain) IBOutlet UILabel *author;
+@property(nonatomic,retain) IBOutlet UILabel *createTime;
+@property(nonatomic,retain) IBOutlet UILabel *status;
+@property(nonatomic,retain) IBOutlet UITextView *contents;
+@property(nonatomic,retain) IBOutlet UIImageView *imgContentsBgd;
+@property(nonatomic,retain) IBOutlet UIButton *btConfirm;
+
+@property(nonatomic) BOOL bEnableChange;
+@property(nonatomic) BOOL bEnableAudit;
+
+-(IBAction)setType:(id)sender;
+
+-(void) setChangeFunction;    //开启修改功能
+
+-(IBAction)confirmChanges:(id)sender; //提交修改的内容
+
+-(void)passAudit;                     //审核通过
 
 @end

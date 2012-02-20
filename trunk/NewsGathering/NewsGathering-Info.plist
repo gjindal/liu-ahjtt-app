@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>simplenote-icon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>Sanntuu.GeniusPhone.SantelBusiness</string>
+	<string>com.jinjia.newsgathering</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

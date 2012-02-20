@@ -117,11 +117,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     // Configure the cell...
     cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.text = @"2012-02-09";
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    //cell.backgroundColor = [UIColor grayColor];
+    [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
     return cell;
 }
 

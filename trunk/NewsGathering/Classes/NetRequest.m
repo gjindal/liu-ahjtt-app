@@ -13,6 +13,8 @@
 
 
 +(NSData*) PostData:(NSString*) serverURL withRequestString:(NSString *) strPost{
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
 	NSData *postData =[NSData dataWithBytes:[strPost UTF8String] length:[strPost length]];
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
@@ -24,6 +26,9 @@
 	[request setHTTPBody:postData];  
     
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
 	return returnData;
 
 }

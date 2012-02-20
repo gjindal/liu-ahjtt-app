@@ -71,6 +71,9 @@
 		1AD7FEC914EDADB000DAA354 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7FEC614EDADB000DAA354 /* star2.png */; };
 		1AD7FECC14EDAEEE00DAA354 /* NetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD7FECB14EDAEEE00DAA354 /* NetRequest.m */; };
 		1AD7FECE14EDB61100DAA354 /* contents_background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7FECD14EDB61000DAA354 /* contents_background2.png */; };
+		1AF62CD814EFC3960022A2D9 /* add2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD514EFC3960022A2D9 /* add2.png */; };
+		1AF62CD914EFC3960022A2D9 /* contents_background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD614EFC3960022A2D9 /* contents_background3.png */; };
+		1AF62CDA14EFC3960022A2D9 /* panel_background320.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD714EFC3960022A2D9 /* panel_background320.png */; };
 		1D3623260D0F684500981E51 /* NewsGatheringAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NewsGatheringAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -181,6 +184,9 @@
 		1AD7FECA14EDAEEE00DAA354 /* NetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetRequest.h; sourceTree = "<group>"; };
 		1AD7FECB14EDAEEE00DAA354 /* NetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetRequest.m; sourceTree = "<group>"; };
 		1AD7FECD14EDB61000DAA354 /* contents_background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contents_background2.png; sourceTree = "<group>"; };
+		1AF62CD514EFC3960022A2D9 /* add2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add2.png; sourceTree = "<group>"; };
+		1AF62CD614EFC3960022A2D9 /* contents_background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contents_background3.png; sourceTree = "<group>"; };
+		1AF62CD714EFC3960022A2D9 /* panel_background320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panel_background320.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* NewsGatheringAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsGatheringAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* NewsGatheringAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsGatheringAppDelegate.m; sourceTree = "<group>"; };
@@ -313,6 +319,8 @@
 				1AAB806614E4175E00F61582 /* NewsAllocSearchViewController.m */,
 				1AAB806A14E4180800F61582 /* NewsClueDetailViewController.h */,
 				1AAB806B14E4180800F61582 /* NewsClueDetailViewController.m */,
+				1AA5F7A014EF5D300000E28A /* ClueWriteDetailViewController.h */,
+				1AA5F7A114EF5D300000E28A /* ClueWriteDetailViewController.m */,
 				1AAB806F14E4183B00F61582 /* NewsAllocDetailViewController.h */,
 				1AAB807014E4183B00F61582 /* NewsAllocDetailViewController.m */,
 				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
@@ -321,8 +329,6 @@
 				B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */,
 				B97D155014ED455E005E0A41 /* VideoPlayViewController.h */,
 				B97D155114ED455E005E0A41 /* VideoPlayViewController.m */,
-				1AA5F7A014EF5D300000E28A /* ClueWriteDetailViewController.h */,
-				1AA5F7A114EF5D300000E28A /* ClueWriteDetailViewController.m */,
 			);
 			name = ViewContoller;
 			sourceTree = "<group>";
@@ -330,6 +336,9 @@
 		1AC0537B14E3A5FA0026B115 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				1AF62CD514EFC3960022A2D9 /* add2.png */,
+				1AF62CD614EFC3960022A2D9 /* contents_background3.png */,
+				1AF62CD714EFC3960022A2D9 /* panel_background320.png */,
 				1AA03B8814EEA2F50032682F /* go.png */,
 				1A98CB2514EE28DF00CE9BC1 /* simplenote-icon.png */,
 				1A98CB2114EE28C700CE9BC1 /* panel_background.png */,
@@ -551,6 +560,9 @@
 				1A98CB2614EE28DF00CE9BC1 /* simplenote-icon.png in Resources */,
 				1AA03B8C14EEA2F50032682F /* go.png in Resources */,
 				1AA5F7A414EF5D300000E28A /* ClueWriteDetailViewController.xib in Resources */,
+				1AF62CD814EFC3960022A2D9 /* add2.png in Resources */,
+				1AF62CD914EFC3960022A2D9 /* contents_background3.png in Resources */,
+				1AF62CDA14EFC3960022A2D9 /* panel_background320.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,8 +612,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -609,8 +621,8 @@
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
 			};
 			name = Debug;
 		};
@@ -618,13 +630,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7DD0BE1-F890-414A-A338-FC48C0CBFFAD";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

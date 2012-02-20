@@ -24,9 +24,6 @@
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password{
 	
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	
-	//appDelegate.networkActivityIndicatorVisible = YES;
-    
     
 	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
     NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"];
@@ -35,8 +32,7 @@
     //记下用户名密码，以便发送请求时带上
 	appDelegate.username = username;
     appDelegate.password = [MD5EncryptProcess md5:password];
-    
-   // appDelegate.networkActivityIndicatorVisible = NO;
+
 	[post release]; 
     [url release];
 	return returnData;
