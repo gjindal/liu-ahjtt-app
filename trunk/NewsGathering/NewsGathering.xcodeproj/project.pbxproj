@@ -98,6 +98,8 @@
 		B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743414F23228001E9398 /* DocDetailHelper.m */; };
 		B98D841814F27F92007AE435 /* LoginResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D841714F27F92007AE435 /* LoginResultInfo.m */; };
 		B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D841A14F280AE007AE435 /* LoginParserHelper.m */; };
+		B98D842114F28FC8007AE435 /* DeptInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842014F28FC8007AE435 /* DeptInfo.m */; };
+		B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842314F29129007AE435 /* DeptParserHelper.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +230,11 @@
 		B98D841914F280AE007AE435 /* LoginParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParserHelper.h; sourceTree = "<group>"; };
 		B98D841A14F280AE007AE435 /* LoginParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParserHelper.m; sourceTree = "<group>"; };
 		B98D841C14F280E9007AE435 /* LoginParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParserHelperDelegate.h; sourceTree = "<group>"; };
+		B98D841F14F28FC8007AE435 /* DeptInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeptInfo.h; sourceTree = "<group>"; };
+		B98D842014F28FC8007AE435 /* DeptInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeptInfo.m; sourceTree = "<group>"; };
+		B98D842214F29129007AE435 /* DeptParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeptParserHelper.h; sourceTree = "<group>"; };
+		B98D842314F29129007AE435 /* DeptParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeptParserHelper.m; sourceTree = "<group>"; };
+		B98D842514F29182007AE435 /* DeptParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeptParserHelperDelegate.h; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
@@ -291,6 +298,9 @@
 				B98D841914F280AE007AE435 /* LoginParserHelper.h */,
 				B98D841A14F280AE007AE435 /* LoginParserHelper.m */,
 				B98D841C14F280E9007AE435 /* LoginParserHelperDelegate.h */,
+				B98D842214F29129007AE435 /* DeptParserHelper.h */,
+				B98D842314F29129007AE435 /* DeptParserHelper.m */,
+				B98D842514F29182007AE435 /* DeptParserHelperDelegate.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -302,6 +312,8 @@
 				B98C743014F222D1001E9398 /* DocDetail.m */,
 				B98D841614F27F92007AE435 /* LoginResultInfo.h */,
 				B98D841714F27F92007AE435 /* LoginResultInfo.m */,
+				B98D841F14F28FC8007AE435 /* DeptInfo.h */,
+				B98D842014F28FC8007AE435 /* DeptInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -616,6 +628,8 @@
 				B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */,
 				B98D841814F27F92007AE435 /* LoginResultInfo.m in Sources */,
 				B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */,
+				B98D842114F28FC8007AE435 /* DeptInfo.m in Sources */,
+				B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
