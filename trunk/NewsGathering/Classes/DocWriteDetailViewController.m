@@ -13,10 +13,8 @@
 #import "NetRequest.h"
 #import "NewsGatheringAppDelegate.h"
 #import "ImagePlayViewController.h"
-
-#define kMediaType_Image @"Image"
-#define kMediaType_Video @"Video"
-#define kMediaType_Audio @"Audio"
+#import "DocDetail.h"
+#import "DocDetailHelper.h"
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle,fdDocType,fdKeyword,fdDocSource,
@@ -277,6 +275,24 @@
 	self.attachTable.dataSource = self;
     
     //[self.scrollView addSubview:attachTable];
+    
+//    DocDetailHelper *helper = [[DocDetailHelper alloc] init];
+//    DocDetail *doc = [[DocDetail alloc] init];
+//    doc.title = @"标题";
+//    doc.docType = @"类型";
+//    doc.key = @"关键字";
+//    doc.source = @"Devdiv";
+//    doc.content = @"12312312312312312321321321321321321321";
+//    NSLog(@"%@", doc);
+//    BOOL result = [helper writeToFile:doc];
+//    if(result == YES) {
+//        NSArray *tempArray = [helper getAllDocDetail];
+//        for (DocDetail *doc in tempArray) {
+//            NSLog(@"%@", doc);
+//        }    
+//        
+//    }
+
 }
 
 #pragma mark -

@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMediaType_Image @"Image"
+#define kMediaType_Video @"Video"
+#define kMediaType_Audio @"Audio"
+#define kMediaType_Docum @"Docum"
+
 @interface StorageHelper : NSObject {
-@private
+@protected
     NSString *_baseDirectory;
 }
 

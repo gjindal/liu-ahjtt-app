@@ -91,6 +91,8 @@
 		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
 		B98C31CC14ED345F0064FC89 /* ImagePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */; };
 		B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C41D714EF62C20064E622 /* AudioPlayer.m */; };
+		B98C743114F222D1001E9398 /* DocDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743014F222D1001E9398 /* DocDetail.m */; };
+		B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743414F23228001E9398 /* DocDetailHelper.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
@@ -209,6 +211,10 @@
 		B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayViewController.m; sourceTree = "<group>"; };
 		B98C41D614EF62C20064E622 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
 		B98C41D714EF62C20064E622 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		B98C742F14F222D1001E9398 /* DocDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetail.h; sourceTree = "<group>"; };
+		B98C743014F222D1001E9398 /* DocDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetail.m; sourceTree = "<group>"; };
+		B98C743314F23228001E9398 /* DocDetailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailHelper.h; sourceTree = "<group>"; };
+		B98C743414F23228001E9398 /* DocDetailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailHelper.m; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 				1AD7FECB14EDAEEE00DAA354 /* NetRequest.m */,
 				B2AF5E9214EE5CB1006A9B8E /* UserHelper.h */,
 				B2AF5E9314EE5CB1006A9B8E /* UserHelper.m */,
+				B98C743314F23228001E9398 /* DocDetailHelper.h */,
+				B98C743414F23228001E9398 /* DocDetailHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -274,6 +282,8 @@
 		1AAB809514E41C3800F61582 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B98C742F14F222D1001E9398 /* DocDetail.h */,
+				B98C743014F222D1001E9398 /* DocDetail.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -578,6 +588,8 @@
 				1AA5F79F14EF46330000E28A /* UIAlertTableView.m in Sources */,
 				1AA5F7A314EF5D300000E28A /* ClueWriteDetailViewController.m in Sources */,
 				B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */,
+				B98C743114F222D1001E9398 /* DocDetail.m in Sources */,
+				B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

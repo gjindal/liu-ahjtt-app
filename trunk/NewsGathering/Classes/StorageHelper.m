@@ -25,11 +25,9 @@
         // Check if the directory already exists
         if (![[NSFileManager defaultManager] fileExistsAtPath:_baseDirectory]) {
             // Directory does not exist so create it
-            if([[NSFileManager defaultManager] createDirectoryAtPath:_baseDirectory withIntermediateDirectories:YES attributes:nil error:nil] == YES) {
-            
-                [self checkUserFloder:[UserHelper userName]];
-            }
+            [[NSFileManager defaultManager] createDirectoryAtPath:_baseDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         }
+        [self checkUserFloder:[UserHelper userName]];
     }
     
     return self;
@@ -76,13 +74,12 @@
     NSString *userFloderPath = [_baseDirectory stringByAppendingFormat:@"/%@", userName];
     if(![[NSFileManager defaultManager] fileExistsAtPath:userFloderPath]) {
     
-        if([[NSFileManager defaultManager] createDirectoryAtPath:userFloderPath withIntermediateDirectories:YES attributes:nil error:nil] == YES) {
-        
-            [_baseDirectory release];
-            _baseDirectory = nil;
-            _baseDirectory = [userFloderPath retain];
-        }
+        [[NSFileManager defaultManager] createDirectoryAtPath:userFloderPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
+    
+    [_baseDirectory release];
+    _baseDirectory = nil;
+    _baseDirectory = [userFloderPath retain];
 }
 
 - (void)dealloc {
