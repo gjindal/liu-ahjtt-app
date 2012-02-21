@@ -92,6 +92,9 @@
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
 		B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97D155114ED455E005E0A41 /* VideoPlayViewController.m */; };
 		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
+		B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */; };
+		B98B195014F3E01900D33C2A /* NewsClueRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194F14F3E01900D33C2A /* NewsClueRequest.m */; };
+		B98B195314F3E05E00D33C2A /* NewsClueParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B195214F3E05E00D33C2A /* NewsClueParserHelper.m */; };
 		B98C31CC14ED345F0064FC89 /* ImagePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */; };
 		B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C41D714EF62C20064E622 /* AudioPlayer.m */; };
 		B98C743114F222D1001E9398 /* DocDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98C743014F222D1001E9398 /* DocDetail.m */; };
@@ -217,6 +220,15 @@
 		B97D155014ED455E005E0A41 /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
 		B97D155114ED455E005E0A41 /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
 		B97D155414ED48B7005E0A41 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B98B194A14F3DE9A00D33C2A /* NewsClueInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueInfo.h; sourceTree = "<group>"; };
+		B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsClueInfo.m; sourceTree = "<group>"; };
+		B98B194E14F3E01900D33C2A /* NewsClueRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueRequest.h; sourceTree = "<group>"; };
+		B98B194F14F3E01900D33C2A /* NewsClueRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsClueRequest.m; sourceTree = "<group>"; };
+		B98B195114F3E05E00D33C2A /* NewsClueParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueParserHelper.h; sourceTree = "<group>"; };
+		B98B195214F3E05E00D33C2A /* NewsClueParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsClueParserHelper.m; sourceTree = "<group>"; };
+		B98B195414F3E09A00D33C2A /* NewsClueParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueParserHelperDelegate.h; sourceTree = "<group>"; };
+		B98B195714F3E3A400D33C2A /* Contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contants.h; sourceTree = "<group>"; };
+		B98B195814F3E97600D33C2A /* NewsClueRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueRequestDelegate.h; sourceTree = "<group>"; };
 		B98C31CA14ED345F0064FC89 /* ImagePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayViewController.h; sourceTree = "<group>"; };
 		B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayViewController.m; sourceTree = "<group>"; };
 		B98C41D614EF62C20064E622 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
@@ -301,6 +313,13 @@
 				B98D842214F29129007AE435 /* DeptParserHelper.h */,
 				B98D842314F29129007AE435 /* DeptParserHelper.m */,
 				B98D842514F29182007AE435 /* DeptParserHelperDelegate.h */,
+				B98B194E14F3E01900D33C2A /* NewsClueRequest.h */,
+				B98B194F14F3E01900D33C2A /* NewsClueRequest.m */,
+				B98B195114F3E05E00D33C2A /* NewsClueParserHelper.h */,
+				B98B195214F3E05E00D33C2A /* NewsClueParserHelper.m */,
+				B98B195414F3E09A00D33C2A /* NewsClueParserHelperDelegate.h */,
+				B98B195814F3E97600D33C2A /* NewsClueRequestDelegate.h */,
+				B98B195714F3E3A400D33C2A /* Contants.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -314,6 +333,8 @@
 				B98D841714F27F92007AE435 /* LoginResultInfo.m */,
 				B98D841F14F28FC8007AE435 /* DeptInfo.h */,
 				B98D842014F28FC8007AE435 /* DeptInfo.m */,
+				B98B194A14F3DE9A00D33C2A /* NewsClueInfo.h */,
+				B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -630,6 +651,9 @@
 				B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */,
 				B98D842114F28FC8007AE435 /* DeptInfo.m in Sources */,
 				B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */,
+				B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */,
+				B98B195014F3E01900D33C2A /* NewsClueRequest.m in Sources */,
+				B98B195314F3E05E00D33C2A /* NewsClueParserHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

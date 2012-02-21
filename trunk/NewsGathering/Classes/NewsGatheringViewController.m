@@ -32,7 +32,8 @@
 	
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
-	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
+//	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,password, nil];
     NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"];
 
 	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
@@ -126,6 +127,8 @@
 	NSData *resultData = [self login:fdUsername.text andpassword:fdUserpassword.text];
 	NSString *result = [[NSString alloc] initWithData:resultData
 											 encoding:NSUTF8StringEncoding];
+    
+    //NSLog(@"%@", result);
     
     _loginParserHelper = [[LoginParserHelper alloc] init];
     _loginParserHelper.delegate = self;
