@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SERVER_URL @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/"
+#define SERVER_URL @"http://hfhuadi.vicp.cc:8080/editmobile/mobile"
 
 @interface NetRequest : NSObject{
 

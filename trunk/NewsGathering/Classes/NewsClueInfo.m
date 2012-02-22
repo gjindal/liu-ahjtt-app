@@ -14,6 +14,8 @@
 @synthesize keyid = _keyID;
 @synthesize status = _status;
 @synthesize begtimeshow = _begTimeShow;
+@synthesize keword = _keyword;
+@synthesize note = _note;
 
 - (void)dealloc {
 

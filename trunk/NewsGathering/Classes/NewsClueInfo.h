@@ -22,5 +22,7 @@
 @property (nonatomic, retain) NSString  *status;
 @property (nonatomic, retain) NSString  *title;
 @property (nonatomic, retain) NSString  *begtimeshow;
+@property (nonatomic, retain) NSString  *note;
+@property (nonatomic, retain) NSString  *keword;
 
 @end

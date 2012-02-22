@@ -15,6 +15,8 @@
     UISegmentedControl *segmentCtrl;
 }
 
+@property(nonatomic,retain) NSArray *dataArray;
+
 -(void)segmentAction:(id)sender;
 - (void)back:(id)sender;
 

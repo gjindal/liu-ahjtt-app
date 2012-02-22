@@ -11,9 +11,10 @@
 #import "NewsClueDetailViewController.h"
 #import "UITableViewCellEx.h"
 #import "ClueWriteDetailViewController.h"
+#import "NewsClueInfo.h"
 
 @implementation NewsCLueListViewController
-
+@synthesize dataArray;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -78,13 +79,6 @@
 	[segmentCtrl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 	segmentCtrl.selectedSegmentIndex = -1;
 	[self.navigationController.navigationBar addSubview: segmentCtrl];
-
-    dataArray = [[NSArray arrayWithObjects:@"合肥下雪", @"合肥下雨", @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
-                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
-                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
-                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
-                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", 
-                  @"合肥下冰雹aaaaaaaaaaaaaaaaaaaaaaa", nil] retain];
 }
 
 /*
@@ -154,13 +148,32 @@
     }
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     // Configure the cell...
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    //转换对像为实体
+    NewsClueInfo *newclueInfo = [[NewsClueInfo alloc] init];
+    newclueInfo = [dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = newclueInfo.title;
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    cell.detailTextLabel.text = @"2012-02-09";
+    cell.detailTextLabel.text = newclueInfo.begtimeshow;
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     //cell.backgroundColor = [UIColor grayColor];
-    [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+    //0草稿、1提交待派发、2已派发
+    switch ([newclueInfo.status intValue]) {
+        case 0:
+            [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
+            break;
+        case 1:
+            [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
+            break;
+        case 2:
+            [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+            break;            
+        default:
+            break;
+    }
+    
+
     return cell;
 }
 

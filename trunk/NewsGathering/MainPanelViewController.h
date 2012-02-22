@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsClueRequest.h"
 
 
-@interface MainPanelViewController : UIViewController {
+@interface MainPanelViewController : UIViewController<NewsClueRequestDelegate> {
 
 	IBOutlet UIButton *newsClue;
 	IBOutlet UIButton *newsAlloc;
 	IBOutlet UIButton *docWrite;
 	IBOutlet UIButton *docChange;
 	IBOutlet UIButton *recycle;
+    
+    NewsClueRequest *newsclueRequest;
+    
+
 }
 
 @property(nonatomic,retain)	IBOutlet UIButton *newsClue;

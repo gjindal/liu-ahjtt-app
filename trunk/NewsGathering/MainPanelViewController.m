@@ -13,6 +13,9 @@
 #import "DocWriteListViewController.h"
 #import "DocChangeListViewController.h"
 #import "RecycleListViewController.h"
+#import "NewsGatheringAppDelegate.h"
+#import "NetRequest.h"
+#import "Contants.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -83,12 +86,25 @@
 	[viewCtrl release];
 }
 
+-(void)dataDidResponsed:(NSArray *)newsCLueInfoArray flag:(int)flag{
+
+    if(flag == kFlag_NewsClue_List ) {
+    
+        NewsCLueListViewController *viewCtrl = [[NewsCLueListViewController alloc] initWithNibName:@"NewsCLueListViewController" bundle:nil] ;
+    
+        viewCtrl.dataArray = newsCLueInfoArray;
+        [self.navigationController pushViewController:viewCtrl animated:YES];
+        [viewCtrl release];
+    }
+
+}
+
 -(IBAction)gotoNewsClue{
-
-	NewsCLueListViewController *viewCtrl = [[NewsCLueListViewController alloc] initWithNibName:@"NewsCLueListViewController" bundle:nil] ;
-
-	[self.navigationController pushViewController:viewCtrl animated:YES];
-	[viewCtrl release];
+    
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+    [newsclueRequest getNewsClueListWithTitle:nil Keyword:nil Note:nil Status:nil Begtime:nil Endtime:nil];
+    
 }
 
 

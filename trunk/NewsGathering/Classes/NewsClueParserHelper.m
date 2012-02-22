@@ -72,6 +72,8 @@
     if([elementName isEqualToString:@"begtimeshow"]) {
     
         _info.begtimeshow = _currentValue;
+        
+        NSLog(@"-------%@", _info.begtimeshow);
     }else if([elementName isEqualToString:@"keyid"]) {
     
         _info.keyid = _currentValue;
