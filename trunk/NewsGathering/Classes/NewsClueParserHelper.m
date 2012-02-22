@@ -56,13 +56,13 @@
     
         _info = [[NewsClueInfo alloc] init];
     }
+    
+    _currentValue = [[NSMutableString alloc] initWithCapacity:0];
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
-    [_currentValue release];
-    _currentValue = nil;
-    _currentValue = [string retain];
+    [_currentValue appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
@@ -72,8 +72,6 @@
     if([elementName isEqualToString:@"begtimeshow"]) {
     
         _info.begtimeshow = _currentValue;
-        
-        NSLog(@"-------%@", _info.begtimeshow);
     }else if([elementName isEqualToString:@"keyid"]) {
     
         _info.keyid = _currentValue;
@@ -95,6 +93,10 @@
             [_delegate parserDidFinished:_array];
         }
     }
+    
+    [_currentValue release];
+    _currentValue = nil;
+    
 }
 
 @end

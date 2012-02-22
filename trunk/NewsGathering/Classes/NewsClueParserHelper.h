@@ -14,7 +14,7 @@
 @private
     id<NewsClueParserHelperDelegate>    _delegate;
     NSXMLParser                        *_xmlParser;
-    NSString                           *_currentValue;
+    NSMutableString                    *_currentValue;
     NSMutableArray                     *_array;
     NewsClueInfo                       *_info;
 }
