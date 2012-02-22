@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginParserHelperDelegate.h"
+#import "LoginSuccessInfo.h"
 
 @class LoginResultInfo;
 
@@ -17,6 +18,13 @@
     NSXMLParser                     *_xmlParser;
     NSString                        *_currentValue;
     LoginResultInfo                 *_loginResultInfo;
+    LoginSuccessInfo                *_loginSuccessInfo;
+    
+    NSMutableArray                  *_dictList;
+    NSMutableArray                  *_menuList;
+    DirtInfo                        *_dictInfo;
+    MenuInfo                        *_menuInfo;
+    FuncationInfo                   *_funcationInfo;
 }
 
 @property (nonatomic, assign) id<LoginParserHelperDelegate> delegate;

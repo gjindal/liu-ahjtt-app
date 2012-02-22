@@ -103,6 +103,7 @@
 		B98D841B14F280AE007AE435 /* LoginParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D841A14F280AE007AE435 /* LoginParserHelper.m */; };
 		B98D842114F28FC8007AE435 /* DeptInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842014F28FC8007AE435 /* DeptInfo.m */; };
 		B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842314F29129007AE435 /* DeptParserHelper.m */; };
+		B98E7FB414F524E00087F044 /* LoginSuccessInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
@@ -247,6 +248,8 @@
 		B98D842214F29129007AE435 /* DeptParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeptParserHelper.h; sourceTree = "<group>"; };
 		B98D842314F29129007AE435 /* DeptParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeptParserHelper.m; sourceTree = "<group>"; };
 		B98D842514F29182007AE435 /* DeptParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeptParserHelperDelegate.h; sourceTree = "<group>"; };
+		B98E7FB214F524E00087F044 /* LoginSuccessInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSuccessInfo.h; sourceTree = "<group>"; };
+		B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSuccessInfo.m; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				B98D842014F28FC8007AE435 /* DeptInfo.m */,
 				B98B194A14F3DE9A00D33C2A /* NewsClueInfo.h */,
 				B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */,
+				B98E7FB214F524E00087F044 /* LoginSuccessInfo.h */,
+				B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */,
 				B98B195014F3E01900D33C2A /* NewsClueRequest.m in Sources */,
 				B98B195314F3E05E00D33C2A /* NewsClueParserHelper.m in Sources */,
+				B98E7FB414F524E00087F044 /* LoginSuccessInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
