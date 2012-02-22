@@ -52,7 +52,7 @@
     if([elementName isEqualToString:@"keylist"]) {
     
         _array = [[NSMutableArray alloc] initWithCapacity:0];
-    }else if([elementName isEqualToString:@"key"]) {
+    }else if([elementName isEqualToString:@"key"] || [elementName isEqualToString:@"error"]) {
     
         _info = [[NewsClueInfo alloc] init];
     }
@@ -78,19 +78,59 @@
     }else if([elementName isEqualToString:@"status"]) {
     
         _info.status = _currentValue;
+    }else if([elementName isEqualToString:@"keyword"]) {
+        
+        _info.keyword = _currentValue;
     }else if([elementName isEqualToString:@"title"]) {
     
         _info.title = _currentValue;
-    }else if([elementName isEqualToString:@"key"]) {
+    }else if([elementName isEqualToString:@"note"]) {
+        
+        _info.note = _currentValue;
+    }else if([elementName isEqualToString:@"type"]) {
+        
+        _info.type = _currentValue;
+    }else if([elementName isEqualToString:@"endtimeshow"]) {
+        
+        _info.endtimeshow = _currentValue;
+    }else if([elementName isEqualToString:@"flag"]) {
+        
+        _info.flag = _currentValue;
+    }else if([elementName isEqualToString:@"message"]) {
+        
+        _info.message = _currentValue;
+    }
+    else if([elementName isEqualToString:@"key"]) {
     
-        [_array addObject:_info];
-        [_info release];
-        _info = nil;
+        if(_array != nil) {
+        
+            [_array addObject:_info];
+            [_info release];
+            _info = nil;
+        }else {
+        
+            if(_delegate != nil && [_delegate respondsToSelector:@selector(parserDidFinished:)]) {
+                
+                NSMutableArray *array = [NSMutableArray arrayWithObjects:_info, nil];
+                [_info release];
+                _info = nil;
+                [_delegate parserDidFinished:array];
+            }
+        }
     }else if([elementName isEqualToString:@"keylist"]) {
     
         if(_delegate != nil && [_delegate respondsToSelector:@selector(parserDidFinished:)]) {
         
             [_delegate parserDidFinished:_array];
+        }
+    }else if([elementName isEqualToString:@"error"]) {
+    
+        if(_delegate != nil && [_delegate respondsToSelector:@selector(parserDidFinished:)]) {
+        
+            NSMutableArray *array = [NSMutableArray arrayWithObjects:_info, nil];
+            [_info release];
+            _info = nil;
+            [_delegate parserDidFinished:array];
         }
     }
     

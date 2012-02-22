@@ -10,24 +10,39 @@
 
 @implementation NewsClueInfo
 
-@synthesize title = _title;
 @synthesize keyid = _keyID;
+@synthesize title = _title;
+@synthesize keyword = _keyword;
 @synthesize status = _status;
-@synthesize begtimeshow = _begTimeShow;
-@synthesize keword = _keyword;
 @synthesize note = _note;
+@synthesize type = _type;
+@synthesize begtimeshow = _begTimeShow;
+@synthesize endtimeshow = _endTimeShow;
+
+@synthesize flag = _flag;
+@synthesize message = _message;
 
 - (void)dealloc {
-
-    [_title release];
-    [_keyID release];
-    [_status release];
-    [_begTimeShow release];
     
-    _title = nil;
+    [_keyID release];
+    [_title release];
+    [_keyword release];
+    [_status release];
+    [_note release];
+    [_type release];
+    [_begTimeShow release];
+    [_endTimeShow release];
+    [_flag release];
+    [_message release];
+    
     _keyID = nil;
+    _title = nil;
+    _keyword = nil;
     _status = nil;
+    _note = nil;
+    _type = nil;
     _begTimeShow = nil;
+    _endTimeShow = nil;
     
     [super dealloc];
 }
