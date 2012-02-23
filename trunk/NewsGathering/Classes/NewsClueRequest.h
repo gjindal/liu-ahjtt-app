@@ -28,7 +28,8 @@
                                                    Note:(NSString *)note 
                                                  Status:(NSString *)status
                                                 Begtime:(NSString *)begtime 
-                                                Endtime:(NSString *)endtime;
+                                                Endtime:(NSString *)endtime
+                                                Type:(NSString *)type;
 // 查询线索详情接口.
 - (void)getNewsClueDetailWithKeyID:(NSString *)keyID;
 // 增加线索接口.
@@ -37,7 +38,8 @@
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime;
 // 修改线索接口.
-- (void)updateNewsClueWithTitle:(NSString *)title Keyword:(NSString *)keyword
+- (void)updateNewsClueWithTitle:(NSString *)title  Keyid:(NSString *)keyid 
+                                                    Keyword:(NSString *)keyword
                                                        Note:(NSString *)note 
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime;

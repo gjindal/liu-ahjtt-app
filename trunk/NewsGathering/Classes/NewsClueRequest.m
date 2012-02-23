@@ -40,26 +40,13 @@
                                                            Note:(NSString *)note 
                                                          Status:(NSString *)status
                                                         Begtime:(NSString *)begtime 
-                                                        Endtime:(NSString *)endtime {
-    
-//    NSString *post = [[NSString alloc] initWithFormat:@"usercode=%@&password=%@&title=%@&keyword=%@&note=%@&statue=%@&begtime=%@&endtime=%@",
-//                      [UserHelper userName],
-//                      [MD5EncryptProcess md5:[UserHelper password]],
-//                      title,
-//                      keyword,
-//                      note,
-//                      status,
-//                      begtime,
-//                      endtime,
-//                      nil];
+                                                        Endtime:(NSString *)endtime
+                                                        Type:(NSString *)type{
 
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",
-                      [UserHelper userName],
-                      [UserHelper password],
-                      nil];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&status=%@&begtime=%@&endtime=%@&type=%@",
+        [UserHelper userName],[UserHelper password],title,keyword,note,status,begtime,endtime,type];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_List withRequestString:post];
     if(returnData != nil) {
-    
         _currentFlag = kFlag_NewsClue_List;
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         [_parser startWithXMLInfo:returnString];
@@ -69,13 +56,8 @@
 
 - (void)getNewsClueDetailWithKeyID:(NSString *)keyID {
 
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@\
-                      &password=%@\
-                      &keyid=%@",
-                      [UserHelper userName],
-                      [UserHelper password],
-                      keyID,
-                      nil];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@",
+                      [UserHelper userName],[UserHelper password],keyID];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Detail withRequestString:post];
     if(returnData != nil) {
         
@@ -91,21 +73,8 @@
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime {
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@\
-                      &password=%@\
-                      &title=%@\
-                      &keyword=%@\
-                      &note=%@\
-                      &begtime=%@\
-                      &endtime=%@",
-                      [UserHelper userName],
-                      [UserHelper password],
-                      title,
-                      keyword,
-                      note,
-                      begtime,
-                      endtime,
-                      nil];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@",
+                      [UserHelper userName],[UserHelper password],title,keyword,note,begtime,endtime];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Add withRequestString:post];
     if(returnData != nil) {
         
@@ -116,26 +85,13 @@
     }
 }
 
-- (void)updateNewsClueWithTitle:(NSString *)title Keyword:(NSString *)keyword
-                                                          Note:(NSString *)note 
-                                                       Begtime:(NSString *)begtime 
-                                                       Endtime:(NSString *)endtime {
+- (void)updateNewsClueWithTitle:(NSString *)title Keyid:(NSString *)keyid 
+                                                Keyword:(NSString *)keyword
+                                                    Note:(NSString *)note 
+                                                Begtime:(NSString *)begtime 
+                                                Endtime:(NSString *)endtime {
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@\
-                      &password=%@\
-                      &title=%@\
-                      &keyword=%@\
-                      &note=%@\
-                      &begtime=%@\
-                      &endtime=%@",
-                      [UserHelper userName],
-                      [UserHelper password],
-                      title,
-                      keyword,
-                      note,
-                      begtime,
-                      endtime,
-                      nil];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Update withRequestString:post];
     if(returnData != nil) {
         
@@ -148,9 +104,7 @@
 
 - (void)deleteNewsClueWithKeyID:(NSString *)keyID {
 
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@\
-                      &password=%@\
-                      &keyid=%@",
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@",
                       [UserHelper userName],
                       [UserHelper password],
                       keyID,
@@ -167,9 +121,7 @@
 
 - (void)submitNewsClueWithKeyID:(NSString *)keyID {
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@\
-                      &password=%@\
-                      &keyid=%@",
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@",
                       [UserHelper userName],
                       [UserHelper password],
                       keyID,

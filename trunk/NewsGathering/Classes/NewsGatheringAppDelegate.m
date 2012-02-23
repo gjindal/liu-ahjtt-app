@@ -14,6 +14,7 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize username,password;
+@synthesize loginSuccessInfo;
 
 
 #pragma mark -

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
+#import "LoginSuccessInfo.h"
 
 @class NewsGatheringViewController;
 
@@ -19,6 +20,8 @@
     
     NSString *username;
     NSString *password;
+    
+    LoginSuccessInfo *loginSuccessInfo;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -26,6 +29,7 @@
 
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) LoginSuccessInfo *loginSuccessInfo;
 
 
 

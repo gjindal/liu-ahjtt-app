@@ -40,8 +40,8 @@
 
 @implementation DatePicker
 
-#define DATE_FORMATTER			@"yyyy-MM-dd HH:mm"
-#define DATE_PRINTF_FORMATTER	@"%d-%02d-%02d %02d:%02d"
+#define DATE_FORMATTER			@"yyyy-MM-dd HH:mm:ss"
+#define DATE_PRINTF_FORMATTER	@"%d-%02d-%02d %02d:%02d:%02d"
 
 @synthesize selectedDate = _selectedDate;
 
@@ -79,8 +79,8 @@ static int days_in_month[2][13] = {
 	// Calculation the frame of |_pickerView| and add it as subview of current view.
 	CGRect dateRect;
 	dateRect.origin.y = CGRectGetMinY(self.bounds) + 50.0f;
-	dateRect.origin.x = CGRectGetMinX(self.bounds) + 10.0f;
-	dateRect.size.width = CGRectGetWidth(self.bounds) - 20.0f;
+	dateRect.origin.x = CGRectGetMinX(self.bounds) + 5.0f;
+	dateRect.size.width = CGRectGetWidth(self.bounds)-10.0f;
 	//dateRect.size.height = CGRectGetHeight(self.bounds) - 50.0f;
 	dateRect.size.height = 162.0f;
 	_pickerView.frame = dateRect;
@@ -101,7 +101,8 @@ static int days_in_month[2][13] = {
 						  [_selectedDateComponents month],
 						  [_selectedDateComponents day],
 						  [_selectedDateComponents hour],
-						  [_selectedDateComponents minute]] retain];
+						  [_selectedDateComponents minute],
+                          [_selectedDateComponents second]] retain];
 		
 		if(self.delegate != nil && [self.delegate respondsToSelector:@selector(datePciker: didFinishedSelectDate:)]){
 													  
@@ -130,13 +131,14 @@ static int days_in_month[2][13] = {
 - (void)setDateSelected:(NSDate *)date {
 	
 	_selectedDateComponents = [[[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|
-						NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit 
+						NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit
 													   fromDate:date] retain];
-	[_pickerView selectRow:([_selectedDateComponents year] -2010)	inComponent:0 animated:NO];
+	[_pickerView selectRow:([_selectedDateComponents year] -2012)	inComponent:0 animated:NO];
 	[_pickerView selectRow:([_selectedDateComponents month] -1)		inComponent:1 animated:NO];
 	[_pickerView selectRow:([_selectedDateComponents day] -1)		inComponent:2 animated:NO];
 	[_pickerView selectRow:([_selectedDateComponents hour]) 		inComponent:3 animated:NO];
 	[_pickerView selectRow:([_selectedDateComponents minute])   	inComponent:4 animated:NO];
+    [_pickerView selectRow:([_selectedDateComponents second])   	inComponent:5 animated:NO];
 }
 
 - (NSDate *)convertStringToDate:(NSString *)string {
@@ -167,7 +169,7 @@ static int days_in_month[2][13] = {
 	
 	switch (component) {
 		case 0:
-			[_selectedDateComponents setYear:2010 + row];
+			[_selectedDateComponents setYear:2012 + row];
 			break;
 		case 1:
 			[_selectedDateComponents setMonth:row + 1];
@@ -189,6 +191,9 @@ static int days_in_month[2][13] = {
 		case 4:
 			[_selectedDateComponents setMinute:row];
 			break;
+		case 5:
+			[_selectedDateComponents setSecond:row];
+			break;
 		default:
 			break;
 	}
@@ -201,10 +206,12 @@ static int days_in_month[2][13] = {
 	
 	switch (component) {
 		case 0:
-			return [NSString stringWithFormat:@"%d", 2010 + row];
+			return [NSString stringWithFormat:@"%d", 2012 + row];
 		case 3:
 			return [NSString stringWithFormat:@"%02d", row];
 		case 4:
+			return [NSString stringWithFormat:@"%02d", row];
+        case 5:
 			return [NSString stringWithFormat:@"%02d", row];
 		default:
 			return [NSString stringWithFormat:@"%02d", row + 1];
@@ -216,15 +223,17 @@ static int days_in_month[2][13] = {
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
 	switch (component) {
 		case 0:
-			return 60.0f;
+			return 58.0f;
 		case 1:
-			return 40.0f;
+			return 38.0f;
 		case 2:
-			return 40.0f;
+			return 38.0f;
 		case 3:
-			return 40.0f;
+			return 38.0f;
 		case 4:
-			return 40.0f;
+			return 38.0f;
+        case 5:
+			return 38.0f;
 		default:
 			break;
 	}
@@ -239,7 +248,7 @@ static int days_in_month[2][13] = {
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	switch (component) {
 		case 0:
-			return 10;
+			return 20;
 		case 1:
 			return 12;
 		case 2:
@@ -247,6 +256,8 @@ static int days_in_month[2][13] = {
 		case 3:
 			return 24;
 		case 4:
+			return 60;
+        case 5:
 			return 60;
 		default:
 			break;
@@ -256,7 +267,7 @@ static int days_in_month[2][13] = {
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-	return 5;
+	return 6;
 }
 
 @end

@@ -16,7 +16,7 @@
 
 @implementation NewsClueSearchViewController
 
-@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground,typeArray,statusArray,lastIndexPath;
+@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground,typeArray,statusArray,lastIndexPath,newsKeyword,newsclueInfo;
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -168,20 +168,6 @@
     [super viewWillDisappear:animated];
 }
  
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-//- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-//	[theTextField resignFirstResponder];	
-//	return YES;
-//}
-
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     isTextView = NO;
@@ -426,6 +412,14 @@
 
 
 - (IBAction)confirm{
+
+    newsclueInfo.title = self.newsTitle.text;
+    newsclueInfo.type = self.newsType.titleLabel.text;
+    newsclueInfo.status = self.newsStatus.titleLabel.text;
+    newsclueInfo.keyword = self.newsKeyword.text;
+    newsclueInfo.begtimeshow = self.startTime.titleLabel.text;
+    newsclueInfo.endtimeshow = self.endTime.titleLabel.text;
+    newsclueInfo.note = self.contents.text;
     
     [self.navigationController popViewControllerAnimated:YES];
 }

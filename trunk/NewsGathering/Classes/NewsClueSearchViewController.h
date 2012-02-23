@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsClueInfo.h"
 
 typedef enum {
     SEARCHTYPE_CLUE,    // shows glow when pressed
@@ -29,6 +30,9 @@ typedef enum{
 	IBOutlet UITextView *contents;
 	IBOutlet UIButton *btConfirm;
 	IBOutlet UIImageView *contentsBackground;
+    IBOutlet UITextField *newsKeyword;
+    
+    NewsClueInfo *newsclueInfo;
 	
 	SEARCHTYPE nSearchType;
 	NSString *strTimes;
@@ -52,6 +56,7 @@ typedef enum{
     
 }
 
+@property(nonatomic,retain) NewsClueInfo *newsclueInfo;
 @property(nonatomic,retain) NSIndexPath *lastIndexPath;
 @property(nonatomic,retain) NSArray *statusArray;
 @property(nonatomic,retain) NSArray *typeArray;
@@ -65,7 +70,7 @@ typedef enum{
 @property(nonatomic,retain) IBOutlet UITextView *contents;
 @property(nonatomic,retain) IBOutlet UIButton *btConfirm;
 @property(nonatomic,retain) IBOutlet UIImageView *contentsBackground;
-
+@property(nonatomic,retain) IBOutlet UITextField *newsKeyword;
 
 -(IBAction)setStartDateTime:(id)sender;
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A94FF0814F51CE7006EE953 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1A94FF0714F51CE7006EE953 /* Settings.bundle */; };
 		1A95C50F14DE735800B0B0EC /* NewsClueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A95C50E14DE735800B0B0EC /* NewsClueView.xib */; };
 		1A95F71314DE5AF000603053 /* box1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A95F71114DE5AF000603053 /* box1@2x.png */; };
 		1A95F71414DE5AF000603053 /* box2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A95F71214DE5AF000603053 /* box2@2x.png */; };
@@ -20,8 +21,6 @@
 		1A9DE9D514E17AD1006E21E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */; };
 		1AA03B8C14EEA2F50032682F /* go.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA03B8814EEA2F50032682F /* go.png */; };
 		1AA5F79F14EF46330000E28A /* UIAlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5F79D14EF46330000E28A /* UIAlertTableView.m */; };
-		1AA5F7A314EF5D300000E28A /* ClueWriteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5F7A114EF5D300000E28A /* ClueWriteDetailViewController.m */; };
-		1AA5F7A414EF5D300000E28A /* ClueWriteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA5F7A214EF5D300000E28A /* ClueWriteDetailViewController.xib */; };
 		1AAB7FF414E40AD800F61582 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB7FF314E40AD800F61582 /* form_textview.png */; };
 		1AAB804614E415B400F61582 /* NewsAllocListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB804414E415B400F61582 /* NewsAllocListViewController.m */; };
 		1AAB804714E415B400F61582 /* NewsAllocListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB804514E415B400F61582 /* NewsAllocListViewController.xib */; };
@@ -109,6 +108,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A94FF0714F51CE7006EE953 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1A95C50E14DE735800B0B0EC /* NewsClueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsClueView.xib; sourceTree = "<group>"; };
 		1A95F71114DE5AF000603053 /* box1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box1@2x.png"; sourceTree = "<group>"; };
 		1A95F71214DE5AF000603053 /* box2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box2@2x.png"; sourceTree = "<group>"; };
@@ -124,9 +124,6 @@
 		1AA03B8814EEA2F50032682F /* go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go.png; sourceTree = "<group>"; };
 		1AA5F79D14EF46330000E28A /* UIAlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAlertTableView.m; sourceTree = "<group>"; };
 		1AA5F79E14EF46330000E28A /* UIAlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertTableView.h; sourceTree = "<group>"; };
-		1AA5F7A014EF5D300000E28A /* ClueWriteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueWriteDetailViewController.h; sourceTree = "<group>"; };
-		1AA5F7A114EF5D300000E28A /* ClueWriteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClueWriteDetailViewController.m; sourceTree = "<group>"; };
-		1AA5F7A214EF5D300000E28A /* ClueWriteDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClueWriteDetailViewController.xib; path = Classes/ClueWriteDetailViewController.xib; sourceTree = "<group>"; };
 		1AAB7FF314E40AD800F61582 /* form_textview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_textview.png; sourceTree = "<group>"; };
 		1AAB804314E415B400F61582 /* NewsAllocListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsAllocListViewController.h; sourceTree = "<group>"; };
 		1AAB804414E415B400F61582 /* NewsAllocListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsAllocListViewController.m; sourceTree = "<group>"; };
@@ -369,8 +366,6 @@
 				1AAB806614E4175E00F61582 /* NewsAllocSearchViewController.m */,
 				1AAB806A14E4180800F61582 /* NewsClueDetailViewController.h */,
 				1AAB806B14E4180800F61582 /* NewsClueDetailViewController.m */,
-				1AA5F7A014EF5D300000E28A /* ClueWriteDetailViewController.h */,
-				1AA5F7A114EF5D300000E28A /* ClueWriteDetailViewController.m */,
 				1AAB806F14E4183B00F61582 /* NewsAllocDetailViewController.h */,
 				1AAB807014E4183B00F61582 /* NewsAllocDetailViewController.m */,
 				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
@@ -439,7 +434,6 @@
 				1AAB806714E4175E00F61582 /* NewsAllocSearchViewController.xib */,
 				1AAB804514E415B400F61582 /* NewsAllocListViewController.xib */,
 				1AAB806C14E4180800F61582 /* NewsClueDetailViewController.xib */,
-				1AA5F7A214EF5D300000E28A /* ClueWriteDetailViewController.xib */,
 				1A95C50E14DE735800B0B0EC /* NewsClueView.xib */,
 				1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */,
 				1A95F71514DE5CF700603053 /* MainPanelView.xib */,
@@ -470,6 +464,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1A94FF0714F51CE7006EE953 /* Settings.bundle */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -609,10 +604,10 @@
 				1A98CB2414EE28C700CE9BC1 /* panel_background1.png in Resources */,
 				1A98CB2614EE28DF00CE9BC1 /* simplenote-icon.png in Resources */,
 				1AA03B8C14EEA2F50032682F /* go.png in Resources */,
-				1AA5F7A414EF5D300000E28A /* ClueWriteDetailViewController.xib in Resources */,
 				1AF62CD814EFC3960022A2D9 /* add2.png in Resources */,
 				1AF62CD914EFC3960022A2D9 /* contents_background3.png in Resources */,
 				1AF62CDA14EFC3960022A2D9 /* panel_background320.png in Resources */,
+				1A94FF0814F51CE7006EE953 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +643,6 @@
 				1ACEE02614EE8711007F63A1 /* DatePicker.m in Sources */,
 				B2AF5E9414EE5CB1006A9B8E /* UserHelper.m in Sources */,
 				1AA5F79F14EF46330000E28A /* UIAlertTableView.m in Sources */,
-				1AA5F7A314EF5D300000E28A /* ClueWriteDetailViewController.m in Sources */,
 				B98C41D814EF62C20064E622 /* AudioPlayer.m in Sources */,
 				B98C743114F222D1001E9398 /* DocDetail.m in Sources */,
 				B98C743514F23228001E9398 /* DocDetailHelper.m in Sources */,

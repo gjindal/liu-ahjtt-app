@@ -15,6 +15,7 @@
 
 @implementation NewsCLueListViewController
 @synthesize dataArray;
+@synthesize schNewsclueInfo;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -32,13 +33,15 @@
 {
     segmentCtrl = (UISegmentedControl *)sender;
     if (segmentCtrl.selectedSegmentIndex == 0) {
-        ClueWriteDetailViewController *clueDetailCtrl = [[ClueWriteDetailViewController alloc] initWithNibName:@"ClueWriteDetailViewController" bundle:nil];
+        NewsClueDetailViewController *clueDetailCtrl = [[NewsClueDetailViewController alloc] initWithNibName:@"NewsClueDetailViewController" bundle:nil];
+        clueDetailCtrl.isAddNewsClue = YES;
         [self.navigationController pushViewController:clueDetailCtrl animated:YES];
         [clueDetailCtrl release];
     }
     
     if (segmentCtrl.selectedSegmentIndex == 1) {
         NewsClueSearchViewController *viewCtrl = [[NewsClueSearchViewController alloc] initWithNibName:@"NewsClueView" bundle:nil] ;
+        viewCtrl.newsclueInfo = schNewsclueInfo;
         viewCtrl.nSearchType = SEARCHTYPE_CLUE;
         [self.navigationController pushViewController:viewCtrl animated:YES];
         [viewCtrl release];
@@ -79,6 +82,29 @@
 	[segmentCtrl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 	segmentCtrl.selectedSegmentIndex = -1;
 	[self.navigationController.navigationBar addSubview: segmentCtrl];
+    
+    //init the search clue entity,如果没有搜索条件，就搜索全部资料，否测以这个实体内容去搜索
+    if (schNewsclueInfo == nil) {
+        schNewsclueInfo = [[NewsClueInfo alloc] init];
+        schNewsclueInfo.title = @"";
+        schNewsclueInfo.keyword = @"";
+        schNewsclueInfo.note = @"";
+        schNewsclueInfo.status = @"";
+        schNewsclueInfo.begtimeshow = @"";
+        schNewsclueInfo.endtimeshow =@"";
+        schNewsclueInfo.type = @"";
+    }
+
+    //reload the data from server
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+    [newsclueRequest getNewsClueListWithTitle:schNewsclueInfo.title
+                                      Keyword:schNewsclueInfo.keyword
+                                         Note:schNewsclueInfo.note
+                                       Status:schNewsclueInfo.status
+                                      Begtime:schNewsclueInfo.begtimeshow
+                                      Endtime:schNewsclueInfo.endtimeshow
+                                         Type:schNewsclueInfo.type];
 }
 
 /*
@@ -98,20 +124,6 @@
 
     [super viewWillDisappear:animated];
 }
-
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -186,46 +198,35 @@
 }
 
 
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)dataDidResponsed:(NSArray *)newsCLueInfoArray flag:(int)flag{
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
+    if(flag == kFlag_NewsClue_Detail ) {
+        
+        NewsClueDetailViewController *newClueDetailCtrl = [[NewsClueDetailViewController alloc] initWithNibName:@"NewsClueDetailViewController" bundle:nil];
+        
+        newClueDetailCtrl.newsclueInfo = [newsCLueInfoArray objectAtIndex:0];
+        [self.navigationController pushViewController:newClueDetailCtrl animated:YES];
+        [newClueDetailCtrl release];
+        
+    }
+    
+    if(flag == kFlag_NewsClue_List ) {
+        
+        dataArray = newsCLueInfoArray;
+        [self.tableView reloadData];
+    }
+    
 }
-
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NewsClueDetailViewController *newClueDetailCtrl = [[NewsClueDetailViewController alloc] initWithNibName:@"NewsClueDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:newClueDetailCtrl animated:YES];
-    [newClueDetailCtrl release];
+
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+    NewsClueInfo *newsclueInfo = [dataArray objectAtIndex:indexPath.row];
+    [newsclueRequest getNewsClueDetailWithKeyID:newsclueInfo.keyid];
     
 }
 

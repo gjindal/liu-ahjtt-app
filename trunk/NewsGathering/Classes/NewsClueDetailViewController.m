@@ -8,17 +8,103 @@
 
 #import "NewsClueDetailViewController.h"
 #import "UIAlertTableView.h"
+#import "DatePicker.h"
+#import "UIAlertTableView.h"
+#import "NewsGatheringAppDelegate.h"
 
+#define START_TIME_PICKER   101
+#define END_TIME_PICKER	    102
 
 @implementation NewsClueDetailViewController
-@synthesize scrollView,clueTitle,clueType,author,createTime,status,contents,imgContentsBgd,btConfirm,bEnableChange;
+@synthesize scrollView;
+@synthesize clueTitle;
+@synthesize clueType;
+@synthesize contents;
+@synthesize imgContentsBgd;
+@synthesize btConfirm;
+@synthesize bEnableChange;
+@synthesize btStartTime;
+@synthesize btEndTime;
+@synthesize clueKeyword;
+@synthesize bEnableAudit;
+@synthesize newsclueInfo;
+@synthesize isAddNewsClue;
 
+
+- (void)alertInfo:(NSString *)info {
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提交失败" message:info
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"关闭" 
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
 
 -(IBAction)confirmChanges:(id)sender{
+    
+    if ([clueTitle.text length]<1) {
+        [self alertInfo:@"标题不能为空"];
+        return;
+    }
+    if ([clueType.titleLabel.text length]<1) {
+        [self alertInfo:@"类别不能为空"];
+        return;
+    }
+    if ([btStartTime.titleLabel.text length]<1) {
+        [self alertInfo:@"开时时间不能为空"];
+        return;
+    }
+    if ([btEndTime.titleLabel.text length]<1) {
+        [self alertInfo:@"结束时间不能为空"];
+        return;
+    }
+    if ([clueKeyword.text length]<1) {
+        [self alertInfo:@"关键字不能为空"];
+        return;
+    }
+    if ([contents.text length]<1) {
+        [self alertInfo:@"内容不能为空"];
+        return;
+    }
+    if ([contents.text length]>2000) {
+        [self alertInfo:@"内容不能超过2000字"];
+        return;
+    }
 
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+    
+    if (isAddNewsClue) {
+        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text];
+    }
+    else{
+        if ([newsclueInfo.keyid length]<1) {
+            [self alertInfo:@"ID丢失，请返回重新进入修改！"];
+            return;
+        }
+        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text];
+    }
+    
+    [newsclueRequest release];
+    
+    [self.navigationController popViewControllerAnimated:YES];  
 }
 
 -(void)passAudit{
+    
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+    
+
+    if ([newsclueInfo.keyid length]<1) {
+            [self alertInfo:@"ID丢失，请返回重新进入修改！"];
+            return;
+        }
+    [newsclueRequest submitNewsClueWithKeyID:newsclueInfo.keyid];
+    [newsclueRequest release];
+    
+    [self.navigationController popViewControllerAnimated:YES];  
 
 }
 
@@ -30,6 +116,9 @@
         self.contents.editable = YES;
         self.btConfirm.hidden = NO;
         self.btConfirm.enabled = YES;
+        self.btEndTime.enabled = YES;
+        self.btStartTime.enabled = YES;
+        self.clueKeyword.enabled = YES;
     }
     else{
         self.clueTitle.enabled = NO;
@@ -37,6 +126,14 @@
         self.contents.editable = NO;
         self.btConfirm.enabled = NO;
         self.btConfirm.hidden = YES;
+        self.btEndTime.enabled = NO;
+        self.btStartTime.enabled = NO;
+        self.clueKeyword.enabled = NO;
+    }
+    
+    if (isAddNewsClue) {
+        self.btConfirm.hidden = YES;
+        self.clueType.enabled = NO;
     }
 }
 
@@ -60,14 +157,63 @@
 	self.title= @"线索详情";
 	self.navigationController.navigationBar.hidden=NO;
     
-    self.bEnableChange = YES;
-    self.btConfirm = NO;
+    //取新闻类型
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    array = [[NSMutableArray alloc] init];
+    for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
+        if( [dirInfo.dic_desc isEqualToString:@"新闻类型"]){
+           [array addObject:dirInfo.dic_value];
+        }
+    }
+    
+    
+    if (newsclueInfo != nil) {
+        
+        NSLog(@"-----%@",newsclueInfo.status);
+        //当状态为0时才能修改或提交派发
+        if ([newsclueInfo.status isEqualToString:@"0"]) {
+            self.bEnableChange = YES; 
+            self.bEnableAudit = YES;
+        }
+        else{
+            self.bEnableChange = NO; 
+            self.bEnableAudit = NO;
+        }
+        
+        clueTitle.text = newsclueInfo.title;
+        
+        [clueType setTitle:[array objectAtIndex:[newsclueInfo.type intValue]-1] forState:UIControlStateNormal];
+        [btStartTime setTitle:newsclueInfo.begtimeshow forState:UIControlStateNormal];
+        [btEndTime setTitle:newsclueInfo.endtimeshow forState:UIControlStateNormal];
+
+        clueKeyword.text = newsclueInfo.keyword;
+        contents.text = newsclueInfo.note;
+    }
+    else if(isAddNewsClue){
+        
+        clueTitle.text = @"";
+        [clueType setTitle:@"              " forState:UIControlStateNormal];
+        clueKeyword.text = @"";
+        contents.text = @"";
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+        NSString*locationString=[formatter stringFromDate: [NSDate date]];
+        [btEndTime setTitle:locationString forState:UIControlStateNormal];
+        [btStartTime setTitle:locationString forState:UIControlStateNormal];
+        [formatter release];
+        
+        //新建的时候可以保存，也可以提交派发
+        self.bEnableChange = YES; 
+        self.bEnableAudit = YES;
+    }
+    
     
     [self setChangeFunction];
     
     if (bEnableAudit) {
         UIBarButtonItem *submitButton;
-        submitButton=[[UIBarButtonItem alloc]initWithTitle: @"通过" style:UIBarButtonItemStyleBordered target:self action:@selector(passAudit)];
+        submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(passAudit)];
         submitButton.style=UIBarButtonItemStylePlain;
         self.navigationItem.rightBarButtonItem=submitButton;
         [submitButton release];
@@ -84,6 +230,7 @@
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
 	
+    custTableView.delegate = self;
 	self.clueTitle.delegate = self;
     contents.delegate = self;
 	
@@ -135,6 +282,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (bTimeAlertView) {
+        return;
+    }
+    
     if (buttonIndex == 1) {
         clueType.titleLabel.text =  tmpCellString;
     }
@@ -181,11 +332,62 @@
 	
 }
 
+- (void)datePciker:(DatePicker *)datePicker didFinishedSelectDate:(NSString *)selectedDate {
+    
+	if([datePicker tag] == START_TIME_PICKER){
+        
+		btStartTime.titleLabel.textColor = [UIColor blackColor];
+		btStartTime.titleLabel.text = selectedDate;
+		
+	}
+	
+	if([datePicker tag] == END_TIME_PICKER){
+		
+		btEndTime.titleLabel.textColor = [UIColor blackColor];
+		btEndTime.titleLabel.text = selectedDate;
+        
+	}
+}
+
+-(IBAction)setStartDateTime:(id)sender{
+    
+    bTimeAlertView = YES;
+    DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
+                                                            message:@"\n\n\n\n\n\n\n\n" 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"关闭" 
+                                                  otherButtonTitles:@"确定",nil];
+    startDatePicker.tag = START_TIME_PICKER;
+    if(btStartTime.titleLabel.text.length > 0){
+        startDatePicker.selectedDate = btStartTime.titleLabel.text;
+    }
+    [startDatePicker show];
+    [startDatePicker release];
+}
+
+-(IBAction)setEndDateTime:(id)sender{
+    
+    bTimeAlertView = YES;
+    DatePicker *startDatePicker = [[DatePicker alloc] initWithTitle:@"开始时间" 
+                                                            message:@"\n\n\n\n\n\n\n\n" 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"关闭" 
+                                                  otherButtonTitles:@"确定",nil];
+    startDatePicker.tag = END_TIME_PICKER;
+    if(btEndTime.titleLabel.text.length > 0){
+        startDatePicker.selectedDate = btEndTime.titleLabel.text;
+    }
+    [startDatePicker show];
+    [startDatePicker release];
+}
+
 
 -(IBAction)setType:(id)sender{
     
+    bTimeAlertView = NO;
+    
     //TEST DATA
-    array = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
+    //array = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
     
     tmpCellString = [[NSString alloc] initWithString:@""];
     

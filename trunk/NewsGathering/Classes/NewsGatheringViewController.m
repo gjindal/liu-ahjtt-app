@@ -28,6 +28,23 @@
 
 ////////////////
 
+- (void) activateWWAN {
+	NSError *err = nil;
+	NSHTTPURLResponse *res = nil;
+	NSURL * url = [[NSURL alloc] initWithString:@"http://www.google.com"];
+	NSMutableURLRequest *req = [NSMutableURLRequest
+								requestWithURL:url
+								cachePolicy:NSURLRequestReloadIgnoringCacheData
+								timeoutInterval:5];	
+	
+	NSData * data = [NSURLConnection sendSynchronousRequest:req
+                                          returningResponse:&res
+                                                      error:&err];
+	
+	NSLog(@"%d",[data length]);
+	[url release];
+}
+
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password{
 	
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -166,7 +183,10 @@
     if(resultInfo != nil) {
     
         if(resultInfo.isLoginSuccess == YES) {
-        
+            
+            NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            appDelegate.loginSuccessInfo = (LoginSuccessInfo *)resultInfo;
+            
             MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
             
             CATransition *transition = [CATransition animation];
