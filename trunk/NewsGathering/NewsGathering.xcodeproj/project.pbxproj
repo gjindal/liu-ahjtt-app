@@ -104,6 +104,10 @@
 		B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842314F29129007AE435 /* DeptParserHelper.m */; };
 		B98E7FB414F524E00087F044 /* LoginSuccessInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
+		B9D4EC8114F6797000C269D2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8014F6797000C269D2 /* UserInfo.m */; };
+		B9D4EC8514F67C1D00C269D2 /* ClueDistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */; };
+		B9D4EC9014F6873000C269D2 /* ClueDistRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8F14F6872F00C269D2 /* ClueDistRequest.m */; };
+		B9D4EC9314F6874400C269D2 /* ClueDistParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC9214F6874400C269D2 /* ClueDistParserHelper.m */; };
 		B9E84CAB14EA92D6005CA5FE /* StorageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +252,16 @@
 		B98E7FB214F524E00087F044 /* LoginSuccessInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSuccessInfo.h; sourceTree = "<group>"; };
 		B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSuccessInfo.m; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B9D4EC7F14F6797000C269D2 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		B9D4EC8014F6797000C269D2 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		B9D4EC8314F67C1D00C269D2 /* ClueDistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistInfo.h; sourceTree = "<group>"; };
+		B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClueDistInfo.m; sourceTree = "<group>"; };
+		B9D4EC8E14F6872F00C269D2 /* ClueDistRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistRequest.h; sourceTree = "<group>"; };
+		B9D4EC8F14F6872F00C269D2 /* ClueDistRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClueDistRequest.m; sourceTree = "<group>"; };
+		B9D4EC9114F6874400C269D2 /* ClueDistParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistParserHelper.h; sourceTree = "<group>"; };
+		B9D4EC9214F6874400C269D2 /* ClueDistParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClueDistParserHelper.m; sourceTree = "<group>"; };
+		B9D4EC9414F6876600C269D2 /* ClueDistParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistParserHelperDelegate.h; sourceTree = "<group>"; };
+		B9D4EC9514F6878000C269D2 /* ClueDistRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistRequestDelegate.h; sourceTree = "<group>"; };
 		B9E84CA914EA92D6005CA5FE /* StorageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageHelper.h; sourceTree = "<group>"; };
 		B9E84CAA14EA92D6005CA5FE /* StorageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -320,6 +334,12 @@
 				B98B195414F3E09A00D33C2A /* NewsClueParserHelperDelegate.h */,
 				B98B195814F3E97600D33C2A /* NewsClueRequestDelegate.h */,
 				B98B195714F3E3A400D33C2A /* Contants.h */,
+				B9D4EC8E14F6872F00C269D2 /* ClueDistRequest.h */,
+				B9D4EC8F14F6872F00C269D2 /* ClueDistRequest.m */,
+				B9D4EC9114F6874400C269D2 /* ClueDistParserHelper.h */,
+				B9D4EC9214F6874400C269D2 /* ClueDistParserHelper.m */,
+				B9D4EC9414F6876600C269D2 /* ClueDistParserHelperDelegate.h */,
+				B9D4EC9514F6878000C269D2 /* ClueDistRequestDelegate.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -337,6 +357,10 @@
 				B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */,
 				B98E7FB214F524E00087F044 /* LoginSuccessInfo.h */,
 				B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */,
+				B9D4EC7F14F6797000C269D2 /* UserInfo.h */,
+				B9D4EC8014F6797000C269D2 /* UserInfo.m */,
+				B9D4EC8314F67C1D00C269D2 /* ClueDistInfo.h */,
+				B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -654,6 +678,10 @@
 				B98B195014F3E01900D33C2A /* NewsClueRequest.m in Sources */,
 				B98B195314F3E05E00D33C2A /* NewsClueParserHelper.m in Sources */,
 				B98E7FB414F524E00087F044 /* LoginSuccessInfo.m in Sources */,
+				B9D4EC8114F6797000C269D2 /* UserInfo.m in Sources */,
+				B9D4EC8514F67C1D00C269D2 /* ClueDistInfo.m in Sources */,
+				B9D4EC9014F6873000C269D2 /* ClueDistRequest.m in Sources */,
+				B9D4EC9314F6874400C269D2 /* ClueDistParserHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
