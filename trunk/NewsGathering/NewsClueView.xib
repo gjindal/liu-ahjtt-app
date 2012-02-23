@@ -295,7 +295,7 @@
 								<string key="NSFrame">{{9, 215}, {303, 200}}</string>
 								<reference key="NSSuperview" ref="943215026"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="108429885"/>
+								<reference key="NSNextKeyView" ref="757303726"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -309,16 +309,12 @@
 							<object class="IBUIImageView" id="307364193">
 								<reference key="NSNextResponder" ref="943215026"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 251}, {300, 144}}</string>
+								<string key="NSFrame">{{9, 251}, {300, 151}}</string>
 								<reference key="NSSuperview" ref="943215026"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="265736433"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">form_textview.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="108429885">
 								<reference key="NSNextResponder" ref="943215026"/>
@@ -350,7 +346,7 @@
 							<object class="IBUITextView" id="265736433">
 								<reference key="NSNextResponder" ref="943215026"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{19, 253}, {285, 143}}</string>
+								<string key="NSFrame">{{12, 255}, {295, 142}}</string>
 								<reference key="NSSuperview" ref="943215026"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="594156836"/>
@@ -361,7 +357,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+								<string key="IBUIText"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -379,7 +375,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">2011-01-01 08:00:00</string>
 								<reference key="IBUIHighlightedTitleColor" ref="102621174"/>
 								<reference key="IBUINormalTitleColor" ref="733952651"/>
 								<reference key="IBUINormalTitleShadowColor" ref="498259290"/>
@@ -403,7 +398,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">2011-01-01 08:00:00</string>
 								<reference key="IBUIHighlightedTitleColor" ref="102621174"/>
 								<reference key="IBUINormalTitleColor" ref="733952651"/>
 								<reference key="IBUINormalTitleShadowColor" ref="498259290"/>
@@ -423,7 +417,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">？？？</string>
 								<reference key="IBUIHighlightedTitleColor" ref="102621174"/>
 								<reference key="IBUINormalTitleColor" ref="733952651"/>
 								<reference key="IBUINormalTitleShadowColor" ref="498259290"/>
@@ -440,7 +433,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">已处理</string>
 								<reference key="IBUIHighlightedTitleColor" ref="102621174"/>
 								<reference key="IBUINormalTitleColor" ref="733952651"/>
 								<reference key="IBUINormalTitleShadowColor" ref="498259290"/>
@@ -453,7 +445,7 @@
 								<string key="NSFrame">{{9, 191}, {300, 31}}</string>
 								<reference key="NSSuperview" ref="943215026"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="757303726"/>
+								<reference key="NSNextKeyView" ref="32722325"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIImage" ref="317125848"/>
@@ -484,7 +476,7 @@
 								<string key="NSFrame">{{120, 191}, {195, 31}}</string>
 								<reference key="NSSuperview" ref="943215026"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="32722325"/>
+								<reference key="NSNextKeyView" ref="108429885"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1100,13 +1092,11 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>contents_background3.png</string>
 				<string>field_background_1.png</string>
-				<string>form_textview.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{302, 174}</string>
 				<string>{302, 37}</string>
-				<string>{27, 130}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>

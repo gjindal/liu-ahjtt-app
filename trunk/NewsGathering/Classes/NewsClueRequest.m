@@ -43,6 +43,27 @@
                                                         Endtime:(NSString *)endtime
                                                         Type:(NSString *)type{
 
+    if (title == nil) {
+        title = @"";
+    }
+    if (keyword == nil) {
+        keyword = @"";
+    }
+    if (note == nil) {
+        note = @"";
+    }
+    if (status == nil) {
+        status = @"";
+    }
+    if (begtime == nil) {
+        begtime = @"";
+    }
+    if (endtime == nil) {
+        endtime = @"";
+    }
+    if (type == nil) {
+        type = @"";
+    }
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&status=%@&begtime=%@&endtime=%@&type=%@",
         [UserHelper userName],[UserHelper password],title,keyword,note,status,begtime,endtime,type];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_List withRequestString:post];
@@ -71,10 +92,11 @@
 - (void)addNewsClueWithTitle:(NSString *)title Keyword:(NSString *)keyword
                                                        Note:(NSString *)note 
                                                     Begtime:(NSString *)begtime 
-                                                    Endtime:(NSString *)endtime {
+                                                    Endtime:(NSString *)endtime 
+                                                        Type:(NSString *) type{
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@",
-                      [UserHelper userName],[UserHelper password],title,keyword,note,begtime,endtime];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@",
+                      [UserHelper userName],[UserHelper password],title,keyword,note,begtime,endtime,type];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Add withRequestString:post];
     if(returnData != nil) {
         
@@ -89,9 +111,10 @@
                                                 Keyword:(NSString *)keyword
                                                     Note:(NSString *)note 
                                                 Begtime:(NSString *)begtime 
-                                                Endtime:(NSString *)endtime {
+                                                Endtime:(NSString *)endtime 
+                                                 Type:(NSString *) type{
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime,type];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Update withRequestString:post];
     if(returnData != nil) {
         

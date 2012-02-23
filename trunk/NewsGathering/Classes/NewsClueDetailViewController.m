@@ -31,9 +31,9 @@
 @synthesize isAddNewsClue;
 
 
-- (void)alertInfo:(NSString *)info {
+- (void)alertInfo:(NSString *)info withTitle:(NSString *)title{
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提交失败" message:info
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:info
                                                        delegate:nil 
                                               cancelButtonTitle:@"关闭" 
                                               otherButtonTitles:nil];
@@ -41,54 +41,92 @@
     [alertView release];
 }
 
+-(void)dataDidResponsed:(NSArray *)newsCLueInfoArray flag:(int)flag{
+    
+    if(flag == kFlag_NewsClue_Update ) {
+        if ([((NewsClueInfo *)[newsCLueInfoArray objectAtIndex:0]).flag isEqualToString:@"200"] ) {
+            [self alertInfo:@"线索修改成功" withTitle:@""];
+            [self.navigationController popViewControllerAnimated:YES];  
+        } 
+        else{
+            [self alertInfo:@"线索修改失败" withTitle:@""];
+        }
+    }
+    if(flag == kFlag_NewsClue_Add ) {
+        if ([((NewsClueInfo *)[newsCLueInfoArray objectAtIndex:0]).flag isEqualToString:@"200"] ) {
+            [self alertInfo:@"线索添加成功" withTitle:@""];
+            [self.navigationController popViewControllerAnimated:YES];  
+        } 
+        else{
+            [self alertInfo:@"线索添加失败" withTitle:@""];
+        }
+    }
+    if(flag == kFlag_NewsClue_Submit ) {
+        if ([((NewsClueInfo *)[newsCLueInfoArray objectAtIndex:0]).flag isEqualToString:@"200"] ) {
+            [self alertInfo:@"线索提交成功" withTitle:@""];
+            [self.navigationController popViewControllerAnimated:YES];  
+        } 
+        else{
+            [self alertInfo:@"线索提交失败" withTitle:@""];
+        }
+    }
+}
+
 -(IBAction)confirmChanges:(id)sender{
     
     if ([clueTitle.text length]<1) {
-        [self alertInfo:@"标题不能为空"];
+        [self alertInfo:@"标题不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([clueType.titleLabel.text length]<1) {
-        [self alertInfo:@"类别不能为空"];
+        [self alertInfo:@"类别不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([btStartTime.titleLabel.text length]<1) {
-        [self alertInfo:@"开时时间不能为空"];
+        [self alertInfo:@"开时时间不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([btEndTime.titleLabel.text length]<1) {
-        [self alertInfo:@"结束时间不能为空"];
+        [self alertInfo:@"结束时间不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([clueKeyword.text length]<1) {
-        [self alertInfo:@"关键字不能为空"];
+        [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([contents.text length]<1) {
-        [self alertInfo:@"内容不能为空"];
+        [self alertInfo:@"内容不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([contents.text length]>2000) {
-        [self alertInfo:@"内容不能超过2000字"];
+        [self alertInfo:@"内容不能超过2000字" withTitle:@"数据错误"];
         return;
     }
+    
+    NSInteger nType=1;
+    for (NSString *temp in array) {
+        if ([temp isEqualToString:clueType.titleLabel.text]) {
+            break;
+        }
+        nType = nType+1;
+    }
+    NSString *strType = [[NSString alloc] initWithFormat:@"%d",nType];
 
     newsclueRequest = [[NewsClueRequest alloc] init];
     newsclueRequest.delegate = self;
     
     if (isAddNewsClue) {
-        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text];
+        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType];
     }
     else{
         if ([newsclueInfo.keyid length]<1) {
-            [self alertInfo:@"ID丢失，请返回重新进入修改！"];
+            [self alertInfo:@"ID丢失，请返回重新进入修改！" withTitle:@"数据错误"];
             return;
         }
-        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text];
+        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType];
     }
     
     [newsclueRequest release];
-    
-    [self.navigationController popViewControllerAnimated:YES];  
 }
 
 -(void)passAudit{
@@ -98,7 +136,7 @@
     
 
     if ([newsclueInfo.keyid length]<1) {
-            [self alertInfo:@"ID丢失，请返回重新进入修改！"];
+            [self alertInfo:@"ID丢失，请返回重新进入修改！" withTitle:@"数据错误"];
             return;
         }
     [newsclueRequest submitNewsClueWithKeyID:newsclueInfo.keyid];
@@ -132,8 +170,8 @@
     }
     
     if (isAddNewsClue) {
-        self.btConfirm.hidden = YES;
-        self.clueType.enabled = NO;
+        self.btConfirm.hidden = NO;
+        self.clueType.enabled = YES;
     }
 }
 
@@ -151,21 +189,16 @@
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)initForm{
 
-    [super viewWillAppear:animated];
-	self.title= @"线索详情";
-	self.navigationController.navigationBar.hidden=NO;
-    
     //取新闻类型
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     array = [[NSMutableArray alloc] init];
     for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
         if( [dirInfo.dic_desc isEqualToString:@"新闻类型"]){
-           [array addObject:dirInfo.dic_value];
+            [array addObject:dirInfo.dic_value];
         }
     }
-    
     
     if (newsclueInfo != nil) {
         
@@ -182,19 +215,30 @@
         
         clueTitle.text = newsclueInfo.title;
         
+        if ((newsclueInfo.type == nil) ||([newsclueInfo.type isEqualToString:@""]) ) {
+            newsclueInfo.type = @"1";
+        }
         [clueType setTitle:[array objectAtIndex:[newsclueInfo.type intValue]-1] forState:UIControlStateNormal];
+        if ((newsclueInfo.begtimeshow == nil) || ([newsclueInfo.begtimeshow isEqualToString:@""])) {
+            newsclueInfo.begtimeshow =@"2012-01-01 01:01:01";
+        }
+        if ((newsclueInfo.endtimeshow == nil) || ([newsclueInfo.endtimeshow isEqualToString:@""])) {
+            newsclueInfo.endtimeshow =@"2012-01-01 01:01:01";
+        }
         [btStartTime setTitle:newsclueInfo.begtimeshow forState:UIControlStateNormal];
         [btEndTime setTitle:newsclueInfo.endtimeshow forState:UIControlStateNormal];
-
+        
         clueKeyword.text = newsclueInfo.keyword;
         contents.text = newsclueInfo.note;
     }
     else if(isAddNewsClue){
         
         clueTitle.text = @"";
-        [clueType setTitle:@"              " forState:UIControlStateNormal];
         clueKeyword.text = @"";
         contents.text = @"";
+        
+        [clueType setTitle:[array objectAtIndex:0] forState:UIControlStateNormal];
+
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
@@ -203,13 +247,10 @@
         [btStartTime setTitle:locationString forState:UIControlStateNormal];
         [formatter release];
         
-        //新建的时候可以保存，也可以提交派发
+        //新建的时候可以保存，不可以派发
         self.bEnableChange = YES; 
-        self.bEnableAudit = YES;
+        self.bEnableAudit = NO;
     }
-    
-    
-    [self setChangeFunction];
     
     if (bEnableAudit) {
         UIBarButtonItem *submitButton;
@@ -218,6 +259,19 @@
         self.navigationItem.rightBarButtonItem=submitButton;
         [submitButton release];
     }
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+	self.title= @"线索详情";
+	self.navigationController.navigationBar.hidden=NO;
+    
+    
+    [self initForm];
+    [self setChangeFunction];
+
 
 }
 
@@ -337,14 +391,16 @@
 	if([datePicker tag] == START_TIME_PICKER){
         
 		btStartTime.titleLabel.textColor = [UIColor blackColor];
-		btStartTime.titleLabel.text = selectedDate;
+        [btStartTime setTitle:selectedDate forState:UIControlStateNormal];
+		//btStartTime.titleLabel.text = selectedDate;
 		
 	}
 	
 	if([datePicker tag] == END_TIME_PICKER){
 		
 		btEndTime.titleLabel.textColor = [UIColor blackColor];
-		btEndTime.titleLabel.text = selectedDate;
+        [btEndTime setTitle:selectedDate forState:UIControlStateNormal];
+		//btEndTime.titleLabel.text = selectedDate;
         
 	}
 }
@@ -385,9 +441,6 @@
 -(IBAction)setType:(id)sender{
     
     bTimeAlertView = NO;
-    
-    //TEST DATA
-    //array = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
     
     tmpCellString = [[NSString alloc] initWithString:@""];
     

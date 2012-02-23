@@ -127,29 +127,27 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
-
-	[contents setFont:[UIFont fontWithName:nil size:16]];
+	//[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 460.0f)];
+	[scrollView setContentSize:CGSizeMake(320, 500)];
+	scrollView.scrollEnabled = YES;
+    scrollView.delegate = self;
 	
-	//contentsBackground = [[UIImageView alloc] initWithFrame:CGRectMake(18,240,284,118)];
+    custTableView.delegate = self;
+	self.newsTitle.delegate = self;
+    self.newsKeyword.delegate = self;
+    contents.delegate = self;
+	
+	keyboardShown = NO;  
+    [self performSelector:@selector(registerForKeyboardNotifications)];  
+	
 	[contentsBackground setImage:[[UIImage imageNamed:@"form_textview.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0]];
 	if(contentsBackground.image != nil)
-		[self.contents setBackgroundColor:[UIColor clearColor]];
-	
-    newsTitle.delegate = self;
-    contents.delegate = self;
+        [self.contents setBackgroundColor:[UIColor clearColor]];
     
-    scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
-	[scrollView setContentSize:CGSizeMake(320, 460)];
-    
-    for (UIView *subView in self.view.subviews) {
-        [scrollView addSubview:subView];
-    }
 
-    [self.view addSubview:scrollView];
-    
-    keyboardShown = NO;
-    [self registerForKeyboardNotifications];
 }
 
 
@@ -253,14 +251,14 @@
 	if([datePicker tag] == START_TIME_PICKER){
         
 		startTime.titleLabel.textColor = [UIColor blackColor];
-		startTime.titleLabel.text = selectedDate;
-		
+        [startTime setTitle:selectedDate forState:UIControlStateNormal];
+
 	}
 	
 	if([datePicker tag] == END_TIME_PICKER){
 		
 		endTime.titleLabel.textColor = [UIColor blackColor];
-		endTime.titleLabel.text = selectedDate;
+		[endTime setTitle:selectedDate forState:UIControlStateNormal];
 
 	}
 }
@@ -312,10 +310,12 @@
     if (buttonIndex == 1) {
     
         if (tableType == TABLETYPE_CLUETYPE) {
-            newsType.titleLabel.text =  tmpCellString;
+            [newsType setTitle:tmpCellString forState:UIControlStateNormal];
+            //newsType.titleLabel.text =  tmpCellString;
         }
         if (tableType == TABLETYPE_CLUESTATUS) {
-            newsStatus.titleLabel.text = tmpCellString;
+            [newsStatus setTitle:tmpCellString forState:UIControlStateNormal];
+            //newsStatus.titleLabel.text = tmpCellString;
         }
     }
 	printf("User Pressed Button %d\n",buttonIndex+1);

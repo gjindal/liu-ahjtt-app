@@ -76,9 +76,11 @@
 
 -(void) setChangeFunction;    //开启修改功能
 
+-(void)initForm;
+
 -(IBAction)confirmChanges:(id)sender; //提交修改的内容
 
 -(void)passAudit;                     //审核通过
 
-- (void)alertInfo:(NSString *)info;
+- (void)alertInfo:(NSString *)info withTitle:(NSString *)title;
 @end
