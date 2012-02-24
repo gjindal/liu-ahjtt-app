@@ -83,6 +83,9 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* NewsGatheringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NewsGatheringViewController.m */; };
 		B2AF5E9414EE5CB1006A9B8E /* UserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AF5E9314EE5CB1006A9B8E /* UserHelper.m */; };
+		B2E6C9F514F78F2B007B24F5 /* ContributeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E6C9F414F78F2B007B24F5 /* ContributeInfo.m */; };
+		B2E6C9F914F793E3007B24F5 /* DocRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E6C9F814F793E3007B24F5 /* DocRequest.m */; };
+		B2E6C9FC14F79406007B24F5 /* DocParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E6C9FB14F79405007B24F5 /* DocParserHelper.m */; };
 		B90ABD7414E65CA400641FE1 /* button_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7114E65CA400641FE1 /* button_photo.png */; };
 		B90ABD7514E65CA400641FE1 /* button_sound.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7214E65CA400641FE1 /* button_sound.png */; };
 		B90ABD7614E65CA400641FE1 /* button_video.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD7314E65CA400641FE1 /* button_video.png */; };
@@ -214,6 +217,14 @@
 		8D1107310486CEB800E47090 /* NewsGathering-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NewsGathering-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B2AF5E9214EE5CB1006A9B8E /* UserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHelper.h; sourceTree = "<group>"; };
 		B2AF5E9314EE5CB1006A9B8E /* UserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHelper.m; sourceTree = "<group>"; };
+		B2E6C9F314F78F2B007B24F5 /* ContributeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContributeInfo.h; sourceTree = "<group>"; };
+		B2E6C9F414F78F2B007B24F5 /* ContributeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributeInfo.m; sourceTree = "<group>"; };
+		B2E6C9F714F793E3007B24F5 /* DocRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocRequest.h; sourceTree = "<group>"; };
+		B2E6C9F814F793E3007B24F5 /* DocRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocRequest.m; sourceTree = "<group>"; };
+		B2E6C9FA14F79405007B24F5 /* DocParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocParserHelper.h; sourceTree = "<group>"; };
+		B2E6C9FB14F79405007B24F5 /* DocParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocParserHelper.m; sourceTree = "<group>"; };
+		B2E6C9FD14F79418007B24F5 /* DocParserHelperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocParserHelperDelegate.h; sourceTree = "<group>"; };
+		B2E6C9FE14F79427007B24F5 /* DocRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocRequestDelegate.h; sourceTree = "<group>"; };
 		B90ABD7114E65CA400641FE1 /* button_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_photo.png; sourceTree = "<group>"; };
 		B90ABD7214E65CA400641FE1 /* button_sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_sound.png; sourceTree = "<group>"; };
 		B90ABD7314E65CA400641FE1 /* button_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_video.png; sourceTree = "<group>"; };
@@ -343,6 +354,12 @@
 				B9D4EC9214F6874400C269D2 /* ClueDistParserHelper.m */,
 				B9D4EC9414F6876600C269D2 /* ClueDistParserHelperDelegate.h */,
 				B9D4EC9514F6878000C269D2 /* ClueDistRequestDelegate.h */,
+				B2E6C9F714F793E3007B24F5 /* DocRequest.h */,
+				B2E6C9F814F793E3007B24F5 /* DocRequest.m */,
+				B2E6C9FA14F79405007B24F5 /* DocParserHelper.h */,
+				B2E6C9FB14F79405007B24F5 /* DocParserHelper.m */,
+				B2E6C9FD14F79418007B24F5 /* DocParserHelperDelegate.h */,
+				B2E6C9FE14F79427007B24F5 /* DocRequestDelegate.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -366,6 +383,8 @@
 				B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */,
 				1A9E19B514F778C500E4D851 /* ResultInfo.h */,
 				1A9E19B614F778C600E4D851 /* ResultInfo.m */,
+				B2E6C9F314F78F2B007B24F5 /* ContributeInfo.h */,
+				B2E6C9F414F78F2B007B24F5 /* ContributeInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -688,6 +707,9 @@
 				B9D4EC9014F6873000C269D2 /* ClueDistRequest.m in Sources */,
 				B9D4EC9314F6874400C269D2 /* ClueDistParserHelper.m in Sources */,
 				1A9E19B714F778C600E4D851 /* ResultInfo.m in Sources */,
+				B2E6C9F514F78F2B007B24F5 /* ContributeInfo.m in Sources */,
+				B2E6C9F914F793E3007B24F5 /* DocRequest.m in Sources */,
+				B2E6C9FC14F79406007B24F5 /* DocParserHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
