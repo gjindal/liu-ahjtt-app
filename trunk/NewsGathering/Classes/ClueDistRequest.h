@@ -27,5 +27,6 @@
 - (void)getDetailWithKeyID:(NSString *)keyid;
 - (void)getDept;
 - (void)getUserWithDeptID:(NSString *)deptid;
+- (void)getDispatchResult:(NSString *)keyid withUsers:(NSString *)users;
 
 @end

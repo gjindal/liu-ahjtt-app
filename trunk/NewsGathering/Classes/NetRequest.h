@@ -10,14 +10,11 @@
 
 #define SERVER_URL @"http://hfhuadi.vicp.cc:8080/editmobile/mobile"
 
+static NSData *returnData=nil;
 @interface NetRequest : NSObject{
-
-    NSString *strPost;
-    NSString *serverURL;
 
 }
 
-@property (nonatomic,retain) NSString *strPost;
-@property (nonatomic,retain) NSString *serverURL;
++(void)cancelURLConnection:(NSTimer *)timer;
 +(NSData*) PostData:(NSString*) serverURL withRequestString:(NSString *) strPost;
 @end

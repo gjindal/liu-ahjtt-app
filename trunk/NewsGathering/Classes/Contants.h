@@ -20,7 +20,9 @@
 #define kFlag_ClueDist_Detail   2
 #define kFlag_ClueDist_Dept     3
 #define kFlag_ClueDist_User     4
+#define kFlag_ClueDist_Submit   5
 
+#define kInterface_ClueDist_Submit @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!sendToUser.do" //线索派发接口
 #define kInterface_ClueDist_List    @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getKeysList.do"   // 查询可派单线索列表接口
 #define kInterface_ClueDist_Detail  @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getKeyDetail.do"  // 查询线索详情接口
 #define kInterface_ClueDist_Dept    @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getDeptTree.do"   // 派发线索接口1，获得管理的部门

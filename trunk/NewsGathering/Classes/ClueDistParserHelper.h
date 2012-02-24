@@ -13,6 +13,7 @@
 #import "UserInfo.h"
 #import "DeptInfo.h"
 #import "Contants.h"
+#import "ResultInfo.h"
 
 @interface ClueDistParserHelper : NSObject<NSXMLParserDelegate> {
 @private
@@ -25,6 +26,7 @@
     ClueDistInfo                       *_distInfo;
     UserInfo                           *_userInfo;
     DeptInfo                           *_deptInfo;
+    ResultInfo                         *_resultInfo;
     
     int                                 _currentFlag;
 }

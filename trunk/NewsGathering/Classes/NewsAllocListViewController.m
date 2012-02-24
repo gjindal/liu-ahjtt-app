@@ -10,15 +10,16 @@
 #import "NewsClueSearchViewController.h"
 #import "NewsAllocDetailViewController.h"
 #import "NewsClueDetailViewController.h"
+#import "NewsAllocSearchViewController.h"
 
 @implementation NewsAllocListViewController
-
+@synthesize cluedistRequest,schCluedistInfo;
 
 #pragma mark -
 #pragma mark View lifecycle
 -(void)searchNews
 {
-	NewsClueSearchViewController *viewCtrl = [[NewsClueSearchViewController alloc] initWithNibName:@"NewsClueView" bundle:nil] ;
+	NewsAllocSearchViewController *viewCtrl = [[NewsAllocSearchViewController alloc] initWithNibName:@"NewsAllocSearchViewController" bundle:nil] ;
 	viewCtrl.nSearchType = SEARCHTYPE_ALLOC;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
@@ -39,7 +40,22 @@
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
     
-    dataArray = [[NSArray arrayWithObjects:@"新闻派单1", @"新闻派单2", @"新闻派单3", nil] retain];
+    //init the search clue entity,如果没有搜索条件，就搜索全部资料，否测以这个实体内容去搜索
+    if (schCluedistInfo == nil) {
+        schCluedistInfo = [[ClueDistInfo alloc] init];
+        schCluedistInfo.title = @"";
+        schCluedistInfo.keyword = @"";
+        schCluedistInfo.note = @"";
+        schCluedistInfo.status = @"";
+        schCluedistInfo.begtimeshow = @"";
+        schCluedistInfo.endtimeshow =@"";
+        schCluedistInfo.type = @"";
+    }
+    
+    //reload the data from server
+    cluedistRequest = [[ClueDistRequest alloc] init];
+    cluedistRequest.delegate = self;
+    [cluedistRequest getListWithTitle:schCluedistInfo.title Keyword:schCluedistInfo.keyword Note:schCluedistInfo.note Status:schCluedistInfo.status BegTime:schCluedistInfo.begtimeshow EndTime:schCluedistInfo.endtimeshow Type:schCluedistInfo.type];
 	
 }
 
@@ -109,6 +125,10 @@
     return [dataArray count];;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0;
+}
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,12 +142,35 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     // Configure the cell...
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+
+    
+    // Configure the cell...
+    //转换对像为实体
+    ClueDistInfo *cluedistInfo = (ClueDistInfo *)[dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = cluedistInfo.title;
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    cell.detailTextLabel.text = @"2012-02-09";
+    cell.detailTextLabel.text = cluedistInfo.begtimeshow;
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     //cell.backgroundColor = [UIColor grayColor];
-    [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+    //0草稿、1提交待派发、2已派发
+    switch ([cluedistInfo.status intValue]) {
+        case 0:
+            [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",cluedistInfo.begtimeshow,@"草稿"];
+            break;
+        case 1:
+            [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",cluedistInfo.begtimeshow,@"提交待派发"];
+            break;
+        case 2:
+            [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",cluedistInfo.begtimeshow,@"已派发"];
+            break;            
+        default:
+            break;
+    }
+
+    
     return cell;
 }
 
@@ -139,61 +182,34 @@
     return YES;
 }
 
+- (void)parserDetailDidFinished:(ClueDistInfo *)clueDistInfo{
 
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NewsAllocDetailViewController *newsAllocDetailCtrl = [[NewsAllocDetailViewController alloc] initWithNibName:@"NewsAllocDetailViewController" bundle:nil];
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
+    newsAllocDetailCtrl.cluedistInfo = [clueDistInfo retain];
+    newsAllocDetailCtrl.clueKeyid = clueDistInfo.keyid;
+    [self.navigationController pushViewController:newsAllocDetailCtrl animated:YES];
+    [newsAllocDetailCtrl release];
+
 }
 
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)parserListDidFinished:(NSArray *)distList{
+    dataArray = [distList retain];
+    [self.tableView reloadData];
+    
 }
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NewsClueDetailViewController *newClueDetailCtrl = [[NewsClueDetailViewController alloc] initWithNibName:@"NewsClueDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:newClueDetailCtrl animated:YES];
-    [newClueDetailCtrl release];
     
-    /*
-    NewsAllocDetailViewController *detailViewCtrl = [[NewsAllocDetailViewController alloc] initWithNibName:@"NewsAllocDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:detailViewCtrl animated:YES];
-    [detailViewCtrl release];
-    */
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 DetailViewController *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+    cluedistRequest = [[ClueDistRequest alloc] init];
+    cluedistRequest.delegate = self;
+    ClueDistInfo *cluedistInfo = [dataArray objectAtIndex:indexPath.row];
+    [cluedistRequest getDetailWithKeyID:cluedistInfo.keyid];
+    
 }
 
 
@@ -214,6 +230,7 @@
 
 
 - (void)dealloc {
+
     [super dealloc];
 }
 

@@ -67,7 +67,6 @@
     return self;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
@@ -117,7 +116,6 @@
     
     for (UIView *views in self.navigationController.navigationBar.subviews) {
         if ([views isKindOfClass:[UISegmentedControl class]]) {
-            NSLog(@"找到啦");
             [views removeFromSuperview];
         }
     }
@@ -174,12 +172,15 @@
     switch ([newclueInfo.status intValue]) {
         case 0:
             [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",newclueInfo.begtimeshow,@"草稿"];
             break;
         case 1:
             [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",newclueInfo.begtimeshow,@"提交待派发"];
             break;
         case 2:
             [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",newclueInfo.begtimeshow,@"已派发"];
             break;            
         default:
             break;

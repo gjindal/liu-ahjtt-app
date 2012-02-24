@@ -19,12 +19,14 @@
     [_userList release];
     [_distList release];
     [_deptList release];
+    [_resultInfo release];
     
     _xmlParser = nil;
     _currentValue = nil;
     _userList = nil;
     _distList = nil;
     _deptList = nil;
+    _resultInfo = nil;
     
     [super dealloc];
 }
@@ -72,6 +74,8 @@
     }else if([elementName isEqualToString:@"user"]) {
     
         _userInfo = [[UserInfo alloc] init];
+    }else if([elementName isEqualToString:@"error"]){
+        _resultInfo = [[ResultInfo alloc]init];
     }
     
     _currentValue = [[NSMutableString alloc] initWithCapacity:0];
@@ -154,6 +158,14 @@
         if(_delegate != nil && [_delegate respondsToSelector:@selector(parserUserDidFinished:)]) {
         
             [_delegate parserUserDidFinished:[_userList autorelease]];
+        }
+    }if ([elementName isEqualToString:@"flag"]) {
+        _resultInfo.flag = _currentValue;
+    }if ([elementName isEqualToString:@"message"]) {
+        _resultInfo.message = _currentValue;
+    }if ([elementName isEqualToString:@"error"]) {
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(parserSubmitDidFinished:)]) {
+            [_delegate parserSubmitDidFinished:[_resultInfo autorelease]];
         }
     }
     

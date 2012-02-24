@@ -19,6 +19,7 @@
 		1A9DE9CB14E1773C006E21E8 /* MD5EncryptProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */; };
 		1A9DE9D314E17AD1006E21E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D214E17AD1006E21E8 /* CFNetwork.framework */; };
 		1A9DE9D514E17AD1006E21E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */; };
+		1A9E19B714F778C600E4D851 /* ResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E19B614F778C600E4D851 /* ResultInfo.m */; };
 		1AA03B8C14EEA2F50032682F /* go.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA03B8814EEA2F50032682F /* go.png */; };
 		1AA5F79F14EF46330000E28A /* UIAlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA5F79D14EF46330000E28A /* UIAlertTableView.m */; };
 		1AAB7FF414E40AD800F61582 /* form_textview.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAB7FF314E40AD800F61582 /* form_textview.png */; };
@@ -125,6 +126,8 @@
 		1A9DE9CA14E1773C006E21E8 /* MD5EncryptProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5EncryptProcess.m; sourceTree = "<group>"; };
 		1A9DE9D214E17AD1006E21E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1A9E19B514F778C500E4D851 /* ResultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultInfo.h; sourceTree = "<group>"; };
+		1A9E19B614F778C600E4D851 /* ResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultInfo.m; sourceTree = "<group>"; };
 		1AA03B8814EEA2F50032682F /* go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go.png; sourceTree = "<group>"; };
 		1AA5F79D14EF46330000E28A /* UIAlertTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAlertTableView.m; sourceTree = "<group>"; };
 		1AA5F79E14EF46330000E28A /* UIAlertTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertTableView.h; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				B9D4EC8014F6797000C269D2 /* UserInfo.m */,
 				B9D4EC8314F67C1D00C269D2 /* ClueDistInfo.h */,
 				B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */,
+				1A9E19B514F778C500E4D851 /* ResultInfo.h */,
+				1A9E19B614F778C600E4D851 /* ResultInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				B9D4EC8514F67C1D00C269D2 /* ClueDistInfo.m in Sources */,
 				B9D4EC9014F6873000C269D2 /* ClueDistRequest.m in Sources */,
 				B9D4EC9314F6874400C269D2 /* ClueDistParserHelper.m in Sources */,
+				1A9E19B714F778C600E4D851 /* ResultInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

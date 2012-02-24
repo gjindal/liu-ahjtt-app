@@ -7,6 +7,7 @@
 //
 
 @class ClueDistInfo;
+@class ResultInfo;
 
 @protocol ClueDistParserHelperDelegate <NSObject>
 @optional
@@ -15,5 +16,6 @@
 - (void)parserDetailDidFinished:(ClueDistInfo *)clueDistInfo;
 - (void)parserDeptDidFinished:(NSArray *)deptList;
 - (void)parserUserDidFinished:(NSArray *)userList;
+- (void)parserSubmitDidFinished:(ResultInfo *)resultInfo;
 
 @end

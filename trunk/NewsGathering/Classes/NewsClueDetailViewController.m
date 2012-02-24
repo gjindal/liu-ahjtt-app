@@ -284,9 +284,11 @@
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
 	
-    custTableView.delegate = self;
+    //self.custTableView.delegate = self;
 	self.clueTitle.delegate = self;
-    contents.delegate = self;
+    self.contents.delegate = self;
+    self.clueKeyword.delegate = self;
+    
 	
 	keyboardShown = NO;  
     [self performSelector:@selector(registerForKeyboardNotifications)];  

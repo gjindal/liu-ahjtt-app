@@ -9,8 +9,18 @@
 #import "NetRequest.h"
 
 @implementation NetRequest
-@synthesize serverURL,strPost;
 
+
++(void)cancelURLConnection:(NSTimer *)timer {
+    if (returnData == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] 
+                              initWithTitle:@"网络连接错误" 
+                              message:@"与服务器连接出现错误." 
+                              delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
 
 +(NSData*) PostData:(NSString*) serverURL withRequestString:(NSString *) strPost{
     
@@ -25,7 +35,10 @@
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];  
 	[request setHTTPBody:postData];  
     
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
+    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(cancelURLConnection:) userInfo:nil repeats:YES];
+    
+    returnData = nil;
+	returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     

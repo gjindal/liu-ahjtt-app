@@ -37,6 +37,24 @@
 #pragma -
 #pragma Public Methods.
 
+- (void)getDispatchResult:(NSString *)keyid withUsers:(NSString *)users{
+    if(keyid == nil) {
+        keyid = @"";
+    }
+    if (users == nil) {
+        users = @"";
+    }
+    
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&userids=%@",[UserHelper userName],[UserHelper password],keyid,users,nil];
+    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_Submit withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Submit];
+        [returnString release];
+    }
+
+}
+
 - (void)getListWithTitle:(NSString *)title Keyword:(NSString *)keyword 
                     Note:(NSString *)note Status:(NSString *)status
                  BegTime:(NSString *)begtime EndTime:(NSString *)endtime
@@ -143,4 +161,10 @@
     }
 }
 
+- (void)parserSubmitDidFinished:(ResultInfo *)resultInfo{
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(parserSubmitDidFinished:)]) {
+        [_delegate parserSubmitDidFinished:resultInfo];
+    }
+}
 @end
