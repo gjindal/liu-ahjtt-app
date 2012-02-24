@@ -231,6 +231,7 @@
 
 - (void)dealloc {
 
+    [dataArray release];
     [super dealloc];
 }
 

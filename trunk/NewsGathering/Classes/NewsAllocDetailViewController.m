@@ -178,8 +178,8 @@
 
 - (void)dealloc {
     
-    [cluedistInfo release];
-    [cluedistRequest release];
+    //[cluedistInfo release];
+    //[cluedistRequest release];
     [super dealloc];
 }
 
