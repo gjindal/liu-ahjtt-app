@@ -33,6 +33,17 @@
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
     
+    // 读取方法
+//    NSString *tryTime = [[NSUserDefaults standardUserDefaults] stringForKey:@"TryTimes"];
+//    NSString *serverURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerURL"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary
+                                 dictionaryWithObjects:[NSArray arrayWithObjects: @"3", @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/", nil] 
+                                               forKeys:[NSArray arrayWithObjects:@"TryTimes", @"ServerURL", nil]];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
     //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
 
     return YES;
