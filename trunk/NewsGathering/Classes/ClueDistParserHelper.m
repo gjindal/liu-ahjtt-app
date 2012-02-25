@@ -62,7 +62,7 @@
     }else if([elementName isEqualToString:@"key"]) {
     
         _distInfo = [[ClueDistInfo alloc] init];
-    }else if([elementName isEqualToString:@"deptlsit"]) {
+    }else if([elementName isEqualToString:@"deptlist"]) {
     
         _deptList = [[NSMutableArray alloc] initWithCapacity:0];
     }else if([elementName isEqualToString:@"dept"]) {
