@@ -8,9 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DocParserHelperDelegate.h"
+#import "ContributeInfo.h"
+
 @interface DocParserHelper : NSObject<NSXMLParserDelegate> {
 @private
-    
+    id<DocParserHelperDelegate>      _delegate;
+    NSXMLParser                     *_xmlParser;
+    NSMutableString                 *_currentValue;
+    NSMutableArray                  *_docList;
+    ContributeInfo                  *_info;
+    int                              _currentFlag;
 }
+
+@property (nonatomic, assign) id<DocParserHelperDelegate> delegate;
+
+- (void)startWithXMLInfo:(NSString *)xmlInfo flag:(int)flag;
 
 @end
