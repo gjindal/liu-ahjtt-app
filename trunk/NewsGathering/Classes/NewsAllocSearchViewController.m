@@ -21,7 +21,7 @@
 
 @implementation NewsAllocSearchViewController
 
-@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,nSearchType,contentsBackground,typeArray,statusArray,lastIndexPath,newsKeyword,newsclueInfo;
+@synthesize scrollView,startTime,endTime,newsTitle,newsType,newsStatus,contents,btConfirm,contentsBackground,typeArray,statusArray,lastIndexPath,newsKeyword,cluedistInfo;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -34,22 +34,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	switch (nSearchType) {
-		case SEARCHTYPE_CLUE:
-			self.title= @"搜索新闻线索";
-			break;
-		case SEARCHTYPE_ALLOC:
-			self.title= @"搜索新闻派单";
-			break;
-		default:
-			break;
-	}
-    
+
+    self.title= @"搜索新闻派单";
     bTimeAlertView = TRUE;
-    
 	self.navigationController.navigationBar.hidden=NO;
     originalContentHeight = [scrollView contentSize].height;
-    
     
 }
 
@@ -418,13 +407,13 @@
 
 - (IBAction)confirm{
     
-    newsclueInfo.title = self.newsTitle.text;
-    newsclueInfo.type = self.newsType.titleLabel.text;
-    newsclueInfo.status = self.newsStatus.titleLabel.text;
-    newsclueInfo.keyword = self.newsKeyword.text;
-    newsclueInfo.begtimeshow = self.startTime.titleLabel.text;
-    newsclueInfo.endtimeshow = self.endTime.titleLabel.text;
-    newsclueInfo.note = self.contents.text;
+    cluedistInfo.title = self.newsTitle.text;
+    cluedistInfo.type = self.newsType.titleLabel.text;
+    cluedistInfo.status = self.newsStatus.titleLabel.text;
+    cluedistInfo.keyword = self.newsKeyword.text;
+    cluedistInfo.begtimeshow = self.startTime.titleLabel.text;
+    cluedistInfo.endtimeshow = self.endTime.titleLabel.text;
+    cluedistInfo.note = self.contents.text;
     
     [self.navigationController popViewControllerAnimated:YES];
 }

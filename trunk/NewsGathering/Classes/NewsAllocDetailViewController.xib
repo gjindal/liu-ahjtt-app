@@ -70,7 +70,7 @@
 								<string key="NSFrame">{{25, 18}, {86, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="909069099"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -114,7 +114,7 @@
 								<string key="NSFrame">{{25, 60}, {86, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="876080908"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -148,7 +148,7 @@
 								<string key="NSFrame">{{25, 101}, {92, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="895960915"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -182,7 +182,7 @@
 								<string key="NSFrame">{{25, 143}, {85, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="260254964"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -216,7 +216,7 @@
 								<string key="NSFrame">{{25, 185}, {86, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="112321735"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -312,7 +312,7 @@
 								<string key="NSFrame">{{9, 219}, {302, 37}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="427663299"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -326,6 +326,7 @@
 								<string key="NSFrame">{{25, 227}, {87, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="238803523"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -345,6 +346,7 @@
 								<string key="NSFrame">{{119, 18}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="1036204342"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -364,6 +366,7 @@
 								<string key="NSFrame">{{119, 60}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="1018530600"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -383,6 +386,7 @@
 								<string key="NSFrame">{{119, 101}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="499255064"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -402,6 +406,7 @@
 								<string key="NSFrame">{{119, 143}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="302476132"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -421,6 +426,7 @@
 								<string key="NSFrame">{{119, 185}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="308711127"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -440,6 +446,7 @@
 								<string key="NSFrame">{{120, 227}, {186, 21}}</string>
 								<reference key="NSSuperview" ref="733729209"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="63518927"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -812,7 +819,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -830,6 +837,7 @@
 							<string>clueTitle</string>
 							<string>clueType</string>
 							<string>contents</string>
+							<string>dispatchedTableView</string>
 							<string>imgContentsBgd</string>
 							<string>scrollView</string>
 							<string>sendUserName</string>
@@ -842,6 +850,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UITextView</string>
+							<string>UITableView</string>
 							<string>UIImageView</string>
 							<string>UIScrollView</string>
 							<string>UILabel</string>
@@ -857,6 +866,7 @@
 							<string>clueTitle</string>
 							<string>clueType</string>
 							<string>contents</string>
+							<string>dispatchedTableView</string>
 							<string>imgContentsBgd</string>
 							<string>scrollView</string>
 							<string>sendUserName</string>
@@ -886,6 +896,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">contents</string>
 								<string key="candidateClassName">UITextView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">dispatchedTableView</string>
+								<string key="candidateClassName">UITableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgContentsBgd</string>

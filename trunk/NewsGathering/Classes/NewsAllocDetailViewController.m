@@ -10,6 +10,7 @@
 #import "ClueDistInfo.h"
 #import "ClueDistRequest.h"
 #import "NewsGatheringAppDelegate.h"
+#import "TreeViewController.h"
 
 @implementation NewsAllocDetailViewController
 
@@ -25,6 +26,8 @@
 @synthesize cluedistInfo;
 @synthesize cluedistRequest;
 @synthesize dispatchedUsers;
+@synthesize dispatchedTableView;
+@synthesize dispatchedArray;
 
 
 - (void)alertInfo:(NSString *)info withTitle:(NSString *)title{
@@ -106,7 +109,7 @@
         
     
         clueTitle.text = cluedistInfo.title;
-        
+        sendUserName.text = cluedistInfo.sendUserName;
         if ((cluedistInfo.type == nil) ||([cluedistInfo.type isEqualToString:@""]) ) {
             cluedistInfo.type = @"1";
         }
@@ -150,7 +153,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 460.0f)];
-	[scrollView setContentSize:CGSizeMake(320, 500)];
+	[scrollView setContentSize:CGSizeMake(320, 700)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
 
@@ -160,7 +163,80 @@
 	[imgContentsBgd setImage:[[UIImage imageNamed:@"form_textview.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0]];
 	if(imgContentsBgd.image != nil)
         [self.contents setBackgroundColor:[UIColor clearColor]];
+    
+    dispatchedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 465, 320, 120) style:UITableViewStyleGrouped];
+    dispatchedTableView.delegate = self;
+    dispatchedTableView.dataSource = self;
+    [dispatchedTableView setBackgroundColor:[UIColor clearColor]];
+    [scrollView addSubview:dispatchedTableView];
 }
+
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return 1;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0:
+            return @"被派发人";
+            break;
+    }  
+    return nil;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //[cell setBackgroundImageByName:@"list_item_background.png"];
+        
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    // Configure the cell...
+    cell.textLabel.text = @"已派发人";
+    
+    return cell;
+}
+
+
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    [self.navigationController pushViewController:treeViewCtrl animated:YES];
+    [treeViewCtrl release];
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -178,6 +254,7 @@
 
 - (void)dealloc {
     
+    [dispatchedTableView release];
     //[cluedistInfo release];
     //[cluedistRequest release];
     [super dealloc];

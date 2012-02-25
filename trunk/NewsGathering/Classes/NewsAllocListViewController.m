@@ -20,7 +20,7 @@
 -(void)searchNews
 {
 	NewsAllocSearchViewController *viewCtrl = [[NewsAllocSearchViewController alloc] initWithNibName:@"NewsAllocSearchViewController" bundle:nil] ;
-	viewCtrl.nSearchType = SEARCHTYPE_ALLOC;
+    viewCtrl.cluedistInfo = self.schCluedistInfo;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
 }

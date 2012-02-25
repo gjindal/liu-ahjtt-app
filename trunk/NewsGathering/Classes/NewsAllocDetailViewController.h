@@ -12,7 +12,7 @@
 #import "ClueDistRequest.h"
 #import "ClueDistRequestDelegate.h"
 
-@interface NewsAllocDetailViewController : UIViewController<UIScrollViewDelegate,ClueDistRequestDelegate> {
+@interface NewsAllocDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ClueDistRequestDelegate> {
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UILabel *clueTitle;
@@ -23,6 +23,9 @@
     IBOutlet UILabel *clueKeyword;
     IBOutlet UILabel *sendUserName;
     NSString *clueKeyid;
+    
+    UITableView *dispatchedTableView;
+    NSMutableArray *dispatchedArray;
     
     IBOutlet UIImageView *imgContentsBgd;
     
@@ -35,6 +38,8 @@
 
 }
 
+@property(nonatomic,retain) UITableView *dispatchedTableView;
+@property(nonatomic,retain) NSMutableArray *dispatchedArray;
 @property(nonatomic,retain) NSString *dispatchedUsers;
 @property(nonatomic,retain) IBOutlet UILabel *sendUserName;
 @property(nonatomic,retain) IBOutlet UILabel *clueTitle;

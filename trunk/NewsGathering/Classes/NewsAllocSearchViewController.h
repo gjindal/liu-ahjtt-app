@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsClueInfo.h"
+#import "ClueDistInfo.h"
+#import "NewsAllocSearchViewController.h"
 #import "NewsClueSearchViewController.h"
 
 
@@ -24,9 +25,8 @@
 	IBOutlet UIImageView *contentsBackground;
     IBOutlet UITextField *newsKeyword;
     
-    NewsClueInfo *newsclueInfo;
+    ClueDistInfo *cluedistInfo;
 	
-	SEARCHTYPE nSearchType;
 	NSString *strTimes;
 	float originalContentHeight;
     
@@ -48,11 +48,10 @@
     
 }
 
-@property(nonatomic,retain) NewsClueInfo *newsclueInfo;
+@property(nonatomic,retain) ClueDistInfo *cluedistInfo;
 @property(nonatomic,retain) NSIndexPath *lastIndexPath;
 @property(nonatomic,retain) NSArray *statusArray;
 @property(nonatomic,retain) NSArray *typeArray;
-@property(nonatomic) SEARCHTYPE nSearchType;
 @property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic,retain) IBOutlet UIButton *startTime;
 @property(nonatomic,retain) IBOutlet UIButton *endTime;
