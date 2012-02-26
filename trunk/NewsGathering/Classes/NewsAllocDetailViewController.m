@@ -25,9 +25,10 @@
 @synthesize imgContentsBgd;
 @synthesize cluedistInfo;
 @synthesize cluedistRequest;
-@synthesize dispatchedUsers;
+@synthesize dispatchedUsersName;
 @synthesize dispatchedTableView;
 @synthesize dispatchedArray;
+@synthesize dispatchedUsersID;
 
 
 - (void)alertInfo:(NSString *)info withTitle:(NSString *)title{
@@ -56,13 +57,13 @@
 }
 
 -(void)dispatchCLue{
-
-    if ([dispatchedUsers length]<1) {
+    
+    if ([dispatchedUsersID length]<1) {
         [self alertInfo:@"请选择派发人！" withTitle:@"数据错误"];
         return;
     }
-    [cluedistRequest getDispatchResult:clueKeyid withUsers:dispatchedUsers];
-    [cluedistRequest release];
+    [cluedistRequest getDispatchResult:clueKeyid withUsers:dispatchedUsersID];
+
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -70,7 +71,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		// 下一个界面的返回按钮  
         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
-        temporaryBarButtonItem.title = @"返回";  
+        temporaryBarButtonItem.title = @"取消";  
         temporaryBarButtonItem.target = self;  
         // temporaryBarButtonItem.action = @selector(back:);  
         self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
@@ -133,7 +134,23 @@
 -(void) getCLueInfo{
     
     [cluedistRequest getDetailWithKeyID:clueKeyid];
-    [cluedistRequest release];
+}
+
+//通过代理方法获取组织结构中的选择的人员
+- (void)passValue:(NSMutableArray *)value
+{
+    NSMutableArray *dispathedPersonInfo = value;
+    int i = 0;
+    for(UserInfo *userInfo in dispathedPersonInfo){
+        if(i == 0){
+            self.dispatchedUsersID = userInfo.userID;
+            self.dispatchedUsersName = userInfo.userName;
+        }else{
+            self.dispatchedUsersName = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersName,userInfo.userName];
+            self.dispatchedUsersID = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersID,userInfo.userID];
+        }
+        i++;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -144,9 +161,12 @@
     
     cluedistRequest = [[ClueDistRequest alloc] init];
     cluedistRequest.delegate = self;
+    dispatchedTableView.delegate = self;
+    dispatchedTableView.dataSource = self;
     
     [self getCLueInfo];
     [self initForm];
+    [self.dispatchedTableView reloadData];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -213,8 +233,11 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
-    cell.textLabel.text = @"已派发人";
-    
+    if ((dispatchedUsersName == nil) || [dispatchedUsersName isEqualToString:@""]) {
+        cell.textLabel.text = @"选择派发人";
+    }else{
+        cell.textLabel.text = dispatchedUsersName;
+    }
     return cell;
 }
 
@@ -231,8 +254,8 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    treeViewCtrl.delegate = self;
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
 }

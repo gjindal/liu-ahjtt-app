@@ -9,11 +9,21 @@
 #import "TreeViewController.h"
 #import "ClueDistRequest.h"
 #import "DeptInfo.h"
+#import "UserInfo.h"
 
 @implementation TreeViewController
+@synthesize delegate;
+@synthesize dispatchedPersons;
+
+
 -(void)viewDidLoad{
 	[super viewDidLoad];
-	[self initTree];
+	//[self initTree];
+}
+
+//获取到人员后插入tableview
+- (void)parserUserDidFinished:(NSArray *)userList{
+    userNodes = [[NSMutableArray alloc] initWithArray:userList];
 }
 
 - (void)parserDeptDidFinished:(NSArray *)deptList{
@@ -28,19 +38,41 @@
         TreeNode *nodePt = [[TreeNode alloc]init];
         nodePt.title = deptPt.deptName;
         nodePt.key = deptPt.deptID;
+        nodePt.type = @"dept";
+        nodePt.bChecked = NO;
         
-        if ([deptPt.deptID isEqualToString:@"1"]) {
+        if ([deptPt.parentID isEqualToString:@"1"]) {
             [tree addChild:nodePt];
+            [cluedistRequest getUserWithDeptID:nodePt.key];
+            for (UserInfo *user in userNodes) {
+                TreeNode *userNd = [[TreeNode alloc]init];
+                userNd.title = user.userName;
+                userNd.key = user.userID;
+                userNd.type = @"person";
+                userNd.bChecked = NO;
+                [nodePt addChild:userNd];
+            }
         }
         
         for(DeptInfo *deptCh in deptNodes){
 
             TreeNode *nodeCh = [[TreeNode alloc]init];
-            nodeCh.title = deptPt.deptName;
-            nodeCh.key = deptPt.deptID;
+            nodeCh.title = deptCh.deptName;
+            nodeCh.key = deptCh.deptID;
+            nodeCh.type = @"dept";
+            nodeCh.bChecked = NO;
             
             if ([deptPt.deptID isEqualToString:deptCh.parentID]) {
                 [nodePt addChild:nodeCh];
+                [cluedistRequest getUserWithDeptID:nodeCh.key];
+                for (UserInfo *user in userNodes) {
+                    TreeNode *userNd = [[TreeNode alloc]init];
+                    userNd.title = user.userName;
+                    userNd.key = user.userID;
+                    userNd.type = @"person";
+                    userNd.bChecked = NO;
+                    [nodeCh addChild:userNd];
+                }
             }
         }
     }
@@ -54,69 +86,58 @@
     
     cluedistRequest.delegate = self;
     [cluedistRequest getDept];
-    /*
-	//NSLog(@"initTree===");
-	tree=[[TreeNode alloc]init];
-	tree.deep=0;
-	tree.title=@"安徽交通广播";
-	TreeNode* node[10];
-	for (int i=0; i<10; i++) {
-		node[i]=[[TreeNode alloc]init];
-		node[i].title=[NSString stringWithFormat:@"节点%d",i];
-		node[i].key=[NSString stringWithFormat:@"%d",i];
-	}
-    [node[0] addChild:node[1]];
-	[node[0] addChild:node[2]];
-	[node[0] addChild:node[3]];
-	
-	[node[2] addChild:node[4]];
-	[node[2] addChild:node[5]];
-	[node[2] addChild:node[6]];
-	
-	[node[6] addChild:node[7]];
-	[node[6] addChild:node[8]];
-	[node[3] addChild:node[9]];
-	
-	[tree addChild:node[0]];
-	nodes=[[NSMutableArray alloc]init];
-	[TreeNode getNodes:tree :nodes];
-     */
-	
+}
+
+-(void)confirm{
+
+    int i  = 0;
+    for(TreeNode *node in nodes){
+        if (node.bChecked) {
+            i++;
+        }
+    }
+    
+    dispatchedPersons = [[NSMutableArray alloc] initWithCapacity:i];
+
+    for(TreeNode *node in nodes){
+        if (node.bChecked) {
+            UserInfo *userInfo1 = [[UserInfo alloc]init];
+            userInfo1.userID = node.key;
+            userInfo1.userName = node.title;
+            [dispatchedPersons addObject:userInfo1];
+            [userInfo1 release];
+        }
+    }
+    [delegate passValue:self.dispatchedPersons];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     
-   // cluedistRequest.delegate = self;
-   // [cluedistRequest getDept];
+
+    cluedistRequest = [[ClueDistRequest alloc] init];
+    cluedistRequest.delegate = self;
+    [cluedistRequest getDept];
     
 	self.title= @"选择派发人";
     
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
     temporaryBarButtonItem.title = @"取消";  
-    temporaryBarButtonItem.target = self;  
-    // temporaryBarButtonItem.action = @selector(back:);  
+    temporaryBarButtonItem.target = self;    
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
     [temporaryBarButtonItem release]; 
     
 	self.navigationController.navigationBar.hidden=NO;
     
-	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"确定" style:UIBarButtonItemStyleBordered target:self action:@selector(searchNews)];
+	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"确定" style:UIBarButtonItemStyleBordered target:self action:@selector(confirm)];
 	searchButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
 
 }
-//如果你想在选中某一个节点时，发生自定义行为，在子类中覆盖此方法
--(void)onSelectedRow:(NSIndexPath*)indexPath :(TreeNode *)node{
-	//TreeNode* node=[nodes objectAtIndex:indexPath.row];
-	//NSLog(@"onSelectedRow---key:%@,title:%@",node.key,node.title);
-}
-//如果你想定义自己的单元格视图（比如更换默认的文件夹图标），在子类中覆盖此方法
--(void)configCell:(TreeViewCell*)cell :(TreeNode*)node{
-	//NSLog(@"initCell---key:%@,title:%@",node.key,node.title);
-}
+
 #pragma mark ===table view datasource methods====
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
@@ -139,11 +160,78 @@
 	[self configCell:cell :node];
 	return cell;
 }
+
+
+
+//如果你想在选中某一个节点时，发生自定义行为，在子类中覆盖此方法
+-(void)onSelectedRow:(NSIndexPath*)indexPath :(TreeNode *)node{
+    
+   // NSMutableArray *indexPathsTmp = [[NSMutableArray alloc] init];
+    
+    NSLog(@"load table view: data.");
+    for (int i = 0; i < [userNodes count]; i++) {
+        [nodes addObject:[userNodes objectAtIndex:i]];
+    }
+    
+    NSMutableArray *insertIndexPaths = [NSMutableArray arrayWithCapacity:0];
+    for (int ind = 0; ind < [userNodes count]; ind++) {
+        
+        TreeNode *userNode = [[TreeNode alloc] init];
+        userNode.title = ((UserInfo *)[userNodes objectAtIndex:ind]).userName;
+        userNode.key = ((UserInfo *)[userNodes objectAtIndex:ind]).userID;
+        [node addChild:userNode];
+        
+        NSIndexPath *newPath = [NSIndexPath indexPathForRow:[nodes indexOfObject:[userNodes objectAtIndex:ind]] inSection:0];
+        [insertIndexPaths addObject:newPath];
+    }
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+    NSLog(@"load table view finishend.");
+    
+
+}
+
+//如果你想定义自己的单元格视图（比如更换默认的文件夹图标），在子类中覆盖此方法
+-(void)configCell:(TreeViewCell*)cell :(TreeNode*)node{
+    if ([node.type isEqualToString:@"person"]) {
+        [cell.imgIcon setImage:[UIImage imageNamed:@"person.png"]];
+    }else{
+        [cell.imgIcon setImage:[UIImage imageNamed:@"depart.png"]];
+    }
+	//NSLog(@"initCell---key:%@,title:%@",node.key,node.title);
+}
+
 #pragma mark ===table view delegate methods===
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	TreeNode* node=[nodes objectAtIndex:indexPath.row];
-	[self onSelectedRow:indexPath :node];
+    
+    //当点击时获取部门内的人员
+    TreeNode* node=[nodes objectAtIndex:indexPath.row];
+    if ([node.type isEqualToString:@"dept"]) {
+        return;
+    }
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	
+	if (cell.accessoryType == UITableViewCellAccessoryNone)		{
+        node.bChecked = YES;
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		cell.textLabel.textColor=[UIColor blueColor];
+		NSLog(@"-----text---,%@",cell.textLabel.text);
+	}
+	else if (cell.accessoryType == UITableViewCellAccessoryCheckmark)	{
+        node.bChecked = NO;
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		cell.textLabel.textColor=[UIColor blackColor];
+		
+	}
+    
 }
+
+-(void) viewWillDisappear:(BOOL)animated{
+
+}
+
 #pragma mark -
 -(void)onExpand:(TreeNode*)node{
 	nodes=[[NSMutableArray alloc]init];

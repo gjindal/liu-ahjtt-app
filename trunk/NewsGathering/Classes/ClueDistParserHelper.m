@@ -149,6 +149,7 @@
         _userInfo.userID = _currentValue;
     }if([elementName isEqualToString:@"userName"]) {
         _userInfo.userName = _currentValue;
+        NSLog(@"+++++++++++%@",_userInfo.userName);
     }if([elementName isEqualToString:@"user"]) {
         [_userList addObject:_userInfo];
         [_userInfo release];

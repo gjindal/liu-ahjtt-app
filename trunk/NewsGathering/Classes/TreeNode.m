@@ -10,7 +10,7 @@
 
 
 @implementation TreeNode
-@synthesize p_node,children,data,title,key,expanded,hidden;
+@synthesize p_node,children,data,title,key,expanded,hidden,type,bChecked;
 -(id)init{
 	if (self=[super init]) {
 		p_node=nil;

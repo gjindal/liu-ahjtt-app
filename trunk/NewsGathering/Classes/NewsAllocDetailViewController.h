@@ -11,8 +11,9 @@
 #import "ClueDistInfo.h"
 #import "ClueDistRequest.h"
 #import "ClueDistRequestDelegate.h"
+#import "UIViewPassValueDelegate.h"
 
-@interface NewsAllocDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ClueDistRequestDelegate> {
+@interface NewsAllocDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ClueDistRequestDelegate,UIViewPassValueDelegate> {
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UILabel *clueTitle;
@@ -34,13 +35,15 @@
     
     BOOL bEnableDispatch;
     NSMutableArray *array;
-    NSString *dispatchedUsers;
+    NSString *dispatchedUsersName;
+    NSString *dispatchedUsersID;
 
 }
 
 @property(nonatomic,retain) UITableView *dispatchedTableView;
 @property(nonatomic,retain) NSMutableArray *dispatchedArray;
-@property(nonatomic,retain) NSString *dispatchedUsers;
+@property(nonatomic,retain) NSString *dispatchedUsersName;
+@property(nonatomic,retain) NSString *dispatchedUsersID;
 @property(nonatomic,retain) IBOutlet UILabel *sendUserName;
 @property(nonatomic,retain) IBOutlet UILabel *clueTitle;
 @property(nonatomic,retain) IBOutlet UILabel *clueType;

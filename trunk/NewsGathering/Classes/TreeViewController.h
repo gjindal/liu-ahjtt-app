@@ -11,6 +11,8 @@
 #import "TreeViewCell.h"
 #import "ClueDistRequest.h"
 #import "DeptInfo.h"
+#import "UserInfo.h"
+#import "UIViewPassValueDelegate.h"
 
 
 @interface TreeViewController : UITableViewController 
@@ -19,10 +21,19 @@
 	NSMutableArray* nodes;
     
     NSMutableArray *deptNodes;
+    NSMutableArray *userNodes;
+    UserInfo *userInfo;
     DeptInfo *deptInfo;
     ClueDistRequest *cluedistRequest;
     
+    NSObject<UIViewPassValueDelegate> *delegate;
+    NSMutableArray *dispatchedPersons;
+    
 }
+
+@property (nonatomic,retain) NSObject<UIViewPassValueDelegate> *delegate;
+@property (nonatomic,retain) NSMutableArray *dispatchedPersons;
+
 //如果你想呈现自己的树，在子类中覆盖此方法
 -(void)initTree;
 //如果你想在选中某一个节点时，发生自定义行为，在子类中覆盖此方法

@@ -15,6 +15,8 @@
 	id data;//节点可以包含任意数据
 	NSString* title;//节点要显示的文字
 	NSString* key;//主键，在树中唯一
+    NSString* type;
+    BOOL bChecked;
 	BOOL expanded;//标志：节点是否已展开，保留给TreeViewCell使用的
 	BOOL hidden;//标志，节点是否隐藏
 	int deep;//节点位于树的第几层,TreeViewCell使用
@@ -25,6 +27,8 @@
 @property (retain) NSString *title,*key;
 @property (assign) BOOL expanded,hidden;
 @property (retain) NSMutableArray* children;
+@property (retain) NSString* type;
+@property (assign) BOOL bChecked;
 -(int) deep;
 -(void)setDeep:(int)value;
 //hasChildren的访问方法
