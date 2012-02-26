@@ -11,10 +11,26 @@
 
 @implementation DocChangeDetailViewController
 
-@synthesize fdTitle,fdAuthor,fdStatus,
-			contents,btRecorder,btCamera,btVideo,
-			scrollView,keyboardShown,activeField,
-			attachTable,attachArray,lblMessage,txtMessage;
+@synthesize keyboardShown;
+@synthesize activeField;
+@synthesize attachArray;
+
+@synthesize scrollView;
+@synthesize imgContentsBgd;
+@synthesize imgMessageBgd;
+
+@synthesize fdTitle;
+@synthesize fdKeyword;
+@synthesize fdSource;
+@synthesize btType;
+@synthesize btLevel;
+@synthesize contents;
+@synthesize attachTable;
+@synthesize btRecorder;
+@synthesize btCamera;
+@synthesize btVideo;
+@synthesize lblMessage;
+@synthesize txtMessage;
 
 
 -(IBAction) getPhoto{
@@ -60,7 +76,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	self.title= @"稿件编辑";
+	self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
 	
 	UIBarButtonItem *passButton=[[UIBarButtonItem alloc]initWithTitle: @"通过" style:UIBarButtonItemStyleBordered target:self action:@selector(passDoc)];
@@ -86,8 +102,10 @@
     scrollView.delegate = self;
 	
 	self.fdTitle.delegate = self;
-	self.fdAuthor.delegate = self;
-	self.fdStatus.delegate = self;
+	self.fdKeyword.delegate = self;
+	self.fdSource.delegate = self;
+    self.contents.delegate = self;
+    self.txtMessage.delegate = self;
 	
 	keyboardShown = NO;  
     [self performSelector:@selector(registerForKeyboardNotifications)];  
