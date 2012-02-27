@@ -173,7 +173,7 @@
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [imageName appendFormat:@"Image_%@",[df stringFromDate:[NSDate date]]];
+    [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
     
     [(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
