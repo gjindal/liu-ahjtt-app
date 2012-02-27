@@ -17,6 +17,7 @@
     NSXMLParser                     *_xmlParser;
     NSMutableString                 *_currentValue;
     NSMutableArray                  *_docList;
+    NSMutableArray                  *_appsList;
     ContributeInfo                  *_info;
     int                              _currentFlag;
 }

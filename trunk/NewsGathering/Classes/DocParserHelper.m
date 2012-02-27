@@ -81,6 +81,15 @@
         }
         
         _info = [[ContributeInfo alloc] init];
+    }else if([elementName isEqualToString:@"apps"]) {
+    
+        if(_appsList != nil) {
+        
+            [_appsList release];
+            _appsList  = nil;
+        }
+        
+        _appsList = [[NSMutableArray alloc] initWithCapacity:0];
     }
     
     _currentValue = [[NSMutableString alloc] initWithCapacity:0];
@@ -168,11 +177,18 @@
         
             [_delegate getDocDetailDidFinished:[_info autorelease]];
         }
+    }else if([elementName isEqualToString:@"appId"]) {
+    
+        [_appsList addObject:_currentValue];
+    }else if([elementName isEqualToString:@"apps"]) {
+    
+        _info.apps = _appsList;
+        [_appsList release];
+        _appsList = nil;
     }
     
     [_currentValue release];
     _currentValue = nil;
-    
 }
 
 

@@ -85,10 +85,11 @@
 
 - (void)addDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                    Note:(NSString *)note Source:(NSString *)source
-                   Type:(NSString *)type Level:(NSString *)level {
+                   Type:(NSString *)type Level:(NSString *)level
+                 FlowID:(NSString *)flowID {
 
-    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@",
-                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level];
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@",
+                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Add withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
@@ -209,6 +210,11 @@
         [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Remove];
         [returnString release];
     }
+}
+
+- (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName {
+
+    
 }
 
 #pragma -

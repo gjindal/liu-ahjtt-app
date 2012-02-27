@@ -40,6 +40,8 @@
 #define kFlag_Contri_Remove     8
 #define kFlag_Contri_AppList    9
 #define kFlag_Contri_Approve    10
+#define kFlag_Contri_Upload     11
+#define kFlag_Contri_Download   12
 
 #define kInterface_Contri_List      @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getList_pass.do"        // 查询稿件列表接口
 #define kInterface_Contri_Detail    @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getContriDetail.do"     // 查询稿件详情接口
@@ -51,3 +53,5 @@
 #define kInterface_Contri_Remove    @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!removeById.do"          // 彻底删除回收站稿件接口
 #define kInterface_Contri_AppList   @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getAppList_pass.do	"   // 查询待审批稿件列表接口
 #define kInterface_Contri_Approve   @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 稿件审核接口
+#define kInterface_Contri_Upload    @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 附件上传接口
+#define kInterface_Contri_Download  @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!downloadFile.do"        // 附件下载接口

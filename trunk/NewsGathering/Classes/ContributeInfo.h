@@ -16,6 +16,8 @@
     NSString *_time;
     NSString *_title;
     NSString *_type;
+    NSString *_flowID;
+    NSArray  *_appsList;
 }
 
 @property (nonatomic, retain) NSString *conid;
@@ -23,5 +25,9 @@
 @property (nonatomic, retain) NSString *time;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSString *flowID;
+@property (nonatomic, retain) NSArray *apps;
+
++ (NSString *)getFlowID;
 
 @end
