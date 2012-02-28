@@ -17,6 +17,7 @@
 @synthesize type = _type;
 @synthesize flowID = _flowID;
 @synthesize apps = _appsList;
+@synthesize attitudeList = _attitudeList;
 
 - (id)init {
 
@@ -38,6 +39,7 @@
     [_type release];
     [_flowID release];
     [_appsList release];
+    [_attitudeList release];
     
     _conid = nil;
     _level = nil;
@@ -46,6 +48,7 @@
     _type = nil;
     _flowID = nil;
     _appsList = nil;
+    _attitudeList = nil;
     
     [super dealloc];
 }

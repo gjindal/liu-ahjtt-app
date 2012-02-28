@@ -98,6 +98,22 @@
     }
 }
 
+- (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
+                             Note:(NSString *)note Source:(NSString *)source
+                             Type:(NSString *)type Level:(NSString *)level
+                           FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid {
+
+    NSString *post = [NSString stringWithFormat:
+                      @"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&receptuserid=%@",
+                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID, receptuserid];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Add_Approve withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Add_Approve];
+        [returnString release];
+    }
+}
+
 - (void)updateDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                       Note:(NSString *)note Source:(NSString *)source
                       Type:(NSString *)type Level:(NSString *)level
@@ -214,7 +230,17 @@
 
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName {
 
-    
+}
+
+- (void)getWorkflowWithLevel:(NSString *)level {
+
+    NSString *post = [NSString stringWithFormat:@"&level=%@", level];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Workflow withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Get_Workflow];
+        [returnString release];
+    }
 }
 
 #pragma -
@@ -238,6 +264,13 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(addDocDidFinished:)]) {
         [_delegate addDocDidFinished:contributeInfo];
+    }
+}
+
+- (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo {
+    
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(addDocForApproveDidFinished:)]) {
+        [_delegate addDocForApproveDidFinished:contributeInfo];
     }
 }
 
@@ -287,6 +320,13 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(approveDidFinished:)]) {
         [_delegate approveDidFinished:contributeInfo];
+    }
+}
+
+- (void)getWorkflowDidFinished:(NSArray *)workflowArray {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(getWorkflowDidFinished:)]) {
+        [_delegate getWorkflowDidFinished:workflowArray];
     }
 }
 

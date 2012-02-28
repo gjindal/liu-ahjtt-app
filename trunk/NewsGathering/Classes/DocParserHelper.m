@@ -83,13 +83,22 @@
         _info = [[ContributeInfo alloc] init];
     }else if([elementName isEqualToString:@"apps"]) {
     
-        if(_appsList != nil) {
+//        if(_appsList != nil) {
+//        
+//            [_appsList release];
+//            _appsList  = nil;
+//        }
+//        
+//        _appsList = [[NSMutableArray alloc] initWithCapacity:0];
         
-            [_appsList release];
-            _appsList  = nil;
-        }
+        _attitudeList = [[NSMutableArray alloc] initWithCapacity:0];
         
-        _appsList = [[NSMutableArray alloc] initWithCapacity:0];
+    }else if([elementName isEqualToString:@"WorkFlowList"]) {
+    
+        _workflowList = [[NSMutableArray alloc] initWithCapacity:0];
+    }else if([elementName isEqualToString:@"wfls"]) {
+    
+        _workflowInfo = [[WorkflowInfo alloc] init];
     }
     
     _currentValue = [[NSMutableString alloc] initWithCapacity:0];
@@ -132,6 +141,9 @@
         }else if(_currentFlag == kFlag_Contri_Remove) {
             
             sel = @selector(removeDocDidFinished:);
+        }else if(_currentFlag == kFlag_Contri_Add_Approve) {
+        
+            sel = @selector(addDocForApproveDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {
@@ -143,8 +155,13 @@
         
         _info.conid = _currentValue;
     }else if([elementName isEqualToString:@"level"]) {
+        if(_currentFlag == KFlag_Contri_Get_Workflow) {
         
-        _info.level = _currentValue;
+            _workflowInfo.level = _currentValue;
+        }else {
+            
+            _info.level = _currentValue;
+        }
     }else if([elementName isEqualToString:@"time"]) {
         
         _info.time = _currentValue;
@@ -179,12 +196,44 @@
         }
     }else if([elementName isEqualToString:@"appId"]) {
     
-        [_appsList addObject:_currentValue];
+//        [_appsList addObject:_currentValue];
     }else if([elementName isEqualToString:@"apps"]) {
     
-        _info.apps = _appsList;
-        [_appsList release];
-        _appsList = nil;
+//        _info.apps = _appsList;
+//        [_appsList release];
+//        _appsList = nil;
+        _info.attitudeList = _attitudeList;
+        [_attitudeList release];
+        _attitudeList = nil;
+    }else if([elementName isEqualToString:@"attitude"]) {
+    
+        [_attitudeList addObject:_currentValue];
+    }else if([elementName isEqualToString:@"endstatus"]) {
+    
+        _workflowInfo.endStatus = _currentValue;
+    }else if([elementName isEqualToString:@"flowid"]) {
+    
+        _workflowInfo.flowid = _currentValue;
+    }else if([elementName isEqualToString:@"opttype"]) {
+    
+        _workflowInfo.opttype = _currentValue;
+    }else if([elementName isEqualToString:@"remark"]) {
+    
+        _workflowInfo.remark = _currentValue;
+    }else if([elementName isEqualToString:@"roleid"]) {
+    
+        _workflowInfo.roleid = _currentValue;
+    }else if([elementName isEqualToString:@"wfls"]) {
+    
+        [_workflowList addObject:_workflowInfo];
+        [_workflowInfo release];
+        _workflowInfo = nil;
+    }else if([elementName isEqualToString:@"WorkFlowList"]) {
+    
+        if(_delegate != nil && [_delegate respondsToSelector:@selector(getWorkflowDidFinished:)]) {
+        
+            [_delegate getWorkflowDidFinished:[_workflowList autorelease]];
+        }
     }
     
     [_currentValue release];

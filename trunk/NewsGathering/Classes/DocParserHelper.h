@@ -10,6 +10,7 @@
 
 #import "DocParserHelperDelegate.h"
 #import "ContributeInfo.h"
+#import "WorkflowInfo.h"
 
 @interface DocParserHelper : NSObject<NSXMLParserDelegate> {
 @private
@@ -18,8 +19,11 @@
     NSMutableString                 *_currentValue;
     NSMutableArray                  *_docList;
     NSMutableArray                  *_appsList;
+    NSMutableArray                  *_attitudeList;
     ContributeInfo                  *_info;
     int                              _currentFlag;
+    NSMutableArray                  *_workflowList;
+    WorkflowInfo                    *_workflowInfo;
 }
 
 @property (nonatomic, assign) id<DocParserHelperDelegate> delegate;

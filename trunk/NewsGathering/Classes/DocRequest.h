@@ -32,6 +32,10 @@
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
                  FlowID:(NSString *)flowID;
+- (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
+                   Note:(NSString *)note Source:(NSString *)source
+                   Type:(NSString *)type Level:(NSString *)level
+                 FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid;
 - (void)updateDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                       Note:(NSString *)note Source:(NSString *)source
                       Type:(NSString *)type Level:(NSString *)level
@@ -46,4 +50,5 @@
                     Endtime:(NSString *)endtime;
 - (void)approveWithConid:(NSString *)conid Apps:(NSString *)apps;
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName;
+- (void)getWorkflowWithLevel:(NSString *)level;
 @end
