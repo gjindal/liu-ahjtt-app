@@ -88,14 +88,6 @@
         CGRect textFieldRect = [activeField frame];
         [scrollView scrollRectToVisible:textFieldRect animated:YES];
     }
-    
-    
-//    NSLog(@"%f %f", scrollView.contentSize.width, scrollView.contentSize.height);
-//    CGSize size = scrollView.contentSize;
-//    size.height -= keyboardSize.height;
-//    scrollView.contentSize = size;
-//    NSLog(@"%f %f", scrollView.contentSize.width, scrollView.contentSize.height);
-    //[scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     keyboardShown = YES;
 }
 

@@ -7,11 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DocRequestDelegate.h"
+#import "DocRequest.h"
+#import "DocDetail.h"
+#import "DocSearchViewController.h"
 
 
-@interface DocChangeListViewController : UITableViewController {
-
+@interface DocChangeListViewController : UITableViewController<DocRequestDelegate> {
+@private
+    
 	NSArray *dataArray;
+    
+    DocDetail *docDetail;
+    DocRequest *docRequest;
+    
+    DocSearchViewController *docSearchVtrl;
 }
+
+@property(nonatomic,retain) DocDetail *docDetail;
+@property(nonatomic,retain) DocRequest *docRequest;
+
+-(void)searchDocs;
 
 @end

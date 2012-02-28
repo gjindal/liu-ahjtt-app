@@ -35,7 +35,7 @@
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];  
 	[request setHTTPBody:postData];  
     
-    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(cancelURLConnection:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(cancelURLConnection:) userInfo:nil repeats:NO];
     
     returnData = nil;
 	returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];

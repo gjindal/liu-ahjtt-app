@@ -1,4 +1,9 @@
 
+
+
+//login interface
+#define kInterface_Login @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"
+
 // 线索接口.
 
 #define kFlag_NewsClue_List     1

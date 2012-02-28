@@ -17,8 +17,12 @@
 	UITextField *fdUsername;
 	UITextField *fdUserpassword;
     LoginParserHelper *_loginParserHelper;
-	IBOutlet UIButton *rememberOrNot;
+	
+    IBOutlet UIButton *rememberOrNot;
 	BOOL isRemember;
+    NSMutableArray *loginData;
+    NSMutableArray *saveData;
+    
 	
 }
 
@@ -27,7 +31,8 @@
 @property(nonatomic,retain)UIButton *rememberOrNot;
 
 -(IBAction) loginSystem:(id)sender;
--(IBAction)remPressed;
+-(IBAction) remPressed;
+-(void) saveLoginInfo;
 
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password;
 

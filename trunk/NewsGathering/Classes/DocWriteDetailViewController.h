@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "ASIFormDataRequest.h"
 
 @class StorageHelper;
 
@@ -17,10 +18,22 @@ typedef enum {
     DOCTYPE_DELETED,
 } DOCTYPE;
 
-@interface DocWriteDetailViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate> {
+@interface DocWriteDetailViewController : UIViewController
+                                        <UITextFieldDelegate,
+                                        UIScrollViewDelegate,
+                                        UITableViewDelegate, 
+                                        UITableViewDataSource, 
+                                        UITextViewDelegate, 
+                                        UIActionSheetDelegate, 
+                                        UIImagePickerControllerDelegate, 
+                                        UINavigationControllerDelegate, 
+                                        UIAlertViewDelegate,
+                                        ASIHTTPRequestDelegate> {
 
 	IBOutlet UITextField *fdTitle;
-	IBOutlet UITextField *fdDocType;
+	IBOutlet UIButton *btType;
+    IBOutlet UIButton *btLevel;
+    IBOutlet UIButton *btReceptor;
 	IBOutlet UITextField *fdKeyword;
 	IBOutlet UITextField *fdDocSource;
 	IBOutlet UITextView *contents;
@@ -44,21 +57,27 @@ typedef enum {
     DOCTYPE docType;
     
     StorageHelper *_storeHelper;
+    
+    ASIFormDataRequest *request;
 }
 
+@property (retain, nonatomic) ASIFormDataRequest *request;
 @property (nonatomic) DOCTYPE docType;
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
 
+@property (nonatomic,retain)    StorageHelper *storeHelper;
 @property (nonatomic,retain)	IBOutlet UITableView *attachTable;
 @property (nonatomic,retain)	NSArray *attachArray;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
 @property (nonatomic,retain)	IBOutlet UITextField *fdTitle;
-@property (nonatomic,retain)	IBOutlet UITextField *fdDocType;
 @property (nonatomic,retain)	IBOutlet UITextField *fdKeyword;
 @property (nonatomic,retain)	IBOutlet UITextField *fdDocSource;
 @property (nonatomic,retain)	IBOutlet UITextView *contents;
 @property (nonatomic,retain)	IBOutlet UIScrollView *scrollView;
+@property (nonatomic,retain)	IBOutlet UIButton *btType;
+@property (nonatomic,retain)	IBOutlet UIButton *btLevel;
+@property (nonatomic,retain)	IBOutlet UIButton *btReceptor;
 
 @property (nonatomic,retain)	IBOutlet UIButton *btRecorder;
 @property (nonatomic,retain)	IBOutlet UIButton *btCamera;

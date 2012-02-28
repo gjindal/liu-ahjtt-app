@@ -17,10 +17,25 @@
 #import "DocDetailHelper.h"
 
 @implementation DocWriteDetailViewController
-@synthesize fdTitle,fdDocType,fdKeyword,fdDocSource,
-			contents,btRecorder,btCamera,btVideo,
-			scrollView,keyboardShown,activeField,
-			attachTable,attachArray,docType;
+@synthesize fdTitle;
+@synthesize fdKeyword;
+@synthesize fdDocSource;
+@synthesize contents;
+@synthesize btRecorder;
+@synthesize btCamera;
+@synthesize btVideo;
+@synthesize scrollView;
+@synthesize keyboardShown;
+@synthesize activeField;
+@synthesize attachTable;
+@synthesize attachArray;
+@synthesize docType;
+@synthesize request;
+@synthesize btType;
+@synthesize btLevel;
+@synthesize btReceptor;
+
+@synthesize storeHelper = _storeHelper;
 
 
 -(IBAction) getPhoto {
@@ -85,29 +100,61 @@
 
 }
 
+- (void)requestFinished:(ASIHTTPRequest *)request{
+
+
+}
+- (void)requestFailed:(ASIHTTPRequest *)request{
+
+
+
+}
+
+-( void )responseComplete:(ASIHTTPRequest *)theRequest{
+    // 请求响应结束，返回 responseString
+    NSString *responseString = [ request responseString ];
+    
+    NSLog(@"###########%@",responseString);
+    
+}
+-( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
+    // 请求响应失败，返回错误信息
+    NSError *error = [ request error ];
+    NSLog(@"#############%@",error);
+}
+
 -(void)submitDoc{
   
-    /*
-    8080/editmobile/mobile/contriM!submit_pass.do稿件内容接口地址，
-     参数userid用户编号，
-     pwd加密密码，
-     title标题，
-     type稿件类型（字典表配置），
-     keyword关键字，
-     source稿源，
-     note内容，
-     level稿件审批流程（字典表配置），
-     flowid稿件与附件关联表，要求上传时候能有对应的处理。
-     */
     
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	//appDelegate.networkActivityIndicatorVisible = YES;
     
     
-	NSString *post = [[NSString alloc] initWithFormat:@"&userid=%@&pwd=%@&title=%@&type=%@&keyword=%@&source=%@&note=%@&level=%@&flowid=%@",appDelegate.username,appDelegate.password,fdTitle.text,fdDocType.text,fdKeyword.text,fdDocSource.text,contents.text,@"2",@"1234567890123456"];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submit_pass.do"];
+	//NSString *post = [[NSString alloc] initWithFormat:@"&userid=%@&pwd=%@flowid=%@",appDelegate.username,appDelegate.password,@"1234567890123456"];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,@"12345678901234561234567890123456"];
     
+    [request cancel];
+    [request setRequestMethod:@"post"];    
+	[self setRequest:[ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+	[request setTimeOutSeconds:20];
+    
+    [request setDelegate:self];
+	[request setDidFailSelector:@selector(respnoseFailed:)];
+	[request setDidFinishSelector:@selector(responseComplete:)];
+    
+    for (NSString *filePath in attachArray) {
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
+        NSLog(@"=======================%@",tmp);
+		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
+        break;
+	}
+	
+	[request startAsynchronous];
+    
+    
+    /*
 	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
 
     NSString *result = [[NSString alloc] initWithData:returnData
@@ -117,6 +164,7 @@
 	[post release]; 
     [url release];
 	return returnData;
+     */
 
     
 }
@@ -256,7 +304,6 @@
     scrollView.delegate = self;
 	
 	self.fdTitle.delegate = self;
-	self.fdDocType.delegate = self;
 	self.fdKeyword.delegate = self;
 	self.fdDocSource.delegate = self;
     contents.delegate = self;

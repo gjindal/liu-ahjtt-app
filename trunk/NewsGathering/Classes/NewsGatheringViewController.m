@@ -51,7 +51,7 @@
     
 //	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"];
+    NSString *url = [[NSString alloc] initWithFormat:kInterface_Login];
 
 	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
     //记下用户名密码，以便发送请求时带上
@@ -150,6 +150,34 @@
     _loginParserHelper = [[LoginParserHelper alloc] init];
     _loginParserHelper.delegate = self;
     [_loginParserHelper startWithString:result];
+}
+
+-(void) saveLoginInfo{
+
+    if (isRemember){
+        
+        loginData = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"]];
+        [loginData setValue:fdUsername.text forKey:@"username"];
+        [loginData setValue:fdUserpassword.text forKey:@"password"];
+        
+        NSString *Path = [NSString stringWithFormat:@"%@UserInfo.plist",NSTemporaryDirectory()];
+        [[NSArray arrayWithArray:loginData] writeToFile:Path atomically:NO];
+        
+        saveData=[NSArray arrayWithContentsOfFile:Path];
+        
+    }else {
+        loginData = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"]];
+        [loginData setValue:@"" forKey:@"username"];
+        [loginData setValue:@"" forKey:@"password"];
+        
+        
+        NSString *Path = [NSString stringWithFormat:@"%@UserInfo.plist",NSTemporaryDirectory()];
+        
+        [[NSArray arrayWithArray:loginData] writeToFile:Path atomically:NO];
+        
+        saveData=[NSArray arrayWithContentsOfFile:Path];
+        
+    }    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

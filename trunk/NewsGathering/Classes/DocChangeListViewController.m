@@ -8,14 +8,23 @@
 
 #import "DocChangeListViewController.h"
 #import "DocChangeDetailViewController.h"
+#import "DocSearchViewController.h"
+#import "DocRequest.h"
 
 
 @implementation DocChangeListViewController
+@synthesize docDetail;
+@synthesize docRequest;
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
+-(void)searchDocs{
+
+    [self.navigationController pushViewController:docSearchVtrl animated:YES];
+
+}
 
 - (void)back:(id)sender {  
     [self.navigationController popViewControllerAnimated:YES];  
@@ -35,17 +44,32 @@
     return self;
 }
 
+- (void)getDocListDidFinished:(NSArray *)docList{
+    dataArray = [docList retain];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
 	self.title= @"稿件编辑";
 	self.navigationController.navigationBar.hidden=NO;
 	
-	dataArray = [[NSArray arrayWithObjects:@"你好，合肥！！！！！", @"合肥下雨了？", @"合肥下冰雹", nil] retain];
-	//UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"新建" style:UIBarButtonItemStyleBordered target:self action:@selector(writeNewsDoc)];
-	//searchButton.style=UIBarButtonItemStylePlain;
-	//self.navigationItem.rightBarButtonItem=searchButton;
-	//[searchButton release];
+    //准备加载列表数据
+    docRequest.delegate = self;
+    if (docSearchVtrl == nil) {
+        docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+    }
+    [docRequest getDocListWithTitle:docSearchVtrl.docDetail.title
+                            Keyword:docSearchVtrl.docDetail.key
+                               Type:docSearchVtrl.docDetail.docType
+                            Begtime:docSearchVtrl.strStartTime
+                            Endtime:docSearchVtrl.strEndTime];
+
+    
+	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchDocs)];
+	searchButton.style=UIBarButtonItemStylePlain;
+	self.navigationItem.rightBarButtonItem=searchButton;
+	[searchButton release];
 	
 }
 
