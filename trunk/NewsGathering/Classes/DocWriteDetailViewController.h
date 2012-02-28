@@ -10,6 +10,12 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "ASIFormDataRequest.h"
+#import "DocRequest.h"
+#import "DocRequestDelegate.h"
+#import "DocDetail.h"
+#import "WorkflowInfo.h"
+#import "ContributeInfo.h"
+#import "UIViewPassValueDelegate.h"
 
 @class StorageHelper;
 
@@ -17,6 +23,17 @@ typedef enum {
     DOCTYPE_DRAFT,    // shows glow when pressed
     DOCTYPE_DELETED,
 } DOCTYPE;
+
+typedef enum {
+    MENUTYPE_SUBMIT,
+    MENUTYPE_MEDIALIB,
+}MENUTYPE;
+
+typedef enum {
+    ALERTTABLE_DOCTYPE,
+    ALERTTABLE_LEVEL,
+    ALERTTABLE_OTHERS
+}ALERTTABLE_TYPE;
 
 @interface DocWriteDetailViewController : UIViewController
                                         <UITextFieldDelegate,
@@ -28,9 +45,12 @@ typedef enum {
                                         UIImagePickerControllerDelegate, 
                                         UINavigationControllerDelegate, 
                                         UIAlertViewDelegate,
-                                        ASIHTTPRequestDelegate> {
+                                        ASIHTTPRequestDelegate,
+                                        DocRequestDelegate,UIViewPassValueDelegate> 
+{
 
-	IBOutlet UITextField *fdTitle;
+	
+    IBOutlet UITextField *fdTitle;
 	IBOutlet UIButton *btType;
     IBOutlet UIButton *btLevel;
     IBOutlet UIButton *btReceptor;
@@ -42,6 +62,14 @@ typedef enum {
 	IBOutlet UITableView *attachTable;
 	NSArray *attachArray;
     
+    
+    NSMutableArray *typeArray;
+    NSMutableArray *levelArray;
+    NSString *tmpCellString;
+    ALERTTABLE_TYPE alertType;
+    NSIndexPath *lastTypeIndexPath;
+    NSIndexPath *lastLevelIndexPath;
+    
 	
 	UITextField * activeField;  
 	BOOL keyboardShown;
@@ -49,22 +77,36 @@ typedef enum {
 	BOOL isNeedSetOffset; 
 	bool isTextView;
     UITextView *activeView;
+                                            
+    UIAlertView *alert;                                        
     
 	IBOutlet UIButton *btRecorder;
 	IBOutlet UIButton *btCamera;
 	IBOutlet UIButton *btVideo;
     
     DOCTYPE docType;
+    MENUTYPE menuType;
     
     StorageHelper *_storeHelper;
-    
     ASIFormDataRequest *request;
+    DocRequest *docRequest;
+    WorkflowInfo *workflowInfo;
+    
+    NSMutableArray *dispatchedArray;
+    NSString *dispatchedUsersName;
+    NSString *dispatchedUsersID;
 }
 
+@property (retain, nonatomic) NSString *dispatchedUsersName;
+@property (retain, nonatomic) NSString *dispatchedUsersID;
+@property (retain, nonatomic) NSMutableArray *typeArray;
+@property (retain, nonatomic) NSMutableArray *levelArray;
 @property (retain, nonatomic) ASIFormDataRequest *request;
 @property (nonatomic) DOCTYPE docType;
+@property (nonatomic) MENUTYPE menuType;
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
+@property (nonatomic,retain)    UIAlertView *alert;
 
 @property (nonatomic,retain)    StorageHelper *storeHelper;
 @property (nonatomic,retain)	IBOutlet UITableView *attachTable;
@@ -87,4 +129,13 @@ typedef enum {
 -(IBAction) getRecord;
 -(IBAction) getVideo;
 
+-(IBAction)setLevel:(id)sender;
+-(IBAction)setType:(id)sender;
+-(IBAction)setReceptor:(id)sender;
+
+-(void)saveDoc;
+-(void)submitForAudit;
+-(void)shareToWB;
+
+- (void)alertInfo:(NSString *)info withTitle:(NSString *)title;
 @end

@@ -34,6 +34,8 @@
 -(IBAction) remPressed;
 -(void) saveLoginInfo;
 
+-(void) setUserFunction;
+
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password;
 
 @end

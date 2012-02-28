@@ -15,6 +15,9 @@
 #import "ImagePlayViewController.h"
 #import "DocDetail.h"
 #import "DocDetailHelper.h"
+#import "UIAlertTableView.h"
+#import "ContributeInfo.h"
+#import "TreeViewController.h"
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle;
@@ -34,12 +37,30 @@
 @synthesize btType;
 @synthesize btLevel;
 @synthesize btReceptor;
+@synthesize menuType;
+@synthesize levelArray;
+@synthesize typeArray;
+@synthesize alert;
+@synthesize imgContentsBgd;
+@synthesize dispatchedUsersID;
+@synthesize dispatchedUsersName;
 
 @synthesize storeHelper = _storeHelper;
 
 
+- (void)alertInfo:(NSString *)info withTitle:(NSString *)title{
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:info
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"关闭" 
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
 -(IBAction) getPhoto {
 
+    menuType = MENUTYPE_MEDIALIB;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
     actionSheet.delegate = self;
     [actionSheet showInView:self.view];
@@ -100,32 +121,44 @@
 
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request{
-
-
-}
-- (void)requestFailed:(ASIHTTPRequest *)request{
-
-
-
-}
-
--( void )responseComplete:(ASIHTTPRequest *)theRequest{
-    // 请求响应结束，返回 responseString
-    NSString *responseString = [ request responseString ];
+-(void)saveDoc{
     
-    NSLog(@"###########%@",responseString);
-    
-}
--( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
-    // 请求响应失败，返回错误信息
-    NSError *error = [ request error ];
-    NSLog(@"#############%@",error);
+    alert.hidden = YES;
+
 }
 
--(void)submitDoc{
-  
+-(void)submitForAudit{
     
+    //上传前验证必填项
+    if( [fdTitle.text length]<1){
+        [self alertInfo:@"标题不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [fdKeyword.text length]<1){
+        [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [contents.text length]<1){
+        [self alertInfo:@"内容不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [fdDocSource.text length]<1){
+        [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [btType.titleLabel.text length]<1){
+        [self alertInfo:@"类型不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [btLevel.titleLabel.text length]<1){
+        [self alertInfo:@"审核级别不能为空" withTitle:@"错误"];
+        return;
+    }
+    if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
+        [self alertInfo:@"接收人不能为空" withTitle:@"错误"];
+        return;
+    }
+
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	//appDelegate.networkActivityIndicatorVisible = YES;
@@ -146,26 +179,78 @@
     
     for (NSString *filePath in attachArray) {
         NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
-        NSLog(@"=======================%@",tmp);
 		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
         break;
 	}
 	
 	[request startAsynchronous];
-    
-    
-    /*
-	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
 
-    NSString *result = [[NSString alloc] initWithData:returnData
-											 encoding:NSUTF8StringEncoding];
-	NSLog(@"Result = %@",result);
-     // appDelegate.networkActivityIndicatorVisible = NO;
-	[post release]; 
-    [url release];
-	return returnData;
-     */
 
+}
+
+-(void)shareToWB{
+    
+    alert.hidden = YES;
+
+}
+
+- (void)addDocDidFinished:(ContributeInfo *)contributeInfo{
+    if ([contributeInfo.flag isEqualToString:@"200"]) {
+        [self alertInfo:@"稿件上传成功" withTitle:nil];
+    }
+    else
+    {
+        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+    }
+}
+- (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo{
+    if ([contributeInfo.flag isEqualToString:@"200"]) {
+        [self alertInfo:@"稿件上传成功" withTitle:nil];
+    }
+    else
+    {
+        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+    }
+}
+- (void)submitDocDidFinished:(ContributeInfo *)contributeInfo{
+    if ([contributeInfo.flag isEqualToString:@"200"]) {
+        [self alertInfo:@"稿件上传成功" withTitle:nil];
+    }
+    else
+    {
+        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+    }
+}
+
+-( void )responseComplete:(ASIHTTPRequest *)theRequest{
+    // 请求响应结束，返回 responseString
+    NSString *responseString = [ request responseString ];
+    
+    NSLog(@"###########%@",responseString);
+    
+    //如果附件发送成功，则发送内容
+    if ([workflowInfo.opttype isEqualToString:@"1"]) {
+        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:btType.titleLabel.text Level:btLevel.titleLabel.text FlowID:@"12345678901234561234567890123456" Receptuserid:btReceptor.titleLabel.text];
+    }if ([workflowInfo.opttype isEqualToString:@"2"]) {
+        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:btType.titleLabel.text Level:btLevel.titleLabel.text FlowID:@"12345678901234561234567890123456"];
+    }
+    
+    alert.hidden = YES;
+}
+-( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
+    // 请求响应失败，返回错误信息
+    NSError *error = [ request error ];
+    NSLog(@"#############%@",error);
+    alert.hidden = YES;
+}
+
+-(void)submitDoc{
+    
+    menuType = MENUTYPE_SUBMIT;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到本地",@"提交审核",@"分享到微博",@"提交并分享",nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
     
 }
 
@@ -175,7 +260,6 @@
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if(buttonIndex == 0){ 
-    
         self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
         [self.attachTable reloadData];
     }
@@ -188,28 +272,300 @@
 
     UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
     imgPickerCtrl.delegate = self;
-    switch (buttonIndex) {
-        case 0:
-            
-            [self presentModalViewController:imgPickerCtrl animated:YES];
-            //[self.navigationController pushViewController:imgPickerCtrl animated:YES];
-            [imgPickerCtrl release];
-            break;
+    if (menuType == MENUTYPE_MEDIALIB) {
         
-        case 1:
-            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                
-                imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
-                imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-                [self presentModalViewController:imgPickerCtrl animated:YES];
-                [imgPickerCtrl release];
-            }
+        switch (buttonIndex) {
+            case 0:
             
+                [self presentModalViewController:imgPickerCtrl animated:YES];
+                //[self.navigationController pushViewController:imgPickerCtrl animated:YES];
+                [imgPickerCtrl release];
+                break;
+        
+            case 1:
+                if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                
+                    imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+                    [self presentModalViewController:imgPickerCtrl animated:YES];
+                    [imgPickerCtrl release];
+                }
+                
             break;
             
         default:
             break;
+        }
     }
+    if (menuType == MENUTYPE_SUBMIT) {
+       // [alert show];
+        switch (buttonIndex) {
+            case 0:
+                [self saveDoc];
+                break;
+            case 1:
+                [self submitForAudit];
+                break;
+            case 2:
+                [self shareToWB];
+                break;
+            case 3:
+                [self submitForAudit];
+                [self shareToWB];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+-(IBAction)setLevel:(id)sender{
+    
+    alertType = ALERTTABLE_LEVEL;
+    tmpCellString = [[NSString alloc] initWithString:@""];
+    
+    UIAlertTableView *alertTable = [[UIAlertTableView alloc] initWithTitle:@"选择审核级别"
+															  message:nil
+															 delegate:self
+													cancelButtonTitle:@"取消"
+													otherButtonTitles:@"完成", nil];
+	alertTable.tableDelegate = self;
+	alertTable.dataSource = self;
+	alertTable.tableHeight = 120;
+	[alertTable show];
+	[alertTable release];
+    
+}
+
+
+-(IBAction)setType:(id)sender{
+    
+    alertType = ALERTTABLE_DOCTYPE;
+    
+    tmpCellString = [[NSString alloc] initWithString:@""];
+    
+    UIAlertTableView *alertTable = [[UIAlertTableView alloc] initWithTitle:@"选择线索类型"
+															  message:nil
+															 delegate:self
+													cancelButtonTitle:@"取消"
+													otherButtonTitles:@"完成", nil];
+	alertTable.tableDelegate = self;
+	alertTable.dataSource = self;
+	alertTable.tableHeight = 120;
+	[alertTable show];
+	[alertTable release];
+    
+}
+
+-(IBAction)setReceptor:(id)sender{
+
+    TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    treeViewCtrl.delegate = self;
+    [self.navigationController pushViewController:treeViewCtrl animated:YES];
+    [treeViewCtrl release];
+
+}
+
+//通过代理方法获取组织结构中的选择的人员
+- (void)passValue:(NSMutableArray *)value
+{
+    NSMutableArray *dispathedPersonInfo = value;
+    int i = 0;
+    for(UserInfo *userInfo in dispathedPersonInfo){
+        if(i == 0){
+            self.dispatchedUsersID = userInfo.userID;
+            self.dispatchedUsersName = userInfo.userName;
+        }else{
+            self.dispatchedUsersName = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersName,userInfo.userName];
+            self.dispatchedUsersID = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersID,userInfo.userID];
+        }
+        i++;
+    }
+}
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    if (alertType == ALERTTABLE_DOCTYPE) {
+        return [typeArray count];
+    }
+    if (alertType == ALERTTABLE_LEVEL) {
+        return [levelArray count]; 
+    }else
+    {
+        return [self.attachArray count];
+    }
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    if (alertType == ALERTTABLE_DOCTYPE) {
+        cell.textLabel.text = [typeArray objectAtIndex:indexPath.row];
+        NSUInteger row = [indexPath row];
+        NSUInteger oldRow = [lastTypeIndexPath row];
+        cell.textLabel.text = [typeArray objectAtIndex:row];
+        cell.accessoryType = (row == oldRow && lastTypeIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }
+    else if (alertType == ALERTTABLE_LEVEL) {
+        cell.textLabel.text = [levelArray objectAtIndex:indexPath.row];
+        NSUInteger row = [indexPath row];
+        NSUInteger oldRow = [lastLevelIndexPath row];
+        cell.textLabel.text = [levelArray objectAtIndex:row];
+        cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }else{
+        cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
+    
+    }
+    return cell;
+}
+
+- (void)getWorkflowDidFinished:(NSArray *)workflowArray{
+    workflowInfo = [workflowArray objectAtIndex:0];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        if (alertType == ALERTTABLE_DOCTYPE) {
+            btType.titleLabel.text =  tmpCellString;         
+        }else{
+            btLevel.titleLabel.text = tmpCellString;
+            docRequest.delegate = self;
+            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",[levelArray indexOfObject:tmpCellString]-1]];
+        }
+    }
+    alertType = ALERTTABLE_OTHERS;
+	printf("User Pressed Button %d\n",buttonIndex+1);
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+	//NSInteger row=[indexPath row];
+	
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	//NSLog(@"----hello----,%@",indexPath);
+	return indexPath;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    int newRow = [indexPath row];
+	int oldRow = 0;
+    if (alertType == ALERTTABLE_DOCTYPE) {
+        oldRow = [lastTypeIndexPath row];
+        if ((newRow == 0 && oldRow == 0) || (newRow != oldRow)){
+            
+            UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+            newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: lastTypeIndexPath]; 
+            oldCell.accessoryType = UITableViewCellAccessoryNone;
+            lastTypeIndexPath = [indexPath retain];	
+            
+            tmpCellString = newCell.textLabel.text;
+        }
+        
+    }
+    else if (alertType == ALERTTABLE_LEVEL)
+    {
+        oldRow = [lastLevelIndexPath row];
+        if ((newRow == 0 && oldRow == 0) || (newRow != oldRow)){
+            
+            UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+            newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            UITableViewCell *oldCell = [tableView cellForRowAtIndexPath: lastLevelIndexPath]; 
+            oldCell.accessoryType = UITableViewCellAccessoryNone;
+            lastLevelIndexPath = [indexPath retain];	
+
+            tmpCellString = [levelArray objectAtIndex:[indexPath row]];
+            //newCell.textLabel.text;
+        }
+    
+    }else{
+    
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if(cell != nil) {
+            
+            NSString *fileName = cell.textLabel.text;
+            NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
+            
+            NSData *data = [_storeHelper readFileWithName:fileName];
+            if(data != nil) {
+                
+                if([fileType isEqualToString:kMediaType_Image]) {
+                    
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
+                    //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
+                    imagePlayCtrl.image = image;
+                    //[self presentModalViewController:imagePlayCtrl animated:YES];
+                    [self.navigationController pushViewController:imagePlayCtrl animated:YES];
+                    [image release];
+                    [imagePlayCtrl release];
+                    
+                }else if([fileType isEqualToString:kMediaType_Video]) {
+                    
+                    NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName];
+                    MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
+                    //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
+                    //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
+                    [self presentMoviePlayerViewControllerAnimated:videoPlayCtrl];
+                    [videoPlayCtrl release];
+                    
+                }else if([fileType isEqualToString:kMediaType_Audio]) {
+                    
+                    AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+                    alertView.cancelButtonIndex = 1;
+                    alertView.audioData = data;
+                    //alertView.delegate = self;
+                    
+                    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
+                    imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
+                    [alertView addSubview:imgView];
+                    [imgView release];
+                    
+                    UIView *subView = [alertView viewWithTag:1];
+                    if(subView != nil) {
+                        
+                        UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
+                        theTitle.text = @"开始";
+                        theTitle.tag = 101;
+                        [theTitle setTextColor:[UIColor whiteColor]];
+                        [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+                        [theTitle setBackgroundColor:[UIColor clearColor]];             
+                        [theTitle setTextAlignment:UITextAlignmentCenter];
+                        [subView addSubview:theTitle];
+                    }
+                    
+                    [alertView show];
+                    [alertView release];
+                }
+            }
+        }
+    }
+    
+
+	
 }
 
 #pragma -
@@ -273,6 +629,7 @@
         self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
+    
     return self;
 }
 
@@ -292,7 +649,17 @@
 	submitButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=submitButton;
 	[submitButton release];
-	
+    
+    //取新闻类型
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //array =[[NSMutableArray alloc] init];
+    levelArray = appDelegate.levelArray;
+    typeArray = appDelegate.typeArray;
+    alertType = ALERTTABLE_OTHERS;
+    
+    [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+    [btLevel setTitle:[levelArray objectAtIndex:0] forState:UIControlStateNormal];
+    [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -321,6 +688,18 @@
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     
+    alert = [[UIAlertView alloc]     initWithTitle:@"UIAlertView " message:nil delegate:nil 
+                                              cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    UIActivityIndicatorView *activeView1 = [[UIActivityIndicatorView alloc] 
+                                            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activeView1.center = CGPointMake(alert.bounds.size.width,alert.bounds.size.height-40.0f);
+    [activeView1 startAnimating];
+    [alert addSubview:activeView1];
+    
+    [activeView1 release];
+
+    
     //[self.scrollView addSubview:attachTable];
     
 //    DocDetailHelper *helper = [[DocDetailHelper alloc] init];
@@ -342,115 +721,25 @@
 
 }
 
-#pragma mark -
-#pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    
-    //NSLog(@"%@", [self.attachArray count]);
-    
-    return [self.attachArray count];
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
-}
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-    //NSLog(@"%@", indexPath.row);
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(cell != nil) {
-        
-        NSString *fileName = cell.textLabel.text;
-        NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
-        
-        NSData *data = [_storeHelper readFileWithName:fileName];
-        if(data != nil) {
-            
-            if([fileType isEqualToString:kMediaType_Image]) {
-            
-                UIImage *image = [[UIImage alloc] initWithData:data];
-                ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
-                //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
-                imagePlayCtrl.image = image;
-                //[self presentModalViewController:imagePlayCtrl animated:YES];
-                [self.navigationController pushViewController:imagePlayCtrl animated:YES];
-                [image release];
-                [imagePlayCtrl release];
-                
-            }else if([fileType isEqualToString:kMediaType_Video]) {
-            
-                NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName];
-                MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-                //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
-                //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
-                [self presentMoviePlayerViewControllerAnimated:videoPlayCtrl];
-                [videoPlayCtrl release];
-                
-            }else if([fileType isEqualToString:kMediaType_Audio]) {
-            
-                AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
-                alertView.cancelButtonIndex = 1;
-                alertView.audioData = data;
-                //alertView.delegate = self;
-                
-                UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
-                imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
-                [alertView addSubview:imgView];
-                [imgView release];
-                
-                UIView *subView = [alertView viewWithTag:1];
-                if(subView != nil) {
-                    
-                    UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
-                    theTitle.text = @"开始";
-                    theTitle.tag = 101;
-                    [theTitle setTextColor:[UIColor whiteColor]];
-                    [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
-                    [theTitle setBackgroundColor:[UIColor clearColor]];             
-                    [theTitle setTextAlignment:UITextAlignmentCenter];
-                    [subView addSubview:theTitle];
-                }
-                
-                [alertView show];
-                [alertView release];
-            }
-        }
-    }
-}
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
+        return;
+    }
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
@@ -544,6 +833,7 @@
 
 - (void)dealloc {
     
+    [alert release];
     [super dealloc];
 }
 @end

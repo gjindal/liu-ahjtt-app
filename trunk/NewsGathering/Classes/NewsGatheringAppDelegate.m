@@ -15,6 +15,8 @@
 @synthesize viewController;
 @synthesize username,password;
 @synthesize loginSuccessInfo;
+@synthesize levelArray;
+@synthesize typeArray;
 
 
 #pragma mark -

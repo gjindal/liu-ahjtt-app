@@ -64,6 +64,23 @@
 
 }
 
+- (void) setUserFunction{
+
+    //取新闻类型
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.typeArray = [[NSMutableArray alloc] init];
+    appDelegate.levelArray = [[NSMutableArray alloc] init];
+    for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
+        if( [dirInfo.dic_desc isEqualToString:@"新闻类型"]){
+            [appDelegate.typeArray addObject:dirInfo.dic_value];
+        }
+        if ([dirInfo.dic_desc isEqualToString:@"审批流程"]) {
+            [appDelegate.levelArray addObject:dirInfo.dic_value];
+        }
+    }
+
+}
+
 /////////////////////////////
 
 - (void)keyboardWillShow:(NSNotification *)noti
@@ -223,6 +240,9 @@
             transition.type = @"cube";
             transition.subtype = kCATransitionFromRight;
             transition.delegate = self;
+            
+            [self setUserFunction];
+            
             [self.navigationController.view.layer addAnimation:transition forKey:nil];
             
             

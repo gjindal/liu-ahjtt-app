@@ -22,6 +22,9 @@
     NSString *password;
     
     LoginSuccessInfo *loginSuccessInfo;
+    
+    NSMutableArray *levelArray;
+    NSMutableArray *typeArray;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,6 +32,8 @@
 
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSMutableArray *levelArray;
+@property (nonatomic, retain) NSMutableArray *typeArray;
 @property (nonatomic, retain) LoginSuccessInfo *loginSuccessInfo;
 
 

@@ -193,12 +193,13 @@
 
     //取新闻类型
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    array = [[NSMutableArray alloc] init];
-    for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
+    //array =[[NSMutableArray alloc] init];
+    array = appDelegate.typeArray;
+    /*for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
         if( [dirInfo.dic_desc isEqualToString:@"新闻类型"]){
             [array addObject:dirInfo.dic_value];
         }
-    }
+    }*/
     
     if (newsclueInfo != nil) {
         
