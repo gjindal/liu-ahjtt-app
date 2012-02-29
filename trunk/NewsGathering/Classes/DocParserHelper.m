@@ -185,7 +185,12 @@
         SEL sel = nil;
         if(_currentFlag == kFlag_Contri_List) {
             
-            sel =@selector(getDocListDidFinished:);
+            sel = @selector(getDocListDidFinished:);
+        }
+        
+        if(_currentFlag == kFlag_Contri_AppList) {
+        
+            sel = @selector(getAppListDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {
