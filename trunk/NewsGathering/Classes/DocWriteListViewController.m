@@ -9,7 +9,6 @@
 #import "DocWriteListViewController.h"
 #import "DocWriteDetailViewController.h"
 
-
 @implementation DocWriteListViewController
 
 
@@ -17,11 +16,10 @@
 #pragma mark View lifecycle
 
 
-
-
 -(void)writeNewsDoc
 {
 	DocWriteDetailViewController *viewCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil] ;
+    viewCtrl.transformType = TYPE_ADD;
 	//viewCtrl.nSearchType = SEARCHTYPE_CLUE;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
@@ -56,7 +54,16 @@
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
 	
-    dataArray = [[NSArray arrayWithObjects:@"稿件撰写1", @"稿件撰写2", @"稿件撰写3", nil] retain];
+    if(_docHelper == nil)
+        _docHelper = [[DocDetailHelper alloc] init];
+    if(dataArray != nil) {
+    
+        [dataArray release];
+        dataArray = nil;
+    }
+    
+    dataArray = [[_docHelper getAllDocDetail] retain];
+    [self.tableView reloadData];
 }
 
 /*
@@ -119,11 +126,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     // Configure the cell...
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    DocDetail *docDetail = (DocDetail *)[dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = docDetail.title;
+    cell.detailTextLabel.text = docDetail.saveTime;
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -133,13 +146,29 @@
     return YES;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 70.0;
+}
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self.tableView beginUpdates];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_docHelper deleteDoc:[dataArray objectAtIndex:indexPath.row]];
+        [dataArray release];
+        dataArray = nil;
+        dataArray = [[_docHelper getAllDocDetail] retain];
+        [self.tableView reloadData];
         // Delete the row from the data source
 //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }   
+    
+    [self.tableView endUpdates];
 //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }   
@@ -167,6 +196,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DocWriteDetailViewController *viewCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil];
+    viewCtrl.transformType = TYPE_MODIFY;
     [self.navigationController pushViewController:viewCtrl animated:YES];
     [viewCtrl release];
     

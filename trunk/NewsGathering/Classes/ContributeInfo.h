@@ -13,23 +13,27 @@
 @private
     NSString *_conid;
     NSString *_level;
+    NSString *_note;
+    NSString *_status;
+    NSString *_statusNm;
     NSString *_time;
     NSString *_title;
     NSString *_type;
     NSString *_flowID;
-    NSString *_status;
     NSArray  *_appsList;
     NSArray  *_attitudeList;
 }
 
 @property (nonatomic, retain) NSString *conid;
 @property (nonatomic, retain) NSString *level;
+@property (nonatomic, retain) NSString *note;
 @property (nonatomic, retain) NSString *time;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *flowID;
 @property (nonatomic, retain) NSArray *apps;
 @property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSString *statusNm;
 @property (nonatomic, retain) NSArray *attitudeList;
 
 + (NSString *)getFlowID;

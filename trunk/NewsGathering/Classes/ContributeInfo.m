@@ -19,6 +19,8 @@
 @synthesize apps = _appsList;
 @synthesize attitudeList = _attitudeList;
 @synthesize status = _status;
+@synthesize note = _note;
+@synthesize statusNm = _statusNm;
 
 - (id)init {
 
@@ -42,6 +44,8 @@
     [_appsList release];
     [_attitudeList release];
     [_status release];
+    [_note release];
+    [_statusNm release];
     
     _conid = nil;
     _level = nil;
@@ -52,6 +56,8 @@
     _appsList = nil;
     _attitudeList = nil;
     _status = nil;
+    _note = nil;
+    _statusNm = nil;
     
     [super dealloc];
 }

@@ -171,8 +171,13 @@
     }else if([elementName isEqualToString:@"status"]) {
         
         _info.status = _currentValue;
-    }
-    else if([elementName isEqualToString:@"type"]) {
+    }else if([elementName isEqualToString:@"note"]) {
+    
+        _info.note = _currentValue;
+    }else if([elementName isEqualToString:@"statusNm"]) {
+    
+        _info.statusNm = _currentValue;
+    }else if([elementName isEqualToString:@"type"]) {
         
         _info.type = _currentValue;
     }else if([elementName isEqualToString:@"contri"]) {

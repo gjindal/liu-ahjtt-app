@@ -22,8 +22,18 @@
     self = [super init];
     if(self != nil) {
     
+        _dataFormatter = [[NSDateFormatter alloc] init];
+        [_dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     }
     return self;
+}
+
+- (void)dealloc {
+
+    [_dataFormatter release];
+    _dataFormatter = nil;
+    
+    [super dealloc];
 }
 
 #pragma -
@@ -32,7 +42,6 @@
 - (NSArray *)getAllDocDetail {
 
     NSMutableArray *docArray = [[NSMutableArray alloc] initWithCapacity:0];
-    NSString *tempString = _baseDirectory;
     NSArray *subFiles = [self getSubFiles];
     NSString *fileType = nil;
     BOOL isDoc = NO;
@@ -81,6 +90,8 @@
     
         NSString *fileName = [NSString stringWithFormat:@"%@_%@", kMediaType_Docum, docDetail.UUID, nil];
         NSString *filePath = [_baseDirectory stringByAppendingPathComponent:fileName];
+        
+        docDetail.saveTime = [_dataFormatter stringFromDate:[NSDate date]];
         
         BOOL result = [NSKeyedArchiver archiveRootObject:docDetail toFile:filePath];
         return  result;

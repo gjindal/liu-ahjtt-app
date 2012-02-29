@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DocDetailHelper.h"
+#import "DocDetail.h"
 
 @interface DocWriteListViewController : UITableViewController {
 @private 
-    NSArray *dataArray;
+    NSArray             *dataArray;
+    DocDetailHelper     *_docHelper;
 }
 
 -(void)writeNewsDoc;

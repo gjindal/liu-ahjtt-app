@@ -34,6 +34,7 @@
 @synthesize attachTable;
 @synthesize attachArray;
 @synthesize docType;
+@synthesize transformType;
 @synthesize request;
 @synthesize btType;
 @synthesize btLevel;
@@ -45,6 +46,7 @@
 @synthesize imgContentsBgd;
 @synthesize dispatchedUsersID;
 @synthesize dispatchedUsersName;
+@synthesize docDetail = _docDetail;
 
 @synthesize storeHelper = _storeHelper;
 
@@ -124,8 +126,78 @@
 
 -(void)saveDoc{
     
+    if(_docDetail == nil) {
+    
+        _docDetail = [[DocDetail alloc] init];
+    }
+    
+    //上传前验证必填项
+    if( [fdTitle.text length]<1){
+        [self alertInfo:@"标题不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdKeyword.text length]<1){
+        [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [contents.text length]<1){
+        [self alertInfo:@"内容不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdDocSource.text length]<1){
+        [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [btType.titleLabel.text length]<1){
+        [self alertInfo:@"类型不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if([btLevel.titleLabel.text length]<1){
+        [self alertInfo:@"审核级别不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
+    if([btReceptor.titleLabel.text length]<1){
+        [self alertInfo:@"接收人不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    
+    _docDetail.title    = fdTitle.text;
+    _docDetail.docType  = btType.titleLabel.text;
+    _docDetail.key      = fdKeyword.text;
+    _docDetail.source   = fdDocSource.text;
+    _docDetail.level    = btLevel.titleLabel.text;
+    _docDetail.recevicer= btReceptor.titleLabel.text;
+    _docDetail.content  = contents.text;
+    _docDetail.attachments = [NSArray arrayWithArray:self.attachArray];
+    
+    DocDetailHelper *_docDetailHelper = [[DocDetailHelper alloc] init];
+    BOOL result = NO;
+    
+    if(transformType == TYPE_ADD) {
+    
+       result = [_docDetailHelper writeToFile:_docDetail];
+    }else if(transformType == TYPE_MODIFY) {
+    
+        result = [_docDetailHelper updateDoc:_docDetail];
+    }
+    
     [alert hideWaiting];
-
+    
+    [_docDetailHelper release];
+    _docDetailHelper = nil;
+    
+    if(result == NO) {
+    
+        [self alertInfo:@"保存稿件失败!" withTitle:@"稿件保存"];
+    }
 }
 
 -(void)submitForAudit{
@@ -255,8 +327,10 @@
 }
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
     // 请求响应失败，返回错误信息
-    NSError *error = [ request error ];
-    NSLog(@"#############%@",error);
+//    NSError *error = [ request error ];
+//    NSLog(@"#############%@",error);
+    
+    [self saveDoc];
 }
 
 -(void)submitDoc{
@@ -327,6 +401,9 @@
                 [self submitForAudit];
                 [self shareToWB];
                 break;
+            case 4:
+                [alert hideWaiting];
+                break;
             default:
                 break;
         }
@@ -351,7 +428,6 @@
 	[alertTable release];
     
 }
-
 
 -(IBAction)setType:(id)sender{
     
@@ -419,8 +495,6 @@
     }
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -455,8 +529,7 @@
     workflowInfo = [[workflowArray objectAtIndex:0] retain];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
             btType.titleLabel.text =  tmpCellString;         
@@ -472,6 +545,7 @@
     alertType = ALERTTABLE_OTHERS;
 	printf("User Pressed Button %d\n",buttonIndex+1);
 }
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 	//NSInteger row=[indexPath row];
 	
@@ -481,7 +555,6 @@
 	//NSLog(@"----hello----,%@",indexPath);
 	return indexPath;
 }
-
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -12,7 +12,8 @@
 @class DocDetail;
 
 @interface DocDetailHelper : StorageHelper {
-
+@private
+    NSDateFormatter *_dataFormatter;
 }
 
 - (NSArray *)getAllDocDetail;

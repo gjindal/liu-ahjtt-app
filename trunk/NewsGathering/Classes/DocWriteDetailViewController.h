@@ -36,6 +36,11 @@ typedef enum {
     ALERTTABLE_OTHERS
 }ALERTTABLE_TYPE;
 
+typedef enum {
+    TYPE_ADD,
+    TYPE_MODIFY
+}TRANSFORM_TYPE;
+
 @interface DocWriteDetailViewController : UIViewController
                                         <UITextFieldDelegate,
                                         UIScrollViewDelegate,
@@ -87,6 +92,7 @@ typedef enum {
     
     DOCTYPE docType;
     MENUTYPE menuType;
+    TRANSFORM_TYPE transformType;
     
     StorageHelper *_storeHelper;
     ASIFormDataRequest *request;
@@ -98,6 +104,7 @@ typedef enum {
     NSString *dispatchedUsersID;
     
     ContributeInfo *contributeInfo;
+    DocDetail      *_docDetail;
 }
 
 @property (retain, nonatomic) NSString *dispatchedUsersName;
@@ -107,6 +114,7 @@ typedef enum {
 @property (retain, nonatomic) ASIFormDataRequest *request;
 @property (nonatomic) DOCTYPE docType;
 @property (nonatomic) MENUTYPE menuType;
+@property (nonatomic) TRANSFORM_TYPE transformType;
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
 @property (nonatomic,retain)    CustomAlertView *alert;
@@ -127,6 +135,8 @@ typedef enum {
 @property (nonatomic,retain)	IBOutlet UIButton *btRecorder;
 @property (nonatomic,retain)	IBOutlet UIButton *btCamera;
 @property (nonatomic,retain)	IBOutlet UIButton *btVideo;
+
+@property (nonatomic, retain)   DocDetail   *docDetail;
 
 -(IBAction) getPhoto;
 -(IBAction) getRecord;
