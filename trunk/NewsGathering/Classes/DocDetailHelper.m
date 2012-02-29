@@ -122,6 +122,13 @@
 
     if(docDetail != nil) {
     
+        if(docDetail.attachments != nil) {
+        
+            for (NSString *attach in docDetail.attachments) {
+                [self deleteFileWithName:attach];
+            }
+        }
+        
         NSString *fileName = [NSString stringWithFormat:@"%@_%@", kMediaType_Docum, docDetail.UUID, nil];
         BOOL result = [self deleteFileWithName:fileName];
         return result;
