@@ -168,7 +168,11 @@
     }else if([elementName isEqualToString:@"title"]) {
         
         _info.title = _currentValue;
-    }else if([elementName isEqualToString:@"type"]) {
+    }else if([elementName isEqualToString:@"status"]) {
+        
+        _info.status = _currentValue;
+    }
+    else if([elementName isEqualToString:@"type"]) {
         
         _info.type = _currentValue;
     }else if([elementName isEqualToString:@"contri"]) {

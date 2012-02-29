@@ -11,6 +11,7 @@
 #import "ClueDistRequest.h"
 #import "NewsGatheringAppDelegate.h"
 #import "TreeViewController.h"
+#import "DocWriteDetailViewController.h"
 
 @implementation NewsAllocDetailViewController
 
@@ -66,6 +67,14 @@
 
 }
 
+-(void)writeDoc{
+    DocWriteDetailViewController *viewCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil] ;
+
+	[self.navigationController pushViewController:viewCtrl animated:YES];
+	[viewCtrl release];
+
+}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -106,6 +115,12 @@
         }
         else{
             bEnableDispatch = NO;
+            UIBarButtonItem *submitButton;
+            submitButton=[[UIBarButtonItem alloc]initWithTitle: @"撰稿" style:UIBarButtonItemStyleBordered target:self action:@selector(writeDoc)];
+            submitButton.style=UIBarButtonItemStylePlain;
+            self.navigationItem.rightBarButtonItem=submitButton;
+            [submitButton release];
+            
         }
         
     

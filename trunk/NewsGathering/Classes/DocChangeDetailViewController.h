@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DocRequest.h"
+#import "DocRequestDelegate.h"
+#import "ContributeInfo.h"
 
 
-@interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource,UITextViewDelegate> {
+@interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,DocRequestDelegate> {
 	
     IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
@@ -36,13 +39,19 @@
 	BOOL keyboardShown;
 	CGFloat oldContentOffsetValue;
 	BOOL isNeedSetOffset; 
-	
+    
+    ContributeInfo *contributeInfo;
+    DocRequest *docRequest;
+    
 
 }
 
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
 @property (nonatomic,retain)	NSArray *attachArray;
+
+@property (nonatomic,retain)	ContributeInfo *contributeInfo;
+@property (nonatomic,retain)	DocRequest *docRequest;
 
 @property (nonatomic,retain)	IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
@@ -66,4 +75,8 @@
 -(IBAction) getPhoto;
 -(IBAction) getRecord;
 -(IBAction) getVideo;
+
+-(void) initForm;
+
+
 @end

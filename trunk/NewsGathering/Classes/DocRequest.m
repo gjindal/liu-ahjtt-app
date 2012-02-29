@@ -86,10 +86,11 @@
 - (void)addDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
-                 FlowID:(NSString *)flowID {
+                 FlowID:(NSString *)flowID
+                 Status:(NSString *)status{
 
-    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@",
-                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID];
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&status=%@",
+                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID,status];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Add withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
@@ -101,11 +102,12 @@
 - (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
                              Note:(NSString *)note Source:(NSString *)source
                              Type:(NSString *)type Level:(NSString *)level
-                           FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid {
+                           FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid
+                           Status:(NSString *)status {
 
     NSString *post = [NSString stringWithFormat:
-                      @"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&receptuserid=%@",
-                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID, receptuserid];
+                      @"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&receptuserid=%@&status=%@",
+                      [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID, receptuserid,status];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Add_Approve withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];

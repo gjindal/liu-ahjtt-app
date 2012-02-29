@@ -16,6 +16,7 @@
 #import "WorkflowInfo.h"
 #import "ContributeInfo.h"
 #import "UIViewPassValueDelegate.h"
+#import "CustomAlertView.h"
 
 @class StorageHelper;
 
@@ -78,7 +79,7 @@ typedef enum {
 	bool isTextView;
     UITextView *activeView;
                                             
-    UIAlertView *alert;                                        
+    CustomAlertView *alert;                                        
     
 	IBOutlet UIButton *btRecorder;
 	IBOutlet UIButton *btCamera;
@@ -95,6 +96,8 @@ typedef enum {
     NSMutableArray *dispatchedArray;
     NSString *dispatchedUsersName;
     NSString *dispatchedUsersID;
+    
+    ContributeInfo *contributeInfo;
 }
 
 @property (retain, nonatomic) NSString *dispatchedUsersName;
@@ -106,7 +109,7 @@ typedef enum {
 @property (nonatomic) MENUTYPE menuType;
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
-@property (nonatomic,retain)    UIAlertView *alert;
+@property (nonatomic,retain)    CustomAlertView *alert;
 
 @property (nonatomic,retain)    StorageHelper *storeHelper;
 @property (nonatomic,retain)	IBOutlet UITableView *attachTable;

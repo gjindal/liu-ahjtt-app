@@ -32,6 +32,9 @@
 @synthesize lblMessage;
 @synthesize txtMessage;
 
+@synthesize contributeInfo;
+@synthesize docRequest;
+
 
 -(IBAction) getPhoto{
 	
@@ -55,6 +58,15 @@
 
 - (void)back:(id)sender {  
     [self.navigationController popViewControllerAnimated:YES];  
+}
+
+-(void)iniForm{
+    
+    [btLevel setTitle:contributeInfo.level forState:UIControlStateNormal];
+    [btType setTitle:contributeInfo.type forState:UIControlStateNormal];
+    fdTitle.text = contributeInfo.title;
+    
+    
 }
 
 
@@ -83,8 +95,11 @@
 	passButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=passButton;
 	[passButton release];
+    
+    [self initForm];
 	
 }
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

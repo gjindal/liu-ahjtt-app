@@ -31,11 +31,13 @@
 - (void)addDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
-                 FlowID:(NSString *)flowID;
+                 FlowID:(NSString *)flowID
+                Status:(NSString *)status;
 - (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
-                 FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid;
+                 FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid
+                 Status:(NSString *)status;
 - (void)updateDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                       Note:(NSString *)note Source:(NSString *)source
                       Type:(NSString *)type Level:(NSString *)level

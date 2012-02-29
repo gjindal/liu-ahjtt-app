@@ -51,13 +51,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	self.title= @"稿件编辑";
+	self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
-	
+
+	docRequest = [[DocRequest alloc] init];
     //准备加载列表数据
     docRequest.delegate = self;
     if (docSearchVtrl == nil) {
         docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+        docSearchVtrl.docDetail.title = @"";
+        docSearchVtrl.docDetail.key = @"";
+        docSearchVtrl.docDetail.docType = @"";
+        docSearchVtrl.strStartTime = @"";
+        docSearchVtrl.strEndTime = @"";
     }
     [docRequest getDocListWithTitle:docSearchVtrl.docDetail.title
                             Keyword:docSearchVtrl.docDetail.key
@@ -126,6 +132,9 @@
     return [dataArray count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,12 +143,35 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    // Configure the cell...
+    ContributeInfo *contributeInfo = (ContributeInfo *)[dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = contributeInfo.title;
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.text = contributeInfo.time;
+    cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+
+    switch ([contributeInfo.status intValue]) {
+        case 3:
+            [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"0"];
+            break;
+        case 4:
+            [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"1"];
+            break;
+        case 5:
+            [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"2"];
+            break;            
+        default:
+            break;
+    }
+
     return cell;
 }
 
@@ -154,48 +186,25 @@
 
 
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-		//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-	//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-	//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-	//    }   
-}
-
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    DocChangeDetailViewController *docChangeDetailCtrl = [[DocChangeDetailViewController alloc] initWithNibName:@"DocChangeDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:docChangeDetailCtrl animated:YES];
-    [docChangeDetailCtrl release];
+    NSString *strID = ((ContributeInfo *)[dataArray objectAtIndex:[indexPath row]]).conid;
+    [docRequest getDocDetailWithConid:strID];
     
-
 }
 
+- (void)getDocDetailDidFinished:(ContributeInfo *)contributeInfo{
+
+    DocChangeDetailViewController *docChangeDetailCtrl = [[DocChangeDetailViewController alloc] initWithNibName:@"DocChangeDetailViewController" bundle:nil];
+    
+    docChangeDetailCtrl.contributeInfo = [contributeInfo retain];
+    [self.navigationController pushViewController:docChangeDetailCtrl animated:YES];
+    [docChangeDetailCtrl release];
+}
 
 
 #pragma mark -

@@ -18,6 +18,7 @@
 #import "UIAlertTableView.h"
 #import "ContributeInfo.h"
 #import "TreeViewController.h"
+#import "CustomAlertView.h"
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle;
@@ -123,7 +124,7 @@
 
 -(void)saveDoc{
     
-    alert.hidden = YES;
+    [alert hideWaiting];
 
 }
 
@@ -132,30 +133,38 @@
     //上传前验证必填项
     if( [fdTitle.text length]<1){
         [self alertInfo:@"标题不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
     if( [fdKeyword.text length]<1){
         [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
     if( [contents.text length]<1){
         [self alertInfo:@"内容不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
     if( [fdDocSource.text length]<1){
         [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
     if( [btType.titleLabel.text length]<1){
         [self alertInfo:@"类型不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
-    if( [btLevel.titleLabel.text length]<1){
+    if( (workflowInfo.opttype == nil)||[btLevel.titleLabel.text length]<1){
         [self alertInfo:@"审核级别不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
+    NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
     if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
         [self alertInfo:@"接收人不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
         return;
     }
 
@@ -165,7 +174,7 @@
     
     
 	//NSString *post = [[NSString alloc] initWithFormat:@"&userid=%@&pwd=%@flowid=%@",appDelegate.username,appDelegate.password,@"1234567890123456"];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,@"12345678901234561234567890123456"];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
     [request cancel];
     [request setRequestMethod:@"post"];    
@@ -190,36 +199,40 @@
 
 -(void)shareToWB{
     
-    alert.hidden = YES;
+    [alert hideWaiting];
 
 }
 
-- (void)addDocDidFinished:(ContributeInfo *)contributeInfo{
-    if ([contributeInfo.flag isEqualToString:@"200"]) {
+- (void)addDocDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
     }
     else
     {
-        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+        [self alertInfo:@"稿件上传失败" withTitle:@"错误"];
     }
+    
+    [alert hideWaiting];
 }
-- (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo{
-    if ([contributeInfo.flag isEqualToString:@"200"]) {
+- (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
     }
     else
     {
-        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+        [self alertInfo:@"稿件上传失败" withTitle:@"错误"];
     }
+   [alert hideWaiting];   
 }
-- (void)submitDocDidFinished:(ContributeInfo *)contributeInfo{
-    if ([contributeInfo.flag isEqualToString:@"200"]) {
+- (void)submitDocDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
     }
     else
     {
-        [self alertInfo:@"稿件上传成功" withTitle:@"错误"];
+        [self alertInfo:@"稿件上传失败" withTitle:@"错误"];
     }
+    [alert hideWaiting];
 }
 
 -( void )responseComplete:(ASIHTTPRequest *)theRequest{
@@ -229,19 +242,21 @@
     NSLog(@"###########%@",responseString);
     
     //如果附件发送成功，则发送内容
+    
+    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
+    NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
     if ([workflowInfo.opttype isEqualToString:@"1"]) {
-        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:btType.titleLabel.text Level:btLevel.titleLabel.text FlowID:@"12345678901234561234567890123456" Receptuserid:btReceptor.titleLabel.text];
+        
+        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:workflowInfo.endStatus];
     }if ([workflowInfo.opttype isEqualToString:@"2"]) {
-        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:btType.titleLabel.text Level:btLevel.titleLabel.text FlowID:@"12345678901234561234567890123456"];
+        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus];
     }
     
-    alert.hidden = YES;
 }
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
     // 请求响应失败，返回错误信息
     NSError *error = [ request error ];
     NSLog(@"#############%@",error);
-    alert.hidden = YES;
 }
 
 -(void)submitDoc{
@@ -251,7 +266,6 @@
     actionSheet.delegate = self;
     [actionSheet showInView:self.view];
     [actionSheet release];
-    
 }
 
 #pragma -
@@ -298,7 +312,7 @@
         }
     }
     if (menuType == MENUTYPE_SUBMIT) {
-       // [alert show];
+        [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
         switch (buttonIndex) {
             case 0:
                 [self saveDoc];
@@ -438,7 +452,7 @@
 }
 
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray{
-    workflowInfo = [workflowArray objectAtIndex:0];
+    workflowInfo = [[workflowArray objectAtIndex:0] retain];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -449,7 +463,10 @@
         }else{
             btLevel.titleLabel.text = tmpCellString;
             docRequest.delegate = self;
-            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",[levelArray indexOfObject:tmpCellString]-1]];
+           
+            int l = [levelArray indexOfObject:tmpCellString]+1;
+             NSLog(@"=====%d",l);
+            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",l]];
         }
     }
     alertType = ALERTTABLE_OTHERS;
@@ -497,7 +514,7 @@
             oldCell.accessoryType = UITableViewCellAccessoryNone;
             lastLevelIndexPath = [indexPath retain];	
 
-            tmpCellString = [levelArray objectAtIndex:[indexPath row]];
+            tmpCellString = newCell.textLabel.text;//[levelArray objectAtIndex:[indexPath row]];
             //newCell.textLabel.text;
         }
     
@@ -657,6 +674,13 @@
     typeArray = appDelegate.typeArray;
     alertType = ALERTTABLE_OTHERS;
     
+    if (docRequest == nil) {
+        docRequest = [[DocRequest alloc] init];
+    }
+    docRequest.delegate = self;
+    workflowInfo = [[WorkflowInfo alloc] init];
+
+    
     [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
     [btLevel setTitle:[levelArray objectAtIndex:0] forState:UIControlStateNormal];
     [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
@@ -688,16 +712,7 @@
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     
-    alert = [[UIAlertView alloc]     initWithTitle:@"UIAlertView " message:nil delegate:nil 
-                                              cancelButtonTitle:nil otherButtonTitles:nil];
-    
-    UIActivityIndicatorView *activeView1 = [[UIActivityIndicatorView alloc] 
-                                            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activeView1.center = CGPointMake(alert.bounds.size.width,alert.bounds.size.height-40.0f);
-    [activeView1 startAnimating];
-    [alert addSubview:activeView1];
-    
-    [activeView1 release];
+    alert = [[CustomAlertView alloc] init];
 
     
     //[self.scrollView addSubview:attachTable];
