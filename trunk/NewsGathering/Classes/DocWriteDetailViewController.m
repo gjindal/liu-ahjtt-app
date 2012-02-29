@@ -286,6 +286,7 @@
     
     [alert hideWaiting];
 }
+
 - (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
@@ -296,6 +297,7 @@
     }
    [alert hideWaiting];   
 }
+
 - (void)submitDocDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
@@ -325,6 +327,7 @@
     }
     
 }
+
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
     // 请求响应失败，返回错误信息
 //    NSError *error = [ request error ];
@@ -409,7 +412,6 @@
         }
     }
 }
-
 
 -(IBAction)setLevel:(id)sender{
     
@@ -697,9 +699,13 @@
         //StorageHelper *helper = [[StorageHelper alloc] init];
         [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
-    [self setAttachArray:[_storeHelper getSubFiles]];
+    
+    [self.attachArray  addObject:imageName];
+    NSLog(@"%@", self.attachArray);
+//    [self setAttachArray:[_storeHelper getSubFiles]];
     //[(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
+    imageName = nil;
     [self.attachTable reloadData];
 }
 
@@ -757,6 +763,28 @@
     [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
     [btLevel setTitle:[levelArray objectAtIndex:0] forState:UIControlStateNormal];
     [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
+    
+    if(_docDetail != nil && transformType == TYPE_MODIFY) {
+    
+        fdTitle.text    = _docDetail.title;
+//        btType.titleLabel.text  = _docDetail.docType;
+        [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
+        fdKeyword.text      = _docDetail.key;
+        fdDocSource.text   = _docDetail.source;
+//        btLevel.titleLabel.text    = _docDetail.level;
+        [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
+//        btReceptor.titleLabel.text = _docDetail.recevicer;
+        [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
+        contents.text  = _docDetail.content;
+        
+        if(self.attachArray == nil)
+            self.attachArray = [[NSMutableArray arrayWithArray:_docDetail.attachments] retain];
+        [self.attachTable reloadData];
+    }else if(transformType == TYPE_ADD) {
+    
+        if(self.attachArray == nil)
+            self.attachArray = [[NSMutableArray alloc] initWithCapacity:0];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -781,7 +809,7 @@
 	
 
     _storeHelper = [[StorageHelper alloc] init];
-    self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
+//    self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     

@@ -197,6 +197,7 @@
     
     DocWriteDetailViewController *viewCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil];
     viewCtrl.transformType = TYPE_MODIFY;
+    viewCtrl.docDetail = (DocDetail *)[dataArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:viewCtrl animated:YES];
     [viewCtrl release];
     

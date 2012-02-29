@@ -66,7 +66,7 @@ typedef enum {
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
 	IBOutlet UITableView *attachTable;
-	NSArray *attachArray;
+	NSMutableArray *attachArray;
     
     
     NSMutableArray *typeArray;
@@ -121,7 +121,7 @@ typedef enum {
 
 @property (nonatomic,retain)    StorageHelper *storeHelper;
 @property (nonatomic,retain)	IBOutlet UITableView *attachTable;
-@property (nonatomic,retain)	NSArray *attachArray;
+@property (nonatomic,retain)	NSMutableArray *attachArray;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
 @property (nonatomic,retain)	IBOutlet UITextField *fdTitle;
 @property (nonatomic,retain)	IBOutlet UITextField *fdKeyword;
