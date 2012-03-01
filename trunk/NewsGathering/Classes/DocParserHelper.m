@@ -188,6 +188,9 @@
     }else if([elementName isEqualToString:@"type"]) {
         
         _info.type = _currentValue;
+    }else if([elementName isEqualToString:@"source"]){
+        
+        _info.source = _currentValue;
     }else if([elementName isEqualToString:@"contri"]) {
         
         [_docList addObject:_info];
