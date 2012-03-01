@@ -99,6 +99,10 @@
     }else if([elementName isEqualToString:@"wfls"]) {
     
         _workflowInfo = [[WorkflowInfo alloc] init];
+    }else if([elementName isEqualToString:@"attLs"]) {
+    
+        _attLsList = [[NSMutableArray alloc] initWithCapacity:0];
+        _attLsInfo = [[AttLsInfo alloc] init];
     }
     
     _currentValue = [[NSMutableString alloc] initWithCapacity:0];
@@ -252,6 +256,19 @@
         
             [_delegate getWorkflowDidFinished:[_workflowList autorelease]];
         }
+    }else if([elementName isEqualToString:@"filename"]) {
+    
+        _attLsInfo.fileName = _currentValue;
+    }else if([elementName isEqualToString:@"id"]) {
+    
+        _attLsInfo.attLsID = _currentValue;
+    }else if([elementName isEqualToString:@"attLs"]) {
+    
+        [_attLsList addObject:_attLsInfo];
+        [_attLsInfo release];
+        _attLsInfo = nil;
+        
+        _info.attLsList = _attLsList;
     }
     
     [_currentValue release];

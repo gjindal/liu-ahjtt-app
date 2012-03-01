@@ -8,6 +8,24 @@
 
 #import "ContributeInfo.h"
 
+@implementation AttLsInfo
+
+@synthesize fileName = _fileName;
+@synthesize attLsID = _attLsID;
+
+- (void)dealloc {
+
+    [_fileName release];
+    [_attLsID release];
+    
+    _fileName = nil;
+    _attLsID = nil;
+    
+    [super dealloc];
+}
+
+@end
+
 @implementation ContributeInfo
 
 @synthesize conid = _conid;
@@ -22,6 +40,8 @@
 @synthesize note = _note;
 @synthesize statusNm = _statusNm;
 @synthesize keyword = _keyword;
+@synthesize source = _source;
+@synthesize attLsList = _attLsList;
 
 - (id)init {
 
@@ -48,7 +68,9 @@
     [_note release];
     [_statusNm release];
     [_keyword release];
-    
+    [_source release];
+    [_attLsList release];
+     
     _keyword = nil;
     _conid = nil;
     _level = nil;
@@ -61,6 +83,8 @@
     _status = nil;
     _note = nil;
     _statusNm = nil;
+    _source = nil;
+    _attLsList = nil;
     
     [super dealloc];
 }

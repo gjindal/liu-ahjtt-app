@@ -24,6 +24,8 @@
     int                              _currentFlag;
     NSMutableArray                  *_workflowList;
     WorkflowInfo                    *_workflowInfo;
+    AttLsInfo                       *_attLsInfo;
+    NSMutableArray                  *_attLsList;
 }
 
 @property (nonatomic, assign) id<DocParserHelperDelegate> delegate;
