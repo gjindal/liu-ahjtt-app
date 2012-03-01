@@ -146,6 +146,7 @@
 		B98D842414F29129007AE435 /* DeptParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D842314F29129007AE435 /* DeptParserHelper.m */; };
 		B98E7FB414F524E00087F044 /* LoginSuccessInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */; };
 		B994796714EBF20000E3A68F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B994796614EBF20000E3A68F /* AVFoundation.framework */; };
+		B99490B914FFDEAF003182E1 /* CycleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99490B814FFDEAF003182E1 /* CycleTableViewCell.m */; };
 		B9D4EC8114F6797000C269D2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8014F6797000C269D2 /* UserInfo.m */; };
 		B9D4EC8514F67C1D00C269D2 /* ClueDistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8414F67C1D00C269D2 /* ClueDistInfo.m */; };
 		B9D4EC9014F6873000C269D2 /* ClueDistRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EC8F14F6872F00C269D2 /* ClueDistRequest.m */; };
@@ -378,6 +379,8 @@
 		B98E7FB214F524E00087F044 /* LoginSuccessInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSuccessInfo.h; sourceTree = "<group>"; };
 		B98E7FB314F524E00087F044 /* LoginSuccessInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSuccessInfo.m; sourceTree = "<group>"; };
 		B994796614EBF20000E3A68F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B99490B714FFDEAF003182E1 /* CycleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleTableViewCell.h; sourceTree = "<group>"; };
+		B99490B814FFDEAF003182E1 /* CycleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleTableViewCell.m; sourceTree = "<group>"; };
 		B9D4EC7F14F6797000C269D2 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		B9D4EC8014F6797000C269D2 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		B9D4EC8314F67C1D00C269D2 /* ClueDistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClueDistInfo.h; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				B98C41D714EF62C20064E622 /* AudioPlayer.m */,
 				1AB88F1614FE23B4006B655A /* CustomAlertView.h */,
 				1AB88F1714FE23B4006B655A /* CustomAlertView.m */,
+				B99490B714FFDEAF003182E1 /* CycleTableViewCell.h */,
+				B99490B814FFDEAF003182E1 /* CycleTableViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 				1A1127C114FBC50D0058F163 /* Reachability.m in Sources */,
 				B98AA16014FD0EC800E1E588 /* WorkflowInfo.m in Sources */,
 				1AB88F1814FE23B4006B655A /* CustomAlertView.m in Sources */,
+				B99490B914FFDEAF003182E1 /* CycleTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

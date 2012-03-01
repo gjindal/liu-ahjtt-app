@@ -259,6 +259,41 @@
     }
 }
 
+- (void)getCycleListWithTitle:(NSString *)title Keyword:(NSString *)keyword 
+                         Type:(NSString *)type Begtime:(NSString *)begtime
+                      Endtime:(NSString *)endtime {
+
+    if(title == nil) {
+        title = @"";
+    }
+    
+    if(keyword == nil) {
+        keyword = @"";
+    }
+    
+    if(type == nil) {
+        type = @"";
+    }
+    
+    if(begtime == nil) {
+        begtime = @"";
+    }
+    
+    if(endtime == nil) {
+        endtime = @"";
+    }
+    
+    NSString *post = [NSString stringWithFormat:
+                      @"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
+                      [UserHelper userName], [UserHelper password],title, keyword, type, begtime, endtime];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Cycle_List withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Cycle_List];
+        [returnString release];
+    }
+}
+
 #pragma -
 #pragma DocParserHelperDelegate Support.
 
@@ -343,6 +378,13 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(getWorkflowDidFinished:)]) {
         [_delegate getWorkflowDidFinished:workflowArray];
+    }
+}
+
+- (void)getCycleListDidFinished:(NSArray *)docList {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(getCycleListDidFinished:)]) {
+        [_delegate getCycleListDidFinished:docList];
     }
 }
 

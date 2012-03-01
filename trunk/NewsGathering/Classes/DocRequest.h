@@ -53,4 +53,8 @@
 - (void)approveWithConid:(NSString *)conid Apps:(NSString *)apps;
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName;
 - (void)getWorkflowWithLevel:(NSString *)level;
+- (void)getCycleListWithTitle:(NSString *)title Keyword:(NSString *)keyword 
+                         Type:(NSString *)type Begtime:(NSString *)begtime
+                      Endtime:(NSString *)endtime;
+
 @end

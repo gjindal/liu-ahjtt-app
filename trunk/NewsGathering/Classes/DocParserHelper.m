@@ -209,6 +209,11 @@
             sel = @selector(getAppListDidFinished:);
         }
         
+        if(_currentFlag == kFlag_Contri_Get_Cycle_List) {
+        
+            sel = @selector(getCycleListDidFinished:);
+        }
+        
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {
             
             [_delegate performSelector:sel withObject:[_docList autorelease]];

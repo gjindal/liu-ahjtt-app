@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DocRequest.h"
+#import "DocRequestDelegate.h"
 
-@interface RecycleListViewController : UITableViewController {
-
-    NSArray *dataArray;
+@interface RecycleListViewController : UITableViewController<DocRequestDelegate> {
+@private
+    NSMutableArray      *_dataArray;
+    DocRequest          *_docRequest;
 }
 
 -(void)deleteAll;

@@ -23,5 +23,6 @@
 - (void)getAppListDidFinished:(NSArray *)docList;
 - (void)approveDidFinished:(ContributeInfo *)contributeInfo;
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray;
+- (void)getCycleListDidFinished:(NSArray *)docList;
 
 @end

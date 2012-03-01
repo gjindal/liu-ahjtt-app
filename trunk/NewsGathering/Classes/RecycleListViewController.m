@@ -9,23 +9,19 @@
 #import "RecycleListViewController.h"
 #import "DocWriteDetailViewController.h"
 
+#import "CycleTableViewCell.h"
+
+@interface RecycleListViewController (PrivateMethods)
+
+- (void)getAllCycleList;
+
+@end
+
 @implementation RecycleListViewController
 
 
 #pragma mark -
 #pragma mark View lifecycle
-
-
-
-
--(void)deleteAll
-{
-
-}
-
-- (void)back:(id)sender {  
-    [self.navigationController popViewControllerAnimated:YES];  
-}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -41,6 +37,16 @@
     return self;
 }
 
+- (void)viewDidLoad {
+
+    [super viewDidLoad];
+    
+    _docRequest = [[DocRequest alloc] init];
+    _docRequest.delegate = self;
+    
+    _dataArray = [[NSMutableArray alloc]  initWithCapacity:0];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
@@ -52,48 +58,51 @@
 	self.navigationItem.rightBarButtonItem=cleanButton;
 	[cleanButton release];
     
-    dataArray = [[NSArray arrayWithObjects:@"刘德华明日来肥", @"金正日走了，金正恩能hold住吗？", @"合肥下冰雹", nil] retain];
-	
+    [self getAllCycleList];
 }
 
+#pragma -
+#pragma Public Methods.
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)deleteAll {
+    
+    for (ContributeInfo *info in _dataArray) {
+        [_docRequest removeDocWithConid:info.conid];
+    }
+    
+    [self getAllCycleList];
+}
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)back:(id)sender {  
+    
+    [self.navigationController popViewControllerAnimated:YES];  
 }
-*/
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+#pragma -
+#pragma Private Methods.
 
+- (void)getAllCycleList {
+
+    [_docRequest getCycleListWithTitle:nil Keyword:nil Type:@"1" Begtime:nil Endtime:nil];
+}
+
+#pragma -
+#pragma DocRequestDelegate Support.
+
+- (void)getCycleListDidFinished:(NSArray *)docList {
+
+    [_dataArray removeAllObjects];
+    [_dataArray addObjectsFromArray:docList];
+    [self.tableView reloadData];
+}
+
+- (void)resumeDocDidFinished:(ContributeInfo *)contributeInfo {
+
+}
+
+- (void)removeDocDidFinished:(ContributeInfo *)contributeInfo {
+
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -103,12 +112,20 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [dataArray count];
+    return [_dataArray count];
 }
 
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,108 +134,40 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[CycleTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     // Configure the cell...
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [_dataArray objectAtIndex:indexPath.row];
+    ContributeInfo *contributeInfo = (ContributeInfo *)[_dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = contributeInfo.title;
+    cell.detailTextLabel.text = contributeInfo.time;
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView beginUpdates];
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        ContributeInfo *contributeInfo = [_dataArray objectAtIndex:indexPath.row];
+        [_docRequest removeDocWithConid:contributeInfo.conid];
+        [self getAllCycleList];
         // Delete the row from the data source
         //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
     }   
+    
+    [self.tableView endUpdates];
     //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
     //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     //    }   
 }
-
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    DocWriteDetailViewController *docDetailCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil];
-    docDetailCtrl.docType = DOCTYPE_DELETED;
-    [self.navigationController pushViewController:docDetailCtrl animated:YES];
-    [docDetailCtrl release];
-    
-}
-
-
 
 #pragma mark -
 #pragma mark Memory management

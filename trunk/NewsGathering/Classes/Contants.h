@@ -69,6 +69,7 @@ typedef enum {
 #define kFlag_Contri_Download       12
 #define kFlag_Contri_Add_Approve    13
 #define KFlag_Contri_Get_Workflow   14
+#define kFlag_Contri_Get_Cycle_List 15
 
 #define kInterface_Contri_List          @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getList_pass.do"        // 查询稿件列表接口
 #define kInterface_Contri_Detail        @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getContriDetail.do"     // 查询稿件详情接口
@@ -84,4 +85,5 @@ typedef enum {
 #define kInterface_Contri_Download      @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!downloadFile.do"        // 附件下载接口
 #define kInterface_Contri_Add_Approve   @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitApprove.do"       // 
 #define kInterface_Contri_Get_Workflow  @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getworkflowInit.do"
+#define kInterface_Contri_Get_Cycle_List@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getCycleList_pass.do"   // 获取回收站列表
 
