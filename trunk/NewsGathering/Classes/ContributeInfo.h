@@ -20,6 +20,7 @@
     NSString *_title;
     NSString *_type;
     NSString *_flowID;
+    NSString *_keyword;
     NSArray  *_appsList;
     NSArray  *_attitudeList;
 }
@@ -34,6 +35,7 @@
 @property (nonatomic, retain) NSArray *apps;
 @property (nonatomic, retain) NSString *status;
 @property (nonatomic, retain) NSString *statusNm;
+@property (nonatomic, retain) NSString *keyword;
 @property (nonatomic, retain) NSArray *attitudeList;
 
 + (NSString *)getFlowID;

@@ -53,7 +53,9 @@
     }
     
     //reload the data from server
-    cluedistRequest = [[ClueDistRequest alloc] init];
+    if (cluedistRequest == nil) {
+        cluedistRequest = [[ClueDistRequest alloc] init]; 
+    }
     cluedistRequest.delegate = self;
     [cluedistRequest getListWithTitle:schCluedistInfo.title Keyword:schCluedistInfo.keyword Note:schCluedistInfo.note Status:schCluedistInfo.status BegTime:schCluedistInfo.begtimeshow EndTime:schCluedistInfo.endtimeshow Type:schCluedistInfo.type];
 	

@@ -7,12 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "StorageHelper.h"
 #import "DocRequest.h"
 #import "DocRequestDelegate.h"
 #import "ContributeInfo.h"
+#import "Contants.h"
+#import "ASIFormDataRequest.h"
+#import "UIViewPassValueDelegate.h"
+#import "CustomAlertView.h"
 
-
-@interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,DocRequestDelegate> {
+@interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,
+                                                             UIScrollViewDelegate,
+                                                             UITableViewDelegate, 
+                                                             UITableViewDataSource, 
+                                                             UITextViewDelegate, 
+                                                             UIActionSheetDelegate, 
+                                                             UIImagePickerControllerDelegate, 
+                                                             UINavigationControllerDelegate, 
+                                                             UIAlertViewDelegate,
+                                                             ASIHTTPRequestDelegate,
+                                                             DocRequestDelegate,UIViewPassValueDelegate> 
+{
 	
     IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
@@ -33,7 +50,11 @@
 	IBOutlet UITextView *txtMessage;
     
     
-	NSArray *attachArray;
+	NSMutableArray *attachArray;
+    NSMutableArray *typeArray;
+    NSMutableArray *levelArray;
+    NSIndexPath *lastTypeIndexPath;
+    NSIndexPath *lastLevelIndexPath;
 	
 	UITextField * activeField;  
 	BOOL keyboardShown;
@@ -42,13 +63,31 @@
     
     ContributeInfo *contributeInfo;
     DocRequest *docRequest;
+    StorageHelper *_storeHelper;
     
+    
+    DOCTYPE docType;
+    MENUTYPE menuType;
+    TRANSFORM_TYPE transformType;
+    ALERTTABLE_TYPE alertType;
+    
+    ASIFormDataRequest *request;
+    WorkflowInfo *workflowInfo;
+    NSString *tmpCellString;
+    
+    NSMutableArray *dispatchedArray;
+    NSString *dispatchedUsersName;
+    NSString *dispatchedUsersID;
+    CustomAlertView *alert;
 
 }
 
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
-@property (nonatomic,retain)	NSArray *attachArray;
+@property (nonatomic,retain)	NSMutableArray *attachArray;
+@property (nonatomic,retain)	NSMutableArray *dispatchedArray;
+@property (nonatomic,retain)	NSString *dispatchedUsersName;
+@property (nonatomic,retain)	NSString *dispatchedUsersID;
 
 @property (nonatomic,retain)	ContributeInfo *contributeInfo;
 @property (nonatomic,retain)	DocRequest *docRequest;
@@ -75,6 +114,10 @@
 -(IBAction) getPhoto;
 -(IBAction) getRecord;
 -(IBAction) getVideo;
+
+-(IBAction)setLevel:(id)sender;
+-(IBAction)setType:(id)sender;
+-(IBAction)setReceptor:(id)sender;
 
 -(void) initForm;
 

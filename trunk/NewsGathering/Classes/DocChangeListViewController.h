@@ -12,16 +12,24 @@
 #import "DocDetail.h"
 #import "DocSearchViewController.h"
 
+typedef enum{
+    NEXTPAGE_SEARCH,
+    NEXTPAGE_DETAIL,
+    NEXTPAGE_OTHERS
+}NEXTPAGE;
 
 @interface DocChangeListViewController : UITableViewController<DocRequestDelegate> {
 @private
     
-	NSArray *dataArray;
+	NSMutableArray *dataArray;
     
     DocDetail *docDetail;
     DocRequest *docRequest;
     
     DocSearchViewController *docSearchVtrl;
+    
+    NEXTPAGE nextPage;//标记返回页，如果是搜索返回就要显示结果
+    
 }
 
 @property(nonatomic,retain) DocDetail *docDetail;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DocDetail.h"
+#import "ContributeInfo.h"
 
 @interface DocSearchViewController : UIViewController<UITextFieldDelegate, UIActionSheetDelegate,UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>{
     
@@ -19,7 +19,7 @@
     IBOutlet UITextField *fdKeyword;
     IBOutlet UIScrollView *scrollView;
     
-    DocDetail *docDetail;
+    ContributeInfo *contributeInfo;
     NSString *strStartTime;
     NSString *strEndTime;
     
@@ -47,7 +47,7 @@
 @property(nonatomic,retain) IBOutlet UITextField *fdTitle;
 @property(nonatomic,retain) IBOutlet UITextField *fdKeyword;
 
-@property(nonatomic,retain) DocDetail *docDetail;
+@property(nonatomic,retain)  ContributeInfo *contributeInfo;
 @property(nonatomic,retain) NSMutableArray *typeArray;
 
 @property(nonatomic,retain) NSString *tmpCellString;

@@ -117,7 +117,9 @@
     [super viewWillAppear:animated];
     
 
-    cluedistRequest = [[ClueDistRequest alloc] init];
+    if (cluedistRequest == nil) {
+        cluedistRequest = [[ClueDistRequest alloc] init];
+    }
     cluedistRequest.delegate = self;
     [cluedistRequest getDept];
     
@@ -165,8 +167,6 @@
 
 //如果你想在选中某一个节点时，发生自定义行为，在子类中覆盖此方法
 -(void)onSelectedRow:(NSIndexPath*)indexPath :(TreeNode *)node{
-    
-   // NSMutableArray *indexPathsTmp = [[NSMutableArray alloc] init];
     
     NSLog(@"load table view: data.");
     for (int i = 0; i < [userNodes count]; i++) {
@@ -239,6 +239,7 @@
 	[self.tableView reloadData];
 }
 -(void)dealloc{
+    [cluedistRequest release];
 	[tree release];
 	[nodes release];
 	[super dealloc];

@@ -7,11 +7,8 @@
 //
 
 #import "NewsAllocSearchViewController.h"
-
-
-
-
 #import "NewsClueSearchViewController.h"
+#import "NewsGatheringAppDelegate.h"
 #import "DatePicker.h"
 #import "UIAlertTableView.h"
 
@@ -40,6 +37,9 @@
 	self.navigationController.navigationBar.hidden=NO;
     originalContentHeight = [scrollView contentSize].height;
     
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    typeArray = appDelegate.typeArray;
+    [newsType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
 }
 
 #pragma -
@@ -112,11 +112,6 @@
     keyboardShown = NO;
 }
 
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView {
- }
- */
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -361,11 +356,14 @@
     bTimeAlertView = NO;
     tableType = TABLETYPE_CLUETYPE;
     //TEST DATA
-    typeArray = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
     
-    tmpCellString = [[NSString alloc] initWithString:@""];
-    array = [[NSArray alloc] initWithArray:typeArray];
-    
+    if (tmpCellString == nil) {
+        tmpCellString = [[NSString alloc] initWithString:@""];
+    }
+    if (array == nil) {
+        array = [[NSArray alloc] initWithArray:typeArray];
+    }
+
     UIAlertTableView *alert = [[UIAlertTableView alloc] initWithTitle:@"选择线索类型"
 															  message:nil
 															 delegate:self
@@ -433,9 +431,9 @@
 
 
 - (void)dealloc {
-    [array release];
-    [statusArray release];
-    [typeArray release];
+    //[array release];
+    //[statusArray release];
+    //[typeArray release];
     [scrollView release];
     [super dealloc];
 }

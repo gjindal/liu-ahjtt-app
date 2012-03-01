@@ -95,7 +95,10 @@
     }
 
     //reload the data from server
-    newsclueRequest = [[NewsClueRequest alloc] init];
+    if (newsclueRequest == nil) {
+        newsclueRequest = [[NewsClueRequest alloc] init];
+    }
+
     newsclueRequest.delegate = self;
     [newsclueRequest getNewsClueListWithTitle:schNewsclueInfo.title
                                       Keyword:schNewsclueInfo.keyword
@@ -224,7 +227,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    newsclueRequest = [[NewsClueRequest alloc] init];
+    if (newsclueRequest == nil) {
+        newsclueRequest = [[NewsClueRequest alloc] init];
+    }
+    
     newsclueRequest.delegate = self;
     NewsClueInfo *newsclueInfo = [dataArray objectAtIndex:indexPath.row];
     [newsclueRequest getNewsClueDetailWithKeyID:newsclueInfo.keyid];

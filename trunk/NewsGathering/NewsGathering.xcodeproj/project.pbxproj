@@ -610,6 +610,10 @@
 				1AAB804914E415FE00F61582 /* DocWriteListViewController.m */,
 				1AAB804D14E4162600F61582 /* DocChangeListViewController.h */,
 				1AAB804E14E4162600F61582 /* DocChangeListViewController.m */,
+				1AE778C614FA6FE700655201 /* DocSearchViewController.h */,
+				1AE778C714FA6FE700655201 /* DocSearchViewController.m */,
+				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
+				1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */,
 				1AAB805214E4166C00F61582 /* RecycleListViewController.h */,
 				1AAB805314E4166C00F61582 /* RecycleListViewController.m */,
 				1AAB806514E4175E00F61582 /* NewsAllocSearchViewController.h */,
@@ -618,16 +622,12 @@
 				1AAB806B14E4180800F61582 /* NewsClueDetailViewController.m */,
 				1AAB806F14E4183B00F61582 /* NewsAllocDetailViewController.h */,
 				1AAB807014E4183B00F61582 /* NewsAllocDetailViewController.m */,
-				1AAB807914E4192200F61582 /* DocChangeDetailViewController.h */,
-				1AAB807A14E4192200F61582 /* DocChangeDetailViewController.m */,
 				B98C31CA14ED345F0064FC89 /* ImagePlayViewController.h */,
 				B98C31CB14ED345F0064FC89 /* ImagePlayViewController.m */,
 				B97D155014ED455E005E0A41 /* VideoPlayViewController.h */,
 				B97D155114ED455E005E0A41 /* VideoPlayViewController.m */,
 				1A97CFA314F7E3CC003B3A3A /* DispatchedPersonsViewController.h */,
 				1A97CFA414F7E3CC003B3A3A /* DispatchedPersonsViewController.m */,
-				1AE778C614FA6FE700655201 /* DocSearchViewController.h */,
-				1AE778C714FA6FE700655201 /* DocSearchViewController.m */,
 			);
 			name = ViewContoller;
 			sourceTree = "<group>";
@@ -976,8 +976,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanntuu Corp,Inc";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -986,8 +986,8 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "862EC7FA-EA5F-4A17-BB86-0EB31F5E4871";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "862EC7FA-EA5F-4A17-BB86-0EB31F5E4871";
 			};
 			name = Debug;
 		};
@@ -995,16 +995,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanntuu Corp,Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanntuu Corp,Inc";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "862EC7FA-EA5F-4A17-BB86-0EB31F5E4871";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "862EC7FA-EA5F-4A17-BB86-0EB31F5E4871";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -64,21 +64,21 @@
 
     if([elementName isEqualToString:@"contris"]) {
         
-        if(_docList != nil) {
-        
-            [_docList release];
-            _docList = nil;
-        }
+//        if(_docList != nil) {
+//        
+//            [_docList release];
+//            _docList = nil;
+//        }
         _docList = [[NSMutableArray alloc] initWithCapacity:0];
     }else if([elementName isEqualToString:@"contri"] 
              || [elementName isEqualToString:@"error"] 
              || [elementName isEqualToString:@"contribution"]) {
         
-        if(_info != nil) {
-        
-            [_info release];
-            _info = nil;
-        }
+//        if(_info != nil) {
+//        
+//            [_info release];
+//            _info = nil;
+//        }
         
         _info = [[ContributeInfo alloc] init];
     }else if([elementName isEqualToString:@"apps"]) {
@@ -162,7 +162,11 @@
             
             _info.level = _currentValue;
         }
-    }else if([elementName isEqualToString:@"time"]) {
+    }else if([elementName isEqualToString:@"keyword"]) {
+        
+        _info.keyword = _currentValue;
+    }
+    else if([elementName isEqualToString:@"time"]) {
         
         _info.time = _currentValue;
     }else if([elementName isEqualToString:@"title"]) {

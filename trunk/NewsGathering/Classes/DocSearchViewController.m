@@ -10,6 +10,7 @@
 #import "DatePicker.h"
 #import "UIAlertTableView.h"
 #import "NewsGatheringAppDelegate.h"
+#import "ContributeInfo.h"
 
 #define START_TIME_PICKER   101
 #define END_TIME_PICKER	    102
@@ -22,20 +23,23 @@
 @synthesize fdTitle;
 @synthesize fdKeyword;
 @synthesize bTimeAlertView;
-@synthesize docDetail;
+@synthesize contributeInfo;;
 @synthesize lastIndexPath;
 @synthesize tmpCellString;
 @synthesize typeArray;
 @synthesize strEndTime;
 @synthesize strStartTime;
 
+
 -(IBAction) confirm:(id)sender{
 
-    docDetail.title = self.fdTitle.text;
-    docDetail.docType = self.btType.titleLabel.text;
-    docDetail.key = self.fdKeyword.text;
+    contributeInfo.title = self.fdTitle.text;
+    contributeInfo.keyword = self.fdKeyword.text;
     strStartTime = self.btStartTime.titleLabel.text;
     strEndTime = self.btEndTime.titleLabel.text;
+    
+    int level = [typeArray indexOfObject:self.btType.titleLabel.text]+1;
+    contributeInfo.type = [NSString stringWithFormat:@"%d",level];
     
     [self.navigationController popViewControllerAnimated:YES];
 
@@ -46,11 +50,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //仅初始化搜索需要的关键字
-        if (docDetail == nil) {
-            docDetail = [[DocDetail alloc] init];
-            docDetail.title = @"";
-            docDetail.docType = @"";
-            docDetail.key = @"";
+        if ( contributeInfo == nil) {
+            contributeInfo = [[ContributeInfo alloc] init];
+            contributeInfo.title = @"";
+            contributeInfo.type = @"";
+            contributeInfo.keyword = @"";
         }
         strStartTime = @"";
         strEndTime = @"";
@@ -68,12 +72,15 @@
     
     //取新闻类型
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    typeArray = [[NSMutableArray alloc] init];
-    for (DirtInfo *dirInfo  in appDelegate.loginSuccessInfo.dictList) {
-        if( [dirInfo.dic_desc isEqualToString:@"新闻类型"]){
-            [typeArray addObject:dirInfo.dic_value];
-        }
-    }
+    typeArray = appDelegate.typeArray;
+    
+    [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    NSString*locationString=[formatter stringFromDate: [NSDate date]];
+    [btStartTime setTitle:locationString forState:UIControlStateNormal];
+    [btEndTime setTitle:locationString forState:UIControlStateNormal];
     
     [super viewWillDisappear:animated];
     

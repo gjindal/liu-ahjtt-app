@@ -10,6 +10,7 @@
 #import "DocChangeDetailViewController.h"
 #import "DocSearchViewController.h"
 #import "DocRequest.h"
+#import "ContributeInfo.h"
 
 
 @implementation DocChangeListViewController
@@ -44,8 +45,26 @@
     return self;
 }
 
-- (void)getDocListDidFinished:(NSArray *)docList{
-    dataArray = [docList retain];
+- (void)getAppListDidFinished:(NSArray *)docList{
+    [dataArray removeAllObjects];
+    //[dataArray arrayByAddingObjectsFromArray:docList];
+    [dataArray addObjectsFromArray:docList];
+    [self.tableView reloadData];
+}
+
+-(void) viewDidLoad{
+
+    [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    docRequest = [[DocRequest alloc] init];
+    docRequest.delegate = self;    
+    
+    nextPage = NEXTPAGE_OTHERS;//
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,68 +73,27 @@
 	self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
 
-	docRequest = [[DocRequest alloc] init];
-    //准备加载列表数据
-    docRequest.delegate = self;
-    if (docSearchVtrl == nil) {
-        docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
-        docSearchVtrl.docDetail.title = @"";
-        docSearchVtrl.docDetail.key = @"";
-        docSearchVtrl.docDetail.docType = @"";
-        docSearchVtrl.strStartTime = @"";
-        docSearchVtrl.strEndTime = @"";
-    }
-    [docRequest getDocListWithTitle:docSearchVtrl.docDetail.title
-                            Keyword:docSearchVtrl.docDetail.key
-                               Type:docSearchVtrl.docDetail.docType
+        if (docSearchVtrl == nil) {
+            docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+            docSearchVtrl.contributeInfo.title = @"";
+            docSearchVtrl.contributeInfo.keyword = @"";
+            docSearchVtrl.contributeInfo.type = @"";
+            docSearchVtrl.strStartTime = @"";
+            docSearchVtrl.strEndTime = @"";
+        }
+        [docRequest getAppListWithTitle:docSearchVtrl.contributeInfo.title
+                            Keyword:docSearchVtrl.contributeInfo.keyword
+                               Type:docSearchVtrl.contributeInfo.type
                             Begtime:docSearchVtrl.strStartTime
                             Endtime:docSearchVtrl.strEndTime];
 
-    
-	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchDocs)];
-	searchButton.style=UIBarButtonItemStylePlain;
+
+   	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchDocs)];	
+    searchButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
-	
+    
 }
-
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-*/
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 
 #pragma mark -
@@ -129,6 +107,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    
     return [dataArray count];
 }
 
@@ -158,20 +137,19 @@
     switch ([contributeInfo.status intValue]) {
         case 3:
             [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"0"];
             break;
         case 4:
             [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"1"];
             break;
         case 5:
             [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,@"2"];
             break;            
         default:
+            [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
             break;
     }
 
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,contributeInfo.statusNm];
     return cell;
 }
 
@@ -182,10 +160,6 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
-
-
-
 
 #pragma mark -
 #pragma mark Table view delegate

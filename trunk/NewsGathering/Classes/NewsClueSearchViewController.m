@@ -9,6 +9,7 @@
 #import "NewsClueSearchViewController.h"
 #import "DatePicker.h"
 #import "UIAlertTableView.h"
+#import "NewsGatheringAppDelegate.h"
 
 #define START_TIME_PICKER   101
 #define END_TIME_PICKER	    102
@@ -45,7 +46,19 @@
 	self.navigationController.navigationBar.hidden=NO;
     originalContentHeight = [scrollView contentSize].height;
     
-
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    typeArray = appDelegate.typeArray;
+    
+    [newsType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    NSString*locationString=[formatter stringFromDate: [NSDate date]];
+    [startTime setTitle:locationString forState:UIControlStateNormal];
+    [endTime setTitle:locationString forState:UIControlStateNormal];
+    [newsStatus setTitle:@"" forState:UIControlStateNormal];
+    
+    [formatter release];
+    
 }
 
 #pragma -
@@ -359,7 +372,7 @@
     bTimeAlertView = NO;
     tableType = TABLETYPE_CLUETYPE;
     //TEST DATA
-    typeArray = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
+    //typeArray = [[NSArray alloc] initWithObjects:@"类型1",@"类型2",@"类型3",@"类型4",nil];
     
     tmpCellString = [[NSString alloc] initWithString:@""];
     array = [[NSArray alloc] initWithArray:typeArray];

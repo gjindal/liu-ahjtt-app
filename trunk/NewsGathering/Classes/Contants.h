@@ -1,4 +1,24 @@
+//
+typedef enum {
+    DOCTYPE_DRAFT,    // shows glow when pressed
+    DOCTYPE_DELETED,
+} DOCTYPE;
 
+typedef enum {
+    MENUTYPE_SUBMIT,
+    MENUTYPE_MEDIALIB,
+}MENUTYPE;
+
+typedef enum {
+    ALERTTABLE_DOCTYPE,
+    ALERTTABLE_LEVEL,
+    ALERTTABLE_OTHERS
+}ALERTTABLE_TYPE;
+
+typedef enum {
+    TYPE_ADD,
+    TYPE_MODIFY
+}TRANSFORM_TYPE;
 
 
 //login interface
@@ -58,7 +78,7 @@
 #define kInterface_Contri_Submit        @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitApprove.do"       // 提交稿件接口
 #define kInterface_Contri_Resume        @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!rebackById.do"          // 恢复回收站稿件接口
 #define kInterface_Contri_Remove        @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!removeById.do"          // 彻底删除回收站稿件接口
-#define kInterface_Contri_AppList       @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getAppList_pass.do	"   // 查询待审批稿件列表接口
+#define kInterface_Contri_AppList       @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getAppList_pass.do"   // 查询待审批稿件列表接口
 #define kInterface_Contri_Approve       @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 稿件审核接口
 #define kInterface_Contri_Upload        @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 附件上传接口
 #define kInterface_Contri_Download      @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!downloadFile.do"        // 附件下载接口

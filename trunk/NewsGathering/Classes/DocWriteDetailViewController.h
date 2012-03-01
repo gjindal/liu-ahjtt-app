@@ -17,29 +17,9 @@
 #import "ContributeInfo.h"
 #import "UIViewPassValueDelegate.h"
 #import "CustomAlertView.h"
+#import "Contants.h"
 
 @class StorageHelper;
-
-typedef enum {
-    DOCTYPE_DRAFT,    // shows glow when pressed
-    DOCTYPE_DELETED,
-} DOCTYPE;
-
-typedef enum {
-    MENUTYPE_SUBMIT,
-    MENUTYPE_MEDIALIB,
-}MENUTYPE;
-
-typedef enum {
-    ALERTTABLE_DOCTYPE,
-    ALERTTABLE_LEVEL,
-    ALERTTABLE_OTHERS
-}ALERTTABLE_TYPE;
-
-typedef enum {
-    TYPE_ADD,
-    TYPE_MODIFY
-}TRANSFORM_TYPE;
 
 @interface DocWriteDetailViewController : UIViewController
                                         <UITextFieldDelegate,

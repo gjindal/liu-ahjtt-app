@@ -7,6 +7,7 @@
 //
 
 #import "DocRequest.h"
+#import "StorageHelper.h"
 
 #import "UserHelper.h"
 
@@ -203,6 +204,19 @@
     if(endtime == nil) {
         endtime = @"";
     }
+    
+//////////////////////////////
+    
+//    int gData0;
+//    float gData1;
+//    NSString *gData2;
+    
+   // StorageHelper *storeHelper = [[StorageHelper alloc] init];
+    //NSData *reader = [NSData dataWithContentsOfFile:[storeHelper.baseDirectory stringByAppendingFormat:@"/%@",@"test.xml"]];
+    //gData2 = [[NSString alloc] initWithData:reader encoding:NSUTF8StringEncoding];
+   // NSString *filePath = [storeHelper.baseDirectory stringByAppendingFormat:@"/%@",@"test.xml"];
+   // NSString *textFileContents = [NSString stringWithContentsOfFile:filePath];
+    /////////////////////
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, type, begtime, endtime];

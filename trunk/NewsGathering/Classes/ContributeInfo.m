@@ -21,6 +21,7 @@
 @synthesize status = _status;
 @synthesize note = _note;
 @synthesize statusNm = _statusNm;
+@synthesize keyword = _keyword;
 
 - (id)init {
 
@@ -46,7 +47,9 @@
     [_status release];
     [_note release];
     [_statusNm release];
+    [_keyword release];
     
+    _keyword = nil;
     _conid = nil;
     _level = nil;
     _time = nil;
