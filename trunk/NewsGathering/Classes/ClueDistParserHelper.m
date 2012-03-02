@@ -41,6 +41,13 @@
         return;
     }
     
+    _userList = nil;
+    _distList = nil;
+    _deptList = nil;
+    _userInfo = nil;
+    _distInfo = nil;
+    _deptInfo = nil;
+    
     _currentFlag = flag;
     
     _xmlParser = [[NSXMLParser alloc] initWithData:[xmlInfo dataUsingEncoding:NSUTF8StringEncoding]];

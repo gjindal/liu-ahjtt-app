@@ -209,7 +209,7 @@
 }
 
 
--(void)dataDidResponsed:(NSArray *)newsCLueInfoArray flag:(int)flag{
+- (void)dataDidResponsed:(NSArray *)newsCLueInfoArray flag:(int)flag {
     
     if(flag == kFlag_NewsClue_Detail ) {
         

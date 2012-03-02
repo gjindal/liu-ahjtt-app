@@ -40,6 +40,15 @@
         return;
     }
     
+    _docList = nil;
+    _appsList = nil;
+    _attitudeList = nil;
+    _info = nil;
+    _workflowList = nil;
+    _workflowInfo = nil;
+    _attLsInfo = nil;
+    _attLsList = nil;
+    
     _currentFlag = flag;
     
     if(_xmlParser != nil) {

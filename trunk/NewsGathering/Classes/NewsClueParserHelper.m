@@ -37,6 +37,9 @@
         return;
     }
     
+    _array = nil;
+    _info = nil;
+    
     _xmlParser = [[NSXMLParser alloc] initWithData:[xmlInfo dataUsingEncoding:NSUTF8StringEncoding]];
     _xmlParser.delegate = self;
     [_xmlParser parse];
