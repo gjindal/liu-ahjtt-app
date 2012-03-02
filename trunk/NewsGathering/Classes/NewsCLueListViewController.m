@@ -67,6 +67,14 @@
     return self;
 }
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    newsclueRequest = [[NewsClueRequest alloc] init];
+    newsclueRequest.delegate = self;
+
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
@@ -97,9 +105,8 @@
     //reload the data from server
     if (newsclueRequest == nil) {
         newsclueRequest = [[NewsClueRequest alloc] init];
+        newsclueRequest.delegate = self;
     }
-
-    newsclueRequest.delegate = self;
     [newsclueRequest getNewsClueListWithTitle:schNewsclueInfo.title
                                       Keyword:schNewsclueInfo.keyword
                                          Note:schNewsclueInfo.note
@@ -227,11 +234,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (newsclueRequest == nil) {
-        newsclueRequest = [[NewsClueRequest alloc] init];
-    }
-    
-    newsclueRequest.delegate = self;
     NewsClueInfo *newsclueInfo = [dataArray objectAtIndex:indexPath.row];
     [newsclueRequest getNewsClueDetailWithKeyID:newsclueInfo.keyid];
     

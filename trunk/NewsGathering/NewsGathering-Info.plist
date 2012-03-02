@@ -10,10 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>simplenote-icon.png</string>
-	<key>UIPrerenderedIcon</key>
-	<false/>
 	<key>CFBundleIdentifier</key>
-	<string>Sanntuu.GeniusPhone.Santel</string>
+	<string>com.jinjia.newsgathering</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -28,6 +26,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UIPrerenderedIcon</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

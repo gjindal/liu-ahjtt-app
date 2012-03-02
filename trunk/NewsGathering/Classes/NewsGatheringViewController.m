@@ -50,7 +50,7 @@
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
 //	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&token=%@",username,[MD5EncryptProcess md5:password],appDelegate.strDeviceToken];
     NSString *url = [[NSString alloc] initWithFormat:kInterface_Login];
 
 	NSData *returnData = [NetRequest PostData:url withRequestString:post];    

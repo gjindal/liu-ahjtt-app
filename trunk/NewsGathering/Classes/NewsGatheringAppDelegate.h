@@ -25,11 +25,14 @@
     
     NSMutableArray *levelArray;
     NSMutableArray *typeArray;
+    NSString *strDeviceToken;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet NewsGatheringViewController *viewController;
 
+@property (nonatomic, retain) NSString *strDeviceToken;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSMutableArray *levelArray;

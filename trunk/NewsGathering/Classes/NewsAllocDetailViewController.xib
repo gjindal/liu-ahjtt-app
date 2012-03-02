@@ -291,7 +291,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+								<string key="IBUIText"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -837,7 +837,6 @@
 							<string>clueTitle</string>
 							<string>clueType</string>
 							<string>contents</string>
-							<string>dispatchedTableView</string>
 							<string>imgContentsBgd</string>
 							<string>scrollView</string>
 							<string>sendUserName</string>
@@ -850,7 +849,6 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UITextView</string>
-							<string>UITableView</string>
 							<string>UIImageView</string>
 							<string>UIScrollView</string>
 							<string>UILabel</string>
@@ -866,7 +864,6 @@
 							<string>clueTitle</string>
 							<string>clueType</string>
 							<string>contents</string>
-							<string>dispatchedTableView</string>
 							<string>imgContentsBgd</string>
 							<string>scrollView</string>
 							<string>sendUserName</string>
@@ -896,10 +893,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">contents</string>
 								<string key="candidateClassName">UITextView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dispatchedTableView</string>
-								<string key="candidateClassName">UITableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">imgContentsBgd</string>

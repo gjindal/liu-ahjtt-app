@@ -17,6 +17,7 @@
 @synthesize loginSuccessInfo;
 @synthesize levelArray;
 @synthesize typeArray;
+@synthesize strDeviceToken;
 
 
 #pragma mark -
@@ -24,7 +25,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-    // Override point for customization after application launch.
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
 
     // Add the view controller's view to the window and display.
 	viewController = [[NewsGatheringViewController alloc] initWithNibName:@"NewsGatheringViewController" bundle:nil];
@@ -45,14 +47,16 @@
                                                forKeys:[NSArray arrayWithObjects:@"TryTimes", @"ServerURL", nil]];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
-    
-    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
 
     return YES;
 }
 
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    
+    
     NSLog(@"My token is:%@",deviceToken);
+    strDeviceToken = [[NSString alloc] initWithFormat:@"%@",deviceToken];
 }
 
 -(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
