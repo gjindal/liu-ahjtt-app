@@ -8,6 +8,8 @@
 
 #import "NetRequest.h"
 
+
+
 @implementation NetRequest
 
 
@@ -45,4 +47,8 @@
 	return returnData;
 
 }
+
+
+
+
 @end

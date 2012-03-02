@@ -11,6 +11,7 @@
 #import "DocRequest.h"
 #import "DocDetail.h"
 #import "DocSearchViewController.h"
+#import "CustomAlertView.h"
 
 typedef enum{
     NEXTPAGE_SEARCH,
@@ -27,8 +28,10 @@ typedef enum{
     DocRequest *docRequest;
     
     DocSearchViewController *docSearchVtrl;
+    CustomAlertView *alertView;
     
     NEXTPAGE nextPage;//标记返回页，如果是搜索返回就要显示结果
+    int nDeleteIndex;
     
 }
 

@@ -28,7 +28,8 @@
                                                              UINavigationControllerDelegate, 
                                                              UIAlertViewDelegate,
                                                              ASIHTTPRequestDelegate,
-                                                             DocRequestDelegate,UIViewPassValueDelegate> 
+                                                             DocRequestDelegate,UIViewPassValueDelegate,
+                                                            NSURLConnectionDataDelegate> 
 {
 	
     IBOutlet UIScrollView *scrollView;
@@ -40,6 +41,7 @@
 	IBOutlet UITextField *fdSource;
     IBOutlet UIButton *btType;
     IBOutlet UIButton *btLevel;
+    IBOutlet UIButton *btReceptor;
 	IBOutlet UITextView *contents;
 
 	IBOutlet UITableView *attachTable;
@@ -74,11 +76,18 @@
     ASIFormDataRequest *request;
     WorkflowInfo *workflowInfo;
     NSString *tmpCellString;
+    int attachIndex;
     
     NSMutableArray *dispatchedArray;
     NSString *dispatchedUsersName;
     NSString *dispatchedUsersID;
     CustomAlertView *alert;
+    
+    NSMutableData *receivedData;
+    NSURLConnection *urlConnect;
+    
+    NSFileHandle *file;
+    NSString *fileName;
 
 }
 
@@ -88,9 +97,14 @@
 @property (nonatomic,retain)	NSMutableArray *dispatchedArray;
 @property (nonatomic,retain)	NSString *dispatchedUsersName;
 @property (nonatomic,retain)	NSString *dispatchedUsersID;
+@property (nonatomic,retain)	NSMutableArray *typeArray;
+@property (nonatomic,retain)	NSMutableArray *levelArray;
+@property (nonatomic,retain)	NSIndexPath *lastTypeIndexPath;
+@property (nonatomic,retain)	NSIndexPath *lastLevelIndexPath;
 
 @property (nonatomic,retain)	ContributeInfo *contributeInfo;
 @property (nonatomic,retain)	DocRequest *docRequest;
+@property (retain, nonatomic)   ASIFormDataRequest *request;
 
 @property (nonatomic,retain)	IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
@@ -119,7 +133,17 @@
 -(IBAction)setType:(id)sender;
 -(IBAction)setReceptor:(id)sender;
 
+- (void) beginDownloadWithID:(NSString *)ID;
+
+-(void) showMediaWithFile:(NSString *) fileName1;
+
 -(void) initForm;
+-(void) submitDoc;
+
+-(void) saveDoc;
+-(void) shareToWB;
+-(void) passAudit;
+-(void) goBack;
 
 
 @end

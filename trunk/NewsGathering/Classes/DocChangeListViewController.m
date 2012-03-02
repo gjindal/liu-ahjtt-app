@@ -13,6 +13,7 @@
 #import "ContributeInfo.h"
 
 
+
 @implementation DocChangeListViewController
 @synthesize docDetail;
 @synthesize docRequest;
@@ -60,7 +61,7 @@
     self.tableView.dataSource = self;
     
     dataArray = [[NSMutableArray alloc] initWithCapacity:0];
-    
+    alertView = [[CustomAlertView alloc] init];
     docRequest = [[DocRequest alloc] init];
     docRequest.delegate = self;    
     
@@ -161,14 +162,46 @@
     return YES;
 }
 
+
+
 #pragma mark -
 #pragma mark Table view delegate
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.tableView beginUpdates];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        nDeleteIndex = indexPath.row;
+        [docRequest deleteDocWithConid:((ContributeInfo *)[dataArray objectAtIndex:indexPath.row]).conid];
+        
+    }   
+    
+    [self.tableView endUpdates];
+    //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    //    }   
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *strID = ((ContributeInfo *)[dataArray objectAtIndex:[indexPath row]]).conid;
     [docRequest getDocDetailWithConid:strID];
     
+}
+
+-(void)deleteDocDidFinished:(ContributeInfo *)contributeInfo{
+    if ([contributeInfo.flag isEqualToString:@"200"]) {
+        [dataArray removeObjectAtIndex:nDeleteIndex];
+        [alertView alertInfo:@"删除成功" withTitle:nil];
+        [self.tableView reloadData];
+    }else{
+        [alertView alertInfo:@"删除失败" withTitle:nil];
+    }
 }
 
 - (void)getDocDetailDidFinished:(ContributeInfo *)contributeInfo{

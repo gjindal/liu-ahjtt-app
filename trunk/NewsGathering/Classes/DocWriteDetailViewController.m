@@ -242,10 +242,6 @@
 
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
-	//appDelegate.networkActivityIndicatorVisible = YES;
-    
-    
-	//NSString *post = [[NSString alloc] initWithFormat:@"&userid=%@&pwd=%@flowid=%@",appDelegate.username,appDelegate.password,@"1234567890123456"];
     NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
     [request cancel];
@@ -265,7 +261,6 @@
 	}
 	
 	[request startAsynchronous];
-
 
 }
 
@@ -339,7 +334,7 @@
 -(void)submitDoc{
     
     menuType = MENUTYPE_SUBMIT;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到本地",@"提交审核",@"分享到微博",@"提交并分享",nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到本地",@"提交审核",nil];
     actionSheet.delegate = self;
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -397,17 +392,8 @@
             case 1:
                 [self submitForAudit];
                 break;
-            case 2:
-                [self shareToWB];
-                break;
-            case 3:
-                [self submitForAudit];
-                [self shareToWB];
-                break;
-            case 4:
-                [alert hideWaiting];
-                break;
             default:
+                [alert hideWaiting];
                 break;
         }
     }
@@ -655,9 +641,6 @@
             }
         }
     }
-    
-
-	
 }
 
 #pragma -
@@ -767,15 +750,13 @@
     if(_docDetail != nil && transformType == TYPE_MODIFY) {
     
         fdTitle.text    = _docDetail.title;
-//        btType.titleLabel.text  = _docDetail.docType;
         [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
         fdKeyword.text      = _docDetail.key;
         fdDocSource.text   = _docDetail.source;
-//        btLevel.titleLabel.text    = _docDetail.level;
         [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
-//        btReceptor.titleLabel.text = _docDetail.recevicer;
         [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
         contents.text  = _docDetail.content;
+        
         
         if(self.attachArray == nil)
             self.attachArray = [[NSMutableArray arrayWithArray:_docDetail.attachments] retain];
@@ -785,6 +766,10 @@
         if(self.attachArray == nil)
             self.attachArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
+    
+    //初始时要获取流程
+    docRequest.delegate = self;
+    [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",1]];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

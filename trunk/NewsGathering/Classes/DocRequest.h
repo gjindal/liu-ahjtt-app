@@ -16,10 +16,13 @@
 #import "NetRequest.h"
 
 
-@interface DocRequest : NetRequest<DocParserHelperDelegate> {
+@interface DocRequest : NetRequest<DocParserHelperDelegate,NSURLConnectionDataDelegate> {
 @private
     id<DocRequestDelegate>      _delegate;
     DocParserHelper            *_parser;
+    NSURLConnection            *_urlConnection;
+    NSMutableData               *receivedData;
+    NSString                    *fileName;
 }
 
 @property (nonatomic, assign) id<DocRequestDelegate> delegate;
@@ -53,8 +56,11 @@
 - (void)approveWithConid:(NSString *)conid Apps:(NSString *)apps;
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName;
 - (void)getWorkflowWithLevel:(NSString *)level;
+- (NSData *)dowloadAttachWithID:(NSString *)ID;
 - (void)getCycleListWithTitle:(NSString *)title Keyword:(NSString *)keyword 
                          Type:(NSString *)type Begtime:(NSString *)begtime
                       Endtime:(NSString *)endtime;
+
+- (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1;
 
 @end

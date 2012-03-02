@@ -49,40 +49,119 @@
 @synthesize dispatchedArray;
 @synthesize dispatchedUsersID;
 @synthesize dispatchedUsersName;
+@synthesize typeArray;
+@synthesize levelArray;
+@synthesize lastTypeIndexPath;
+@synthesize lastLevelIndexPath;
+@synthesize request;
 
 
--(IBAction) getPhoto{
-	
-	
-}
+//////////
 
--(IBAction) getRecord{
-	
-	
-}
-
--(IBAction) getVideo{
-	
-	
-}
-
--(void)passDoc{
-	
-}
-
-
-- (void)back:(id)sender {  
-    [self.navigationController popViewControllerAnimated:YES];  
-}
-
--(void)initForm{
+#pragma mark - 
+#pragma mark Submit Action
+-(void) saveDoc{
     
-    [btLevel setTitle:contributeInfo.level forState:UIControlStateNormal];
-    [btType setTitle:contributeInfo.type forState:UIControlStateNormal];
-    fdTitle.text = contributeInfo.title;
+    //上传前验证必填项
+    if( [fdTitle.text length]<1){
+        [alert alertInfo:@"标题不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdKeyword.text length]<1){
+        [alert alertInfo:@"关键字不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [contents.text length]<1){
+        [alert alertInfo:@"内容不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdSource.text length]<1){
+        [alert alertInfo:@"稿源不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [btType.titleLabel.text length]<1){
+        [alert alertInfo:@"类型不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( (workflowInfo.opttype == nil)||[btLevel.titleLabel.text length]<1){
+        [alert alertInfo:@"审核级别不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
+    if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
+        [alert alertInfo:@"接收人不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	
+    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,contributeInfo.flowID];
+    
+    [request cancel];
+    [request setRequestMethod:@"post"];    
+	[self setRequest:[ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]]];
+    
+	[request setTimeOutSeconds:20];
+    
+    [request setDelegate:self];
+	[request setDidFailSelector:@selector(respnoseFailed:)];
+	[request setDidFinishSelector:@selector(responseComplete:)];
+    
+    StorageHelper *helper = [[StorageHelper alloc] init];
+    for (NSString *filePath in attachArray) {
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",helper.baseDirectory,filePath];
+		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
+        break;
+	}
+	[helper release];
+	[request startAsynchronous];
 
+    [alert hideWaiting];
 }
 
+-(void) shareToWB{
+
+    [alert hideWaiting];
+}
+
+-(void) passAudit{
+    
+  	
+
+    [alert hideWaiting];
+}
+-(void) goBack{
+
+    [alert hideWaiting];
+}
+
+-(void)submitDoc{
+    
+    menuType = MENUTYPE_SUBMIT;
+    if ([contributeInfo.status isEqualToString:@"4"]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过",@"打回",nil];
+        actionSheet.delegate = self;
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+    }else if([contributeInfo.status isEqualToString:@"99"]){
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到微博",nil];
+        actionSheet.delegate = self;
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+    }else if([contributeInfo.status isEqualToString:@"5"]){
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存修改",nil];
+        actionSheet.delegate = self;
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+    }
+}
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -118,25 +197,134 @@
         [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
         switch (buttonIndex) {
             case 0:
-               // [self saveDoc];
+                if ([contributeInfo.status isEqualToString:@"4"]) {
+                    [self saveDoc];
+                }else if([contributeInfo.status isEqualToString:@"99"]){
+                    
+                    [self shareToWB];
+                }
                 break;
             case 1:
-                //[self submitForAudit];
+                [self passAudit];
                 break;
             case 2:
-                //[self shareToWB];
+                [self goBack];
                 break;
             case 3:
-               // [self submitForAudit];
-               // [self shareToWB];
-                break;
-            case 4:
                 //[alert hideWaiting];
                 break;
             default:
                 break;
         }
     }
+}
+
+
+
+#pragma mark - 
+#pragma mark Click media Action
+-(IBAction) getPhoto {
+    
+    menuType = MENUTYPE_MEDIALIB;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+-(IBAction) getRecord {
+    
+    AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+    alertView.cancelButtonIndex = 1;
+    alertView.delegate = self;
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
+    imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
+    [alertView addSubview:imgView];
+    [imgView release];
+    
+    UIView *subView = [alertView viewWithTag:1];
+    if(subView != nil) {
+        
+        UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
+        theTitle.text = @"开始";
+        theTitle.tag = 101;
+        [theTitle setTextColor:[UIColor whiteColor]];
+        [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+        [theTitle setBackgroundColor:[UIColor clearColor]];             
+        [theTitle setTextAlignment:UITextAlignmentCenter];
+        [subView addSubview:theTitle];
+    }
+    
+    [alertView show];
+    [alertView release];
+    
+}
+
+-(IBAction) getVideo {
+    
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
+        videoCtrl.delegate = self;
+        videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+        videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        [self presentModalViewController:videoCtrl animated:YES];
+        [videoCtrl release];
+    }
+    
+}
+
+
+- (void)back:(id)sender {  
+    [self.navigationController popViewControllerAnimated:YES];  
+}
+
+-(void)initForm{
+    
+    NSString *strType = [typeArray objectAtIndex:[contributeInfo.level intValue]];
+    NSString *strLevel = [typeArray objectAtIndex:[contributeInfo.type intValue]];
+    [btLevel setTitle:strType forState:UIControlStateNormal];
+    [btType setTitle:strLevel forState:UIControlStateNormal];
+    fdTitle.text = contributeInfo.title;
+    contents.text = contributeInfo.note;
+    txtMessage.text = [contributeInfo.attitudeList objectAtIndex:0];
+    //fdSource.text = contributeInfo.
+    
+    if ([contributeInfo.status isEqualToString:@"5"]) {
+        btType.enabled = YES;
+        btLevel.enabled = YES;
+        fdSource.enabled = YES;
+        contents.editable = YES;
+        fdTitle.enabled = YES;
+        fdKeyword.enabled = YES;
+        btRecorder.enabled = YES;
+        btVideo.enabled = YES;
+        btCamera.enabled = YES;
+        txtMessage.hidden = NO;
+        txtMessage.editable = NO;
+    }else{
+        btType.enabled = NO;
+        btLevel.enabled = NO;
+        fdSource.enabled = NO;
+        contents.editable = NO;
+        fdTitle.enabled = NO;
+        fdKeyword.enabled = NO;
+        
+        btRecorder.enabled = NO;
+        btVideo.enabled = NO;
+        btCamera.enabled = NO;
+        if ([contributeInfo.status isEqualToString:@"4"]) {
+            txtMessage.hidden = NO;
+            txtMessage.editable = YES;
+        }else{
+            txtMessage.hidden = YES;
+            txtMessage.editable = NO;
+        }
+    }
+    
+    
+    
 }
 
 -(IBAction)setLevel:(id)sender{
@@ -245,10 +433,9 @@
         cell.textLabel.text = [levelArray objectAtIndex:row];
         cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }else{
-        cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = ((AttLsInfo *)[self.attachArray objectAtIndex:indexPath.row]).fileName;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
-        
     }
     return cell;
 }
@@ -320,70 +507,95 @@
         }
         
     }else{
-/*
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if(cell != nil) {
             
-            NSString *fileName = cell.textLabel.text;
-            NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
-            
-            NSData *data = [_storeHelper readFileWithName:fileName];
-            if(data != nil) {
-                
-                if([fileType isEqualToString:kMediaType_Image]) {
-                    
-                    UIImage *image = [[UIImage alloc] initWithData:data];
-                    ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
-                    //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
-                    imagePlayCtrl.image = image;
-                    //[self presentModalViewController:imagePlayCtrl animated:YES];
-                    [self.navigationController pushViewController:imagePlayCtrl animated:YES];
-                    [image release];
-                    [imagePlayCtrl release];
-                    
-                }else if([fileType isEqualToString:kMediaType_Video]) {
-                    
-                    NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName];
-                    MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-                    //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
-                    //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
-                    [self presentMoviePlayerViewControllerAnimated:videoPlayCtrl];
-                    [videoPlayCtrl release];
-                    
-                }else if([fileType isEqualToString:kMediaType_Audio]) {
-                    
-                    AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
-                    alertView.cancelButtonIndex = 1;
-                    alertView.audioData = data;
-                    //alertView.delegate = self;
-                    
-                    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
-                    imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
-                    [alertView addSubview:imgView];
-                    [imgView release];
-                    
-                    UIView *subView = [alertView viewWithTag:1];
-                    if(subView != nil) {
-                        
-                        UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
-                        theTitle.text = @"开始";
-                        theTitle.tag = 101;
-                        [theTitle setTextColor:[UIColor whiteColor]];
-                        [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
-                        [theTitle setBackgroundColor:[UIColor clearColor]];             
-                        [theTitle setTextAlignment:UITextAlignmentCenter];
-                        [subView addSubview:theTitle];
-                    }
-                    
-                    [alertView show];
-                    [alertView release];
-                }
+            attachIndex = indexPath.row;
+            fileName = [cell.textLabel.text copy];
+            //如果这个file有有效的id，说明是网络上的文件，需要下载才能看到，否则直截打开
+            NSString *attachID = ((AttLsInfo *)[attachArray objectAtIndex:attachIndex]).attLsID;
+            if(![attachID isEqualToString:kAttachID_Invalide]){
+                [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
+                [docRequest beginDownloadWithID:attachID andFileName:fileName];
+            }else{
+                [self showMediaWithFile:fileName];                
             }
-        }*/
+        }
+        
     }
     
-    
-	
+}
+
+-(void) showMediaWithFile:(NSString *) fileName1{
+
+    NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
+    NSData *data = [_storeHelper readFileWithName:fileName1];
+    if(data != nil) {
+        if([fileType isEqualToString:kMediaType_Image]) {
+            
+            UIImage *image = [[UIImage alloc] initWithData:data];
+            ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
+            //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
+            imagePlayCtrl.image = image;
+            //[self presentModalViewController:imagePlayCtrl animated:YES];
+            [self.navigationController pushViewController:imagePlayCtrl animated:YES];
+            [image release];
+            [imagePlayCtrl release];
+            
+        }else if([fileType isEqualToString:kMediaType_Video]) {
+            
+            NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName1];
+            MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
+            //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
+            //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
+            [self presentMoviePlayerViewControllerAnimated:videoPlayCtrl];
+            [videoPlayCtrl release];
+            
+        }else if([fileType isEqualToString:kMediaType_Audio]) {
+            
+            AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+            alertView.cancelButtonIndex = 1;
+            alertView.audioData = data;
+            //alertView.delegate = self;
+            
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"microphone 1.png"]];
+            imgView.frame =CGRectMake(80.0f, 45.0f, imgView.frame.size.width, imgView.frame.size.height);
+            [alertView addSubview:imgView];
+            [imgView release];
+            
+            UIView *subView = [alertView viewWithTag:1];
+            if(subView != nil) {
+                
+                UILabel *theTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 127, 44)];
+                theTitle.text = @"开始";
+                theTitle.tag = 101;
+                [theTitle setTextColor:[UIColor whiteColor]];
+                [theTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+                [theTitle setBackgroundColor:[UIColor clearColor]];             
+                [theTitle setTextAlignment:UITextAlignmentCenter];
+                [subView addSubview:theTitle];
+            }
+            
+            [alertView show];
+            [alertView release];
+        }
+
+
+    }
+}
+
+
+-(void) downloadDidFinished:(BOOL)isSuccess{
+
+    if (isSuccess) {
+        [alert hideWaiting];
+        //[alert alertInfo:@"下载成功" withTitle:nil];
+        
+        [self showMediaWithFile:fileName]; 
+    }else{
+        [alert hideWaiting];
+        [alert alertInfo:@"下载失败" withTitle:@"错误"];
+    }
 }
 
 #pragma -
@@ -397,7 +609,10 @@
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
     
-    [(NSMutableArray *)self.attachArray addObject:imageName];
+    AttLsInfo *attlsInfo = [[AttLsInfo alloc] init];
+    attlsInfo.fileName = imageName;
+    attlsInfo.attLsID = kAttachID_Invalide;
+    [(NSMutableArray *)self.attachArray addObject:attlsInfo];
     [imageName release];
     [self.attachTable reloadData];
     
@@ -458,11 +673,15 @@
 	self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
 	
-	UIBarButtonItem *passButton=[[UIBarButtonItem alloc]initWithTitle: @"通过" style:UIBarButtonItemStyleBordered target:self action:@selector(passDoc)];
-	passButton.style=UIBarButtonItemStylePlain;
-	self.navigationItem.rightBarButtonItem=passButton;
-	[passButton release];
+    if (![contributeInfo.status isEqualToString:@"3"]){
+        
+        UIBarButtonItem *passButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitDoc)];
+        passButton.style=UIBarButtonItemStylePlain;
+        self.navigationItem.rightBarButtonItem=passButton;
+        [passButton release];
+    }
     
+    alertType = ALERTTABLE_OTHERS;
     [self initForm];
 	
 }
@@ -472,13 +691,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	//lblMessage = [[UILabel alloc]initWithFrame:CGRectMake(10.0,900.0, 200.0, 30.0)];
-	//lblMessage.text = @"留言：";
-	//[self.view addSubview:lblMessage];
-	//txtMessage = [[UITextView alloc]initWithFrame:CGRectMake(10.0, 930.0, 300, 100)];
-	//[self.view addSubview:txtMessage];
-	
+
 	[scrollView setContentSize:CGSizeMake(320, 1200)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
@@ -500,13 +713,19 @@
 	if(imgMessageBgd.image != nil)
 		[self.txtMessage setBackgroundColor:[UIColor clearColor]];
 	
-	self.attachArray = [NSArray arrayWithObjects:	@"Voice_2012-02-05 08:30:00",
-						@"Video_2012_02-05 09:00:00",
-						@"Image_2012_02-06 10:00:01",
-						nil];
+	self.attachArray = [[NSMutableArray alloc] initWithArray:contributeInfo.attLsList];
+    
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    self.levelArray = appDelegate.levelArray;
+    self.typeArray = appDelegate.typeArray;
 	
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
+    
+    alert = [[CustomAlertView alloc] init];
+    docRequest = [[DocRequest alloc] init];
+    docRequest.delegate = self;
+    _storeHelper = [[StorageHelper alloc] init];
 }
 
 

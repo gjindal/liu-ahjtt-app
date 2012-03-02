@@ -259,6 +259,14 @@
     }
 }
 
+
+- (NSData *)dowloadAttachWithID:(NSString *)ID{
+    NSString *post = [NSString stringWithFormat:@"&id=%@", ID];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Download withRequestString:post];
+    return returnData;
+}
+
+
 - (void)getCycleListWithTitle:(NSString *)title Keyword:(NSString *)keyword 
                          Type:(NSString *)type Begtime:(NSString *)begtime
                       Endtime:(NSString *)endtime {
@@ -293,6 +301,74 @@
         [returnString release];
     }
 }
+
+
+#pragma mark - 
+#pragma mark Download File
+- (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1 {
+	NSString *string =[[NSString alloc]initWithFormat:@"%@?usercode=%@&password=%@&id=%@", kInterface_Contri_Download, [UserHelper userName], [UserHelper password], ID]; 
+    fileName = [fileName1 copy];
+    
+    NSURLRequest *request1 = [NSURLRequest requestWithURL:[NSURL URLWithString:string]];
+    _urlConnection = [[NSURLConnection alloc]initWithRequest:request1 delegate:self];
+    
+    if(_urlConnection) {
+        receivedData = [[NSMutableData data]retain];
+    }
+    else {
+        NSLog(@"connection Faild");
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
+    
+    [receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [receivedData appendData:data];
+    
+    /*NSFileHandle *handle = [NSFileHandle      fileHandleForWritingAtPath:@"...."];
+     [handle seekToEndOfFile];
+     [handle writeData:data];
+     [handle closeFile];
+     [str release];*/
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [connection release];
+    [receivedData release];
+    
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(downloadDidFinished:)]) {
+        
+        [_delegate downloadDidFinished:NO];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    [connection release];
+    //NSFileManager *fileManager = [[NSFileManager alloc]init];
+    StorageHelper *helper = [[StorageHelper alloc] init];
+
+    BOOL result = NO;
+    result = [helper createFileWithName:fileName data:receivedData];
+    
+    [helper release];
+    
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(downloadDidFinished:)]) {
+    
+        [_delegate downloadDidFinished:result];
+    }
+    
+    NSLog(@"connection Finished");
+}
+
+
+
+
+
 
 #pragma -
 #pragma DocParserHelperDelegate Support.

@@ -20,6 +20,7 @@ typedef enum {
     TYPE_MODIFY
 }TRANSFORM_TYPE;
 
+#define kAttachID_Invalide @"-1"
 
 //login interface
 #define kInterface_Login @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/loginM!submit.do"
