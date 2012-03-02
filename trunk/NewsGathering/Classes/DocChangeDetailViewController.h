@@ -63,6 +63,7 @@
 	CGFloat oldContentOffsetValue;
 	BOOL isNeedSetOffset; 
     
+    BOOL enableEdit;
     ContributeInfo *contributeInfo;
     DocRequest *docRequest;
     StorageHelper *_storeHelper;

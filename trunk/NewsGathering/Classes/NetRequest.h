@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CustomAlertView.h"
 
 #define SERVER_URL @"http://hfhuadi.vicp.cc:8080/editmobile/mobile"
 
 static NSData *returnData=nil;
+static CustomAlertView *netBussyAlertView = nil;
 @interface NetRequest : NSObject{
 
+    
 }
 
 +(void)cancelURLConnection:(NSTimer *)timer;

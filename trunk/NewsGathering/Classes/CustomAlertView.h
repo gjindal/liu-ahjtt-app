@@ -16,5 +16,7 @@
 -(void)showWaitingWithTitle:(NSString *)title andMessage:(NSString *)message;
 -(void)hideWaiting;
 -(void)alertInfo:(NSString *)info withTitle:(NSString *)title;
++(void)NetStart;
++(void)NetEnd;
 
 @end

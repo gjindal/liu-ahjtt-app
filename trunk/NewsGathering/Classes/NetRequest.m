@@ -7,6 +7,7 @@
 //
 
 #import "NetRequest.h"
+#import "CustomAlertView.h"
 
 
 
@@ -27,6 +28,10 @@
 +(NSData*) PostData:(NSString*) serverURL withRequestString:(NSString *) strPost{
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    if (netBussyAlertView == nil) {
+        netBussyAlertView = [[CustomAlertView alloc] init];
+    }
+    [netBussyAlertView showWaitingWithTitle:@"数据加载中" andMessage:@"请等待..."];
 
 	NSData *postData =[NSData dataWithBytes:[strPost UTF8String] length:[strPost length]];
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
@@ -43,7 +48,7 @@
 	returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
+    [netBussyAlertView hideWaiting];
 	return returnData;
 
 }

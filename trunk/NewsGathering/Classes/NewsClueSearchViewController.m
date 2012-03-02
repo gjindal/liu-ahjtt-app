@@ -152,6 +152,11 @@
 	if(contentsBackground.image != nil)
         [self.contents setBackgroundColor:[UIColor clearColor]];
     
+    statusArray = [[NSArray alloc] initWithObjects:@"草稿",@"提交待派发",@"已派发",nil ];
+    
+    tmpCellString = [[NSString alloc] initWithString:@""];
+    
+    array = [[NSArray alloc] initWithArray:statusArray];
 
 }
 
@@ -395,11 +400,6 @@
     bTimeAlertView = NO;
     tableType = TABLETYPE_CLUESTATUS;
     //TEST DATA
-    statusArray = [[NSArray alloc] initWithObjects:@"已处理",@"未处理", nil ];
-    
-    tmpCellString = [[NSString alloc] initWithString:@""];
-
-    array = [[NSArray alloc] initWithArray:statusArray];
 
     UIAlertTableView *alert = [[UIAlertTableView alloc] initWithTitle:@"选择线索状态"
 															  message:nil
@@ -419,8 +419,10 @@
 - (IBAction)confirm{
 
     newsclueInfo.title = self.newsTitle.text;
-    newsclueInfo.type = self.newsType.titleLabel.text;
-    newsclueInfo.status = self.newsStatus.titleLabel.text;
+    int nType = [typeArray indexOfObject:self.newsType.titleLabel.text]+1;
+    newsclueInfo.type = [[NSString alloc] initWithFormat:@"%d",nType];
+    int nStatus = [statusArray indexOfObject:self.newsStatus.titleLabel.text];
+    newsclueInfo.status = [[NSString alloc] initWithFormat:@"%d",nStatus];
     newsclueInfo.keyword = self.newsKeyword.text;
     newsclueInfo.begtimeshow = self.startTime.titleLabel.text;
     newsclueInfo.endtimeshow = self.endTime.titleLabel.text;
@@ -444,9 +446,9 @@
 
 
 - (void)dealloc {
-    [array release];
-    [statusArray release];
-    [typeArray release];
+    //[array release];
+    //[statusArray release];
+    //[typeArray release];
     [scrollView release];
     [super dealloc];
 }

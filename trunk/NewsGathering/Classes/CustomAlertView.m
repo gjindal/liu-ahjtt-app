@@ -19,6 +19,20 @@
     return self;
 }
 
++(void)NetStart{
+    UIAlertView* uploadAlertView1= [[UIAlertView alloc] initWithTitle:@"数据加载中" message:@"请等待..." 
+                                               delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+	
+    UIActivityIndicatorView* activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityView.frame = CGRectMake(139.0f-18.0f, 80.0f, 27.0f, 27.0f);
+    [uploadAlertView1 addSubview:activityView];
+    [activityView startAnimating];
+    [activityView release];
+    [uploadAlertView1 show];
+}
++(void)NetEnd{
+    
+}
 
 -(void)showWaitingWithTitle:(NSString *)title andMessage:(NSString *)message{
     uploadAlertView= [[UIAlertView alloc] initWithTitle:title message:message 

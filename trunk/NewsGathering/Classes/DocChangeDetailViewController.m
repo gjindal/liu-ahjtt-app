@@ -128,12 +128,13 @@
 
 -(void) shareToWB{
 
+   // [docRequest ]
     [alert hideWaiting];
 }
 
 -(void) passAudit{
     
-  	
+  	//[docRequest ]
 
     [alert hideWaiting];
 }
@@ -197,10 +198,9 @@
         [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
         switch (buttonIndex) {
             case 0:
-                if ([contributeInfo.status isEqualToString:@"4"]) {
+                if (enableEdit) {
                     [self saveDoc];
                 }else if([contributeInfo.status isEqualToString:@"99"]){
-                    
                     [self shareToWB];
                 }
                 break;
@@ -291,7 +291,7 @@
     txtMessage.text = [contributeInfo.attitudeList objectAtIndex:0];
     //fdSource.text = contributeInfo.
     
-    if ([contributeInfo.status isEqualToString:@"5"]) {
+    if (enableEdit) {
         btType.enabled = YES;
         btLevel.enabled = YES;
         fdSource.enabled = YES;
@@ -584,6 +584,17 @@
     }
 }
 
+-(void)getEditListDidFinished:(NSArray *)workflowArray{
+    
+    for(WorkflowInfo *flowInfo in workflowArray){
+        if ([contributeInfo.level isEqualToString:flowInfo.begStatus]) {
+            enableEdit = YES;
+        }
+        else{
+            enableEdit = NO;
+        }
+    }
+}
 
 -(void) downloadDidFinished:(BOOL)isSuccess{
 
@@ -726,6 +737,10 @@
     docRequest = [[DocRequest alloc] init];
     docRequest.delegate = self;
     _storeHelper = [[StorageHelper alloc] init];
+    
+    //查询是否可修改
+    enableEdit = YES;
+    [docRequest getEditListWithLevel:contributeInfo.level];
 }
 
 
