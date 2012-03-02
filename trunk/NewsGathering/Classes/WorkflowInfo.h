@@ -16,6 +16,7 @@
     NSString *_opttype;
     NSString *_remark;
     NSString *_roleid;
+    NSString *_begStatus;
 }
 
 @property (nonatomic, retain) NSString *endStatus;
@@ -24,5 +25,6 @@
 @property (nonatomic, retain) NSString *opttype;
 @property (nonatomic, retain) NSString *remark;
 @property (nonatomic, retain) NSString *roleid;
+@property (nonatomic, retain) NSString *begStatus;
 
 @end

@@ -302,6 +302,21 @@
     }
 }
 
+- (void)getEditListWithLevel:(NSString *)level {
+
+    if(level == nil) {
+        level = @"";
+    }
+    
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&level=%@",
+                      [UserHelper userName], [UserHelper password], level];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Edit_List withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Edit_List];
+        [returnString release];
+    }
+}
 
 #pragma mark - 
 #pragma mark Download File
@@ -364,11 +379,6 @@
     
     NSLog(@"connection Finished");
 }
-
-
-
-
-
 
 #pragma -
 #pragma DocParserHelperDelegate Support.
@@ -461,6 +471,13 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(getCycleListDidFinished:)]) {
         [_delegate getCycleListDidFinished:docList];
+    }
+}
+
+- (void)getEditListDidFinished:(NSArray *)workflowArray {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(getEditListDidFinished:)]) {
+        [_delegate getEditListDidFinished:workflowArray];
     }
 }
 

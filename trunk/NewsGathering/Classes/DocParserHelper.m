@@ -262,6 +262,9 @@
     }else if([elementName isEqualToString:@"roleid"]) {
     
         _workflowInfo.roleid = _currentValue;
+    }else if([elementName isEqualToString:@"begstatus"]) {
+    
+        _workflowInfo.begStatus = _currentValue;
     }else if([elementName isEqualToString:@"wfls"]) {
     
         [_workflowList addObject:_workflowInfo];
@@ -269,9 +272,22 @@
         _workflowInfo = nil;
     }else if([elementName isEqualToString:@"WorkFlowList"]) {
     
-        if(_delegate != nil && [_delegate respondsToSelector:@selector(getWorkflowDidFinished:)]) {
+        SEL sel = nil;
         
-            [_delegate getWorkflowDidFinished:[_workflowList autorelease]];
+        if(_currentFlag == KFlag_Contri_Get_Workflow) {
+        
+            sel = @selector(getWorkflowDidFinished:);
+        }
+        
+        if(_currentFlag == kFlag_Contri_Get_Edit_List) {
+        
+            sel = @selector(getEditListDidFinished:);
+        }
+        
+        if(_delegate != nil && [_delegate respondsToSelector:sel]) {
+        
+            [_delegate performSelector:sel withObject:[_workflowList autorelease]];
+//            [_delegate getWorkflowDidFinished:[_workflowList autorelease]];
         }
     }else if([elementName isEqualToString:@"filename"]) {
     

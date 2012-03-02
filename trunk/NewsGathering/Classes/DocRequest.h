@@ -62,5 +62,6 @@
                       Endtime:(NSString *)endtime;
 
 - (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1;
+- (void)getEditListWithLevel:(NSString *)level;
 
 @end

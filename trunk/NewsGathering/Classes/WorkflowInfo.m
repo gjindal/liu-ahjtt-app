@@ -16,6 +16,7 @@
 @synthesize opttype = _opttype;
 @synthesize remark = _remark;
 @synthesize roleid = _roleid;
+@synthesize begStatus = _begStatus;
 
 - (void)dealloc {
 
@@ -25,6 +26,7 @@
     [_opttype release];
     [_remark release];
     [_roleid release];
+    [_begStatus release];
     
     _endStatus = nil;
     _flowid = nil;
@@ -32,6 +34,7 @@
     _opttype = nil;
     _remark = nil;
     _roleid = nil;
+    _begStatus = nil;
     
     [super dealloc];
 }

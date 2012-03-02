@@ -25,5 +25,6 @@
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray;
 - (void)getCycleListDidFinished:(NSArray *)docList;
 - (void)downloadDidFinished:(BOOL)isSuccess;
+- (void)getEditListDidFinished:(NSArray *)workflowArray;
 
 @end
