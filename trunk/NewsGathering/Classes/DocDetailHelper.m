@@ -104,15 +104,7 @@
     
     if(docDetail != nil) {
     
-        //NSString *fileName = [NSString stringWithFormat:@"%@_%@", kMediaType_Docum, docDetail.UUID, nil];
-        BOOL result = [self deleteDoc:docDetail];
-        if(result == YES) {
-        
-            return [self writeToFile:docDetail];   
-        }else {
-        
-            return NO;
-        }
+        return [self writeToFile:docDetail];   
     }
     
     return NO;

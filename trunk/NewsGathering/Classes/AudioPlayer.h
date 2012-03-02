@@ -17,6 +17,7 @@
     UILabel             *_timeLabel;
     NSTimer             *_timer;
     NSDate              *_fireDate;
+    NSTimeInterval       _preTimeInterval;
 }
 
 @property (nonatomic, retain) NSData *audioData;

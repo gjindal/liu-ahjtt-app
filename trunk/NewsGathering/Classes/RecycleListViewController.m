@@ -127,6 +127,11 @@
     return 70.0;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return @"操作";
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -150,23 +155,38 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self.tableView beginUpdates];
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-        ContributeInfo *contributeInfo = [_dataArray objectAtIndex:indexPath.row];
-        [_docRequest removeDocWithConid:contributeInfo.conid];
-        [self getAllCycleList];
-        // Delete the row from the data source
-        //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"操作" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"彻底删除" otherButtonTitles:@"还原", nil];
+        actionSheet.tag = indexPath.row;
+        [actionSheet showInView:self.view];
+        [actionSheet release];
     }   
+}
+
+#pragma -
+#pragma UIActionSheetDelegate Support.
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    int nIndex = actionSheet.tag;
+    if(nIndex + 1 > [_dataArray count])
+        return;
     
-    [self.tableView endUpdates];
-    //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    //    }   
+    ContributeInfo *contributeInfo = [_dataArray objectAtIndex:nIndex];
+    
+    switch (buttonIndex) {
+        case 0:
+            [_docRequest removeDocWithConid:contributeInfo.conid];
+            break;
+        case 1:
+            [_docRequest resumeDocWithConid:contributeInfo.conid];
+            break;
+        default:
+            break;
+    }
+    
+    [self getAllCycleList];
 }
 
 #pragma mark -

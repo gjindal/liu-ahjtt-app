@@ -11,7 +11,7 @@
 #import "DocRequest.h"
 #import "DocRequestDelegate.h"
 
-@interface RecycleListViewController : UITableViewController<DocRequestDelegate> {
+@interface RecycleListViewController : UITableViewController<DocRequestDelegate, UIActionSheetDelegate> {
 @private
     NSMutableArray      *_dataArray;
     DocRequest          *_docRequest;

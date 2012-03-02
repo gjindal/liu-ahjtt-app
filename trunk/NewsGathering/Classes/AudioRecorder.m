@@ -19,6 +19,8 @@
 
 @implementation AudioRecorder
 
+@synthesize fileName = _fileName;
+
 - (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
 
     //self = [super initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil];
@@ -60,6 +62,8 @@
         _timeLabel.text = @"00:00:00";
         [self addSubview:_timeLabel];
         [_timeLabel release];
+        
+        _storeHelper = [[StorageHelper alloc] init];
     }
     
     return self;
@@ -90,7 +94,8 @@
         [self stop];
         if(_fileName != nil) {
             
-            [[NSFileManager defaultManager] removeItemAtPath:_fileName error:nil];
+            [_storeHelper deleteFileWithName:_fileName];
+//            [[NSFileManager defaultManager] removeItemAtPath:_fileName error:nil];
         }
         [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
     }
@@ -101,6 +106,11 @@
 
     [_recorder release];
     [_fileName release];
+    [_storeHelper release];
+    
+    _recorder = nil;
+    _fileName = nil;
+    _storeHelper = nil;
     
     [super dealloc];
 }
@@ -115,8 +125,9 @@
     
     NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
     [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    StorageHelper *storeHelper = [[StorageHelper alloc] init];
-    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.caf", storeHelper.baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
+    _fileName = [[NSString stringWithFormat:@"Audio_%@.caf", [dataFormatter stringFromDate:[NSDate date]], nil] retain];
+    NSString *filePath = [_storeHelper.baseDirectory stringByAppendingPathComponent:_fileName];
+//    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.caf", storeHelper.baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:YES error:nil];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
@@ -128,7 +139,7 @@
                                     [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
                                     nil];
 
-    _recorder = [[AVAudioRecorder alloc] initWithURL: [NSURL fileURLWithPath:_fileName]
+    _recorder = [[AVAudioRecorder alloc] initWithURL: [NSURL fileURLWithPath:filePath]
                                                                settings: recordSettings
                                                                   error: nil];
     if( [_recorder prepareToRecord] == YES) {

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
+@class StorageHelper;
+
 @interface AudioRecorder : UIAlertView {
 
 @private
@@ -17,5 +19,9 @@
     UILabel             *_timeLabel;
     NSTimer             *_timer;
     NSDate              *_fireDate;
+    StorageHelper       *_storeHelper;
 }
+
+@property (nonatomic, retain) NSString *fileName;
+
 @end

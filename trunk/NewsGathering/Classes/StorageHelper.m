@@ -46,20 +46,13 @@
 }
 
 - (BOOL)deleteFileWithName:(NSString *)fileName {
-    
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSSharedPublicDirectory, NSUserDomainMask, YES);
-//    NSString *sharedPublicDirectory = [paths objectAtIndex:0];
-//    if(!sharedPublicDirectory) {
-//        return NO;
-//    }
+
     NSString *deleteFile = [_baseDirectory stringByAppendingPathComponent:fileName];
     return  [[NSFileManager defaultManager] removeItemAtPath:deleteFile error:nil];
 }
 
 - (NSData *)readFileWithName:(NSString *)fileName {
 
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSSharedPublicDirectory, NSUserDomainMask, YES);
-//    NSString *sharedPublicDirectory = [paths objectAtIndex:0];
     NSString *readFile = [_baseDirectory stringByAppendingPathComponent:fileName];
     NSData *fileData = [[[NSData alloc] initWithContentsOfFile:readFile] autorelease];
     return fileData;
@@ -68,7 +61,6 @@
 - (void)checkUserFloder:(NSString *)userName {
 
     if(userName == nil || [userName isEqualToString:@""]) {
-        //_userDirectory = [_baseDirectory retain];
         return;
     }
     NSString *userFloderPath = [_baseDirectory stringByAppendingFormat:@"/%@", userName];

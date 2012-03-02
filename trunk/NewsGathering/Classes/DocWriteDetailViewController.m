@@ -20,6 +20,9 @@
 #import "TreeViewController.h"
 #import "CustomAlertView.h"
 
+#define kAudioRecord    1024
+#define kAudioPlay      1025
+
 @implementation DocWriteDetailViewController
 @synthesize fdTitle;
 @synthesize fdKeyword;
@@ -73,6 +76,7 @@
 -(IBAction) getRecord {
 
     AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+    alertView.tag = kAudioRecord;
     alertView.cancelButtonIndex = 1;
     alertView.delegate = self;
     
@@ -176,7 +180,7 @@
     _docDetail.level    = btLevel.titleLabel.text;
     _docDetail.recevicer= btReceptor.titleLabel.text;
     _docDetail.content  = contents.text;
-    _docDetail.attachments = [NSArray arrayWithArray:self.attachArray];
+    _docDetail.attachments = self.attachArray;
     
     DocDetailHelper *_docDetailHelper = [[DocDetailHelper alloc] init];
     BOOL result = NO;
@@ -345,8 +349,9 @@
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
     
-    if(buttonIndex == 0){ 
-        self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
+    if(buttonIndex == 0 && alertView.tag == kAudioRecord){ 
+        [attachArray addObject:((AudioRecorder *)alertView).fileName];
+//        self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
         [self.attachTable reloadData];
     }
 }
@@ -518,6 +523,10 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(alertView.tag == kAudioPlay || alertView.tag == kAudioRecord)
+        return;
+    
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
             btType.titleLabel.text =  tmpCellString;         
@@ -613,6 +622,7 @@
                 }else if([fileType isEqualToString:kMediaType_Audio]) {
                     
                     AudioPlayer *alertView = [[AudioPlayer alloc] initWithTitle:@"播放" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
+                    alertView.tag = kAudioPlay;
                     alertView.cancelButtonIndex = 1;
                     alertView.audioData = data;
                     //alertView.delegate = self;
@@ -685,8 +695,6 @@
     
     [self.attachArray  addObject:imageName];
     NSLog(@"%@", self.attachArray);
-//    [self setAttachArray:[_storeHelper getSubFiles]];
-    //[(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
     imageName = nil;
     [self.attachTable reloadData];
@@ -748,7 +756,7 @@
     [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
     
     if(_docDetail != nil && transformType == TYPE_MODIFY) {
-    
+        
         fdTitle.text    = _docDetail.title;
         [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
         fdKeyword.text      = _docDetail.key;
@@ -757,14 +765,10 @@
         [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
         contents.text  = _docDetail.content;
         
-        
-        if(self.attachArray == nil)
-            self.attachArray = [[NSMutableArray arrayWithArray:_docDetail.attachments] retain];
+        if([attachArray count] > 0)
+            [attachArray removeAllObjects];
+        [attachArray addObjectsFromArray:_docDetail.attachments];
         [self.attachTable reloadData];
-    }else if(transformType == TYPE_ADD) {
-    
-        if(self.attachArray == nil)
-            self.attachArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
     
     //初始时要获取流程
@@ -794,32 +798,12 @@
 	
 
     _storeHelper = [[StorageHelper alloc] init];
-//    self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
+    attachArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
 	self.attachTable.delegate = self;
 	self.attachTable.dataSource = self;
     
     alert = [[CustomAlertView alloc] init];
-
-    
-    //[self.scrollView addSubview:attachTable];
-    
-//    DocDetailHelper *helper = [[DocDetailHelper alloc] init];
-//    DocDetail *doc = [[DocDetail alloc] init];
-//    doc.title = @"标题";
-//    doc.docType = @"类型";
-//    doc.key = @"关键字";
-//    doc.source = @"Devdiv";
-//    doc.content = @"12312312312312312321321321321321321321";
-//    NSLog(@"%@", doc);
-//    BOOL result = [helper writeToFile:doc];
-//    if(result == YES) {
-//        NSArray *tempArray = [helper getAllDocDetail];
-//        for (DocDetail *doc in tempArray) {
-//            NSLog(@"%@", doc);
-//        }    
-//        
-//    }
-
 }
 
 
@@ -841,10 +825,21 @@
     if (alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
         return;
     }
+    [self.attachTable beginUpdates];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        NSString *fileName = [attachArray objectAtIndex:indexPath.row];
+        [_storeHelper deleteFileWithName:fileName];
+        [attachArray removeObjectAtIndex:indexPath.row];
+        if(transformType == TYPE_MODIFY && _docDetail != nil) {
+        
+            [_docDetail.attachments removeObjectAtIndex:indexPath.row];
+            DocDetailHelper *_docDetailHelper = [[DocDetailHelper alloc] init];
+            [_docDetailHelper updateDoc:_docDetail];
+        }
+    }
+    [self.attachTable endUpdates];
     //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
     //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     //    }   

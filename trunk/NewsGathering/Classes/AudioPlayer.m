@@ -75,15 +75,16 @@
         if(subView != nil) {
             
             UILabel *subLabel = (UILabel *)[subView viewWithTag:101];
-            if([subLabel.text isEqualToString:@"开始"]) {
+            if([subLabel.text isEqualToString:@"开始"] || [subLabel.text isEqualToString:@"继续"]) {
                 
                 [self start];
                 
                 subLabel.text = @"暂停";
-            }else {
+            }else if([subLabel.text isEqualToString:@"暂停"]) {
                 
                 [self pause];
-                [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
+                subLabel.text = @"继续";
+//                [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
             }
         }
         
@@ -104,9 +105,19 @@
     
         if(_playing == YES) {
         
+            if(_fireDate != nil) {
+            
+                [_fireDate release];
+                _fireDate = nil;
+            }
+            _fireDate = [[NSDate date] retain];
+            _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(setLabelText) userInfo:nil repeats:YES];
             [_player play];
+            
         }else {
         
+            _preTimeInterval = 0;
+            
             [_player release];
             _player = nil;
             
@@ -116,9 +127,10 @@
             _player.delegate = self;
             if([_player prepareToPlay] == YES) {
             
-                [_player play];
                 _fireDate = [[NSDate date] retain];
                 _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(setLabelText) userInfo:nil repeats:YES];
+                [_player play];
+                
             }
         }
     }
@@ -129,6 +141,20 @@
     if(_player != nil) {
     
         [_player pause];
+        
+        if(_timer != nil) {
+            
+            if([_timer isValid] == YES) {
+                
+                _preTimeInterval += [[NSDate date] timeIntervalSinceDate:_fireDate];
+                
+                [_timer invalidate];
+                _timer = nil;
+            }
+            
+            [_fireDate release];
+            _fireDate = nil;
+        }
     }
 }
 
@@ -158,7 +184,7 @@
 
 - (void)setLabelText {
     
-    NSTimeInterval intervalSeconds = [[NSDate date] timeIntervalSinceDate:_fireDate];
+    NSTimeInterval intervalSeconds = [[NSDate date] timeIntervalSinceDate:_fireDate] + _preTimeInterval;
     int hour = 0;
     int minute = 0;
     int second = 0;
@@ -197,6 +223,7 @@
             if([subLabel.text isEqualToString:@"暂停"]) {
                 
                 subLabel.text = @"开始";
+                _playing = NO;
             }
         }
     }
