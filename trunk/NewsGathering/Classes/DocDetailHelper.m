@@ -69,15 +69,26 @@
     
     NSArray *tempArray = [docArray sortedArrayUsingComparator:^(DocDetail *path1, DocDetail *path2) {
         
-        NSComparisonResult comp = [path1.saveTime compare: path2.saveTime];
-        // invert ordering
-        if (comp == NSOrderedDescending) {
-            comp = NSOrderedAscending;
+        NSComparisonResult comp1 = [path1.saveTime compare: path2.saveTime];
+        NSComparisonResult comp2 = [path1.status compare:path2.status];
+        
+        if(comp2 == NSOrderedSame) {
+        
+            // invert ordering
+            if (comp1 == NSOrderedDescending) {
+                comp1 = NSOrderedAscending;
+            }
+            else if(comp1 == NSOrderedAscending){
+                comp1 = NSOrderedDescending;
+            }
+            
+            return comp1;
+        }else {
+
+            return comp2;
         }
-        else if(comp == NSOrderedAscending){
-            comp = NSOrderedDescending;
-        }
-        return comp;   
+        
+        return NSOrderedSame;   
     }];
     
     [docArray removeAllObjects];
