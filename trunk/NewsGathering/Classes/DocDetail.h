@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define DOC_STATUS_UNSUMMIT @"1024"
+#define DOC_STATUS_SUMMITED @"2048"
+
 @interface DocDetail : NSObject<NSCoding> {
 @private
     NSString            *_UUID;
@@ -19,6 +22,7 @@
     NSString            *_recevicer;
     NSString            *_content;
     NSString            *_saveTime;
+    NSString            *_status;
     NSMutableArray      *_attachments;
 }
 
@@ -31,6 +35,7 @@
 @property (nonatomic, retain)   NSString          *recevicer;
 @property (nonatomic, retain)   NSString          *content;
 @property (nonatomic, retain)   NSString          *saveTime;
+@property (nonatomic, retain)   NSString          *status;
 @property (nonatomic, retain)   NSMutableArray    *attachments;
 
 @end

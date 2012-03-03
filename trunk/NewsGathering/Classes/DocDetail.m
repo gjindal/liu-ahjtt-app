@@ -25,6 +25,7 @@
 @synthesize recevicer   = _recevicer;
 @synthesize content     = _content;
 @synthesize saveTime    = _saveTime;
+@synthesize status      = _status;
 @synthesize attachments = _attachments;
 
 - (void)encodeWithCoder:(NSCoder *)coder {
@@ -38,6 +39,7 @@
     [coder encodeObject:_recevicer forKey:@"Recevicer"];
     [coder encodeObject:_content forKey:@"Content"];
     [coder encodeObject:_saveTime forKey:@"SaveTime"];
+    [coder encodeObject:_status forKey:@"Status"];
     [coder encodeObject:_attachments forKey:@"Attachments"];
 }
 
@@ -47,6 +49,7 @@
     if(self != nil) {
     
         _UUID = [[self getUUID] retain];
+        _status = [DOC_STATUS_UNSUMMIT retain];
     }
     
     return  self;
@@ -70,6 +73,7 @@
         _recevicer  = [[coder decodeObjectForKey:@"Recevicer"] retain];
         _content    = [[coder decodeObjectForKey:@"Content"] retain];
         _saveTime   = [[coder decodeObjectForKey:@"SaveTime"] retain];
+        _status     = [[coder decodeObjectForKey:@"Status"] retain];
         _attachments= [[coder decodeObjectForKey:@"Attachments"] retain];
     }
     
@@ -87,6 +91,7 @@
     [_recevicer release];
     [_content release];
     [_saveTime release];
+    [_status release];
     [_attachments release];
     
     _UUID = nil;
@@ -98,6 +103,7 @@
     _recevicer = nil;
     _content = nil;
     _saveTime = nil;
+    _status = nil;
     _attachments = nil;
     
     [super dealloc];
