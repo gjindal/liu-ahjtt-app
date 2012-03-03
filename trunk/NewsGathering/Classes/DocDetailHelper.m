@@ -67,6 +67,22 @@
         }
     }
     
+    NSArray *tempArray = [docArray sortedArrayUsingComparator:^(DocDetail *path1, DocDetail *path2) {
+        
+        NSComparisonResult comp = [path1.saveTime compare: path2.saveTime];
+        // invert ordering
+        if (comp == NSOrderedDescending) {
+            comp = NSOrderedAscending;
+        }
+        else if(comp == NSOrderedAscending){
+            comp = NSOrderedDescending;
+        }
+        return comp;   
+    }];
+    
+    [docArray removeAllObjects];
+    [docArray addObjectsFromArray:tempArray];
+    
     return [(NSArray *)docArray autorelease];
 }
 
