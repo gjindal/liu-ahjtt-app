@@ -97,6 +97,20 @@
 	[UIView commitAnimations];         
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    for (UIView *subView in self.view.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+            
+            [subView resignFirstResponder];
+        }
+        
+        if([subView isKindOfClass:[UITextField class]]) {
+            
+            [subView resignFirstResponder];
+        }
+    }
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField 
 {        

@@ -869,8 +869,6 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    NSLog(@"OK");
     
     for (UIView *subView in scrollView.subviews) {
         if([subView isKindOfClass:[UITextView class]]) {

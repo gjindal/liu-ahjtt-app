@@ -264,6 +264,21 @@
     return YES;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    for (UIView *subView in scrollView.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+            
+            [subView resignFirstResponder];
+        }
+        
+        if([subView isKindOfClass:[UITextField class]]) {
+            
+            [subView resignFirstResponder];
+        }
+    }
+}
+
 
 #pragma mark -
 #pragma mark Table view delegate

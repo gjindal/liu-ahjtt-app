@@ -212,16 +212,17 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    if(isTextView) {
+    for (UIView *subView in scrollView.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+            
+            [subView resignFirstResponder];
+        }
         
-        [activeView resignFirstResponder];
-        activeView = nil;
-    }else {
-        
-        [activeField resignFirstResponder];
-        activeField = nil;
+        if([subView isKindOfClass:[UITextField class]]) {
+            
+            [subView resignFirstResponder];
+        }
     }
-	
 }
 
 -(IBAction)setStartDateTime:(id)sender{

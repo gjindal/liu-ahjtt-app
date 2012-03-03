@@ -100,7 +100,6 @@
 		1AC71F8C14EBE7F100DD873F /* wait.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC71F8014EBE7F100DD873F /* wait.png */; };
 		1AC71F8D14EBE7F100DD873F /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC71F8114EBE7F100DD873F /* yellow.png */; };
 		1AC71F9014EBEABF00DD873F /* UITableViewCellEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC71F8F14EBEABF00DD873F /* UITableViewCellEx.m */; };
-		1ACCB03C150130F100FDCF87 /* aps_developement.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1ACCB03B150130F100FDCF87 /* aps_developement.cer */; };
 		1ACEE02614EE8711007F63A1 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ACEE02514EE8711007F63A1 /* DatePicker.m */; };
 		1AD7FEC714EDADB000DAA354 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7FEC414EDADB000DAA354 /* star.png */; };
 		1AD7FEC814EDADB000DAA354 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7FEC514EDADB000DAA354 /* star1.png */; };
@@ -300,7 +299,6 @@
 		1AC71F8114EBE7F100DD873F /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
 		1AC71F8E14EBEABF00DD873F /* UITableViewCellEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellEx.h; sourceTree = "<group>"; };
 		1AC71F8F14EBEABF00DD873F /* UITableViewCellEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellEx.m; sourceTree = "<group>"; };
-		1ACCB03B150130F100FDCF87 /* aps_developement.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_developement.cer; sourceTree = "<group>"; };
 		1ACEE02414EE8711007F63A1 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		1ACEE02514EE8711007F63A1 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
 		1ACEE02714EE8731007F63A1 /* IDatePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDatePickerDelegate.h; sourceTree = "<group>"; };
@@ -766,7 +764,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1ACCB03B150130F100FDCF87 /* aps_developement.cer */,
 				1AC0537C14E3A6120026B115 /* xib */,
 				1AC0537B14E3A5FA0026B115 /* image */,
 				8D1107310486CEB800E47090 /* NewsGathering-Info.plist */,
@@ -895,7 +892,6 @@
 				1AA7226414F92B1900317BE6 /* depart.png in Resources */,
 				1AA7226514F92B1900317BE6 /* person.png in Resources */,
 				1AE778CA14FA6FE700655201 /* DocSearchViewController.xib in Resources */,
-				1ACCB03C150130F100FDCF87 /* aps_developement.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

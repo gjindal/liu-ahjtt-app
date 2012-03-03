@@ -919,7 +919,23 @@
     isNeedSetOffset = NO;  
 	
     keyboardShown = NO;  
-}  
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    for (UIView *subView in scrollView.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+            
+            [subView resignFirstResponder];
+        }
+        
+        if([subView isKindOfClass:[UITextField class]]) {
+            
+            [subView resignFirstResponder];
+        }
+    }
+}
+
 /*
  // Override to allow orientations other than the default portrait orientation.
  - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
