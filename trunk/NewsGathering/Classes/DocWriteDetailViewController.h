@@ -85,6 +85,7 @@
     
     ContributeInfo *contributeInfo;
     DocDetail      *_docDetail;
+    BOOL bEnableFill;
 }
 
 @property (retain, nonatomic) NSString *dispatchedUsersName;

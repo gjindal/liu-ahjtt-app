@@ -19,6 +19,7 @@
 #import "ContributeInfo.h"
 #import "TreeViewController.h"
 #import "CustomAlertView.h"
+#import "Contants.h"
 
 
 @implementation DocChangeDetailViewController
@@ -102,7 +103,7 @@
     
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
-    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,contributeInfo.flowID];
+    NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
     [request cancel];
     [request setRequestMethod:@"post"];    
@@ -128,8 +129,10 @@
 
 -(void) sendWeiboDidFinished:(ContributeInfo *)contributeInfo1{
 
+    [alert hideWaiting];
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [alert alertInfo:@"分享成功" withTitle:nil];
+        [self.navigationController popViewControllerAnimated:YES]; 
     }else{
         [alert alertInfo:@"分享失败" withTitle:nil];
     }
@@ -142,33 +145,54 @@
 -(void) approveDidFinished:(ContributeInfo *)contributeInfo1{
     [alert hideWaiting];
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
-        [alert alertInfo:@"审核成功" withTitle:nil];
+        if ([nextStatus isEqualToString:@"99"]) {
+            [alert alertInfo:@"审核成功" withTitle:nil];
+        }else
+        {
+          [alert alertInfo:@"打回成功" withTitle:nil];
+        }
+      
+        [self.navigationController popViewControllerAnimated:YES]; 
     }else{
-        [alert alertInfo:@"审核失败" withTitle:nil];
+        if ([nextStatus isEqualToString:@"99"]) {
+             [alert alertInfo:@"审核失败" withTitle:nil];
+        }else
+        {
+            [alert alertInfo:@"打回失败" withTitle:nil];
+        }
     }
 }
 
 -(void) passAudit{
-  	[docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:workflowInfo.endStatus];
+    nextStatus = @"99";
+  	[docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:@"99"];
 }
+
 -(void) goBack{
-    [docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:workflowInfo.endStatus];
+    nextStatus = @"5";
+    [docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:@"5"];
 }
 
 -(void)submitDoc{
     
     menuType = MENUTYPE_SUBMIT;
     if (enableAudit) {
+        enableEdit = NO;
+        enableShare = NO;
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过",@"打回",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
-    }else if(enableShare){
+    }else if([contributeInfo.status isEqualToString:@"99"] ){
+        enableAudit = NO;
+        enableEdit = NO;
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到微博",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
     }else if(enableEdit){
+        enableAudit = NO;
+        enableShare = NO;
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存修改",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
@@ -212,19 +236,17 @@
             case 0:
                 if (enableEdit) {
                     [self saveDoc];
-                }else if([contributeInfo.status isEqualToString:@"99"]){
+                }else if(enableShare){
                     [self shareToWB];
                 }else{
                     [self passAudit];
                 }
                 break;
-            case 2:
+            case 1:
                 [self goBack];
                 break;
-            case 3:
-                //[alert hideWaiting];
-                break;
             default:
+                [alert hideWaiting];
                 break;
         }
     }
@@ -458,18 +480,19 @@
 }
 
 - (void)getAppWorkflowDidFinished:(NSArray *)workflowArray{
+    /*
     workflowInfoArray = [[NSArray alloc] initWithArray:workflowArray];
     for (WorkflowInfo *flowInfo in workflowInfoArray) {
-        if ([flowInfo.endStatus isEqualToString:@"3"]) {
+        if ([flowInfo.endStatus isEqualToString:@"4"]) {
             enableEdit = YES;
         }
-        if ([flowInfo.endStatus isEqualToString:@"4"]) {
+        if ([flowInfo.endStatus isEqualToString:@"5"]) {
             enableAudit = YES;
         }
-        if ([flowInfo.endStatus isEqualToString:@"5"]) {
-            enableShare = YES;
+        if ([flowInfo.endStatus isEqualToString:@"99"]) {
+            enableAudit = YES;
         }
-    }
+    }*/
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -766,13 +789,26 @@
     docRequest.delegate = self;
     _storeHelper = [[StorageHelper alloc] init];
     
+    if ([contributeInfo.status isEqualToString:@"3"] || [contributeInfo.status isEqualToString:@"5"]) {
+        enableAudit = NO;
+        enableShare = NO;
+        enableEdit = YES;
+    }else if([contributeInfo.status isEqualToString:@"99"]){
+        enableAudit = NO;
+        enableShare = YES;
+        enableEdit = NO;
+    }else{
+        enableAudit = YES;
+        enableShare = NO;
+        enableEdit = NO;
+    }
     //查询是否可修改
-    enableEdit = YES;
     [docRequest getEditListWithLevel:contributeInfo.level];
     
     //获取下一步操作状态
-    int l = [levelArray indexOfObject:contributeInfo.level];
-    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",l] Status:contributeInfo.status];
+    //int l = [levelArray indexOfObject:contributeInfo.level];
+    NSLog(@"==========++++++=======%@",contributeInfo.level);
+    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%@",contributeInfo.level] Status:contributeInfo.status];
 }
 
 

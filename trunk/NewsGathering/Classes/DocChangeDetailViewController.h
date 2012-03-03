@@ -92,6 +92,7 @@
     
     NSFileHandle *file;
     NSString *fileName;
+    NSString *nextStatus;//根据状态判断是被打回了，还是通过了
 
 }
 

@@ -503,6 +503,8 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 						<double key="IBUIScrollIndicatorInsets.top">0.0</double>
 						<double key="IBUIScrollIndicatorInsets.bottom">0.0</double>
 						<double key="IBUIScrollIndicatorInsets.left">200</double>

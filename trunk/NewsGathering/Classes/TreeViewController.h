@@ -28,9 +28,12 @@
     
     NSObject<UIViewPassValueDelegate> *delegate;
     NSMutableArray *dispatchedPersons;
+    NSString *titleText;
     
 }
 
+
+@property (nonatomic,retain) NSString *titleText;
 @property (nonatomic,retain) NSObject<UIViewPassValueDelegate> *delegate;
 @property (nonatomic,retain) NSMutableArray *dispatchedPersons;
 

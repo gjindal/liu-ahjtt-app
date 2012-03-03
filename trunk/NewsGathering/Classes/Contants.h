@@ -65,7 +65,7 @@ typedef enum {
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getKeysList.do"   // 查询可派单线索列表接口
 #define kInterface_ClueDist_Detail  [NSString stringWithFormat:@"%@dispatchM!getKeyDetail.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getKeyDetail.do"  // 查询线索详情接口
-#define kInterface_ClueDist_Dept    [NSString stringWithFormat:@"%@ldispatchM!getDeptTree.do", kServer_URL, nil]
+#define kInterface_ClueDist_Dept    [NSString stringWithFormat:@"%@dispatchM!getDeptTree.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getDeptTree.do"   // 派发线索接口1，获得管理的部门
 #define kInterface_ClueDist_User    [NSString stringWithFormat:@"%@dispatchM!getDeptUsers.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/dispatchM!getDeptUsers.do"  // 派发线索接口2，获得有部门权限的用户

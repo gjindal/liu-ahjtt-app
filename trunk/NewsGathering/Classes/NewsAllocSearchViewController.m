@@ -40,6 +40,11 @@
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     typeArray = appDelegate.typeArray;
     [newsType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    NSString*locationString=[formatter stringFromDate: [NSDate date]];
+    [startTime setTitle:locationString forState:UIControlStateNormal];
+    [endTime setTitle:locationString forState:UIControlStateNormal];
 }
 
 #pragma -
@@ -151,6 +156,8 @@
         [activeField resignFirstResponder];
         activeField = nil;
     }
+    
+    
     
     [super viewWillDisappear:animated];
 }

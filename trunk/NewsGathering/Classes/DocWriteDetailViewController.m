@@ -135,13 +135,14 @@
         _docDetail = [[DocDetail alloc] init];
     }
     
+    
     //上传前验证必填项
     if( [fdTitle.text length]<1){
         [self alertInfo:@"标题不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
     }
-    if( [fdKeyword.text length]<1){
+    /*if( [fdKeyword.text length]<1){
         [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
@@ -172,7 +173,7 @@
         [alert hideWaiting];
         return;
     }
-    
+    */
     _docDetail.title    = fdTitle.text;
     _docDetail.docType  = btType.titleLabel.text;
     _docDetail.key      = fdKeyword.text;
@@ -246,7 +247,8 @@
 
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
-    NSString *url = [[NSString alloc] initWithFormat:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",appDelegate.username,appDelegate.password,contributeInfo.flowID];
+    contributeInfo.flowID = [_docDetail.UUID copy];
+    NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
     [request cancel];
     [request setRequestMethod:@"post"];    
@@ -462,9 +464,9 @@
 
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
     treeViewCtrl.delegate = self;
+    treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择接收人"];
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
-
 }
 
 //通过代理方法获取组织结构中的选择的人员
@@ -772,8 +774,9 @@
     [btLevel setTitle:[levelArray objectAtIndex:0] forState:UIControlStateNormal];
     [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
     
-    if(_docDetail != nil && transformType == TYPE_MODIFY) {
+    if(_docDetail != nil && transformType == TYPE_MODIFY && bEnableFill) {
         
+        bEnableFill = NO;
         fdTitle.text    = _docDetail.title;
         [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
         fdKeyword.text      = _docDetail.key;
@@ -786,6 +789,7 @@
             [attachArray removeAllObjects];
         [attachArray addObjectsFromArray:_docDetail.attachments];
         [self.attachTable reloadData];
+        
     }
     
     //初始时要获取流程
@@ -805,7 +809,8 @@
 	self.fdKeyword.delegate = self;
 	self.fdDocSource.delegate = self;
     contents.delegate = self;
-	
+
+    bEnableFill = YES;
 	keyboardShown = NO;  
     [self performSelector:@selector(registerForKeyboardNotifications)];  
 	
@@ -821,6 +826,7 @@
 	self.attachTable.dataSource = self;
     
     alert = [[CustomAlertView alloc] init];
+    contributeInfo = [[ContributeInfo alloc] init];
 }
 
 

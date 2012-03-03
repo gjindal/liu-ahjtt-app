@@ -14,6 +14,7 @@
 @implementation TreeViewController
 @synthesize delegate;
 @synthesize dispatchedPersons;
+@synthesize titleText;
 
 
 -(void)viewDidLoad{
@@ -123,7 +124,7 @@
     cluedistRequest.delegate = self;
     [cluedistRequest getDept];
     
-	self.title= @"选择派发人";
+	self.title= titleText;
     
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
     temporaryBarButtonItem.title = @"取消";  
