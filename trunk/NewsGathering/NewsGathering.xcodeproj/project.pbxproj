@@ -133,6 +133,7 @@
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
 		B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97D155114ED455E005E0A41 /* VideoPlayViewController.m */; };
 		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
+		B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */; };
 		B98AA16014FD0EC800E1E588 /* WorkflowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */; };
 		B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */; };
 		B98B195014F3E01900D33C2A /* NewsClueRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194F14F3E01900D33C2A /* NewsClueRequest.m */; };
@@ -349,6 +350,8 @@
 		B97D155014ED455E005E0A41 /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
 		B97D155114ED455E005E0A41 /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
 		B97D155414ED48B7005E0A41 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B98A253F1501EF7B0066FEEA /* CustomizeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeScrollView.h; sourceTree = "<group>"; };
+		B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeScrollView.m; sourceTree = "<group>"; };
 		B98AA15E14FD0EC800E1E588 /* WorkflowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowInfo.h; sourceTree = "<group>"; };
 		B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkflowInfo.m; sourceTree = "<group>"; };
 		B98B194A14F3DE9A00D33C2A /* NewsClueInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueInfo.h; sourceTree = "<group>"; };
@@ -730,6 +733,8 @@
 				1AB88F1714FE23B4006B655A /* CustomAlertView.m */,
 				B99490B714FFDEAF003182E1 /* CycleTableViewCell.h */,
 				B99490B814FFDEAF003182E1 /* CycleTableViewCell.m */,
+				B98A253F1501EF7B0066FEEA /* CustomizeScrollView.h */,
+				B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -976,6 +981,7 @@
 				B98AA16014FD0EC800E1E588 /* WorkflowInfo.m in Sources */,
 				1AB88F1814FE23B4006B655A /* CustomAlertView.m in Sources */,
 				B99490B914FFDEAF003182E1 /* CycleTableViewCell.m in Sources */,
+				B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

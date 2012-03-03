@@ -862,6 +862,23 @@
     //    }   
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    NSLog(@"OK");
+    
+    for (UIView *subView in scrollView.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+        
+            [subView resignFirstResponder];
+        }
+        
+        if([subView isKindOfClass:[UITextField class]]) {
+        
+            [subView resignFirstResponder];
+        }
+    }
+}
+
 #pragma mark - UITextField Delegate  
 -(void)textFieldDidBeginEditing:(UITextField *)textField {  
     
