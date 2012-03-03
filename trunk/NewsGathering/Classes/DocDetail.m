@@ -64,6 +64,9 @@
         [_UUID release];
         _UUID = nil;
         
+        [_status release];
+        _status = nil;
+        
         _UUID       = [[coder decodeObjectForKey:@"UUID"] retain];
         _title      = [[coder decodeObjectForKey:@"Title"] retain];
         _docType    = [[coder decodeObjectForKey:@"DocType"] retain];
