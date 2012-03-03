@@ -134,7 +134,7 @@
     // Configure the cell...
     DocDetail *docDetail = (DocDetail *)[dataArray objectAtIndex:indexPath.row];
     cell.textLabel.text = docDetail.title;
-    cell.detailTextLabel.text = docDetail.saveTime;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@][%@]", docDetail.saveTime, ([docDetail.status isEqualToString:DOC_STATUS_UNSUMMIT]?@"未提交":@"已提交")];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     return cell;
