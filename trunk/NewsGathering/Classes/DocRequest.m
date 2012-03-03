@@ -228,24 +228,39 @@
     }
 }
 
-- (void)approveWithConid:(NSString *)conid Apps:(NSString *)apps {
+- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status{
 
-    if(apps == nil) {
-        apps = @"";
+    if(attitude == nil) {
+        attitude = @"";
     }
     
-    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&apps=%@",
-                      [UserHelper userName], [UserHelper password], conid, apps];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Remove withRequestString:post];
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&attitude=%@&status=%@",
+                      [UserHelper userName], [UserHelper password], conid, attitude, status];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Remove];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve];
         [returnString release];
     }
 }
 
-- (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName {
+- (void)getAppWorkflowWithLevel:(NSString *)level Status:(NSString *)status {
 
+    if(level == nil) {
+        level = @"";
+    }
+    
+    if(status == nil) {
+        status = @"";
+    }
+    
+    NSString *post = [NSString stringWithFormat:@"&level=%@&status=%@",level, status];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_App_Workflow withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_App_Workflow];
+        [returnString release];
+    }
 }
 
 - (void)getWorkflowWithLevel:(NSString *)level {
@@ -314,6 +329,22 @@
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Edit_List];
+        [returnString release];
+    }
+}
+
+- (void)sendWeiboWithType:(NSString *)type Note:(NSString *)note FilePath:(NSString *)filePath {
+
+    if(filePath == nil) {
+        filePath = @"";
+    }
+    
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&type=%@&note=%@&filepath=%@",
+                      [UserHelper userName], [UserHelper password], type, note, filePath];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Send_Weibo withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Send_Weibo];
         [returnString release];
     }
 }
@@ -460,6 +491,13 @@
     }
 }
 
+- (void)getAppWorkflowDidFinished:(NSArray *)workflowArray {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(getAppWorkflowDidFinished:)]) {
+        [_delegate getAppWorkflowDidFinished:workflowArray];
+    }
+}
+
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray {
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(getWorkflowDidFinished:)]) {
@@ -478,6 +516,13 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(getEditListDidFinished:)]) {
         [_delegate getEditListDidFinished:workflowArray];
+    }
+}
+
+- (void)sendWeiboDidFinished:(ContributeInfo *)contributeInfo {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(sendWeiboDidFinished:)]) {
+        [_delegate sendWeiboDidFinished:contributeInfo];
     }
 }
 

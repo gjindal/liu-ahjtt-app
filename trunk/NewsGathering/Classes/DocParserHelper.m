@@ -157,6 +157,12 @@
         }else if(_currentFlag == kFlag_Contri_Add_Approve) {
         
             sel = @selector(addDocForApproveDidFinished:);
+        }else if(_currentFlag == kFlag_Contri_Approve) {
+        
+            sel = @selector(approveDidFinished:);
+        }else if(_currentFlag == kFlag_Contri_Send_Weibo) {
+        
+            sel = @selector(sendWeiboDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {
@@ -282,6 +288,11 @@
         if(_currentFlag == kFlag_Contri_Get_Edit_List) {
         
             sel = @selector(getEditListDidFinished:);
+        }
+        
+        if(_currentFlag == kFlag_Contri_Get_App_Workflow) {
+        
+            sel = @selector(getAppWorkflowDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {

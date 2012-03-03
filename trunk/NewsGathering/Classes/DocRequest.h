@@ -53,7 +53,8 @@
 - (void)getAppListWithTitle:(NSString *)title Keyword:(NSString *)keyword
                        Type:(NSString *)type Begtime:(NSString *)begtime
                     Endtime:(NSString *)endtime;
-- (void)approveWithConid:(NSString *)conid Apps:(NSString *)apps;
+- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status;
+- (void)getAppWorkflowWithLevel:(NSString *)level Status:(NSString *)status;
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName;
 - (void)getWorkflowWithLevel:(NSString *)level;
 - (NSData *)dowloadAttachWithID:(NSString *)ID;
@@ -63,5 +64,6 @@
 
 - (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1;
 - (void)getEditListWithLevel:(NSString *)level;
+- (void)sendWeiboWithType:(NSString *)type Note:(NSString *)note FilePath:(NSString *)filePath;
 
 @end

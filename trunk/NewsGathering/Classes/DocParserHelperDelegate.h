@@ -25,5 +25,7 @@
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray;
 - (void)getCycleListDidFinished:(NSArray *)docList;
 - (void)getEditListDidFinished:(NSArray *)workflowArray;
+- (void)getAppWorkflowDidFinished:(NSArray *)workflowArray;
+- (void)sendWeiboDidFinished:(ContributeInfo *)contributeInfo;
 
 @end
