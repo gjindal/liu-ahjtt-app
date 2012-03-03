@@ -39,7 +39,7 @@ typedef enum {
 #define kFlag_NewsClue_Delete   5
 #define kFlag_NewsClue_Submit   6
 
-#define kInterface_NewsClue_List    [NSString stringWithFormat:@"%@keysM!getKeyDetail.do", kServer_URL, nil]
+#define kInterface_NewsClue_List    [NSString stringWithFormat:@"%@keysM!getKeysList.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/keysM!getKeysList.do"   // 查询线索列表接口
 #define kInterface_NewsClue_Detail  [NSString stringWithFormat:@"%@keysM!getKeyDetail.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/keysM!getKeyDetail.do"  // 查询线索详情接口

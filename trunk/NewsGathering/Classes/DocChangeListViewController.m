@@ -174,10 +174,15 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        nDeleteIndex = indexPath.row;
-        [docRequest deleteDocWithConid:((ContributeInfo *)[dataArray objectAtIndex:indexPath.row]).conid];
-        
+        ContributeInfo * contribut = (ContributeInfo *)[dataArray objectAtIndex:indexPath.row];
+        if ([contribut.status isEqualToString:@"4"]) {
+            [alertView alertInfo:@"不能删除" withTitle:@"正在审核中..."];
+        }
+        else{
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            nDeleteIndex = indexPath.row;
+            [docRequest deleteDocWithConid:((ContributeInfo *)[dataArray objectAtIndex:indexPath.row]).conid];
+        }
     }   
     
     [self.tableView endUpdates];

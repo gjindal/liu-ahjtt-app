@@ -126,37 +126,49 @@
     [alert hideWaiting];
 }
 
--(void) shareToWB{
+-(void) sendWeiboDidFinished:(ContributeInfo *)contributeInfo1{
 
-   // [docRequest ]
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert alertInfo:@"分享成功" withTitle:nil];
+    }else{
+        [alert alertInfo:@"分享失败" withTitle:nil];
+    }
+}
+
+-(void) shareToWB{
+    [docRequest sendWeiboWithType:contributeInfo.type Note:contributeInfo.note FilePath:@""];
+}
+
+-(void) approveDidFinished:(ContributeInfo *)contributeInfo1{
     [alert hideWaiting];
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert alertInfo:@"审核成功" withTitle:nil];
+    }else{
+        [alert alertInfo:@"审核失败" withTitle:nil];
+    }
 }
 
 -(void) passAudit{
-    
-  	//[docRequest ]
-
-    [alert hideWaiting];
+  	[docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:workflowInfo.endStatus];
 }
 -(void) goBack{
-
-    [alert hideWaiting];
+    [docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:workflowInfo.endStatus];
 }
 
 -(void)submitDoc{
     
     menuType = MENUTYPE_SUBMIT;
-    if ([contributeInfo.status isEqualToString:@"4"]) {
+    if (enableAudit) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过",@"打回",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
-    }else if([contributeInfo.status isEqualToString:@"99"]){
+    }else if(enableShare){
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到微博",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
-    }else if([contributeInfo.status isEqualToString:@"5"]){
+    }else if(enableEdit){
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存修改",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
@@ -202,10 +214,9 @@
                     [self saveDoc];
                 }else if([contributeInfo.status isEqualToString:@"99"]){
                     [self shareToWB];
+                }else{
+                    [self passAudit];
                 }
-                break;
-            case 1:
-                [self passAudit];
                 break;
             case 2:
                 [self goBack];
@@ -282,14 +293,16 @@
 
 -(void)initForm{
     
-    NSString *strType = [typeArray objectAtIndex:[contributeInfo.level intValue]];
-    NSString *strLevel = [typeArray objectAtIndex:[contributeInfo.type intValue]];
-    [btLevel setTitle:strType forState:UIControlStateNormal];
-    [btType setTitle:strLevel forState:UIControlStateNormal];
+    NSString *strType = [typeArray objectAtIndex:[contributeInfo.type intValue]];
+    NSString *strLevel = [levelArray objectAtIndex:[contributeInfo.level intValue]];
+    [btLevel setTitle:strLevel forState:UIControlStateNormal];
+    [btType setTitle:strType forState:UIControlStateNormal];
     fdTitle.text = contributeInfo.title;
     contents.text = contributeInfo.note;
     txtMessage.text = [contributeInfo.attitudeList objectAtIndex:0];
-    //fdSource.text = contributeInfo.
+    fdSource.text = contributeInfo.source;
+    fdKeyword.text = contributeInfo.keyword;
+   // btReceptor setTitle:contributeInfo. forState:<#(UIControlState)#>
     
     if (enableEdit) {
         btType.enabled = YES;
@@ -444,6 +457,21 @@
     workflowInfo = [[workflowArray objectAtIndex:0] retain];
 }
 
+- (void)getAppWorkflowDidFinished:(NSArray *)workflowArray{
+    workflowInfoArray = [[NSArray alloc] initWithArray:workflowArray];
+    for (WorkflowInfo *flowInfo in workflowInfoArray) {
+        if ([flowInfo.endStatus isEqualToString:@"3"]) {
+            enableEdit = YES;
+        }
+        if ([flowInfo.endStatus isEqualToString:@"4"]) {
+            enableAudit = YES;
+        }
+        if ([flowInfo.endStatus isEqualToString:@"5"]) {
+            enableShare = YES;
+        }
+    }
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
@@ -454,7 +482,7 @@
             
             int l = [levelArray indexOfObject:tmpCellString]+1;
             NSLog(@"=====%d",l);
-            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",l]];
+            [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",l] Status:contributeInfo.status];
         }
     }
     alertType = ALERTTABLE_OTHERS;
@@ -741,6 +769,10 @@
     //查询是否可修改
     enableEdit = YES;
     [docRequest getEditListWithLevel:contributeInfo.level];
+    
+    //获取下一步操作状态
+    int l = [levelArray indexOfObject:contributeInfo.level];
+    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",l] Status:contributeInfo.status];
 }
 
 

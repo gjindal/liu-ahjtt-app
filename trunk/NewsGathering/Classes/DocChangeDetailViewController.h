@@ -64,6 +64,8 @@
 	BOOL isNeedSetOffset; 
     
     BOOL enableEdit;
+    BOOL enableAudit;
+    BOOL enableShare;
     ContributeInfo *contributeInfo;
     DocRequest *docRequest;
     StorageHelper *_storeHelper;
@@ -76,6 +78,7 @@
     
     ASIFormDataRequest *request;
     WorkflowInfo *workflowInfo;
+    NSArray *workflowInfoArray;
     NSString *tmpCellString;
     int attachIndex;
     

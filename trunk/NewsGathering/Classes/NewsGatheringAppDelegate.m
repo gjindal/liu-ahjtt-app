@@ -18,8 +18,21 @@
 @synthesize levelArray;
 @synthesize typeArray;
 @synthesize strDeviceToken;
+@synthesize payload;
+@synthesize certificate;
 
 
+- (id)init 
+{ 
+    self = [super init]; 
+    if(self != nil) 
+    { 
+        self.strDeviceToken = @"e6a4bcfd dc918434 d994a317 beea57cf a08cd0f2 c88d6a74 993c1b7f f877d500";  
+        self.payload = @"{\"aps\":{\"alert\":\"You got a new message!\",\"badge\":5,\"sound\":\"beep.wav\"},\"acme1\":\"bar\",\"acme2\":42}";
+        self.certificate = [[NSBundle mainBundle] pathForResource:@"aps_developement" ofType:@"cer"];
+    }
+    return self;
+}
 #pragma mark -
 #pragma mark Application lifecycle
 

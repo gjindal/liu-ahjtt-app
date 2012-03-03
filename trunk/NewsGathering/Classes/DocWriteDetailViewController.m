@@ -345,10 +345,11 @@
 
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
     // 请求响应失败，返回错误信息
-//    NSError *error = [ request error ];
-//    NSLog(@"#############%@",error);
-    
+    NSError *error = [ request error ];
+    NSLog(@"#############%@",error);
     [self saveDoc];
+    [alert alertInfo:@"提交失败，文稿被保存在本地." withTitle:@"错误"]; 
+   
 }
 
 -(void)submitDoc{

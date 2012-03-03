@@ -137,6 +137,7 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@][%@]", docDetail.saveTime, ([docDetail.status isEqualToString:DOC_STATUS_UNSUMMIT]?@"未提交":@"已提交")];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+    [cell.imageView setImage:([docDetail.status isEqualToString:DOC_STATUS_UNSUMMIT]?[UIImage imageNamed:@"red.png"]:[UIImage imageNamed:@"blue.png"])];
     return cell;
 }
 
@@ -174,20 +175,6 @@
 //    }   
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark -
