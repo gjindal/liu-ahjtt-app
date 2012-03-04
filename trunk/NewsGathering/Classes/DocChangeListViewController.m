@@ -60,6 +60,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchDocs)];	
+    searchButton.style=UIBarButtonItemStylePlain;
+	self.navigationItem.rightBarButtonItem=searchButton;
+	[searchButton release];
+    
     dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     alertView = [[CustomAlertView alloc] init];
     docRequest = [[DocRequest alloc] init];
@@ -87,13 +92,6 @@
                                Type:docSearchVtrl.contributeInfo.type
                             Begtime:docSearchVtrl.strStartTime
                             Endtime:docSearchVtrl.strEndTime];
-
-
-   	UIBarButtonItem *searchButton=[[UIBarButtonItem alloc]initWithTitle: @"搜索" style:UIBarButtonItemStyleBordered target:self action:@selector(searchDocs)];	
-    searchButton.style=UIBarButtonItemStylePlain;
-	self.navigationItem.rightBarButtonItem=searchButton;
-	[searchButton release];
-    
 }
 
 
@@ -143,7 +141,7 @@
             [cell.imageView setImage:[UIImage imageNamed:@"yellow.png"]];
             break;
         case 5:
-            [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
+            [cell.imageView setImage:[UIImage imageNamed:@"red.png"]];
             break;            
         default:
             [cell.imageView setImage:[UIImage imageNamed:@"blue.png"]];
@@ -153,8 +151,6 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@] | [%@]",contributeInfo.time,contributeInfo.statusNm];
     return cell;
 }
-
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

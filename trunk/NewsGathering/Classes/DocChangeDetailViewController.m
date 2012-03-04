@@ -47,14 +47,17 @@
 
 @synthesize contributeInfo;
 @synthesize docRequest;
-@synthesize dispatchedArray;
-@synthesize dispatchedUsersID;
-@synthesize dispatchedUsersName;
+@synthesize receptorArray;
 @synthesize typeArray;
 @synthesize levelArray;
 @synthesize lastTypeIndexPath;
 @synthesize lastLevelIndexPath;
 @synthesize request;
+@synthesize receptorUsersID;
+@synthesize receptorUsersName;
+
+
+@synthesize storeHelper = _storeHelper;
 
 
 //////////
@@ -89,20 +92,20 @@
         [alert hideWaiting];
         return;
     }
-    if( (workflowInfo.opttype == nil)||[btLevel.titleLabel.text length]<1){
-        [alert alertInfo:@"审核级别不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
-    if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
-        [alert alertInfo:@"接收人不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
+    //if( (workflowInfo.opttype == nil)||[btLevel.titleLabel.text length]<1){
+    //    [alert alertInfo:@"审核级别不能为空" withTitle:@"错误"];
+    ///    [alert hideWaiting];
+    //    return;
+    //}
+   // NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
+   // if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
+   //     [alert alertInfo:@"接收人不能为空" withTitle:@"错误"];
+   //     [alert hideWaiting];
+   //     return;
+   // }
     
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	
+
     NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
     [request cancel];
@@ -115,16 +118,72 @@
 	[request setDidFailSelector:@selector(respnoseFailed:)];
 	[request setDidFinishSelector:@selector(responseComplete:)];
     
-    StorageHelper *helper = [[StorageHelper alloc] init];
     for (NSString *filePath in attachArray) {
-        NSString *tmp = [NSString stringWithFormat:@"%@/%@",helper.baseDirectory,filePath];
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
 		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
         break;
 	}
-	[helper release];
 	[request startAsynchronous];
+}
 
+- (void)submitDocDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert alertInfo:@"稿件修改成功" withTitle:nil];
+    }
+    else
+    {
+        [alert alertInfo:@"稿件修改失败" withTitle:@"错误"];
+    }
     [alert hideWaiting];
+}
+
+- (void)addDocDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert alertInfo:@"稿件上传成功" withTitle:nil];
+    }
+    else
+    {
+        [alert alertInfo:@"稿件上传失败" withTitle:@"错误"];
+    }
+    
+    [alert hideWaiting];
+}
+
+- (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo1{
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert alertInfo:@"稿件上传成功" withTitle:nil];
+    }
+    else
+    {
+        [alert alertInfo:@"稿件上传失败" withTitle:@"错误"];
+    }
+    [alert hideWaiting];   
+}
+
+-( void )responseComplete:(ASIHTTPRequest *)theRequest{
+    // 请求响应结束，返回 responseString
+    NSString *responseString = [ request responseString ];
+    
+    NSLog(@"###########%@",responseString);
+    
+    //如果附件发送成功，则发送内容
+    
+    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
+    NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
+    /*if ([workflowInfo.opttype isEqualToString:@"1"]) {
+        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:nil Status:workflowInfo.endStatus ConID:contributeInfo.conid];
+    }if ([workflowInfo.opttype isEqualToString:@"2"]) {*/
+        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus ConID:contributeInfo.conid];
+    //}
+    
+}
+
+-( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
+    // 请求响应失败，返回错误信息
+    NSError *error = [ request error ];
+    NSLog(@"#############%@",error);
+    [alert alertInfo:@"提交失败." withTitle:@"错误"]; 
+    
 }
 
 -(void) sendWeiboDidFinished:(ContributeInfo *)contributeInfo1{
@@ -231,7 +290,7 @@
         }
     }
     if (menuType == MENUTYPE_SUBMIT) {
-        [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
+        //[alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
         switch (buttonIndex) {
             case 0:
                 if (enableEdit) {
@@ -243,7 +302,14 @@
                 }
                 break;
             case 1:
-                [self goBack];
+                if (enableEdit) {
+                    break;
+                }
+                if (enableShare) {
+                    break;
+                }else{
+                    [self goBack];
+                }
                 break;
             default:
                 [alert hideWaiting];
@@ -315,8 +381,8 @@
 
 -(void)initForm{
     
-    NSString *strType = [typeArray objectAtIndex:[contributeInfo.type intValue]];
-    NSString *strLevel = [levelArray objectAtIndex:[contributeInfo.level intValue]];
+    NSString *strType = [typeArray objectAtIndex:[contributeInfo.type intValue]-1];
+    NSString *strLevel = [levelArray objectAtIndex:[contributeInfo.level intValue]-1];
     [btLevel setTitle:strLevel forState:UIControlStateNormal];
     [btType setTitle:strType forState:UIControlStateNormal];
     fdTitle.text = contributeInfo.title;
@@ -401,11 +467,23 @@
 
 -(IBAction)setReceptor:(id)sender{
     
+    if ([contributeInfo.status isEqualToString:@"5"]) {
+        [alert alertInfo:@"当前稿件不需选择接收人" withTitle:@"提醒"];
+    }
+    
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
     treeViewCtrl.delegate = self;
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
     
+}
+
+-(IBAction)writeOpinion:(id)sender{
+    
+    opinionViewController = [[AuditOpinionViewController alloc] init];
+    opinionViewController.opinion = [contributeInfo.attitudeList objectAtIndex:0];
+    [self.navigationController pushViewController:opinionViewController animated:YES];
+
 }
 
 //通过代理方法获取组织结构中的选择的人员
@@ -415,14 +493,15 @@
     int i = 0;
     for(UserInfo *userInfo in dispathedPersonInfo){
         if(i == 0){
-            self.dispatchedUsersID = userInfo.userID;
-            self.dispatchedUsersName = userInfo.userName;
+            self.receptorUsersID = userInfo.userID;
+            self.receptorUsersName = userInfo.userName;
         }else{
-            self.dispatchedUsersName = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersName,userInfo.userName];
-            self.dispatchedUsersID = [NSString stringWithFormat:@"%@,%@",self.dispatchedUsersID,userInfo.userID];
+            self.receptorUsersName = [NSString stringWithFormat:@"%@,%@",self.receptorUsersName,userInfo.userName];
+            self.receptorUsersID = [NSString stringWithFormat:@"%@,%@",self.receptorUsersID,userInfo.userID];
         }
         i++;
     }
+    //[btReceptor setTitle:receptorUsersName forState:UIControlStateNormal];
 }
 
 #pragma mark -
@@ -482,6 +561,7 @@
 - (void)getAppWorkflowDidFinished:(NSArray *)workflowArray{
     /*
     workflowInfoArray = [[NSArray alloc] initWithArray:workflowArray];
+    
     for (WorkflowInfo *flowInfo in workflowInfoArray) {
         if ([flowInfo.endStatus isEqualToString:@"4"]) {
             enableEdit = YES;
@@ -743,6 +823,11 @@
         [passButton release];
     }
     
+    if (alert == nil) {
+        alert = [[CustomAlertView alloc] init];
+    }
+    
+    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",contributeInfo.status] Status:contributeInfo.status];
     alertType = ALERTTABLE_OTHERS;
     [self initForm];
 	
@@ -754,6 +839,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    alert = [[CustomAlertView alloc] init];
 	[scrollView setContentSize:CGSizeMake(320, 1200)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
@@ -959,6 +1045,11 @@
 
 
 - (void)dealloc {
+    if (opinionViewController != nil) {
+        [opinionViewController release];
+        opinionViewController = nil;
+    }
+    
     [super dealloc];
 }
 

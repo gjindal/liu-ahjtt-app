@@ -20,12 +20,14 @@
     NSString            *_source;
     NSString            *_level;
     NSString            *_recevicer;
+    NSString            *_receptorid;
     NSString            *_content;
     NSString            *_saveTime;
     NSString            *_status;
     NSMutableArray      *_attachments;
 }
 
+@property (nonatomic, retain)   NSString          *receptorid;
 @property (nonatomic, retain)   NSString          *UUID;
 @property (nonatomic, retain)   NSString          *title;
 @property (nonatomic, retain)   NSString          *docType;

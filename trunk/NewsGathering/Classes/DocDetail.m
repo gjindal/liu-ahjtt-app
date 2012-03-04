@@ -23,6 +23,7 @@
 @synthesize source      = _source;
 @synthesize level       = _level;
 @synthesize recevicer   = _recevicer;
+@synthesize receptorid  = _receptorid;
 @synthesize content     = _content;
 @synthesize saveTime    = _saveTime;
 @synthesize status      = _status;
@@ -30,6 +31,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     
+    [coder encodeObject:_receptorid forKey:@"Receptorid"];
     [coder encodeObject:_UUID forKey:@"UUID"];
     [coder encodeObject:_title forKey:@"Title"];
     [coder encodeObject:_docType forKey:@"DocType"];
@@ -67,6 +69,7 @@
         [_status release];
         _status = nil;
         
+        _receptorid = [[coder decodeObjectForKey:@"Receptorid"] retain];
         _UUID       = [[coder decodeObjectForKey:@"UUID"] retain];
         _title      = [[coder decodeObjectForKey:@"Title"] retain];
         _docType    = [[coder decodeObjectForKey:@"DocType"] retain];
@@ -85,6 +88,7 @@
 
 - (void)dealloc {
 
+    [_receptorid release];
     [_UUID release];
     [_title release];
     [_docType release];
@@ -97,6 +101,7 @@
     [_status release];
     [_attachments release];
     
+    _receptorid = nil;
     _UUID = nil;
     _title = nil;
     _docType = nil;

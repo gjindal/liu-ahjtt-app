@@ -180,6 +180,7 @@
     _docDetail.source   = fdDocSource.text;
     _docDetail.level    = btLevel.titleLabel.text;
     _docDetail.recevicer= btReceptor.titleLabel.text;
+    _docDetail.receptorid= dispatchedUsersID;
     _docDetail.content  = contents.text;
     _docDetail.attachments = self.attachArray;
     
@@ -203,6 +204,12 @@
     
         [self alertInfo:@"保存稿件失败!" withTitle:@"稿件保存"];
     }
+    else
+    {
+        [self alertInfo:@"保存稿件成功!" withTitle:@"稿件保存"];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)submitForAudit{
@@ -247,6 +254,9 @@
 
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
+    if (_docDetail == nil) {
+        _docDetail = [[DocDetail alloc] init];
+    }
     contributeInfo.flowID = [_docDetail.UUID copy];
     NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
     
@@ -304,6 +314,7 @@
     {
         [self alertInfo:@"稿件上传失败" withTitle:@"错误"];
     }
+    [self.navigationController popViewControllerAnimated:YES];
    [alert hideWaiting];   
 }
 
@@ -338,11 +349,14 @@
     NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
     if ([workflowInfo.opttype isEqualToString:@"1"]) {
         
-        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:workflowInfo.endStatus];
+        if ([dispatchedUsersID length]<1) {
+            dispatchedUsersID = _docDetail.receptorid;
+        }
+        
+        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:workflowInfo.endStatus ConID:@""];
     }if ([workflowInfo.opttype isEqualToString:@"2"]) {
-        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus];
+        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus ConID:@""];
     }
-    
 }
 
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
@@ -790,11 +804,18 @@
         [attachArray addObjectsFromArray:_docDetail.attachments];
         [self.attachTable reloadData];
         
+        //初始时要获取流程
+        docRequest.delegate = self;
+        int l = [levelArray indexOfObject:_docDetail.level]+1;
+        NSLog(@"=============%d",l);
+        [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",l]];
+        
+    }else{
+        //初始时要获取流程
+        docRequest.delegate = self;
+        [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",1]];
     }
-    
-    //初始时要获取流程
-    docRequest.delegate = self;
-    [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",1]];
+
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

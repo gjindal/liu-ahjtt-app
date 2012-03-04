@@ -30,9 +30,11 @@
     NSMutableArray *dispatchedPersons;
     NSString *titleText;
     
+    BOOL bMultiSelect;
+    
 }
 
-
+@property (nonatomic) BOOL bMultiSelect;
 @property (nonatomic,retain) NSString *titleText;
 @property (nonatomic,retain) NSObject<UIViewPassValueDelegate> *delegate;
 @property (nonatomic,retain) NSMutableArray *dispatchedPersons;

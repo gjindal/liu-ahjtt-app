@@ -15,6 +15,7 @@
 @synthesize delegate;
 @synthesize dispatchedPersons;
 @synthesize titleText;
+@synthesize bMultiSelect;
 
 
 -(void)viewDidLoad{

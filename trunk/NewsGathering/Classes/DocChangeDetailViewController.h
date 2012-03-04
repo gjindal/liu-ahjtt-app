@@ -17,6 +17,7 @@
 #import "ASIFormDataRequest.h"
 #import "UIViewPassValueDelegate.h"
 #import "CustomAlertView.h"
+#import "AuditOpinionViewController.h"
 
 @interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,
                                                              UIScrollViewDelegate,
@@ -34,7 +35,6 @@
 	
     IBOutlet UIScrollView *scrollView;
 	IBOutlet UIImageView *imgContentsBgd;
-	IBOutlet UIImageView *imgMessageBgd;
     
 	IBOutlet UITextField *fdTitle;
 	IBOutlet UITextField *fdKeyword;
@@ -48,9 +48,7 @@
     IBOutlet UIButton *btRecorder;
 	IBOutlet UIButton *btCamera;
 	IBOutlet UIButton *btVideo;
-	IBOutlet UILabel *lblMessage;
-	IBOutlet UITextView *txtMessage;
-    
+    IBOutlet UIButton *btOpinion;
     
 	NSMutableArray *attachArray;
     NSMutableArray *typeArray;
@@ -82,9 +80,9 @@
     NSString *tmpCellString;
     int attachIndex;
     
-    NSMutableArray *dispatchedArray;
-    NSString *dispatchedUsersName;
-    NSString *dispatchedUsersID;
+    NSMutableArray *receptorArray;
+    NSString *receptorUsersName;
+    NSString *receptorUsersID;
     CustomAlertView *alert;
     
     NSMutableData *receivedData;
@@ -93,15 +91,17 @@
     NSFileHandle *file;
     NSString *fileName;
     NSString *nextStatus;//根据状态判断是被打回了，还是通过了
+    
+    AuditOpinionViewController *opinionViewController;
 
 }
 
 @property (nonatomic) BOOL keyboardShown;
 @property (nonatomic,retain)	UITextField *activeField;
 @property (nonatomic,retain)	NSMutableArray *attachArray;
-@property (nonatomic,retain)	NSMutableArray *dispatchedArray;
-@property (nonatomic,retain)	NSString *dispatchedUsersName;
-@property (nonatomic,retain)	NSString *dispatchedUsersID;
+@property (nonatomic,retain)	NSMutableArray *receptorArray;
+@property (nonatomic,retain)	NSString *receptorUsersName;
+@property (nonatomic,retain)	NSString *receptorUsersID;
 @property (nonatomic,retain)	NSMutableArray *typeArray;
 @property (nonatomic,retain)	NSMutableArray *levelArray;
 @property (nonatomic,retain)	NSIndexPath *lastTypeIndexPath;
@@ -110,6 +110,7 @@
 @property (nonatomic,retain)	ContributeInfo *contributeInfo;
 @property (nonatomic,retain)	DocRequest *docRequest;
 @property (retain, nonatomic)   ASIFormDataRequest *request;
+@property (retain, nonatomic)    StorageHelper *storeHelper;
 
 @property (nonatomic,retain)	IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
@@ -137,6 +138,7 @@
 -(IBAction)setLevel:(id)sender;
 -(IBAction)setType:(id)sender;
 -(IBAction)setReceptor:(id)sender;
+-(IBAction)writeOpinion:(id)sender;
 
 - (void) beginDownloadWithID:(NSString *)ID;
 

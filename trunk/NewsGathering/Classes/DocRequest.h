@@ -35,12 +35,14 @@
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
                  FlowID:(NSString *)flowID
-                Status:(NSString *)status;
+                Status:(NSString *)status
+                 ConID:(NSString *)conid;
 - (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
                    Note:(NSString *)note Source:(NSString *)source
                    Type:(NSString *)type Level:(NSString *)level
                  FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid
-                 Status:(NSString *)status;
+                 Status:(NSString *)status
+                  ConID:(NSString *)conid;
 - (void)updateDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
                       Note:(NSString *)note Source:(NSString *)source
                       Type:(NSString *)type Level:(NSString *)level
