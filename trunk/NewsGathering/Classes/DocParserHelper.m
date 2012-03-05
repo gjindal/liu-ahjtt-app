@@ -90,6 +90,8 @@
 //        }
         
         _info = [[ContributeInfo alloc] init];
+        _attLsList = [[NSMutableArray alloc] initWithCapacity:0];
+        _workLogList = [[NSMutableArray alloc] initWithCapacity:0];
     }else if([elementName isEqualToString:@"apps"]) {
     
 //        if(_appsList != nil) {
@@ -110,8 +112,10 @@
         _workflowInfo = [[WorkflowInfo alloc] init];
     }else if([elementName isEqualToString:@"attLs"]) {
     
-        _attLsList = [[NSMutableArray alloc] initWithCapacity:0];
         _attLsInfo = [[AttLsInfo alloc] init];
+    }else if([elementName isEqualToString:@"workLogs"]) {
+    
+        _workLogInfo = [[WorkLog alloc] init];
     }
     
     _currentValue = [[NSMutableString alloc] initWithCapacity:0];
@@ -193,10 +197,13 @@
         _info.title = _currentValue;
     }else if([elementName isEqualToString:@"status"]) {
         //
-        if (_info.status != nil) {
-            return;
-        }
+        
+        if(_workLogInfo != nil) {
+            _workLogInfo.status = _currentValue;
+        }else {
+        
         _info.status = _currentValue;
+        }
     }else if([elementName isEqualToString:@"note"]) {
     
         _info.note = _currentValue;
@@ -316,6 +323,22 @@
         _attLsInfo = nil;
         
         _info.attLsList = _attLsList;
+    }else if([elementName isEqualToString:@"logid"]) {
+    
+        _workLogInfo.logID = _currentValue;
+    }else if([elementName isEqualToString:@"recuseuserid"]) {
+    
+        _workLogInfo.recuseuserID = _currentValue;
+    }else if([elementName isEqualToString:@"userid"]) {
+    
+        _workLogInfo.userID = _currentValue;
+    }else if([elementName isEqualToString:@"workLogs"]) {
+    
+        [_workLogList addObject:_workLogInfo];
+        [_workLogInfo release];
+        _workLogInfo = nil;
+        
+        _info.workLogList = _workLogList;
     }
     
     [_currentValue release];

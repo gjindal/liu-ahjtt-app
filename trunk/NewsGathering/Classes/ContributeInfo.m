@@ -26,6 +26,30 @@
 
 @end
 
+@implementation WorkLog
+
+@synthesize logID = _logID;
+@synthesize recuseuserID = _recuseuserID;
+@synthesize status = _status;
+@synthesize userID = _userID;
+
+- (void)dealloc {
+    
+    [_logID release];
+    [_recuseuserID release];
+    [_status release];
+    [_userID release];
+    
+    _logID = nil;
+    _recuseuserID = nil;
+    _status = nil;
+    _userID = nil;
+    
+    [super dealloc];
+}
+
+@end
+
 @implementation ContributeInfo
 
 @synthesize conid = _conid;
@@ -42,6 +66,7 @@
 @synthesize keyword = _keyword;
 @synthesize source = _source;
 @synthesize attLsList = _attLsList;
+@synthesize workLogList = _workLogList;
 
 - (id)init {
 
@@ -70,6 +95,7 @@
     [_keyword release];
     [_source release];
     [_attLsList release];
+    [_workLogList release];
      
     _keyword = nil;
     _conid = nil;
@@ -85,6 +111,7 @@
     _statusNm = nil;
     _source = nil;
     _attLsList = nil;
+    _workLogList = nil;
     
     [super dealloc];
 }

@@ -26,6 +26,8 @@
     WorkflowInfo                    *_workflowInfo;
     AttLsInfo                       *_attLsInfo;
     NSMutableArray                  *_attLsList;
+    NSMutableArray                  *_workLogList;
+    WorkLog                         *_workLogInfo;
 }
 
 @property (nonatomic, assign) id<DocParserHelperDelegate> delegate;

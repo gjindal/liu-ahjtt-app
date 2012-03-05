@@ -20,6 +20,21 @@
 
 @end
 
+@interface WorkLog : NSObject {
+@private
+    NSString *_logID;
+    NSString *_recuseuserID;
+    NSString *_status;
+    NSString *_userID;
+}
+
+@property (nonatomic, retain) NSString *logID;
+@property (nonatomic, retain) NSString *recuseuserID;
+@property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSString *userID;
+
+@end
+
 @interface ContributeInfo : ResultInfo {
 @private
     NSString *_conid;
@@ -36,6 +51,7 @@
     NSArray  *_appsList;
     NSArray  *_attitudeList;
     NSArray  *_attLsList;
+    NSArray  *_workLogList;
 }
 
 @property (nonatomic, retain) NSString *conid;
@@ -52,6 +68,7 @@
 @property (nonatomic, retain) NSString *source;
 @property (nonatomic, retain) NSArray  *attitudeList;
 @property (nonatomic, retain) NSArray  *attLsList;
+@property (nonatomic, retain) NSArray  *workLogList;
 
 + (NSString *)getFlowID;
 
