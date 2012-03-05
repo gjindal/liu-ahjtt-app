@@ -220,12 +220,18 @@
 }
 
 -(void) shareToWB{
-
-    sleep(2000);
-    [alert hideWaiting];
-    [alert alertInfo:@"分享成功" withTitle:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-   // [docRequest sendWeiboWithType:contributeInfo.type Note:contributeInfo.note FilePath:@""];
+    
+    BOOL bSend = NO;
+    for(AttLsInfo *attlsInfo in contributeInfo.attLsList){
+        if([attlsInfo.fileName hasPrefix:@"Image_"]){
+            [docRequest sendWeiboWithType:@"2" Note:contributeInfo.note FilePath:attlsInfo.attLsID];
+            bSend = YES;
+            break;
+        }
+    }
+    if (!bSend) {
+        [docRequest sendWeiboWithType:@"1" Note:contributeInfo.note FilePath:nil];
+    }
 }
 
 -(void) approveDidFinished:(ContributeInfo *)contributeInfo1{
@@ -819,7 +825,7 @@
     
     AttLsInfo *attlsInfo = [[AttLsInfo alloc] init];
     attlsInfo.fileName = [[NSString alloc] initWithString:imageName];
-    attlsInfo.attLsID = [NSString stringWithFormat:@"%d", kInvalidID];
+    attlsInfo.attLsID = [NSString stringWithFormat:@"%@", kAttachID_Invalide];
     [self.attachArray  addObject:attlsInfo];
     //NSLog(@"%@", self.attachArray);
     //    [self setAttachArray:[_storeHelper getSubFiles]];
