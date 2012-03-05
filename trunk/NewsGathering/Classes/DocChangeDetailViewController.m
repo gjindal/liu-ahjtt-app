@@ -452,9 +452,7 @@
             txtMessage.editable = NO;
         }
     }
-    
-    
-    
+
 }
 
 -(IBAction)setLevel:(id)sender{
@@ -819,8 +817,11 @@
         [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
     
-    [self.attachArray  addObject:imageName];
-    NSLog(@"%@", self.attachArray);
+    AttLsInfo *attlsInfo = [[AttLsInfo alloc] init];
+    attlsInfo.fileName = [[NSString alloc] initWithString:imageName];
+    attlsInfo.fileName = [[NSString alloc] initWithString:kInvalidID];
+    [self.attachArray  addObject:attlsInfo];
+    //NSLog(@"%@", self.attachArray);
     //    [self setAttachArray:[_storeHelper getSubFiles]];
     //[(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
