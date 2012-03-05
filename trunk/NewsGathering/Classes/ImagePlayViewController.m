@@ -11,12 +11,17 @@
 @implementation ImagePlayViewController
 
 @synthesize image = _image;
+@synthesize imageName = _imageName;
+@synthesize selectedImageName = _selectedImageName;
+@synthesize showSelectButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        showSelectButton = NO;
+    
     }
     return self;
 }
@@ -37,6 +42,25 @@
         [self.view addSubview:imageView];
         [imageView release];
     }
+    
+    if(self.showSelectButton == YES) {
+    
+        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
+        temporaryBarButtonItem.title = @"选择";  
+        temporaryBarButtonItem.target = self;  
+        temporaryBarButtonItem.action = @selector(selectImage);  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
+        [temporaryBarButtonItem release]; 
+    }
+}
+
+- (void)selectImage {
+
+    [_selectedImageName release];
+    _selectedImageName = nil;
+    
+    if(_imageName != nil) 
+        _selectedImageName = [_imageName copy];
 }
 
 - (void)dealloc {

@@ -12,8 +12,15 @@
 
 @private
     UIImage *_image;
+    NSString *_imageName;
+    NSString *_selectedImageName;
 }
 
 @property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) NSString *imageName;
+@property (nonatomic, retain) NSString *selectedImageName;
+@property (nonatomic, assign) BOOL      showSelectButton;
+
+- (void)selectImage;
 
 @end
