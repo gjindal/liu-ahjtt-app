@@ -192,7 +192,10 @@
         
         _info.title = _currentValue;
     }else if([elementName isEqualToString:@"status"]) {
-        
+        //
+        if (_info.status != nil) {
+            return;
+        }
         _info.status = _currentValue;
     }else if([elementName isEqualToString:@"note"]) {
     

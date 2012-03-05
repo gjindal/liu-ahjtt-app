@@ -143,7 +143,7 @@
 - (void) beginDownloadWithID:(NSString *)ID;
 
 -(void) showMediaWithFile:(NSString *) fileName1;
-
+-(void) sendContents;
 -(void) initForm;
 -(void) submitDoc;
 

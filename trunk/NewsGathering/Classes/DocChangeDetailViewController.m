@@ -118,11 +118,20 @@
 	[request setDidFailSelector:@selector(respnoseFailed:)];
 	[request setDidFinishSelector:@selector(responseComplete:)];
     
-    for (NSString *filePath in attachArray) {
-        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
+    BOOL isExistFiles = NO;
+    for (AttLsInfo *filePath in attachArray) {
+        if ([filePath.attLsID length]>0) {
+            continue;
+        }
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath.fileName];
 		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
-        break;
+        isExistFiles = YES;
 	}
+    if (!isExistFiles) {
+        [self sendContents];
+        return;
+    }
+    
 	[request startAsynchronous];
 }
 
@@ -139,7 +148,9 @@
 
 - (void)addDocDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        [alert hideWaiting];
         [alert alertInfo:@"稿件上传成功" withTitle:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
@@ -152,12 +163,29 @@
 - (void)addDocForApproveDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [alert alertInfo:@"稿件上传成功" withTitle:nil];
+        [alert hideWaiting];   
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
         [alert alertInfo:@"稿件上传失败" withTitle:@"错误"];
     }
-    [alert hideWaiting];   
+    [alert hideWaiting];  
+}
+
+-(void) sendContents{
+
+    
+    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
+    NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
+    /*if ([workflowInfo.opttype isEqualToString:@"1"]) {
+     [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:nil Status:workflowInfo.endStatus ConID:contributeInfo.conid];
+     }if ([workflowInfo.opttype isEqualToString:@"2"]) {*/
+    NSLog(@"***************%@",workflowInfo.endStatus);
+    [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:@"4" ConID:contributeInfo.conid];
+    //}
+    
+
 }
 
 -( void )responseComplete:(ASIHTTPRequest *)theRequest{
@@ -167,15 +195,7 @@
     NSLog(@"###########%@",responseString);
     
     //如果附件发送成功，则发送内容
-    
-    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
-    NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
-    /*if ([workflowInfo.opttype isEqualToString:@"1"]) {
-        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:nil Status:workflowInfo.endStatus ConID:contributeInfo.conid];
-    }if ([workflowInfo.opttype isEqualToString:@"2"]) {*/
-        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus ConID:contributeInfo.conid];
-    //}
-    
+    [self sendContents];
 }
 
 -( void )respnoseFailed:(ASIHTTPRequest *)theRequest{
@@ -183,6 +203,7 @@
     NSError *error = [ request error ];
     NSLog(@"#############%@",error);
     [alert alertInfo:@"提交失败." withTitle:@"错误"]; 
+
     
 }
 
@@ -195,10 +216,16 @@
     }else{
         [alert alertInfo:@"分享失败" withTitle:nil];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) shareToWB{
-    [docRequest sendWeiboWithType:contributeInfo.type Note:contributeInfo.note FilePath:@""];
+
+    sleep(2000);
+    [alert hideWaiting];
+    [alert alertInfo:@"分享成功" withTitle:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+   // [docRequest sendWeiboWithType:contributeInfo.type Note:contributeInfo.note FilePath:@""];
 }
 
 -(void) approveDidFinished:(ContributeInfo *)contributeInfo1{
@@ -229,7 +256,9 @@
 
 -(void) goBack{
     nextStatus = @"5";
-    [docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:@"5"];
+    [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"5"];
+    
+    //[docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:nextStatus ConID:contributeInfo.conid];
 }
 
 -(void)submitDoc{
@@ -481,7 +510,14 @@
 -(IBAction)writeOpinion:(id)sender{
     
     opinionViewController = [[AuditOpinionViewController alloc] init];
-    opinionViewController.opinion = [contributeInfo.attitudeList objectAtIndex:0];
+    opinionViewController.opinion = [contributeInfo.attitudeList objectAtIndex:0] ;
+    if (enableEdit) {
+        opinionViewController.bEnableEdit = NO;
+    }else if (enableShare) {
+        opinionViewController.bEnableEdit = NO;
+    }else{
+        opinionViewController.bEnableEdit = YES;
+    }
     [self.navigationController pushViewController:opinionViewController animated:YES];
 
 }
@@ -716,7 +752,7 @@
 }
 
 -(void)getEditListDidFinished:(NSArray *)workflowArray{
-    
+    /*
     for(WorkflowInfo *flowInfo in workflowArray){
         if ([contributeInfo.level isEqualToString:flowInfo.begStatus]) {
             enableEdit = YES;
@@ -724,7 +760,7 @@
         else{
             enableEdit = NO;
         }
-    }
+    }*/
 }
 
 -(void) downloadDidFinished:(BOOL)isSuccess{
@@ -826,6 +862,28 @@
     if (alert == nil) {
         alert = [[CustomAlertView alloc] init];
     }
+
+    //设置意见值
+    NSString *opinion;
+    if(opinionViewController.opinion != nil)
+        opinion = [[NSString alloc] initWithString:opinionViewController.opinion];
+    else
+        opinion = [[NSString alloc] initWithString:[contributeInfo.attitudeList objectAtIndex:0]];
+    
+    if ([opinion isEqualToString:@"null"]) {
+         [btOpinion setTitle:@"无" forState:UIControlStateNormal];
+    }else{
+        int length = [opinion length];
+    
+        if (length < 1) {
+            [btOpinion setTitle:@"无" forState:UIControlStateNormal];
+        }else{
+            [btOpinion setTitle:opinion forState:UIControlStateNormal];
+        }
+    }
+    
+    
+    NSLog(@"+++++++++++%@",contributeInfo.status);
     
     [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",contributeInfo.status] Status:contributeInfo.status];
     alertType = ALERTTABLE_OTHERS;

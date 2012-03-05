@@ -15,7 +15,7 @@
 
 
 -(void) submitOpinion{
-    opinion = opinionTextView.text;
+    opinion = [opinionTextView.text copy];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -45,10 +45,16 @@
 	self.title= @"审核意见";
 	self.navigationController.navigationBar.hidden=NO;
 	
-	UIBarButtonItem *submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitOpinion)];
-	submitButton.style=UIBarButtonItemStylePlain;
-	self.navigationItem.rightBarButtonItem=submitButton;
-	[submitButton release];
+    if (bEnableEdit) {
+        UIBarButtonItem *submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitOpinion)];
+        submitButton.style=UIBarButtonItemStylePlain;
+        self.navigationItem.rightBarButtonItem=submitButton;
+        [submitButton release];
+        
+        opinionTextView.editable = YES;
+    }else{
+        opinionTextView.editable = NO;
+    }
     
     if (opinion == nil) {
         opinion = [[NSString alloc] initWithFormat:@""];
