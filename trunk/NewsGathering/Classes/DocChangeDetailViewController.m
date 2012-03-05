@@ -12,7 +12,6 @@
 #import "StorageHelper.h"
 #import "NetRequest.h"
 #import "NewsGatheringAppDelegate.h"
-#import "ImagePlayViewController.h"
 #import "DocDetail.h"
 #import "DocDetailHelper.h"
 #import "UIAlertTableView.h"
@@ -705,9 +704,11 @@
         if([fileType isEqualToString:kMediaType_Image]) {
             
             UIImage *image = [[UIImage alloc] initWithData:data];
-            ImagePlayViewController *imagePlayCtrl = [[ImagePlayViewController alloc] init];
+            imagePlayCtrl = [[ImagePlayViewController alloc] init];
             //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
             imagePlayCtrl.image = image;
+            imagePlayCtrl.showSelectButton = YES;
+            imagePlayCtrl.imageName = fileName1;
             //[self presentModalViewController:imagePlayCtrl animated:YES];
             [self.navigationController pushViewController:imagePlayCtrl animated:YES];
             [image release];

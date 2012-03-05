@@ -18,6 +18,7 @@
 #import "UIViewPassValueDelegate.h"
 #import "CustomAlertView.h"
 #import "AuditOpinionViewController.h"
+#import "ImagePlayViewController.h"
 
 @interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,
                                                              UIScrollViewDelegate,
@@ -93,6 +94,8 @@
     NSString *nextStatus;//根据状态判断是被打回了，还是通过了
     
     AuditOpinionViewController *opinionViewController;
+    
+    ImagePlayViewController *imagePlayCtrl;
 
 }
 

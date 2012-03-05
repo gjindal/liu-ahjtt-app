@@ -49,7 +49,7 @@
         temporaryBarButtonItem.title = @"选择";  
         temporaryBarButtonItem.target = self;  
         temporaryBarButtonItem.action = @selector(selectImage);  
-        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
+        self.navigationItem.rightBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
 }
