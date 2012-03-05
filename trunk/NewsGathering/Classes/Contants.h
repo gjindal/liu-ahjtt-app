@@ -90,6 +90,8 @@ typedef enum {
 #define kFlag_Contri_Get_Edit_List  16
 #define kFlag_Contri_Get_App_Workflow   17
 #define kFlag_Contri_Send_Weibo     18
+#define kFlag_Contri_Approve_Status 19
+#define KFlag_Contri_Delete_Attach  20
 
 #define kInterface_Contri_List          [NSString stringWithFormat:@"%@contriM!getList_pass.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getList_pass.do"        // 查询稿件列表接口
@@ -127,4 +129,5 @@ typedef enum {
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getworkflowapp.do"
 #define kInterface_Contri_Send_Weibo    [NSString stringWithFormat:@"%@contriM!sendWeibo.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!sendWeibo.do"
-
+#define kInterface_Contri_Approve_Status [NSString stringWithFormat:@"%@contriM!submitApprovalStatus.do", kServer_URL, nil]
+#define KInterface_Contri_Delete_Attach [NSString stringWithFormat:@"%@contriM!deleteFile.do", kServer_URL, nil]

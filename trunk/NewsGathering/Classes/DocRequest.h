@@ -67,5 +67,9 @@
 - (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1;
 - (void)getEditListWithLevel:(NSString *)level;
 - (void)sendWeiboWithType:(NSString *)type Note:(NSString *)note FilePath:(NSString *)filePath;
+- (void)ApproveStatusWithLogID:(NSString *)logID Status:(NSString *)status 
+                      Attitude:(NSString *)attitude Conid:(NSString *)conid
+                  RecuseuserID:(NSString *)recuseuserID;
+- (void)deleteAttachWithID:(NSString *)flowID;
 
 @end

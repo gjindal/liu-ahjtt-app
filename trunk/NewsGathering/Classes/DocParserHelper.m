@@ -167,6 +167,12 @@
         }else if(_currentFlag == kFlag_Contri_Send_Weibo) {
         
             sel = @selector(sendWeiboDidFinished:);
+        }else if(_currentFlag == kFlag_Contri_Approve_Status) {
+        
+            sel = @selector(approveStatusDidFinished:);
+        }else if(_currentFlag == KFlag_Contri_Delete_Attach) {
+        
+            sel = @selector(deleteAttachDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {

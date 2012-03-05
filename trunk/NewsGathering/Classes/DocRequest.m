@@ -351,6 +351,31 @@
     }
 }
 
+- (void)ApproveStatusWithLogID:(NSString *)logID Status:(NSString *)status 
+                      Attitude:(NSString *)attitude Conid:(NSString *)conid
+                  RecuseuserID:(NSString *)recuseuserID {
+
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&logid=%@&status=%@&attitude=%@&conid=%@&recuseuserid=%@",
+                      [UserHelper userName], [UserHelper password], logID, status, attitude, conid, recuseuserID];
+    NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve_Status withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve_Status];
+        [returnString release];
+    }
+}
+- (void)deleteAttachWithID:(NSString *)flowID {
+
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&id=%@",
+                      [UserHelper userName], [UserHelper password], flowID];
+    NSData *returnData = [NetRequest PostData:KInterface_Contri_Delete_Attach withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Delete_Attach];
+        [returnString release];
+    }
+}
+
 #pragma mark - 
 #pragma mark Download File
 - (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1 {
@@ -525,6 +550,20 @@
 
     if(_delegate != nil && [_delegate respondsToSelector:@selector(sendWeiboDidFinished:)]) {
         [_delegate sendWeiboDidFinished:contributeInfo];
+    }
+}
+
+- (void)approveStatusDidFinished:(ContributeInfo *)contributeInfo {
+
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(approveStatusDidFinished:)]) {
+        [_delegate approveStatusDidFinished:contributeInfo];
+    }
+}
+
+- (void)deleteAttachDidFinished:(ContributeInfo *)contributeInfo {
+    
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(deleteAttachDidFinished:)]) {
+        [_delegate deleteAttachDidFinished:contributeInfo];
     }
 }
 
