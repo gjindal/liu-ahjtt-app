@@ -9,6 +9,7 @@ typedef enum {
 typedef enum {
     MENUTYPE_SUBMIT,
     MENUTYPE_MEDIALIB,
+    MENUTYPE_WEIBO
 }MENUTYPE;
 
 typedef enum {

@@ -23,6 +23,7 @@
     
     LoginSuccessInfo *loginSuccessInfo;
     
+    NSMutableArray *deptArray;
     NSMutableArray *levelArray;
     NSMutableArray *typeArray;
     NSString *strDeviceToken;
@@ -42,6 +43,7 @@
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSMutableArray *levelArray;
 @property (nonatomic, retain) NSMutableArray *typeArray;
+@property (nonatomic, retain) NSMutableArray *deptArray;
 @property (nonatomic, retain) LoginSuccessInfo *loginSuccessInfo;
 
 

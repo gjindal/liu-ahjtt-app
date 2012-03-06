@@ -135,45 +135,12 @@
         _docDetail = [[DocDetail alloc] init];
     }
     
-    
     //上传前验证必填项
     if( [fdTitle.text length]<1){
         [self alertInfo:@"标题不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
     }
-    /*if( [fdKeyword.text length]<1){
-        [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    if( [contents.text length]<1){
-        [self alertInfo:@"内容不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    if( [fdDocSource.text length]<1){
-        [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    if( [btType.titleLabel.text length]<1){
-        [self alertInfo:@"类型不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    if([btLevel.titleLabel.text length]<1){
-        [self alertInfo:@"审核级别不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
-    if([btReceptor.titleLabel.text length]<1){
-        [self alertInfo:@"接收人不能为空" withTitle:@"错误"];
-        [alert hideWaiting];
-        return;
-    }
-    */
     _docDetail.title    = fdTitle.text;
     _docDetail.docType  = btType.titleLabel.text;
     _docDetail.key      = fdKeyword.text;
@@ -245,6 +212,11 @@
         [alert hideWaiting];
         return;
     }
+    if (workflowInfo.endStatus == nil || [workflowInfo.endStatus length]<1) {
+        [self alertInfo:@"请重新设置审核级别" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
     NSLog(@"%@===================%@",workflowInfo.opttype,btReceptor.titleLabel.text);
     if( [workflowInfo.opttype isEqualToString:@"1"]&&[btReceptor.titleLabel.text length]<1){
         [self alertInfo:@"接收人不能为空" withTitle:@"错误"];
@@ -289,6 +261,7 @@
 - (void)addDocDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
@@ -329,6 +302,7 @@
             [docDetailHelper updateDoc:_docDetail];
             [docDetailHelper release];
         }
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
@@ -344,18 +318,21 @@
     NSLog(@"###########%@",responseString);
     
     //如果附件发送成功，则发送内容
-    
-    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
+    NSString *strLevel;
+    for(DirtInfo *info in levelArray){
+        if([info.dic_value isEqualToString:btLevel.titleLabel.text]){
+            strLevel = info.dic_type;
+        }
+    }
     NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
     if ([workflowInfo.opttype isEqualToString:@"1"]) {
         
         if ([dispatchedUsersID length]<1) {
             dispatchedUsersID = _docDetail.receptorid;
         }
-        
-        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:workflowInfo.endStatus ConID:@""];
+        [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:@"4" ConID:@""];
     }if ([workflowInfo.opttype isEqualToString:@"2"]) {
-        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:workflowInfo.endStatus ConID:@""];
+        [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:@"99" ConID:@""];
     }
 }
 
@@ -476,6 +453,10 @@
 
 -(IBAction)setReceptor:(id)sender{
 
+    if ([workflowInfo.endStatus isEqualToString:@"99"]) {
+        [alert alertInfo:@"快讯不需要接收人" withTitle:@"提醒"];
+        return;
+    }
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
     treeViewCtrl.delegate = self;
     treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择接收人"];
@@ -521,6 +502,26 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (alertType == ALERTTABLE_DOCTYPE) {
+        
+        if([cell.textLabel.text isEqualToString:btType.titleLabel.text]) {
+            
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            lastTypeIndexPath = [indexPath retain];
+        }
+    }else if(alertType == ALERTTABLE_LEVEL) {
+    
+        if([cell.textLabel.text isEqualToString:btLevel.titleLabel.text]) {
+            
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            lastLevelIndexPath = [indexPath retain];
+        }
+    }
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
@@ -537,11 +538,12 @@
         cell.accessoryType = (row == oldRow && lastTypeIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     else if (alertType == ALERTTABLE_LEVEL) {
-        cell.textLabel.text = [levelArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
         NSUInteger row = [indexPath row];
         NSUInteger oldRow = [lastLevelIndexPath row];
-        cell.textLabel.text = [levelArray objectAtIndex:row];
+        cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
         cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        
     }else{
         cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -552,7 +554,16 @@
 }
 
 - (void)getWorkflowDidFinished:(NSArray *)workflowArray{
-    workflowInfo = [[workflowArray objectAtIndex:0] retain];
+    workFlowArray = [[NSMutableArray alloc] initWithArray:workflowArray];
+    for(workflowInfo in workFlowArray){
+        if (![workflowInfo.endStatus isEqualToString:@"3"]) {
+            [workflowInfo.endStatus retain];
+            break;
+        }
+        else{
+            continue;
+        }
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -562,23 +573,22 @@
     
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
-            btType.titleLabel.text =  tmpCellString;         
+            [btType setTitle:tmpCellString forState:UIControlStateNormal];         
         }else{
-            btLevel.titleLabel.text = tmpCellString;
+            [btLevel setTitle:tmpCellString forState:UIControlStateNormal];
             docRequest.delegate = self;
            
-            int l = [levelArray indexOfObject:tmpCellString]+1;
-             NSLog(@"=====%d",l);
-            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",l]];
+            for (DirtInfo *info in levelArray) {
+                if ([info.dic_value isEqualToString:tmpCellString]) {
+                    [docRequest getWorkflowWithLevel:info.dic_type];
+                    break;
+                }
+            }
+            
         }
     }
     alertType = ALERTTABLE_OTHERS;
 	printf("User Pressed Button %d\n",buttonIndex+1);
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-	//NSInteger row=[indexPath row];
-	
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -769,53 +779,6 @@
 	submitButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=submitButton;
 	[submitButton release];
-    
-    //取新闻类型
-    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    //array =[[NSMutableArray alloc] init];
-    levelArray = appDelegate.levelArray;
-    typeArray = appDelegate.typeArray;
-    alertType = ALERTTABLE_OTHERS;
-    
-    if (docRequest == nil) {
-        docRequest = [[DocRequest alloc] init];
-    }
-    docRequest.delegate = self;
-    workflowInfo = [[WorkflowInfo alloc] init];
-
-    
-    [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
-    [btLevel setTitle:[levelArray objectAtIndex:0] forState:UIControlStateNormal];
-    [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
-    
-    if(_docDetail != nil && transformType == TYPE_MODIFY && bEnableFill) {
-        
-        bEnableFill = NO;
-        fdTitle.text    = _docDetail.title;
-        [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
-        fdKeyword.text      = _docDetail.key;
-        fdDocSource.text   = _docDetail.source;
-        [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
-        [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
-        contents.text  = _docDetail.content;
-        
-        if([attachArray count] > 0)
-            [attachArray removeAllObjects];
-        [attachArray addObjectsFromArray:_docDetail.attachments];
-        [self.attachTable reloadData];
-        
-        //初始时要获取流程
-        docRequest.delegate = self;
-        int l = [levelArray indexOfObject:_docDetail.level]+1;
-        NSLog(@"=============%d",l);
-        [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",l]];
-        
-    }else{
-        //初始时要获取流程
-        docRequest.delegate = self;
-        [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",1]];
-    }
-
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -848,9 +811,60 @@
     
     alert = [[CustomAlertView alloc] init];
     contributeInfo = [[ContributeInfo alloc] init];
+    
+    
+    //////////////
+    //取新闻类型
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //array =[[NSMutableArray alloc] init];
+    levelArray = appDelegate.levelArray;
+    typeArray = appDelegate.typeArray;
+    alertType = ALERTTABLE_OTHERS;
+    
+    if (docRequest == nil) {
+        docRequest = [[DocRequest alloc] init];
+    }
+    docRequest.delegate = self;
+    workflowInfo = [[WorkflowInfo alloc] init];
+    
+    
+    [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+    [btLevel setTitle:((DirtInfo *)[levelArray objectAtIndex:0]).dic_value forState:UIControlStateNormal];
+    [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
+    
+    if(_docDetail != nil && transformType == TYPE_MODIFY && bEnableFill) {
+        
+        bEnableFill = NO;
+        fdTitle.text    = _docDetail.title;
+        [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
+        fdKeyword.text      = _docDetail.key;
+        fdDocSource.text   = _docDetail.source;
+        [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
+        [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
+        contents.text  = _docDetail.content;
+        
+        if([attachArray count] > 0)
+            [attachArray removeAllObjects];
+        [attachArray addObjectsFromArray:_docDetail.attachments];
+        [self.attachTable reloadData];
+        
+        //初始时要获取流程
+        docRequest.delegate = self;
+        for(DirtInfo *info in levelArray)
+        {
+            if([info.dic_value isEqualToString:_docDetail.level])
+            {
+                [docRequest getWorkflowWithLevel:info.dic_type];
+                break;
+            }
+        }
+        
+    }else{
+        //初始时要获取流程
+        docRequest.delegate = self;
+        [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",3]];
+    }
 }
-
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -883,10 +897,7 @@
             [_docDetailHelper updateDoc:_docDetail];
         }
     }
-    [self.attachTable endUpdates];
-    //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    //    }   
+    [self.attachTable endUpdates];  
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

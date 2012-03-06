@@ -20,6 +20,13 @@
 #import "AuditOpinionViewController.h"
 #import "ImagePlayViewController.h"
 
+
+typedef enum {
+    ACTIONSHEET_TYPE_SUBMIT,
+    ACTIONSHEET_TYPE_WEIBO
+
+}ACTIONSHEET_TYPE;
+
 @interface DocChangeDetailViewController : UIViewController <UITextFieldDelegate,
                                                              UIScrollViewDelegate,
                                                              UITableViewDelegate, 
@@ -42,7 +49,7 @@
 	IBOutlet UITextField *fdSource;
     IBOutlet UIButton *btType;
     IBOutlet UIButton *btLevel;
-    IBOutlet UIButton *btReceptor;
+    IBOutlet UIButton *btNextReceptor;
 	IBOutlet UITextView *contents;
 
 	IBOutlet UITableView *attachTable;
@@ -56,6 +63,7 @@
     NSMutableArray *levelArray;
     NSIndexPath *lastTypeIndexPath;
     NSIndexPath *lastLevelIndexPath;
+    NSIndexPath *currentAttchIndexPath;
 	
 	UITextField * activeField;  
 	BOOL keyboardShown;
@@ -82,8 +90,8 @@
     int attachIndex;
     
     NSMutableArray *receptorArray;
-    NSString *receptorUsersName;
-    NSString *receptorUsersID;
+    NSString *nextReceptorUserName;
+    NSString *nextReceptorUserID;
     CustomAlertView *alert;
     
     NSMutableData *receivedData;
@@ -103,8 +111,6 @@
 @property (nonatomic,retain)	UITextField *activeField;
 @property (nonatomic,retain)	NSMutableArray *attachArray;
 @property (nonatomic,retain)	NSMutableArray *receptorArray;
-@property (nonatomic,retain)	NSString *receptorUsersName;
-@property (nonatomic,retain)	NSString *receptorUsersID;
 @property (nonatomic,retain)	NSMutableArray *typeArray;
 @property (nonatomic,retain)	NSMutableArray *levelArray;
 @property (nonatomic,retain)	NSIndexPath *lastTypeIndexPath;
@@ -113,7 +119,9 @@
 @property (nonatomic,retain)	ContributeInfo *contributeInfo;
 @property (nonatomic,retain)	DocRequest *docRequest;
 @property (retain, nonatomic)   ASIFormDataRequest *request;
-@property (retain, nonatomic)    StorageHelper *storeHelper;
+@property (retain, nonatomic)   StorageHelper *storeHelper;
+@property (retain, nonatomic)   NSString *nextReceptorUserName;
+@property (retain, nonatomic)   NSString *nextReceptorUserID;
 
 @property (nonatomic,retain)	IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain)	IBOutlet UIImageView *imgContentsBgd;
@@ -140,7 +148,7 @@
 
 -(IBAction)setLevel:(id)sender;
 -(IBAction)setType:(id)sender;
--(IBAction)setReceptor:(id)sender;
+-(IBAction)setNextReceptor:(id)sender;
 -(IBAction)writeOpinion:(id)sender;
 
 - (void) beginDownloadWithID:(NSString *)ID;

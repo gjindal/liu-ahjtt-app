@@ -10,8 +10,9 @@
 
 #import "LoginParserHelperDelegate.h"
 #import "LoginParserHelper.h"
+#import "ClueDistRequest.h"
 
-@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate, LoginParserHelperDelegate> {
+@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate, LoginParserHelperDelegate,ClueDistRequestDelegate> {
 
 	UIButton *btLogin;
 	UITextField *fdUsername;
@@ -23,7 +24,9 @@
     NSMutableArray *loginData;
     NSMutableArray *saveData;
     
-	
+    ClueDistRequest *cluedistRequest;
+    DeptInfo *deptInfo;
+    
 }
 
 @property(nonatomic,retain)IBOutlet UITextField *fdUsername;

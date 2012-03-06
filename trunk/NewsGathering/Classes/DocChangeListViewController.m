@@ -70,6 +70,8 @@
     docRequest = [[DocRequest alloc] init];
     docRequest.delegate = self;    
     
+    docSearchVtrl = nil;
+    
     nextPage = NEXTPAGE_OTHERS;//
 }
 

@@ -61,6 +61,8 @@
     
     if(_imageName != nil) 
         _selectedImageName = [_imageName copy];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)dealloc {

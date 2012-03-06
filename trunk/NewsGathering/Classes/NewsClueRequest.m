@@ -94,9 +94,11 @@
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime 
                                                         Type:(NSString *) type{
+    assert((title != nil) && ([title length]>0 ));
+    assert((type != nil) && ([type length]>0));
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@",
-                      [UserHelper userName],[UserHelper password],title,keyword,note,begtime,endtime,type];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&type=%@&begtime=%@&endtime=%@&title=%@&keyword=%@&note=%@",
+                      [UserHelper userName],[UserHelper password],type,begtime,endtime,title,keyword,note];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Add withRequestString:post];
     if(returnData != nil) {
         

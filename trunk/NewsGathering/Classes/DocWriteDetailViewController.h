@@ -51,6 +51,7 @@
     
     NSMutableArray *typeArray;
     NSMutableArray *levelArray;
+    NSMutableArray *workFlowArray;
     NSString *tmpCellString;
     ALERTTABLE_TYPE alertType;
     NSIndexPath *lastTypeIndexPath;

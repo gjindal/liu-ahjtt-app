@@ -75,7 +75,7 @@
             [appDelegate.typeArray addObject:dirInfo.dic_value];
         }
         if ([dirInfo.dic_desc isEqualToString:@"审批流程"]) {
-            [appDelegate.levelArray addObject:dirInfo.dic_value];
+            [appDelegate.levelArray addObject:dirInfo];
         }
     }
 
@@ -181,6 +181,7 @@
     _loginParserHelper = [[LoginParserHelper alloc] init];
     _loginParserHelper.delegate = self;
     [_loginParserHelper startWithString:result];
+    
 }
 
 -(void) saveLoginInfo{
@@ -234,6 +235,11 @@
     return self;
 }
 
+- (void)parserDeptDidFinished:(NSArray *)deptList{
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.deptArray =[[NSMutableArray alloc] initWithArray:deptList];
+}
+
 #pragma -
 #pragma LoginParserHelper Delegate.
 
@@ -242,6 +248,11 @@
     if(resultInfo != nil) {
     
         if(resultInfo.isLoginSuccess == YES) {
+            
+            
+            cluedistRequest = [[ClueDistRequest alloc] init];
+            cluedistRequest.delegate = self;
+            [cluedistRequest getDept];
             
             NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             appDelegate.loginSuccessInfo = (LoginSuccessInfo *)resultInfo;

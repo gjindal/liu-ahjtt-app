@@ -10,6 +10,7 @@
 #import "ClueDistRequest.h"
 #import "DeptInfo.h"
 #import "UserInfo.h"
+#import "NewsGatheringAppDelegate.h"
 
 @implementation TreeViewController
 @synthesize delegate;
@@ -28,8 +29,9 @@
     userNodes = [[NSMutableArray alloc] initWithArray:userList];
 }
 
-- (void)parserDeptDidFinished:(NSArray *)deptList{
-    deptNodes=[[NSMutableArray alloc] initWithArray:deptList];
+-(void)initTree{
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    deptNodes=[[NSMutableArray alloc] initWithArray:appDelegate.deptArray];
     
     tree=[[TreeNode alloc]init];
     tree.deep=0;
@@ -82,13 +84,8 @@
     nodes=[[NSMutableArray alloc]init];
 	[TreeNode getNodes:tree :nodes];
 }
-
-
--(void)initTree{
     
-    cluedistRequest.delegate = self;
-    [cluedistRequest getDept];
-}
+
 
 -(void)confirm{
 
@@ -123,7 +120,7 @@
         cluedistRequest = [[ClueDistRequest alloc] init];
     }
     cluedistRequest.delegate = self;
-    [cluedistRequest getDept];
+    [self initTree];
     
 	self.title= titleText;
     

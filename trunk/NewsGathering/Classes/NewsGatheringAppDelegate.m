@@ -21,6 +21,7 @@
 @synthesize strDeviceToken;
 @synthesize payload;
 @synthesize certificate;
+@synthesize deptArray;
 
 
 - (id)init 
@@ -38,8 +39,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    
+        
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
 
     // Add the view controller's view to the window and display.

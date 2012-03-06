@@ -112,6 +112,8 @@
     }
     NSString *strType = [[NSString alloc] initWithFormat:@"%d",nType];
 
+    NSLog(@"--------------%@",strType);
+    
     newsclueRequest = [[NewsClueRequest alloc] init];
     newsclueRequest.delegate = self;
     

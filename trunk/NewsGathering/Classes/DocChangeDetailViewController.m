@@ -52,8 +52,8 @@
 @synthesize lastTypeIndexPath;
 @synthesize lastLevelIndexPath;
 @synthesize request;
-@synthesize receptorUsersID;
-@synthesize receptorUsersName;
+@synthesize nextReceptorUserName;
+@synthesize nextReceptorUserID;
 
 
 @synthesize storeHelper = _storeHelper;
@@ -119,7 +119,7 @@
     
     BOOL isExistFiles = NO;
     for (AttLsInfo *filePath in attachArray) {
-        if ([filePath.attLsID length]>0) {
+        if (![filePath.attLsID isEqualToString:kAttachID_Invalide]) {
             continue;
         }
         NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath.fileName];
@@ -174,8 +174,16 @@
 
 -(void) sendContents{
 
+    NSString *strLevel;
+    for(DirtInfo *info in levelArray){
+        if ([info.dic_value isEqualToString:btLevel.titleLabel.text]) {
+            strLevel = [info.dic_type retain];
+            break;
+        }else
+            continue;
+    }
     
-    NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
+    //NSString *strLevel = [NSString stringWithFormat:@"%d",[levelArray indexOfObject:btLevel.titleLabel.text]+1];
     NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
     /*if ([workflowInfo.opttype isEqualToString:@"1"]) {
      [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:nil Status:workflowInfo.endStatus ConID:contributeInfo.conid];
@@ -203,7 +211,6 @@
     NSLog(@"#############%@",error);
     [alert alertInfo:@"提交失败." withTitle:@"错误"]; 
 
-    
 }
 
 -(void) sendWeiboDidFinished:(ContributeInfo *)contributeInfo1{
@@ -220,17 +227,12 @@
 
 -(void) shareToWB{
     
-    BOOL bSend = NO;
-    for(AttLsInfo *attlsInfo in contributeInfo.attLsList){
-        if([attlsInfo.fileName hasPrefix:@"Image_"]){
-            [docRequest sendWeiboWithType:@"2" Note:contributeInfo.note FilePath:attlsInfo.attLsID];
-            bSend = YES;
-            break;
-        }
-    }
-    if (!bSend) {
-        [docRequest sendWeiboWithType:@"1" Note:contributeInfo.note FilePath:nil];
-    }
+    menuType = MENUTYPE_WEIBO;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"博文类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"文字微博",@"图文微博",nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+
 }
 
 -(void) approveDidFinished:(ContributeInfo *)contributeInfo1{
@@ -254,20 +256,77 @@
     }
 }
 
+- (void)approveStatusDidFinished:(ContributeInfo *)contributeInfo {
+    [alert hideWaiting];
+    if ([contributeInfo.flag isEqualToString:@"200"]) {
+        if ([nextStatus isEqualToString:@"99"]) {
+            [alert alertInfo:@"审核成功" withTitle:nil];
+        }else
+        {
+            [alert alertInfo:@"打回成功" withTitle:nil];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES]; 
+    }else{
+        if ([nextStatus isEqualToString:@"99"]) {
+            [alert alertInfo:@"审核失败" withTitle:nil];
+        }else
+        {
+            [alert alertInfo:@"打回失败" withTitle:nil];
+        }
+    }
+    
+}
+
 -(void) passAudit{
-    nextStatus = @"99";
-  	[docRequest approveWithConid:contributeInfo.conid Attitude:txtMessage.text Status:@"99"];
+    for (WorkflowInfo *flowInfo in workflowInfoArray) {
+        NSLog(@"%@", flowInfo.endStatus);
+        if ([flowInfo.endStatus isEqualToString:@"99"] ) {
+            nextStatus = flowInfo.endStatus;
+            [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99"];
+            break;
+        }
+        
+        if ([flowInfo.endStatus intValue]<6 ) {
+            continue;
+        }else{
+            WorkLog *workLog = [contributeInfo.workLogList objectAtIndex:0];
+            [docRequest ApproveStatusWithLogID:workLog.logID Status:flowInfo.endStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:nextReceptorUserID];
+            nextStatus = flowInfo.endStatus;
+            break;
+        }
+    }
 }
 
 -(void) goBack{
-    nextStatus = @"5";
-    [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"5"];
+    if ([contributeInfo.status isEqualToString:@"4"]) {
+        nextStatus = @"5";
+    }else{
+        for (WorkflowInfo *flowInfo in workflowInfoArray) {
+            if([flowInfo.endStatus intValue] < [contributeInfo.status intValue])
+            {
+                nextStatus = [flowInfo.endStatus retain];
+                break;
+            }else{
+                continue;
+            }
+        }
+    }
     
-    //[docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:nextStatus ConID:contributeInfo.conid];
+    WorkLog *workLog = [contributeInfo.workLogList objectAtIndex:0];
+    if ([opinionViewController.opinion length] < 1) {
+        [alert alertInfo:@"请填写审核意见" withTitle:@"注意"];
+        if (opinionViewController == nil) {
+            opinionViewController = [[AuditOpinionViewController alloc] init];
+            opinionViewController.bEnableEdit = YES;
+        }
+        [self.navigationController pushViewController:opinionViewController animated:YES];
+        return;
+    }
+    [docRequest ApproveStatusWithLogID:workLog.logID Status:nextStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:workLog.userID];
 }
 
 -(void)submitDoc{
-    
     menuType = MENUTYPE_SUBMIT;
     if (enableAudit) {
         enableEdit = NO;
@@ -296,9 +355,35 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
-    imgPickerCtrl.delegate = self;
+    
+    if (menuType == MENUTYPE_WEIBO) {
+        switch (buttonIndex) {
+            case 0: //文字
+                [docRequest sendWeiboWithType:@"1" Note:contributeInfo.note FilePath:@""];
+                break;
+            case 1://图文
+                if ((imagePlayCtrl.selectedImageName == nil) || ([imagePlayCtrl.selectedImageName length]<1)) {
+                    [alert alertInfo:@"请选择图片" withTitle:@"提醒"];
+                    return;
+                }else{
+                    for(AttLsInfo *info in attachArray)
+                    {
+                        if([info.fileName isEqualToString:imagePlayCtrl.selectedImageName]){
+                            [docRequest sendWeiboWithType:@"2" Note:contributeInfo.note FilePath:info.attLsID];
+                            break;
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
     if (menuType == MENUTYPE_MEDIALIB) {
+        
+        UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+        imgPickerCtrl.delegate = self;
         
         switch (buttonIndex) {
             case 0:
@@ -416,7 +501,14 @@
 -(void)initForm{
     
     NSString *strType = [typeArray objectAtIndex:[contributeInfo.type intValue]-1];
-    NSString *strLevel = [levelArray objectAtIndex:[contributeInfo.level intValue]-1];
+    
+    NSString *strLevel;
+    for(DirtInfo *info in levelArray){
+        if([info.dic_type isEqualToString:contributeInfo.level]){
+            strLevel = info.dic_value;
+        }
+    }
+    //NSString *strLevel = [levelArray objectAtIndex:[contributeInfo.level intValue]-1];
     [btLevel setTitle:strLevel forState:UIControlStateNormal];
     [btType setTitle:strType forState:UIControlStateNormal];
     fdTitle.text = contributeInfo.title;
@@ -497,14 +589,28 @@
     
 }
 
--(IBAction)setReceptor:(id)sender{
+-(IBAction)setNextReceptor:(id)sender{
     
     if ([contributeInfo.status isEqualToString:@"5"]) {
-        [alert alertInfo:@"当前稿件不需选择接收人" withTitle:@"提醒"];
+        [alert alertInfo:@"当前稿件不能增加审核人" withTitle:@"提醒"];
+        return;
+    }
+    //如果不是多级审批就不能增加审核人
+    NSString *tmpLevel;
+    for(DirtInfo *info in levelArray){
+        if ([info.dic_value isEqualToString:btLevel.titleLabel.text]) {
+            tmpLevel = info.dic_type;
+            break;
+        }
+    }
+    if(![tmpLevel isEqualToString:@"3"]){
+        [alert alertInfo:@"当前稿件不能增加审核人" withTitle:@"提醒"];
+        return;
     }
     
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
     treeViewCtrl.delegate = self;
+    treeViewCtrl.titleText = @"下一个审核人";
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
     
@@ -532,11 +638,11 @@
     int i = 0;
     for(UserInfo *userInfo in dispathedPersonInfo){
         if(i == 0){
-            self.receptorUsersID = userInfo.userID;
-            self.receptorUsersName = userInfo.userName;
+            self.nextReceptorUserID = userInfo.userID;
+            self.nextReceptorUserName = userInfo.userName;
         }else{
-            self.receptorUsersName = [NSString stringWithFormat:@"%@,%@",self.receptorUsersName,userInfo.userName];
-            self.receptorUsersID = [NSString stringWithFormat:@"%@,%@",self.receptorUsersID,userInfo.userID];
+            self.nextReceptorUserName = [NSString stringWithFormat:@"%@,%@",self.nextReceptorUserName,userInfo.userName];
+            self.nextReceptorUserID = [NSString stringWithFormat:@"%@,%@",self.nextReceptorUserID,userInfo.userID];
         }
         i++;
     }
@@ -580,10 +686,9 @@
         cell.accessoryType = (row == oldRow && lastTypeIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     else if (alertType == ALERTTABLE_LEVEL) {
-        cell.textLabel.text = [levelArray objectAtIndex:indexPath.row];
         NSUInteger row = [indexPath row];
         NSUInteger oldRow = [lastLevelIndexPath row];
-        cell.textLabel.text = [levelArray objectAtIndex:row];
+        cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
         cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }else{
         cell.textLabel.text = ((AttLsInfo *)[self.attachArray objectAtIndex:indexPath.row]).fileName;
@@ -598,33 +703,25 @@
 }
 
 - (void)getAppWorkflowDidFinished:(NSArray *)workflowArray{
-    /*
-    workflowInfoArray = [[NSArray alloc] initWithArray:workflowArray];
     
-    for (WorkflowInfo *flowInfo in workflowInfoArray) {
-        if ([flowInfo.endStatus isEqualToString:@"4"]) {
-            enableEdit = YES;
-        }
-        if ([flowInfo.endStatus isEqualToString:@"5"]) {
-            enableAudit = YES;
-        }
-        if ([flowInfo.endStatus isEqualToString:@"99"]) {
-            enableAudit = YES;
-        }
-    }*/
+    workflowInfoArray = [[NSArray alloc] initWithArray:workflowArray];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
-            btType.titleLabel.text =  tmpCellString;         
+            [btType setTitle:tmpCellString forState:UIControlStateNormal];         
         }else{
-            btLevel.titleLabel.text = tmpCellString;
+            [btLevel setTitle:tmpCellString forState:UIControlStateNormal];
             docRequest.delegate = self;
             
-            int l = [levelArray indexOfObject:tmpCellString]+1;
-            NSLog(@"=====%d",l);
-            [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",l] Status:contributeInfo.status];
+            for (DirtInfo *info in levelArray) {
+                if ([info.dic_value isEqualToString:tmpCellString]) {
+                    [docRequest getWorkflowWithLevel:info.dic_type];
+                    break;
+                }
+            }
+            
         }
     }
     alertType = ALERTTABLE_OTHERS;
@@ -696,6 +793,47 @@
     
 }
 
+-(void) deleteAttachDidFinished:(ContributeInfo *)contributeInfo1{
+
+    if([contributeInfo1.flag isEqualToString:@"200"]){
+        [alert alertInfo:@"附件删除成功" withTitle:@""];
+        [attachArray removeObjectAtIndex:attachIndex];
+    }else
+    {
+        [alert alertInfo:@"附件删除失败" withTitle:@"错误"];
+    }
+    
+    [self.attachTable endUpdates]; 
+
+}
+
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (!enableEdit || alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
+        return;
+    }
+    [self.attachTable beginUpdates];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        AttLsInfo *attsInfo = [attachArray objectAtIndex:indexPath.row];
+        if ([attsInfo.attLsID isEqualToString:kAttachID_Invalide]) {
+            [_storeHelper deleteFileWithName:fileName];
+            [attachArray removeObjectAtIndex:indexPath.row];
+        }else
+        {
+            NSLog(@"======================%@",attsInfo.attLsID);
+            attachIndex = indexPath.row;
+            [docRequest deleteAttachWithID:attsInfo.attLsID];
+        }
+
+    }
+    [self.attachTable endUpdates];  
+}
+
+
 -(void) showMediaWithFile:(NSString *) fileName1{
 
     NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
@@ -704,15 +842,12 @@
         if([fileType isEqualToString:kMediaType_Image]) {
             
             UIImage *image = [[UIImage alloc] initWithData:data];
-            imagePlayCtrl = [[ImagePlayViewController alloc] init];
-            //imagePlayCtrl.view.frame = CGRectMake(0.0f, 20.0f, 320.0f, 460.0f);
             imagePlayCtrl.image = image;
             imagePlayCtrl.showSelectButton = YES;
             imagePlayCtrl.imageName = fileName1;
             //[self presentModalViewController:imagePlayCtrl animated:YES];
             [self.navigationController pushViewController:imagePlayCtrl animated:YES];
             [image release];
-            [imagePlayCtrl release];
             
         }else if([fileType isEqualToString:kMediaType_Video]) {
             
@@ -890,12 +1025,11 @@
         }
     }
     
+    //设置下一审核人
+    [btNextReceptor setTitle:nextReceptorUserName forState:UIControlStateNormal];
     
-    NSLog(@"+++++++++++%@",contributeInfo.status);
-    
-    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%d",contributeInfo.status] Status:contributeInfo.status];
     alertType = ALERTTABLE_OTHERS;
-    [self initForm];
+
 	
 }
 
@@ -959,8 +1093,17 @@
     
     //获取下一步操作状态
     //int l = [levelArray indexOfObject:contributeInfo.level];
-    NSLog(@"==========++++++=======%@",contributeInfo.level);
-    [docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%@",contributeInfo.level] Status:contributeInfo.status];
+    //NSLog(@"==========++++++=======%@",contributeInfo.level);
+    //[docRequest getAppWorkflowWithLevel:[NSString stringWithFormat:@"%@",contributeInfo.level] Status:contributeInfo.status];
+    nextStatus = [[NSString alloc] init];
+    NSLog(@"+++++++++++status = %@",contributeInfo.status);
+    NSLog(@"-----------level = %@",contributeInfo.level);
+    
+    [docRequest getAppWorkflowWithLevel:contributeInfo.level Status:contributeInfo.status];
+    
+    [self initForm];
+    
+    imagePlayCtrl = [[ImagePlayViewController alloc] init];
 }
 
 
@@ -982,18 +1125,18 @@
 }  
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"scroll detected");
+
 }
 
 // 触摸屏幕并拖拽画面，再松开，最后停止时，触发该函数
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"scrollViewDidEndDragging  -  End of Scrolling.");
+
 }
 
 // 滚动停止时，触发该函数
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidEndDecelerating  -   End of Scrolling.");
+
 }
 
 

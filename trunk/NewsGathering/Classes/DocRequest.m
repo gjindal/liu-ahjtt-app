@@ -90,6 +90,10 @@
                  FlowID:(NSString *)flowID
                  Status:(NSString *)status
                   ConID:(NSString *)conid{
+    
+    assert((status != nil)&&([status length]>0));
+    assert((title != nil)&&([title length]>0));
+    assert((level != nil)&&([level length]>0));
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&status=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID,status,conid];
@@ -106,8 +110,14 @@
                              Type:(NSString *)type Level:(NSString *)level
                            FlowID:(NSString *)flowID Receptuserid:(NSString *)receptuserid
                            Status:(NSString *)status 
-                            ConID:(NSString *)conid
-                            {
+                            ConID:(NSString *)conid{
+    
+    assert((flowID != nil) && ([flowID length]>0));
+    assert((status != nil)&&([status length]>0));
+    assert((title != nil)&&([title length]>0));
+    assert((level != nil)&&([level length]>0));
+                                
+                                
     NSString *post = [NSString stringWithFormat:
                       @"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&receptuserid=%@&status=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID, receptuserid,status,conid];
@@ -123,6 +133,10 @@
                       Note:(NSString *)note Source:(NSString *)source
                       Type:(NSString *)type Level:(NSString *)level
                      Conid:(NSString *)conid {
+    
+    assert((conid != nil)&&([conid length]>0));
+    assert((title != nil)&&([title length]>0));
+    assert((level != nil)&&([level length]>0));
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, conid];
@@ -149,6 +163,10 @@
 - (void)submitDocWithConid:(NSString *)conid Receptuserid:(NSString *)receptuserid
                     Status:(NSString *)status {
 
+    assert((conid != nil)&&([conid length]>0));
+    assert((status != nil)&&([status length]>0));
+
+    
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&receptuserid=%@&status=%@",
                       [UserHelper userName], [UserHelper password], conid, receptuserid, status];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Submit withRequestString:post];
@@ -207,19 +225,6 @@
         endtime = @"";
     }
     
-//////////////////////////////
-    
-//    int gData0;
-//    float gData1;
-//    NSString *gData2;
-    
-   // StorageHelper *storeHelper = [[StorageHelper alloc] init];
-    //NSData *reader = [NSData dataWithContentsOfFile:[storeHelper.baseDirectory stringByAppendingFormat:@"/%@",@"test.xml"]];
-    //gData2 = [[NSString alloc] initWithData:reader encoding:NSUTF8StringEncoding];
-   // NSString *filePath = [storeHelper.baseDirectory stringByAppendingFormat:@"/%@",@"test.xml"];
-   // NSString *textFileContents = [NSString stringWithContentsOfFile:filePath];
-    /////////////////////
-    
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, type, begtime, endtime];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_AppList withRequestString:post];
@@ -232,6 +237,11 @@
 
 - (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status{
 
+    
+    
+    assert((status != nil)&&([status length]>0));
+    assert((conid != nil)&&([conid length]>0));
+    
     if(attitude == nil) {
         attitude = @"";
     }
@@ -247,6 +257,10 @@
 }
 
 - (void)getAppWorkflowWithLevel:(NSString *)level Status:(NSString *)status {
+    
+
+    assert((status != nil)&&([status length]>0));
+    assert((level != nil)&&([level length]>0));
 
     if(level == nil) {
         level = @"";
@@ -337,6 +351,10 @@
 
 - (void)sendWeiboWithType:(NSString *)type Note:(NSString *)note FilePath:(NSString *)filePath {
 
+    assert((type != nil)&&([type length]>0));
+    assert((note != nil)&&([note length]>0));
+    assert((filePath != nil)&&([filePath length]>0));
+    
     if(filePath == nil) {
         filePath = @"";
     }
@@ -354,6 +372,10 @@
 - (void)ApproveStatusWithLogID:(NSString *)logID Status:(NSString *)status 
                       Attitude:(NSString *)attitude Conid:(NSString *)conid
                   RecuseuserID:(NSString *)recuseuserID {
+    
+    assert((conid != nil)&&([conid length]>0));
+    assert((status != nil)&&([status length]>0));
+    //assert((recuseuserID != nil)&&([recuseuserID length]>0));
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&logid=%@&status=%@&attitude=%@&conid=%@&recuseuserid=%@",
                       [UserHelper userName], [UserHelper password], logID, status, attitude, conid, recuseuserID];
