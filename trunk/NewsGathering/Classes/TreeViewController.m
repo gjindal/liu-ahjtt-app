@@ -154,7 +154,17 @@
 		cell=[[[TreeViewCell alloc]initWithStyle:UITableViewCellStyleDefault
 								 reuseIdentifier:cellid]autorelease];
 	}
+    
 	TreeNode* node=[nodes objectAtIndex:indexPath.row];
+    
+    if(node.bChecked) {
+    
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else {
+    
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
 	[cell setOwner:self];
 	[cell setOnExpand:@selector(onExpand:)];
 	[cell setTreeNode:node];
@@ -209,6 +219,10 @@
     if ([node.type isEqualToString:@"dept"]) {
         return;
     }
+    
+    if(node.deep == 0)
+        return;
+    
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
