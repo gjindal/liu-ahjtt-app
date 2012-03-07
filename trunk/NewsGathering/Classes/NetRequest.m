@@ -27,6 +27,12 @@
 
 +(NSData*) PostData:(NSString*) serverURL withRequestString:(NSString *) strPost{
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    if (netBussyAlertView == nil) {
+        netBussyAlertView = [[CustomAlertView alloc] init];
+    }
+    [netBussyAlertView showWaitingWithTitle:@"数据加载中" andMessage:@"请等待..."];
+    
     NSData *postData = [strPost dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];  
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];  
@@ -35,39 +41,12 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];  
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];  
     [request setHTTPBody:postData];  
-    //[NSURLConnection connectionWithRequest:request delegate:self ];  
-    
-    //同步请求的的代码
-    //returnData就是返回得到的数据
-   // NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningRequest:nil error:nil];
 
     NSData *returnData =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    return returnData;
-    /*
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    if (netBussyAlertView == nil) {
-        netBussyAlertView = [[CustomAlertView alloc] init];
-    }
-    [netBussyAlertView showWaitingWithTitle:@"数据加载中" andMessage:@"请等待..."];
-
-	NSData *postData =[NSData dataWithBytes:[strPost UTF8String] length:[strPost length]];
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
-	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];  
-	[request setURL:[NSURL URLWithString:serverURL]];  
-	[request setHTTPMethod:@"POST"]; 
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];  
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];  
-	[request setHTTPBody:postData];  
-    
-    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(cancelURLConnection:) userInfo:nil repeats:NO];
-    
-    returnData = nil;
-	returnData = [NSURLConnection sendSynchronousRequest:request returningResponse :nil error:nil];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [netBussyAlertView hideWaiting];
-	return returnData;*/
-
+    return returnData;
 }
 
 

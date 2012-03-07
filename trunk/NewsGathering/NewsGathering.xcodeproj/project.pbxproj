@@ -80,6 +80,7 @@
 		1AC0537814E3A37B0026B115 /* NewsCLueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */; };
 		1AC0537914E3A37B0026B115 /* NewsCLueListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */; };
 		1AC0556714E3BDBE0026B115 /* NewsClueSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0556614E3BDBE0026B115 /* NewsClueSearchViewController.m */; };
+		1AC3440115072A3A00BDF246 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC3440015072A3A00BDF246 /* Entitlements.plist */; };
 		1AC5EC6014E2BE3700440EA7 /* MainPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5EC5E14E2BE3700440EA7 /* MainPanelViewController.m */; };
 		1AC5ECCD14E2C74400440EA7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC5ECCC14E2C74400440EA7 /* OpenGLES.framework */; };
 		1AC5ECD314E2C76100440EA7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC5ECD214E2C76100440EA7 /* QuartzCore.framework */; };
@@ -278,6 +279,7 @@
 		1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsCLueListViewController.xib; path = Classes/NewsCLueListViewController.xib; sourceTree = "<group>"; };
 		1AC0556514E3BDBE0026B115 /* NewsClueSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsClueSearchViewController.h; sourceTree = "<group>"; };
 		1AC0556614E3BDBE0026B115 /* NewsClueSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsClueSearchViewController.m; sourceTree = "<group>"; };
+		1AC3440015072A3A00BDF246 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		1AC5EC5D14E2BE3700440EA7 /* MainPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPanelViewController.h; path = ../MainPanelViewController.h; sourceTree = "<group>"; };
 		1AC5EC5E14E2BE3700440EA7 /* MainPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPanelViewController.m; path = ../MainPanelViewController.m; sourceTree = "<group>"; };
 		1AC5ECCC14E2C74400440EA7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -743,6 +745,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1AC3440015072A3A00BDF246 /* Entitlements.plist */,
 				1A1127BD14FBC4230058F163 /* libz.dylib */,
 				1A1127BB14FBC4140058F163 /* libxml2.dylib */,
 				1A94FF0714F51CE7006EE953 /* Settings.bundle */,
@@ -896,6 +899,7 @@
 				1AA7226514F92B1900317BE6 /* person.png in Resources */,
 				1AE778CA14FA6FE700655201 /* DocSearchViewController.xib in Resources */,
 				1A42351E1503291500863017 /* AuditOpinionViewController.xib in Resources */,
+				1AC3440115072A3A00BDF246 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,16 +1013,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JUN WANG";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JUN WANG";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
+				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-hoc";
@@ -1027,8 +1032,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JUN WANG";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JUN WANG";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1037,8 +1043,8 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
+				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
 			};
 			name = Debug;
 		};
@@ -1046,16 +1052,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: JUN WANG";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: JUN WANG";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DDF2F78-1BDF-4641-B3ED-54AFA8A53319";
+				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1104,7 +1111,7 @@
 				1AED9F1C1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Ad-hoc";
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NewsGathering" */ = {
 			isa = XCConfigurationList;
@@ -1114,7 +1121,7 @@
 				1AED9F1B1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Ad-hoc";
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

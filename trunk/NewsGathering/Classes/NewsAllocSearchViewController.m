@@ -389,7 +389,7 @@
     bTimeAlertView = NO;
     tableType = TABLETYPE_CLUESTATUS;
     //TEST DATA
-    statusArray = [[NSArray alloc] initWithObjects:@"已处理",@"未处理", nil ];
+    statusArray = [[NSArray alloc] initWithObjects:@"草稿",@"提交待派发",@"已派发",nil ];
     
     tmpCellString = [[NSString alloc] initWithString:@""];
     

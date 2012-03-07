@@ -163,5 +163,6 @@ typedef enum {
 -(void) passAudit;
 -(void) goBack;
 
+- (UIImage *)scaleAndRotateImage:(UIImage *)image;
 
 @end

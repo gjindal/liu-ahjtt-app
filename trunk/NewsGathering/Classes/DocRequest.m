@@ -235,10 +235,10 @@
     }
 }
 
-- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status{
+- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status LogID:(NSString *)logid{
 
     
-    
+    assert((logid != nil) && ([logid length]>0));
     assert((status != nil)&&([status length]>0));
     assert((conid != nil)&&([conid length]>0));
     
@@ -246,8 +246,8 @@
         attitude = @"";
     }
     
-    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&attitude=%@&status=%@",
-                      [UserHelper userName], [UserHelper password], conid, attitude, status];
+    NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&attitude=%@&status=%@&logid=%@",
+                      [UserHelper userName], [UserHelper password], conid, attitude, status,logid];
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
@@ -353,7 +353,6 @@
 
     assert((type != nil)&&([type length]>0));
     assert((note != nil)&&([note length]>0));
-    assert((filePath != nil)&&([filePath length]>0));
     
     if(filePath == nil) {
         filePath = @"";
@@ -377,8 +376,10 @@
     assert((status != nil)&&([status length]>0));
     //assert((recuseuserID != nil)&&([recuseuserID length]>0));
 
+
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&logid=%@&status=%@&attitude=%@&conid=%@&recuseuserid=%@",
                       [UserHelper userName], [UserHelper password], logID, status, attitude, conid, recuseuserID];
+    NSLog(@"=============%@",post);
     NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve_Status withRequestString:post];
     if(returnData != nil) {
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];

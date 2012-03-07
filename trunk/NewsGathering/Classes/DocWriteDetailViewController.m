@@ -122,6 +122,7 @@
         videoCtrl.delegate = self;
         videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
         videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        videoCtrl.videoQuality = UIImagePickerControllerQualityTypeLow;
         [self presentModalViewController:videoCtrl animated:YES];
         [videoCtrl release];
     }
@@ -362,6 +363,14 @@
     if(buttonIndex == 0 && alertView.tag == kAudioRecord){ 
         [attachArray addObject:((AudioRecorder *)alertView).fileName];
 //        self.attachArray = [NSArray arrayWithArray:[_storeHelper getSubFiles]];
+        
+        if(transformType == TYPE_MODIFY && _docDetail != nil) {
+            
+            [_docDetail.attachments addObject:((AudioRecorder *)alertView).fileName];
+            DocDetailHelper *_docDetailHelper = [[DocDetailHelper alloc] init];
+            [_docDetailHelper updateDoc:_docDetail];
+        }
+        
         [self.attachTable reloadData];
     }
 }
@@ -640,6 +649,11 @@
             NSString *fileType = [fileName substringWithRange:NSMakeRange(0, 5)];
             
             NSData *data = [_storeHelper readFileWithName:fileName];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSDictionary *fileatt = [fileManager attributesOfItemAtPath:[_storeHelper.baseDirectory stringByAppendingPathComponent:fileName] error:nil];
+            NSLog(@"=====%@",fileatt);
+            NSLog(@"data length=======%fKB",([data length])/1024.0);
+            
             if(data != nil) {
                 
                 if([fileType isEqualToString:kMediaType_Image]) {
@@ -713,6 +727,114 @@
     
 }
 
+- (UIImage *)scaleAndRotateImage:(UIImage *)image {
+    int kMaxResolution = 640; // Or whatever
+    
+    CGImageRef imgRef = image.CGImage;
+    
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    if (width > kMaxResolution || height > kMaxResolution) {
+        CGFloat ratio = width/height;
+        if (ratio > 1) {
+            bounds.size.width = kMaxResolution;
+            bounds.size.height = roundf(bounds.size.width / ratio);
+        }
+        else {
+            bounds.size.height = kMaxResolution;
+            bounds.size.width = roundf(bounds.size.height * ratio);
+        }
+    }
+    
+    CGFloat scaleRatio = bounds.size.width / width;
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+    CGFloat boundHeight;
+    UIImageOrientation orient = image.imageOrientation;
+    switch(orient) {
+            
+        case UIImageOrientationUp: //EXIF = 1
+            transform = CGAffineTransformIdentity;
+            break;
+            
+        case UIImageOrientationUpMirrored: //EXIF = 2
+            transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            break;
+            
+        case UIImageOrientationDown: //EXIF = 3
+            transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationDownMirrored: //EXIF = 4
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
+            transform = CGAffineTransformScale(transform, 1.0, -1.0);
+            break;
+            
+        case UIImageOrientationLeftMirrored: //EXIF = 5
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, imageSize.width);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationLeft: //EXIF = 6
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRightMirrored: //EXIF = 7
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRight: //EXIF = 8
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        default:
+            [NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
+            
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+        CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+        CGContextTranslateCTM(context, -height, 0);
+    }
+    else {
+        CGContextScaleCTM(context, scaleRatio, -scaleRatio);
+        CGContextTranslateCTM(context, 0, -height);
+    }
+    
+    CGContextConcatCTM(context, transform);
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageCopy;
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                                                                                                                                                                                                                                                                                                      
     [picker dismissModalViewControllerAnimated:YES];
@@ -722,22 +844,30 @@
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
         
         [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        UIImage *image = [self scaleAndRotateImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
                       
         //StorageHelper *helper = [[StorageHelper alloc] init];
         
 //        [_storeHelper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
-        [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 1.0)];
+        [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 0.1)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Video_%@.mp4",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"Video_%@.mov",[df stringFromDate:[NSDate date]]];
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         //StorageHelper *helper = [[StorageHelper alloc] init];
         [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];
     }
     
     [self.attachArray  addObject:imageName];
-    NSLog(@"%@", self.attachArray);
+    
+    if(transformType == TYPE_MODIFY && _docDetail != nil) {
+    
+        [_docDetail.attachments addObject:imageName];
+        
+        DocDetailHelper *_docDetailHelper = [[DocDetailHelper alloc] init];
+        [_docDetailHelper updateDoc:_docDetail];
+    }
+    
     [imageName release];
     imageName = nil;
     [self.attachTable reloadData];
@@ -779,6 +909,8 @@
 	submitButton.style=UIBarButtonItemStylePlain;
 	self.navigationItem.rightBarButtonItem=submitButton;
 	[submitButton release];
+    
+    [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

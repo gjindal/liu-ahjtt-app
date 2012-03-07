@@ -55,7 +55,9 @@
 - (void)getAppListWithTitle:(NSString *)title Keyword:(NSString *)keyword
                        Type:(NSString *)type Begtime:(NSString *)begtime
                     Endtime:(NSString *)endtime;
-- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status;
+- (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude 
+                  Status:(NSString *)status  
+                   LogID:(NSString *)logid;
 - (void)getAppWorkflowWithLevel:(NSString *)level Status:(NSString *)status;
 - (void)uploadFileWithFlowID:(NSString *)flowID Apps:(NSString *)apps FileName:(NSString *)fileName;
 - (void)getWorkflowWithLevel:(NSString *)level;

@@ -214,6 +214,9 @@
 #pragma mark ===table view delegate methods===
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row == 0) {
+        return;
+    }
     //当点击时获取部门内的人员
     TreeNode* node=[nodes objectAtIndex:indexPath.row];
     if ([node.type isEqualToString:@"dept"]) {

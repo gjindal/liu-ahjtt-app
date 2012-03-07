@@ -103,6 +103,7 @@
    //     return;
    // }
     
+    [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
     NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
     NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
@@ -210,11 +211,11 @@
     NSError *error = [ request error ];
     NSLog(@"#############%@",error);
     [alert alertInfo:@"提交失败." withTitle:@"错误"]; 
+    [alert hideWaiting];
 
 }
 
 -(void) sendWeiboDidFinished:(ContributeInfo *)contributeInfo1{
-
     [alert hideWaiting];
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [alert alertInfo:@"分享成功" withTitle:nil];
@@ -226,7 +227,7 @@
 }
 
 -(void) shareToWB{
-    
+    //[alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
     menuType = MENUTYPE_WEIBO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"博文类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"文字微博",@"图文微博",nil];
     actionSheet.delegate = self;
@@ -256,15 +257,14 @@
     }
 }
 
-- (void)approveStatusDidFinished:(ContributeInfo *)contributeInfo {
+- (void)approveStatusDidFinished:(ContributeInfo *)contributeInfo1 {
+    NSLog(@"======%@",contributeInfo1.flag);
+    
     [alert hideWaiting];
-    if ([contributeInfo.flag isEqualToString:@"200"]) {
-        if ([nextStatus isEqualToString:@"99"]) {
-            [alert alertInfo:@"审核成功" withTitle:nil];
-        }else
-        {
-            [alert alertInfo:@"打回成功" withTitle:nil];
-        }
+    if ([contributeInfo1.flag isEqualToString:@"200"]) {
+        if ([nextStatus isEqualToString:@"99"]) 
+            [alert alertInfo:@"操作成功" withTitle:nil];
+
         
         [self.navigationController popViewControllerAnimated:YES]; 
     }else{
@@ -282,14 +282,21 @@
     for (WorkflowInfo *flowInfo in workflowInfoArray) {
         NSLog(@"%@", flowInfo.endStatus);
         if ([flowInfo.endStatus isEqualToString:@"99"] ) {
+            [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
             nextStatus = flowInfo.endStatus;
-            [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99"];
+            [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99" LogID:((WorkLog *)[contributeInfo.workLogList objectAtIndex:0]).logID];
             break;
         }
-        
+        if ([contributeInfo.status isEqualToString:@"4"] && ([contributeInfo.level isEqualToString:@"3"])) {
+            if((nextReceptorUserID == nil) || ([nextReceptorUserID length]<1)){
+                [alert alertInfo:@"二级审核需要选择下一审核人" withTitle:@"提醒"];
+                break;
+               }
+        }
         if ([flowInfo.endStatus intValue]<6 ) {
             continue;
         }else{
+            [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
             WorkLog *workLog = [contributeInfo.workLogList objectAtIndex:0];
             [docRequest ApproveStatusWithLogID:workLog.logID Status:flowInfo.endStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:nextReceptorUserID];
             nextStatus = flowInfo.endStatus;
@@ -299,6 +306,7 @@
 }
 
 -(void) goBack{
+
     if ([contributeInfo.status isEqualToString:@"4"]) {
         nextStatus = @"5";
     }else{
@@ -323,6 +331,8 @@
         [self.navigationController pushViewController:opinionViewController animated:YES];
         return;
     }
+    [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
+    NSLog(@"=======%@",opinionViewController.opinion);
     [docRequest ApproveStatusWithLogID:workLog.logID Status:nextStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:workLog.userID];
 }
 
@@ -345,7 +355,7 @@
     }else if(enableEdit){
         enableAudit = NO;
         enableShare = NO;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存修改",nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"提交审核",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
@@ -409,7 +419,6 @@
         }
     }
     if (menuType == MENUTYPE_SUBMIT) {
-        //[alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
         switch (buttonIndex) {
             case 0:
                 if (enableEdit) {
@@ -619,7 +628,13 @@
 -(IBAction)writeOpinion:(id)sender{
     
     opinionViewController = [[AuditOpinionViewController alloc] init];
-    opinionViewController.opinion = [contributeInfo.attitudeList objectAtIndex:0] ;
+    if ([contributeInfo.attitudeList count]<1 || 
+        ([contributeInfo.attitudeList objectAtIndex:0] == nil) ||
+        ([(NSString *)[contributeInfo.attitudeList objectAtIndex:0] length]<1)) {
+        opinionViewController.opinion = @"";
+    }else{
+        opinionViewController.opinion = [contributeInfo.attitudeList objectAtIndex:0] ;
+    }
     if (enableEdit) {
         opinionViewController.bEnableEdit = NO;
     }else if (enableShare) {
@@ -936,6 +951,114 @@
     
 }
 
+- (UIImage *)scaleAndRotateImage:(UIImage *)image {
+    int kMaxResolution = 640; // Or whatever
+    
+    CGImageRef imgRef = image.CGImage;
+    
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    if (width > kMaxResolution || height > kMaxResolution) {
+        CGFloat ratio = width/height;
+        if (ratio > 1) {
+            bounds.size.width = kMaxResolution;
+            bounds.size.height = roundf(bounds.size.width / ratio);
+        }
+        else {
+            bounds.size.height = kMaxResolution;
+            bounds.size.width = roundf(bounds.size.height * ratio);
+        }
+    }
+    
+    CGFloat scaleRatio = bounds.size.width / width;
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+    CGFloat boundHeight;
+    UIImageOrientation orient = image.imageOrientation;
+    switch(orient) {
+            
+        case UIImageOrientationUp: //EXIF = 1
+            transform = CGAffineTransformIdentity;
+            break;
+            
+        case UIImageOrientationUpMirrored: //EXIF = 2
+            transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            break;
+            
+        case UIImageOrientationDown: //EXIF = 3
+            transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationDownMirrored: //EXIF = 4
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
+            transform = CGAffineTransformScale(transform, 1.0, -1.0);
+            break;
+            
+        case UIImageOrientationLeftMirrored: //EXIF = 5
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, imageSize.width);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationLeft: //EXIF = 6
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRightMirrored: //EXIF = 7
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        case UIImageOrientationRight: //EXIF = 8
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+            break;
+            
+        default:
+            [NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
+            
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+        CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+        CGContextTranslateCTM(context, -height, 0);
+    }
+    else {
+        CGContextScaleCTM(context, scaleRatio, -scaleRatio);
+        CGContextTranslateCTM(context, 0, -height);
+    }
+    
+    CGContextConcatCTM(context, transform);
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageCopy;
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     [picker dismissModalViewControllerAnimated:YES];
@@ -945,12 +1068,12 @@
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
         
         [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        
+//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        UIImage *image = [self scaleAndRotateImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
         //StorageHelper *helper = [[StorageHelper alloc] init];
         
         //        [_storeHelper createFileWithName:imageName data:UIImagePNGRepresentation(image)];
-        [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 1.0)];
+        [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 0.1)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
         [imageName appendFormat:@"Video_%@.mp4",[df stringFromDate:[NSDate date]]];
@@ -1009,9 +1132,21 @@
     //设置意见值
     NSString *opinion;
     if(opinionViewController.opinion != nil)
-        opinion = [[NSString alloc] initWithString:opinionViewController.opinion];
-    else
-        opinion = [[NSString alloc] initWithString:[contributeInfo.attitudeList objectAtIndex:0]];
+    {
+        if ([opinionViewController.opinion length]<1) {
+            opinion = @"";
+        }else{
+            opinion = [[NSString alloc] initWithString:opinionViewController.opinion];   
+        }
+    }
+    else{
+        NSString *tmp = [contributeInfo.attitudeList objectAtIndex:0];
+        if ([contributeInfo.attitudeList count]>0 &&(tmp != nil &&[tmp length]>1) ) {
+            opinion = [[NSString alloc] initWithString:[contributeInfo.attitudeList objectAtIndex:0]];
+        }else{
+            opinion = [[NSString alloc] initWithString:@""];
+        }
+    }
     
     if ([opinion isEqualToString:@"null"]) {
          [btOpinion setTitle:@"无" forState:UIControlStateNormal];

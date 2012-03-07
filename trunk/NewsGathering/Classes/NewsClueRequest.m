@@ -42,7 +42,6 @@
                                                         Begtime:(NSString *)begtime 
                                                         Endtime:(NSString *)endtime
                                                         Type:(NSString *)type{
-
     if (title == nil) {
         title = @"";
     }
@@ -63,6 +62,9 @@
     }
     if (type == nil) {
         type = @"";
+    }
+    if ([status length]>2) {
+        status = @"";
     }
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&status=%@&begtime=%@&endtime=%@&type=%@",
         [UserHelper userName],[UserHelper password],title,keyword,note,status,begtime,endtime,type];

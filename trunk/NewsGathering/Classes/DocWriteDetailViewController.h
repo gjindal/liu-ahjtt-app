@@ -133,4 +133,6 @@
 -(void)shareToWB;
 
 - (void)alertInfo:(NSString *)info withTitle:(NSString *)title;
+
+- (UIImage *)scaleAndRotateImage:(UIImage *)image;
 @end
