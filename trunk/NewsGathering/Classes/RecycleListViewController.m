@@ -69,7 +69,7 @@
     for (ContributeInfo *info in _dataArray) {
         [_docRequest removeDocWithConid:info.conid];
     }
-    
+    [self getCycleListDidFinished:[NSArray array]];
     [self getAllCycleList];
 }
 
@@ -83,7 +83,7 @@
 
 - (void)getAllCycleList {
 
-    [_docRequest getCycleListWithTitle:nil Keyword:nil Type:@"1" Begtime:nil Endtime:nil];
+    [_docRequest getCycleListWithTitle:nil Keyword:nil Type:nil Begtime:nil Endtime:nil];
 }
 
 #pragma -
@@ -98,10 +98,14 @@
 
 - (void)resumeDocDidFinished:(ContributeInfo *)contributeInfo {
 
+//    [self getAllCycleList];
+    [self performSelectorOnMainThread:@selector(getAllCycleList) withObject:nil waitUntilDone:NO];
 }
 
 - (void)removeDocDidFinished:(ContributeInfo *)contributeInfo {
 
+//    [self getAllCycleList];
+    [self performSelectorOnMainThread:@selector(getAllCycleList) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark -
@@ -161,7 +165,7 @@
         actionSheet.tag = indexPath.row;
         [actionSheet showInView:self.view];
         [actionSheet release];
-    }   
+    }
 }
 
 #pragma -
@@ -174,7 +178,6 @@
         return;
     
     ContributeInfo *contributeInfo = [_dataArray objectAtIndex:nIndex];
-    
     switch (buttonIndex) {
         case 0:
             [_docRequest removeDocWithConid:contributeInfo.conid];
@@ -186,7 +189,7 @@
             break;
     }
     
-    [self getAllCycleList];
+    
 }
 
 #pragma mark -

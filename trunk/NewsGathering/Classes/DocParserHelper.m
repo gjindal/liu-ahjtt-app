@@ -57,6 +57,8 @@
         _xmlParser = nil;
     }
     
+    NSLog(@"%d \r %@", flag, xmlInfo);
+    
     _xmlParser = [[NSXMLParser alloc] initWithData:[xmlInfo dataUsingEncoding:NSUTF8StringEncoding]];
     _xmlParser.delegate = self;
     [_xmlParser parse];
@@ -138,6 +140,14 @@
         _info.message = _currentValue;
     }else if([elementName isEqualToString:@"error"]) {
         
+        if(_currentFlag == kFlag_Contri_Get_Cycle_List) {
+        
+            if(_delegate != nil && [_delegate respondsToSelector:@selector(getCycleListDidFinished:)]) {
+                
+                [_delegate getCycleListDidFinished:[NSArray array]];
+            }
+            
+        }
         SEL sel = nil;
         
         if(_currentFlag == kFlag_Contri_Add) {
@@ -175,9 +185,12 @@
             sel = @selector(deleteAttachDidFinished:);
         }
         
+        if(sel != nil) {
+        
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {
         
             [_delegate performSelector:sel withObject:[_info autorelease]];
+        }
         }
         
     }else if([elementName isEqualToString:@"conid"]) {
