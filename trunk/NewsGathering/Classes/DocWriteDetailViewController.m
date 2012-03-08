@@ -545,6 +545,9 @@
         NSUInteger oldRow = [lastTypeIndexPath row];
         cell.textLabel.text = [typeArray objectAtIndex:row];
         cell.accessoryType = (row == oldRow && lastTypeIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+       /* if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            tmpCellString = [typeArray objectAtIndex:row];
+        }*/
     }
     else if (alertType == ALERTTABLE_LEVEL) {
         cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
@@ -552,6 +555,9 @@
         NSUInteger oldRow = [lastLevelIndexPath row];
         cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
         cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        /*if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            tmpCellString =  ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
+        }*/
         
     }else{
         cell.textLabel.text = [self.attachArray objectAtIndex:indexPath.row];
@@ -559,6 +565,8 @@
         cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
     
     }
+    
+    NSLog(@"-----%@",tmpCellString);
     return cell;
 }
 
@@ -581,6 +589,9 @@
         return;
     
     if (buttonIndex == 1) {
+        if ((tmpCellString == nil) || [tmpCellString length]<1) {
+            return;
+        }
         if (alertType == ALERTTABLE_DOCTYPE) {
             [btType setTitle:tmpCellString forState:UIControlStateNormal];         
         }else{
@@ -972,7 +983,10 @@
         fdKeyword.text      = _docDetail.key;
         fdDocSource.text   = _docDetail.source;
         [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
+        NSLog(@"-----%@",_docDetail.recevicer);
         [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
+        dispatchedUsersName = _docDetail.recevicer;
+        dispatchedUsersID = _docDetail.receptorid;
         contents.text  = _docDetail.content;
         
         if([attachArray count] > 0)

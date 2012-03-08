@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import "LoginSuccessInfo.h"
+#import "UpgradeChecker.h"
+
+#define kUpgrageAlertTag	10
 
 @class NewsGatheringViewController;
 
 
-@interface NewsGatheringAppDelegate : NSObject <UIApplicationDelegate> {
+@interface NewsGatheringAppDelegate : NSObject <UIApplicationDelegate,UIAlertViewDelegate> {
     UIWindow *window;
     NewsGatheringViewController *viewController;
 	UINavigationController *navController;
@@ -30,6 +33,9 @@
     NSString *payload;
     
     NSString *certificate;
+    
+    UpgradeChecker	*upgradeChecker;
+	NSDictionary	*verionDict;
     
 }
 

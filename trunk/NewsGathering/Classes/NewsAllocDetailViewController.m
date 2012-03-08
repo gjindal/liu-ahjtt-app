@@ -179,7 +179,7 @@
     dispatchedTableView.delegate = self;
     dispatchedTableView.dataSource = self;
     
-    [self getCLueInfo];
+    //[self getCLueInfo];
     [self initForm];
     [self.dispatchedTableView reloadData];
 }
@@ -204,6 +204,8 @@
     dispatchedTableView.dataSource = self;
     [dispatchedTableView setBackgroundColor:[UIColor clearColor]];
     [scrollView addSubview:dispatchedTableView];
+    
+    [self getCLueInfo];
 }
 
 

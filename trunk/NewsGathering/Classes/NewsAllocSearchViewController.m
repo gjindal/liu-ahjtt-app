@@ -45,6 +45,8 @@
     NSString*locationString=[formatter stringFromDate: [NSDate date]];
     [startTime setTitle:locationString forState:UIControlStateNormal];
     [endTime setTitle:locationString forState:UIControlStateNormal];
+    
+    tmpCellString = [[NSString alloc] initWithString:@""];
 }
 
 #pragma -
@@ -413,8 +415,10 @@
 - (IBAction)confirm{
     
     cluedistInfo.title = self.newsTitle.text;
-    cluedistInfo.type = self.newsType.titleLabel.text;
-    cluedistInfo.status = self.newsStatus.titleLabel.text;
+    int nType = [typeArray indexOfObject:self.newsType.titleLabel.text]+1;
+    cluedistInfo.type = [[NSString alloc] initWithFormat:@"%d",nType];
+    int nStatus = [statusArray indexOfObject:self.newsStatus.titleLabel.text];
+    cluedistInfo.status = [[NSString alloc] initWithFormat:@"%d",nStatus];
     cluedistInfo.keyword = self.newsKeyword.text;
     cluedistInfo.begtimeshow = self.startTime.titleLabel.text;
     cluedistInfo.endtimeshow = self.endTime.titleLabel.text;

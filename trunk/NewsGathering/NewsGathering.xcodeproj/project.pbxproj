@@ -77,6 +77,7 @@
 		1AB1C78714F8AC8F00E01B26 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1C78414F8AC8F00E01B26 /* minus.png */; };
 		1AB1C78814F8AC8F00E01B26 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1C78514F8AC8F00E01B26 /* plus.png */; };
 		1AB88F1814FE23B4006B655A /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB88F1714FE23B4006B655A /* CustomAlertView.m */; };
+		1ABA32AB1508A377002D00E3 /* UpgradeChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA32AA1508A377002D00E3 /* UpgradeChecker.m */; };
 		1AC0537814E3A37B0026B115 /* NewsCLueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */; };
 		1AC0537914E3A37B0026B115 /* NewsCLueListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */; };
 		1AC0556714E3BDBE0026B115 /* NewsClueSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0556614E3BDBE0026B115 /* NewsClueSearchViewController.m */; };
@@ -274,6 +275,9 @@
 		1AB1C78514F8AC8F00E01B26 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		1AB88F1614FE23B4006B655A /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		1AB88F1714FE23B4006B655A /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		1ABA32A81508A047002D00E3 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		1ABA32A91508A377002D00E3 /* UpgradeChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeChecker.h; sourceTree = "<group>"; };
+		1ABA32AA1508A377002D00E3 /* UpgradeChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeChecker.m; sourceTree = "<group>"; };
 		1AC0537514E3A37B0026B115 /* NewsCLueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCLueListViewController.h; sourceTree = "<group>"; };
 		1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCLueListViewController.m; sourceTree = "<group>"; };
 		1AC0537714E3A37B0026B115 /* NewsCLueListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsCLueListViewController.xib; path = Classes/NewsCLueListViewController.xib; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 		1A9DE9C814E1770C006E21E8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				1ABA32A91508A377002D00E3 /* UpgradeChecker.h */,
+				1ABA32AA1508A377002D00E3 /* UpgradeChecker.m */,
 				1A1127BF14FBC50C0058F163 /* Reachability.h */,
 				1A1127C014FBC50C0058F163 /* Reachability.m */,
 				1A11277014FBBFBA0058F163 /* ASILib */,
@@ -568,6 +574,7 @@
 				B2E6C9FD14F79418007B24F5 /* DocParserHelperDelegate.h */,
 				B2E6C9FE14F79427007B24F5 /* DocRequestDelegate.h */,
 				1AA7226614F9466A00317BE6 /* UIViewPassValueDelegate.h */,
+				1ABA32A81508A047002D00E3 /* Version.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -986,6 +993,7 @@
 				B99490B914FFDEAF003182E1 /* CycleTableViewCell.m in Sources */,
 				B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */,
 				1A42351D1503291500863017 /* AuditOpinionViewController.m in Sources */,
+				1ABA32AB1508A377002D00E3 /* UpgradeChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,7 +1119,7 @@
 				1AED9F1C1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Ad-hoc";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NewsGathering" */ = {
 			isa = XCConfigurationList;
@@ -1121,7 +1129,7 @@
 				1AED9F1B1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Ad-hoc";
 		};
 /* End XCConfigurationList section */
 	};

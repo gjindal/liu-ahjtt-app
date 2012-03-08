@@ -107,6 +107,7 @@
         newsclueRequest = [[NewsClueRequest alloc] init];
         newsclueRequest.delegate = self;
     }
+    
     [newsclueRequest getNewsClueListWithTitle:schNewsclueInfo.title
                                       Keyword:schNewsclueInfo.keyword
                                          Note:schNewsclueInfo.note

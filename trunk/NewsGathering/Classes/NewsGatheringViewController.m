@@ -47,7 +47,7 @@
 
 -(NSData *) login:(NSString *)username andpassword:(NSString *)password{
 	
-    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NewsGatheringAppDelegate *appDelegate = (NewsGatheringAppDelegate *)[[UIApplication sharedApplication] delegate];
     
 //	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&token=%@",username,[MD5EncryptProcess md5:password],appDelegate.strDeviceToken];
@@ -112,6 +112,7 @@
     }
 }
 
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField 
 {        
     // When the user presses return, take focus away from the text field so that the keyboard is dismissed.        
@@ -171,6 +172,30 @@
         [self alertInfo:@"密码不可为空!"];
         return;
     }
+    
+    if(isRemember){
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"IsRemember"];
+        
+        NSString *  newValue;
+        NSString *  oldValue;
+        
+        newValue = fdUsername.text;
+        oldValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+        if ( ! [newValue isEqual:oldValue] ) {
+            [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:@"Username"];
+        }
+        
+        newValue = fdUserpassword.text;
+        oldValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
+        if ( ! [newValue isEqual:oldValue] ) {
+            [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:@"Password"];
+        }
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"IsRemember"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Username"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Password"];
+    }
+    
 	
 	NSData *resultData = [self login:fdUsername.text andpassword:fdUserpassword.text];
 	NSString *result = [[NSString alloc] initWithData:resultData
@@ -185,31 +210,7 @@
 }
 
 -(void) saveLoginInfo{
-
-    if (isRemember){
-        
-        loginData = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"]];
-        [loginData setValue:fdUsername.text forKey:@"username"];
-        [loginData setValue:fdUserpassword.text forKey:@"password"];
-        
-        NSString *Path = [NSString stringWithFormat:@"%@UserInfo.plist",NSTemporaryDirectory()];
-        [[NSArray arrayWithArray:loginData] writeToFile:Path atomically:NO];
-        
-        saveData=[NSArray arrayWithContentsOfFile:Path];
-        
-    }else {
-        loginData = [NSMutableArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"]];
-        [loginData setValue:@"" forKey:@"username"];
-        [loginData setValue:@"" forKey:@"password"];
-        
-        
-        NSString *Path = [NSString stringWithFormat:@"%@UserInfo.plist",NSTemporaryDirectory()];
-        
-        [[NSArray arrayWithArray:loginData] writeToFile:Path atomically:NO];
-        
-        saveData=[NSArray arrayWithContentsOfFile:Path];
-        
-    }    
+  
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -217,19 +218,25 @@
 	self.navigationController.navigationBar.hidden=YES;
 	fdUserpassword.secureTextEntry=YES;
 	
-	if (isRemember) {
+    NSString *strRemember = [[NSUserDefaults standardUserDefaults] stringForKey:@"IsRemember"];
+	if ([strRemember isEqualToString:@"YES"]) {
 		[rememberOrNot setBackgroundImage: [UIImage imageNamed:@"box1"] forState:UIControlStateNormal];
+        self.fdUsername.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+        self.fdUserpassword.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
+        
 	}else {
+        self.fdUsername.text = @"";
+        self.fdUserpassword.text = @"";
 		[rememberOrNot setBackgroundImage: [UIImage imageNamed:@"box2"] forState:UIControlStateNormal];
 	}
 }
-
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
-		isRemember=YES;
+		//isRemember=YES
+
 
     }
     return self;
@@ -327,8 +334,11 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    if(!isRemember){
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Username"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"Password"];
+    }
+    [super viewDidUnload];
 }
 
 

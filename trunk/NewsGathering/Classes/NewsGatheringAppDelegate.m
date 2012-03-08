@@ -9,6 +9,7 @@
 #import "NewsGatheringAppDelegate.h"
 #import "NewsGatheringViewController.h"
 #import "Contants.h"
+#import "Version.h"
 
 @implementation NewsGatheringAppDelegate
 
@@ -41,6 +42,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
         
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 
     // Add the view controller's view to the window and display.
 	viewController = [[NewsGatheringViewController alloc] initWithNibName:@"NewsGatheringViewController" bundle:nil];
@@ -54,13 +57,19 @@
     // 读取方法
 //    NSString *tryTime = [[NSUserDefaults standardUserDefaults] stringForKey:@"TryTimes"];
 //    NSString *serverURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerURL"];
-    
+    //61.190.37.2
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary
-                                 dictionaryWithObjects:[NSArray arrayWithObjects: @"3", @"http://61.190.37.2:8086/editmobile/mobile/", nil] 
+                                 dictionaryWithObjects:[NSArray arrayWithObjects: @"3", @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/", nil] 
                                                forKeys:[NSArray arrayWithObjects:@"TryTimes", @"ServerURL", nil]];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
+    
+    
+    //create upgrade checker thread
+	//if connection is available now,start it,otherwise do nothing
+	//upgradeChecker = [[UpgradeChecker alloc] init];
+    //[upgradeChecker start];
 
     return YES;
 }
@@ -131,6 +140,34 @@
      */
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex != alertView.cancelButtonIndex) {
+		NSURL *url = [NSURL URLWithString:[verionDict objectForKey:@"AppStore"]];
+		[self openURL:url];
+	}
+	[alertView release];
+}
+
+- (void) checkUpgrade:(NSTimer *) timer {
+	verionDict = [[timer userInfo] retain];
+    
+	if ([[verionDict objectForKey:@"Version"] isEqualToString:@""] 
+		|| [verionDict objectForKey:@"Version"] == nil
+		|| [[verionDict objectForKey:@"Version"] length] == 0 ) {
+		return;
+	}
+	if (![[verionDict objectForKey:@"Version"] isEqualToString:VERSION_STRING]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+														message:@"新版本移动采编已发布，是否更新？"
+													   delegate:self
+											  cancelButtonTitle:@"否"
+											  otherButtonTitles:@"是",nil];
+		alert.tag = kUpgrageAlertTag;
+		[alert show];
+	}
+	
+}
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -143,6 +180,7 @@
 
 
 - (void)dealloc {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	[navController release];
     [viewController release];
     [window release];
