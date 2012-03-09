@@ -359,7 +359,10 @@
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
+    }else{
+        [alert alertInfo:@"当前状态您只能浏览." withTitle:@"提醒"];
     }
+        
 }
 
 
@@ -796,6 +799,7 @@
             fileName = [cell.textLabel.text copy];
             //如果这个file有有效的id，说明是网络上的文件，需要下载才能看到，否则直截打开
             NSString *attachID = ((AttLsInfo *)[attachArray objectAtIndex:attachIndex]).attLsID;
+            NSLog(@"FILE ID IS %@",attachID);
             if(![attachID isEqualToString:kAttachID_Invalide]){
                 [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
                 [docRequest beginDownloadWithID:attachID andFileName:fileName];
@@ -1218,13 +1222,20 @@
         enableAudit = NO;
         enableShare = YES;
         enableEdit = NO;
-    }else{
+    }else {
         enableAudit = YES;
         enableShare = NO;
         enableEdit = NO;
     }
+
+    WorkLog *info = (WorkLog *)[contributeInfo.workLogList objectAtIndex:0];
+    if ([info.recuseuserID isEqualToString: appDelegate.loginId]) {
+        enableAudit = YES;
+    }else{
+        enableAudit = NO;
+    }
     //查询是否可修改
-    [docRequest getEditListWithLevel:contributeInfo.level];
+    //[docRequest getEditListWithLevel:contributeInfo.level];
     
     //获取下一步操作状态
     //int l = [levelArray indexOfObject:contributeInfo.level];

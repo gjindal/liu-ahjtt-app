@@ -73,5 +73,8 @@
                       Attitude:(NSString *)attitude Conid:(NSString *)conid
                   RecuseuserID:(NSString *)recuseuserID;
 - (void)deleteAttachWithID:(NSString *)flowID;
-
+- (void)getCompleteListWithTitle:(NSString *)title Keyword:(NSString *)keyword
+                         Begtime:(NSString *)begtime Endtime:(NSString *)endtime
+                            Type:(NSString *)type Page:(NSString *)page
+                              rp:(NSString *)rp sortName:(NSString *)sortName;
 @end

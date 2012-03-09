@@ -118,14 +118,14 @@
     newsclueRequest.delegate = self;
     
     if (isAddNewsClue) {
-        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType];
+        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType IsSubmit:@"0"];
     }
     else{
         if ([newsclueInfo.keyid length]<1) {
             [self alertInfo:@"ID丢失，请返回重新进入修改！" withTitle:@"数据错误"];
             return;
         }
-        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType];
+        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType IsSubmit:@"0"];
     }
     
     [newsclueRequest release];
@@ -135,21 +135,66 @@
     
     newsclueRequest = [[NewsClueRequest alloc] init];
     newsclueRequest.delegate = self;
-    
 
-    if ([newsclueInfo.keyid length]<1) {
-            [self alertInfo:@"ID丢失，请返回重新进入修改！" withTitle:@"数据错误"];
+        if ([clueTitle.text length]<1) {
+            [self alertInfo:@"标题不能为空" withTitle:@"数据错误"];
             return;
         }
-    [newsclueRequest submitNewsClueWithKeyID:newsclueInfo.keyid];
-    [newsclueRequest release];
-    
+        if ([clueType.titleLabel.text length]<1) {
+            [self alertInfo:@"类别不能为空" withTitle:@"数据错误"];
+            return;
+        }
+        if ([btStartTime.titleLabel.text length]<1) {
+            [self alertInfo:@"开时时间不能为空" withTitle:@"数据错误"];
+            return;
+        }
+        if ([btEndTime.titleLabel.text length]<1) {
+            [self alertInfo:@"结束时间不能为空" withTitle:@"数据错误"];
+            return;
+        }
+        if ([clueKeyword.text length]<1) {
+            [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
+            return;
+        }
+        if ([contents.text length]<1) {
+            [self alertInfo:@"内容不能为空" withTitle:@"数据错误"];
+            return;
+        }
+        if ([contents.text length]>2000) {
+            [self alertInfo:@"内容不能超过2000字" withTitle:@"数据错误"];
+            return;
+        }
+
+        
+        NSInteger nType=1;
+        for (NSString *temp in array) {
+            if ([temp isEqualToString:clueType.titleLabel.text]) {
+                break;
+            }
+            nType = nType+1;
+        }
+        NSString *strType = [[NSString alloc] initWithFormat:@"%d",nType];
+    if (isAddNewsClue) {
+        [newsclueRequest addNewsClueWithTitle:clueTitle.text Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType IsSubmit:@"1"];
+            return;
+    }else{
+        [newsclueRequest updateNewsClueWithTitle:clueTitle.text Keyid:newsclueInfo.keyid Keyword:clueKeyword.text Note:contents.text Begtime:btStartTime.titleLabel.text Endtime:btEndTime.titleLabel.text Type:strType IsSubmit:@"1"];
+    }
     [self.navigationController popViewControllerAnimated:YES];  
 
 }
 
 -(void) setChangeFunction{
     
+    self.clueTitle.enabled = YES;
+    self.clueType.enabled = YES;
+    self.contents.editable = YES;
+    self.btConfirm.hidden = NO;
+    self.btConfirm.enabled = YES;
+    self.btEndTime.enabled = YES;
+    self.btStartTime.enabled = YES;
+    self.clueKeyword.enabled = YES;
+    /*
     if (bEnableChange) {
         self.clueTitle.enabled = YES;
         self.clueType.enabled = YES;
@@ -174,7 +219,7 @@
     if (isAddNewsClue) {
         self.btConfirm.hidden = NO;
         self.clueType.enabled = YES;
-    }
+    }*/
 }
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -242,12 +287,14 @@
         
         [clueType setTitle:[array objectAtIndex:0] forState:UIControlStateNormal];
 
-        
+
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
         NSString*locationString=[formatter stringFromDate: [NSDate date]];
-        [btEndTime setTitle:locationString forState:UIControlStateNormal];
-        [btStartTime setTitle:locationString forState:UIControlStateNormal];
+        NSString* endtime = [NSString stringWithFormat:@"%@ 18:00:00",[locationString substringToIndex:10]];
+        NSString* starttime = [NSString stringWithFormat:@"%@ 08:00:00",[locationString substringToIndex:10]];
+        [btEndTime setTitle:endtime forState:UIControlStateNormal];
+        [btStartTime setTitle:starttime forState:UIControlStateNormal];
         [formatter release];
         
         //新建的时候可以保存，不可以派发
@@ -255,13 +302,13 @@
         self.bEnableAudit = NO;
     }
     
-    if (bEnableAudit) {
+
         UIBarButtonItem *submitButton;
         submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(passAudit)];
         submitButton.style=UIBarButtonItemStylePlain;
         self.navigationItem.rightBarButtonItem=submitButton;
         [submitButton release];
-    }
+    
 
 }
 

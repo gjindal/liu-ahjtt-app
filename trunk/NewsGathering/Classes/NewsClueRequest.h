@@ -37,14 +37,16 @@
                                                        Note:(NSString *)note 
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime
-                                                    Type:(NSString *) type;
+                                                    Type:(NSString *) type
+                                                    IsSubmit:(NSString *)issubmit;
 // 修改线索接口.
 - (void)updateNewsClueWithTitle:(NSString *)title  Keyid:(NSString *)keyid 
                                                     Keyword:(NSString *)keyword
                                                        Note:(NSString *)note 
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime
-                                                     Type:(NSString *) type;
+                                                        Type:(NSString *) type
+                                                    IsSubmit:(NSString *)issubmit;
 // 删除线索接口.
 - (void)deleteNewsClueWithKeyID:(NSString *)keyID;
 // 提交线索接口.

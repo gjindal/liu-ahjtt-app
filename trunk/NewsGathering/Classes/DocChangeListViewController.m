@@ -17,6 +17,7 @@
 @implementation DocChangeListViewController
 @synthesize docDetail;
 @synthesize docRequest;
+@synthesize currentFinishPageIndex;
 
 
 #pragma mark -
@@ -53,6 +54,57 @@
     [self.tableView reloadData];
 }
 
+-(void)getCompleteListDidFinished:(NSArray *)docList{
+    if ([docList count]<1) {
+        //[alertView alertInfo:@"已没有更多数据" withTitle:@"提醒"];
+        return;
+    }else{
+        currentFinishPageIndex++;
+    }
+    //[dataArray removeAllObjects];
+    [dataArray addObjectsFromArray:docList];
+    [self.tableView reloadData];
+}
+
+-(void)segmentAction:(id)sender
+{
+    segmentCtrl = (UISegmentedControl *)sender;
+    NSLog(@"======%d",segmentCtrl.selectedSegmentIndex);
+    if (segmentCtrl.selectedSegmentIndex == 0) {
+        if (docSearchVtrl == nil) {
+            docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+            docSearchVtrl.contributeInfo.title = @"";
+            docSearchVtrl.contributeInfo.keyword = @"";
+            docSearchVtrl.contributeInfo.type = @"";
+            docSearchVtrl.strStartTime = @"";
+            docSearchVtrl.strEndTime = @"";
+        }
+        [docRequest getAppListWithTitle:docSearchVtrl.contributeInfo.title
+                                Keyword:docSearchVtrl.contributeInfo.keyword
+                                   Type:docSearchVtrl.contributeInfo.type
+                                Begtime:docSearchVtrl.strStartTime
+                                Endtime:docSearchVtrl.strEndTime];
+    }
+    
+    if (segmentCtrl.selectedSegmentIndex == 1) {
+        if (docSearchVtrl == nil) {
+            docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+            docSearchVtrl.contributeInfo.title = @"";
+            docSearchVtrl.contributeInfo.keyword = @"";
+            docSearchVtrl.contributeInfo.type = @"";
+            docSearchVtrl.strStartTime = @"";
+            docSearchVtrl.strEndTime = @"";
+        }
+        [docRequest getCompleteListWithTitle:docSearchVtrl.contributeInfo.title
+                                Keyword:docSearchVtrl.contributeInfo.keyword
+                                Begtime:docSearchVtrl.strStartTime
+                                Endtime:docSearchVtrl.strEndTime
+                                Type:docSearchVtrl.contributeInfo.type
+                                Page:@"1" rp:@"15" sortName:@"conid"];
+    }
+    
+}
+
 -(void) viewDidLoad{
 
     [super viewDidLoad];
@@ -65,6 +117,17 @@
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
     
+    
+    segmentCtrl= [[UISegmentedControl alloc]
+                  initWithFrame:CGRectMake(225.0f, 6.0, 90.0f, 32.0f)];
+	[segmentCtrl insertSegmentWithTitle:@"未完成" atIndex:0 animated:YES]; 
+	[segmentCtrl insertSegmentWithTitle:@"已完成" atIndex:1 animated:YES];	
+	segmentCtrl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[segmentCtrl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+	segmentCtrl.selectedSegmentIndex = 0;
+    self.navigationItem.titleView = segmentCtrl;
+    
+    
     dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     alertView = [[CustomAlertView alloc] init];
     docRequest = [[DocRequest alloc] init];
@@ -72,13 +135,15 @@
     
     docSearchVtrl = nil;
     
+    
+    currentFinishPageIndex = 1;
     nextPage = NEXTPAGE_OTHERS;//
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	self.title= @"稿件管理";
+	//self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
 
         if (docSearchVtrl == nil) {
@@ -94,11 +159,42 @@
                                Type:docSearchVtrl.contributeInfo.type
                             Begtime:docSearchVtrl.strStartTime
                             Endtime:docSearchVtrl.strEndTime];
+    segmentCtrl.selectedSegmentIndex = -1;
 }
 
 
 #pragma mark -
 #pragma mark Table view data source
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	CGPoint offset = scrollView.contentOffset;       
+    CGRect bounds = scrollView.bounds;       
+    CGSize size = scrollView.contentSize;       
+    UIEdgeInsets inset = scrollView.contentInset;       
+    float y = offset.y + bounds.size.height - inset.bottom;       
+    float h = size.height;       
+	
+    float reload_distance = 0;       
+    if((y >= h + reload_distance)) {           
+        
+        NSLog(@"THE  %d PAGE DATA",currentFinishPageIndex+1);
+        if (docSearchVtrl == nil) {
+            docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+            docSearchVtrl.contributeInfo.title = @"";
+            docSearchVtrl.contributeInfo.keyword = @"";
+            docSearchVtrl.contributeInfo.type = @"";
+            docSearchVtrl.strStartTime = @"";
+            docSearchVtrl.strEndTime = @"";
+        }
+        [docRequest getCompleteListWithTitle:docSearchVtrl.contributeInfo.title
+                                     Keyword:docSearchVtrl.contributeInfo.keyword
+                                     Begtime:docSearchVtrl.strStartTime
+                                     Endtime:docSearchVtrl.strEndTime
+                                        Type:docSearchVtrl.contributeInfo.type
+                                        Page:[NSString stringWithFormat:@"%d", currentFinishPageIndex+1] rp:@"15" sortName:@"conid"];
+
+    }   	
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -173,7 +269,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         ContributeInfo * contribut = (ContributeInfo *)[dataArray objectAtIndex:indexPath.row];
-        if ([contribut.status isEqualToString:@"4"]) {
+        if ([contribut.status isEqualToString:@"99"]) {
+            [alertView alertInfo:@"不能删除" withTitle:@"稿件已完成"];
+        }else if (([contribut.status isEqualToString:@"4"])||([contribut.status intValue]>5)) {
             [alertView alertInfo:@"不能删除" withTitle:@"正在审核中..."];
         }
         else{

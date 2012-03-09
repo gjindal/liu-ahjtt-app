@@ -20,8 +20,16 @@
     NSTimer             *_timer;
     NSDate              *_fireDate;
     StorageHelper       *_storeHelper;
+    BOOL                 _recording;
+    NSTimeInterval       _timeInterval;
 }
 
 @property (nonatomic, retain) NSString *fileName;
+@property (nonatomic, assign) BOOL      Recoding;
+
+- (void)start;
+- (void)stop;
+- (void)pause;
+- (void)resume;
 
 @end

@@ -148,6 +148,15 @@
             }
             
         }
+        
+        if(_currentFlag == kFlag_Contri_Get_Complet_List) {
+            
+            if(_delegate != nil && [_delegate respondsToSelector:@selector(getCompleteListDidFinished:)]) {
+                
+                [_delegate getCompleteListDidFinished:[NSArray array]];
+            }
+            
+        }        
         SEL sel = nil;
         
         if(_currentFlag == kFlag_Contri_Add) {
@@ -256,6 +265,11 @@
         if(_currentFlag == kFlag_Contri_Get_Cycle_List) {
         
             sel = @selector(getCycleListDidFinished:);
+        }
+        
+        if(_currentFlag == kFlag_Contri_Get_Complet_List) {
+        
+            sel = @selector(getCompleteListDidFinished:);
         }
         
         if(_delegate != nil && [_delegate respondsToSelector:sel]) {

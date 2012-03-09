@@ -79,6 +79,7 @@
     ASIFormDataRequest *request;
     DocRequest *docRequest;
     WorkflowInfo *workflowInfo;
+    int fileCount;
     
     NSMutableArray *dispatchedArray;
     NSString *dispatchedUsersName;

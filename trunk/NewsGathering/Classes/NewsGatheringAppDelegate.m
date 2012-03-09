@@ -10,6 +10,7 @@
 #import "NewsGatheringViewController.h"
 #import "Contants.h"
 #import "Version.h"
+#import "AudioRecorder.h"
 
 @implementation NewsGatheringAppDelegate
 
@@ -23,6 +24,8 @@
 @synthesize payload;
 @synthesize certificate;
 @synthesize deptArray;
+@synthesize recorder = _recorder;
+@synthesize loginId;
 
 
 - (id)init 
@@ -41,6 +44,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
         
+    application.applicationIconBadgeNumber = 0;
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -60,8 +64,8 @@
     //61.190.37.2
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary
-                                 dictionaryWithObjects:[NSArray arrayWithObjects: @"3", @"http://hfhuadi.vicp.cc:8080/editmobile/mobile/", nil] 
-                                               forKeys:[NSArray arrayWithObjects:@"TryTimes", @"ServerURL", nil]];
+                                 dictionaryWithObjects:[NSArray arrayWithObjects:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/", nil] 
+                                               forKeys:[NSArray arrayWithObjects:@"ServerURL", nil]];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
     
@@ -91,6 +95,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
+    
     NSLog(@"收到推送消息 ： %@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
     if ([[userInfo objectForKey:@"aps"] objectForKey:@"alert"]!=NULL) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"推送通知"
@@ -98,6 +103,7 @@
                                                        delegate:self
                                               cancelButtonTitle:@"关闭"
                                               otherButtonTitles:@"更新状态",nil];
+        alert.tag = kNotificationTag;
         [alert show];
         [alert release];
     }
@@ -116,6 +122,11 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    
+    if(_recorder != nil) {
+    
+        [_recorder pause];
+    }
 }
 
 
@@ -123,6 +134,11 @@
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+    
+    if(_recorder != nil) {
+    
+        [_recorder resume];
+    }
 }
 
 
@@ -141,10 +157,16 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex != alertView.cancelButtonIndex) {
-		NSURL *url = [NSURL URLWithString:[verionDict objectForKey:@"AppStore"]];
-		[self openURL:url];
-	}
+    
+    if (alertView.tag == kUpgrageAlertTag) {
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            NSURL *url = [NSURL URLWithString:[verionDict objectForKey:@"AppStore"]];
+            [self openURL:url];
+        }
+    }else if(alertView.tag == kNotificationTag){
+        
+    }
+
 	[alertView release];
 }
 
@@ -184,6 +206,11 @@
 	[navController release];
     [viewController release];
     [window release];
+    if(_recorder != nil) {
+    
+        [_recorder release];
+        _recorder = nil;
+    }
     [super dealloc];
 }
 

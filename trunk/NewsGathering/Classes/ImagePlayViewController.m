@@ -30,21 +30,39 @@
 
     [super viewDidLoad];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+    
     if(_image != nil) {
         
         self.view.backgroundColor = [UIColor blackColor];
-    
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:_image];
+        
+        
+        UIImageView *imageView = [self.view viewWithTag:1000001];
+        if(imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:_image];
         imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 460.0f);
         imageView.backgroundColor = [UIColor blackColor];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.tag = 1000001;
+            [self.view addSubview:imageView];
+            [imageView release];
+        }else {
+        
+            imageView.image = _image;
+        }
         //imageView.center = self.view.center;
-        [self.view addSubview:imageView];
-        [imageView release];
+        //
+        
     }
     
     if(self.showSelectButton == YES) {
-    
+        
         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
         temporaryBarButtonItem.title = @"选择";  
         temporaryBarButtonItem.target = self;  

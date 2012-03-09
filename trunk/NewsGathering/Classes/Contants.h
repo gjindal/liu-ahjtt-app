@@ -9,6 +9,7 @@ typedef enum {
 typedef enum {
     MENUTYPE_SUBMIT,
     MENUTYPE_MEDIALIB,
+    MENUTYPE_VIDEO,
     MENUTYPE_WEIBO
 }MENUTYPE;
 
@@ -93,6 +94,7 @@ typedef enum {
 #define kFlag_Contri_Send_Weibo     18
 #define kFlag_Contri_Approve_Status 19
 #define KFlag_Contri_Delete_Attach  20
+#define kFlag_Contri_Get_Complet_List   21
 
 #define kInterface_Contri_List          [NSString stringWithFormat:@"%@contriM!getList_pass.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getList_pass.do"        // 查询稿件列表接口
@@ -132,3 +134,4 @@ typedef enum {
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!sendWeibo.do"
 #define kInterface_Contri_Approve_Status [NSString stringWithFormat:@"%@contriM!submitApprovalStatus.do", kServer_URL, nil]
 #define KInterface_Contri_Delete_Attach [NSString stringWithFormat:@"%@contriM!deleteFile.do", kServer_URL, nil]
+#define KInterface_Contri_Get_Complet_List [NSString stringWithFormat:@"%@contriM!getCompletList.do", kServer_URL, nil]

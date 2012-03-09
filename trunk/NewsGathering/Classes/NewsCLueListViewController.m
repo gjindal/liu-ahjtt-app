@@ -224,8 +224,20 @@
     
     if(flag == kFlag_NewsClue_List ) {
         
-        dataArray = newsCLueInfoArray;
+        dataArray = [[NSMutableArray alloc] initWithArray:newsCLueInfoArray];
         [self.tableView reloadData];
+    }
+    
+    if (flag == kFlag_NewsClue_Delete) {
+        CustomAlertView *alertView = [[CustomAlertView alloc] init];
+        NewsClueInfo *info = [newsCLueInfoArray objectAtIndex:0];
+        if ([info.flag isEqualToString:@"200"]) {
+            [dataArray removeObjectAtIndex:nDeleteIndex];
+            [alertView alertInfo:@"删除成功" withTitle:nil];
+            [self.tableView reloadData];
+        }else{
+            [alertView alertInfo:@"删除失败" withTitle:nil];
+        }
     }
     
 }
@@ -239,6 +251,23 @@
     [newsclueRequest getNewsClueDetailWithKeyID:newsclueInfo.keyid];
     
 }
+
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //[self.tableView beginUpdates];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        nDeleteIndex = indexPath.row;
+        [newsclueRequest deleteNewsClueWithKeyID:((NewsClueInfo *)[dataArray objectAtIndex:indexPath.row]).keyid];
+    }   
+    //[self.tableView endUpdates];
+    //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    //    }   
+}
+
 
 
 #pragma mark -

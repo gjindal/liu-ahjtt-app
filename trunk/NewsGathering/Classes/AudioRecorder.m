@@ -8,11 +8,10 @@
 
 #import "AudioRecorder.h"
 #import "StorageHelper.h"
+#import "NewsGatheringAppDelegate.h"
 
 @interface AudioRecorder (PrivateMethod)
 
-- (void)start;
-- (void)stop;
 - (void)setLabelText;
 
 @end
@@ -20,6 +19,7 @@
 @implementation AudioRecorder
 
 @synthesize fileName = _fileName;
+@synthesize Recoding = _recording;
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id /*<UIAlertViewDelegate>*/)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
 
@@ -78,12 +78,10 @@
             
             UILabel *subLabel = (UILabel *)[subView viewWithTag:101];
             if([subLabel.text isEqualToString:@"开始"]) {
-                
                 [self start];
                 [subView setBackgroundColor:[UIColor redColor]];
                 subLabel.text = @"停止";
             }else {
-                
                 [self stop];
                 [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
             }
@@ -119,7 +117,7 @@
 #pragma Private Methods.
 
 - (void)start {
-    
+
     [_fileName release];
     _fileName = nil;
     
@@ -144,6 +142,8 @@
                                                                   error: nil];
     if( [_recorder prepareToRecord] == YES) {
 
+        ((NewsGatheringAppDelegate *)([UIApplication sharedApplication].delegate)).recorder = self;
+        _recording = YES;
         [_recorder record];
         _fireDate = [[NSDate date] retain];
         _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(setLabelText) userInfo:nil repeats:YES];
@@ -153,10 +153,36 @@
     [dataFormatter release];
 }
 
+- (void)pause {
+
+    if(_recorder != nil) {
+    
+        _timeInterval += [[NSDate date] timeIntervalSinceDate:_fireDate];
+        _recording = NO;
+        
+        if([_timer isValid] == YES) {
+            
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+}
+
+- (void)resume {
+
+    if(_recorder != nil) {
+    
+        _fireDate = [[NSDate date] retain];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(setLabelText) userInfo:nil repeats:YES];
+        [_recorder record];
+    }
+}
+
 - (void)stop {
     
     if(_recorder != nil) {
     
+        ((NewsGatheringAppDelegate *)([UIApplication sharedApplication].delegate)).recorder = nil;
         [_recorder stop];
         [_recorder release];
         _recorder = nil;
@@ -180,7 +206,7 @@
 
 - (void)setLabelText {
     
-    NSTimeInterval intervalSeconds = [[NSDate date] timeIntervalSinceDate:_fireDate];
+    NSTimeInterval intervalSeconds = [[NSDate date] timeIntervalSinceDate:_fireDate] + _timeInterval;
     int hour = 0;
     int minute = 0;
     int second = 0;

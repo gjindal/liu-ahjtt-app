@@ -399,6 +399,38 @@
     }
 }
 
+- (void)getCompleteListWithTitle:(NSString *)title Keyword:(NSString *)keyword
+                         Begtime:(NSString *)begtime Endtime:(NSString *)endtime
+                            Type:(NSString *)type Page:(NSString *)page
+                              rp:(NSString *)rp sortName:(NSString *)sortName {
+
+    if(title == nil) {
+        title = @"";
+    }
+    if(keyword == nil) {
+        keyword = @"";
+    }
+    if(begtime == nil) {
+        begtime = @"";
+    }
+    if(endtime == nil) {
+        endtime = @"";
+    }
+    if(type == nil) {
+        type = @"";
+    }
+    
+    NSString *post = [NSString stringWithFormat:
+                      @"&usercode=%@&password=%@&title=%@&keyword=%@&begtime=%@&endtime=%@&type=%@&page=%@&rp=%@&sortName=%@",
+                      [UserHelper userName], [UserHelper password], title, keyword, begtime, endtime, type, page, rp, sortName];
+    NSData *returnData = [NetRequest PostData:KInterface_Contri_Get_Complet_List withRequestString:post];
+    if(returnData != nil) {
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Complet_List];
+        [returnString release];
+    }
+}
+
 #pragma mark - 
 #pragma mark Download File
 - (void) beginDownloadWithID:(NSString *)ID andFileName:(NSString *)fileName1 {
@@ -448,6 +480,7 @@
     //NSFileManager *fileManager = [[NSFileManager alloc]init];
     StorageHelper *helper = [[StorageHelper alloc] init];
 
+    NSLog(@"----%d", receivedData.length);
     BOOL result = NO;
     result = [helper createFileWithName:fileName data:receivedData];
     
@@ -587,6 +620,13 @@
     
     if(_delegate != nil && [_delegate respondsToSelector:@selector(deleteAttachDidFinished:)]) {
         [_delegate deleteAttachDidFinished:contributeInfo];
+    }
+}
+
+- (void)getCompleteListDidFinished:(NSArray *)docList {
+    
+    if(_delegate != nil && [_delegate respondsToSelector:@selector(getCompleteListDidFinished:)]) {
+        [_delegate getCompleteListDidFinished:docList];
     }
 }
 

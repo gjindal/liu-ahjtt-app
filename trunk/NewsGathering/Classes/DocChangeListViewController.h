@@ -32,9 +32,14 @@ typedef enum{
     
     NEXTPAGE nextPage;//标记返回页，如果是搜索返回就要显示结果
     int nDeleteIndex;
+    int currentFinishPageIndex;
+    
+    UISegmentedControl *segmentCtrl;
+    
     
 }
 
+@property(nonatomic) int currentFinishPageIndex;
 @property(nonatomic,retain) DocDetail *docDetail;
 @property(nonatomic,retain) DocRequest *docRequest;
 

@@ -13,14 +13,16 @@
 
 @interface NewsCLueListViewController : UITableViewController<NewsClueRequestDelegate> {
 @private
-    NSArray *dataArray;
+    NSMutableArray *dataArray;
     UISegmentedControl *segmentCtrl;
     
     NewsClueRequest *newsclueRequest;
     NewsClueInfo *schNewsclueInfo;
+    
+    int nDeleteIndex;
 }
 
-@property(nonatomic,retain) NSArray *dataArray;
+@property(nonatomic,retain) NSMutableArray *dataArray;
 @property(nonatomic,retain) NewsClueInfo *schNewsclueInfo;
 
 -(void)segmentAction:(id)sender;

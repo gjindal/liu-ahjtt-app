@@ -51,6 +51,7 @@
     
 //	NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@",username,[MD5EncryptProcess md5:password]];
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&token=%@",username,[MD5EncryptProcess md5:password],appDelegate.strDeviceToken];
+    NSLog(@"%@", [MD5EncryptProcess md5:password]);
     NSString *url = [[NSString alloc] initWithFormat:kInterface_Login];
 
 	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
@@ -201,7 +202,7 @@
 	NSString *result = [[NSString alloc] initWithData:resultData
 											 encoding:NSUTF8StringEncoding];
     
-    //NSLog(@"%@", result);
+    NSLog(@"%@", result);
     
     _loginParserHelper = [[LoginParserHelper alloc] init];
     _loginParserHelper.delegate = self;
@@ -263,6 +264,7 @@
             
             NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             appDelegate.loginSuccessInfo = (LoginSuccessInfo *)resultInfo;
+            appDelegate.loginId = [appDelegate.loginSuccessInfo.id retain];
             
             MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
             

@@ -30,5 +30,6 @@
 - (void)sendWeiboDidFinished:(ContributeInfo *)contributeInfo;
 - (void)approveStatusDidFinished:(ContributeInfo *)contributeInfo;
 - (void)deleteAttachDidFinished:(ContributeInfo *)contributeInfo;
+- (void)getCompleteListDidFinished:(NSArray *)docList;
 
 @end

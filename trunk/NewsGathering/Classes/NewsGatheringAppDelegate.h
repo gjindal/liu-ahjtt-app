@@ -12,6 +12,11 @@
 #import "UpgradeChecker.h"
 
 #define kUpgrageAlertTag	10
+#define kNotificationTag    20
+
+
+
+@class AudioRecorder;
 
 @class NewsGatheringViewController;
 
@@ -25,6 +30,7 @@
     NSString *password;
     
     LoginSuccessInfo *loginSuccessInfo;
+    NSString *loginId;
     
     NSMutableArray *deptArray;
     NSMutableArray *levelArray;
@@ -37,11 +43,15 @@
     UpgradeChecker	*upgradeChecker;
 	NSDictionary	*verionDict;
     
+    AudioRecorder   *_recorder;
+    int alertType;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet NewsGatheringViewController *viewController;
 
+@property (nonatomic, retain) NSString *loginId;
 @property (nonatomic, retain) NSString *certificate;
 @property (nonatomic ,retain) NSString *payload;
 @property (nonatomic, retain) NSString *strDeviceToken;
@@ -51,6 +61,8 @@
 @property (nonatomic, retain) NSMutableArray *typeArray;
 @property (nonatomic, retain) NSMutableArray *deptArray;
 @property (nonatomic, retain) LoginSuccessInfo *loginSuccessInfo;
+
+@property (nonatomic, retain) AudioRecorder     *recorder;
 
 
 

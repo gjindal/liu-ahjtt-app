@@ -231,26 +231,45 @@
         _docDetail = [[DocDetail alloc] init];
     }
     contributeInfo.flowID = [_docDetail.UUID copy];
-    NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
-    
-    [request cancel];
-    [request setRequestMethod:@"post"];    
-	[self setRequest:[ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]]];
-    
-	[request setTimeOutSeconds:20];
-    
-    [request setDelegate:self];
-	[request setDidFailSelector:@selector(respnoseFailed:)];
-	[request setDidFinishSelector:@selector(responseComplete:)];
-    
-    for (NSString *filePath in attachArray) {
-        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
-		[request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
-        break;
-	}
-	
-	[request startAsynchronous];
+    if ([attachArray count]<1) {
 
+        NSString *strLevel;
+        for(DirtInfo *info in levelArray){
+            if([info.dic_value isEqualToString:btLevel.titleLabel.text]){
+                strLevel = info.dic_type;
+            }
+        }
+        NSString *strType = [NSString stringWithFormat:@"%d",[typeArray indexOfObject:btType.titleLabel.text]+1];
+        if ([workflowInfo.opttype isEqualToString:@"1"]) {
+            
+            if ([dispatchedUsersID length]<1) {
+                dispatchedUsersID = _docDetail.receptorid;
+            }
+            [docRequest addDocForApproveWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Receptuserid:dispatchedUsersID Status:@"4" ConID:@""];
+        }if ([workflowInfo.opttype isEqualToString:@"2"]) {
+            [docRequest addDocWithTitle:fdTitle.text Keyword:fdKeyword.text Note:contents.text Source:fdDocSource.text Type:strType Level:strLevel FlowID:contributeInfo.flowID Status:@"99" ConID:@""];
+        }
+    }else{
+        
+        NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
+        
+        [request cancel];
+        [request setRequestMethod:@"post"];    
+        [self setRequest:[ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]]];
+        
+        [request setTimeOutSeconds:20];
+        
+        [request setDelegate:self];
+        [request setDidFailSelector:@selector(respnoseFailed:)];
+        [request setDidFinishSelector:@selector(responseComplete:)];
+        //计数，等文件上传完成后，再传文本
+        fileCount = 0;
+       NSString *filePath = [attachArray objectAtIndex:fileCount];
+       NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
+        [request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
+        [request startAsynchronous];
+    }
+        
 }
 
 -(void)shareToWB{
@@ -318,7 +337,31 @@
     
     NSLog(@"###########%@",responseString);
     
-    //如果附件发送成功，则发送内容
+    
+    //fileCount--;//等待所有文件发送完成
+    fileCount++;
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (fileCount < [attachArray count]) {
+        
+        NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
+        
+        [request cancel];
+        [request setRequestMethod:@"post"];    
+        [self setRequest:[ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]]];
+        
+        [request setTimeOutSeconds:20];
+        
+        [request setDelegate:self];
+        [request setDidFailSelector:@selector(respnoseFailed:)];
+        [request setDidFinishSelector:@selector(responseComplete:)];
+        
+        NSString *filePath = [attachArray objectAtIndex:fileCount];    
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
+        [request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
+        [request startAsynchronous];
+        return;
+    }
+
     NSString *strLevel;
     for(DirtInfo *info in levelArray){
         if([info.dic_value isEqualToString:btLevel.titleLabel.text]){
@@ -380,10 +423,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
-    imgPickerCtrl.delegate = self;
     if (menuType == MENUTYPE_MEDIALIB) {
-        
+        UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+        [imgPickerCtrl setSourceType:UIImagePickerControllerCameraCaptureModePhoto];
+        imgPickerCtrl.delegate = self;
         switch (buttonIndex) {
             case 0:
             

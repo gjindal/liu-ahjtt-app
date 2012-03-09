@@ -95,12 +95,13 @@
                                                        Note:(NSString *)note 
                                                     Begtime:(NSString *)begtime 
                                                     Endtime:(NSString *)endtime 
-                                                        Type:(NSString *) type{
+                                                        Type:(NSString *) type
+                                                    IsSubmit:(NSString *)issubmit{
     assert((title != nil) && ([title length]>0 ));
     assert((type != nil) && ([type length]>0));
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&type=%@&begtime=%@&endtime=%@&title=%@&keyword=%@&note=%@",
-                      [UserHelper userName],[UserHelper password],type,begtime,endtime,title,keyword,note];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&type=%@&begtime=%@&endtime=%@&title=%@&keyword=%@&note=%@&issubmit=%@",
+                      [UserHelper userName],[UserHelper password],type,begtime,endtime,title,keyword,note,issubmit];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Add withRequestString:post];
     if(returnData != nil) {
         
@@ -116,9 +117,10 @@
                                                     Note:(NSString *)note 
                                                 Begtime:(NSString *)begtime 
                                                 Endtime:(NSString *)endtime 
-                                                 Type:(NSString *) type{
+                                                 Type:(NSString *) type
+                                                IsSubmit:(NSString *)issubmit{
     
-    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime,type];
+    NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@&issubmit=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime,type,issubmit];
     NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Update withRequestString:post];
     if(returnData != nil) {
         
