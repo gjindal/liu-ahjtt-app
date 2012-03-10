@@ -368,6 +368,38 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
+    if (menuType == MENUTYPE_VIDEO) {
+        
+        UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+        imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        imgPickerCtrl.delegate = self;
+        switch (buttonIndex) {
+            case 0:
+                [self presentModalViewController:imgPickerCtrl animated:YES];
+                //[self.navigationController pushViewController:imgPickerCtrl animated:YES];
+                [imgPickerCtrl release];
+                break;
+                
+            case 1:
+                if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    
+                    UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
+                    videoCtrl.delegate = self;
+                    videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+                    videoCtrl.videoQuality = UIImagePickerControllerQualityTypeLow;
+                    videoCtrl.videoMaximumDuration = DBL_MAX;
+                    [self presentModalViewController:videoCtrl animated:YES];
+                    [videoCtrl release];
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+
     
     if (menuType == MENUTYPE_WEIBO) {
         switch (buttonIndex) {
@@ -449,12 +481,9 @@
     }
 }
 
-
-
 #pragma mark - 
 #pragma mark Click media Action
 -(IBAction) getPhoto {
-    
     menuType = MENUTYPE_MEDIALIB;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
     actionSheet.delegate = self;
@@ -493,15 +522,11 @@
 
 -(IBAction) getVideo {
     
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
-        videoCtrl.delegate = self;
-        videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
-        videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-        [self presentModalViewController:videoCtrl animated:YES];
-        [videoCtrl release];
-    }
+    menuType = MENUTYPE_VIDEO;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择视频", @"拍摄", nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
     
 }
 
@@ -794,18 +819,24 @@
     }else{
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if(cell != nil) {
-            
+
             attachIndex = indexPath.row;
             fileName = [cell.textLabel.text copy];
             //如果这个file有有效的id，说明是网络上的文件，需要下载才能看到，否则直截打开
             NSString *attachID = ((AttLsInfo *)[attachArray objectAtIndex:attachIndex]).attLsID;
             NSLog(@"FILE ID IS %@",attachID);
-            if(![attachID isEqualToString:kAttachID_Invalide]){
+            
+            NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName];
+            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            if ([fileManager fileExistsAtPath:filePath]) {
+                [self showMediaWithFile:fileName]; 
+            }else if(![attachID isEqualToString:kAttachID_Invalide]){
                 [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
                 [docRequest beginDownloadWithID:attachID andFileName:fileName];
-            }else{
+            }/*else{
                 [self showMediaWithFile:fileName];                
-            }
+            }*/
+            [fileManager release];
         }
         
     }
@@ -1108,7 +1139,7 @@
         temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
         temporaryBarButtonItem.action = @selector(back:);  
-        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
     return self;

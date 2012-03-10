@@ -69,7 +69,7 @@
         temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
         temporaryBarButtonItem.action = @selector(back:);  
-        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
     return self;

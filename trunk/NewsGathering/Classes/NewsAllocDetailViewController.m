@@ -60,7 +60,7 @@
 -(void)dispatchCLue{
     
     if ([dispatchedUsersID length]<1) {
-        [self alertInfo:@"请选择派发人！" withTitle:@"数据错误"];
+        [self alertInfo:@"请选择被派发人！" withTitle:@"数据错误"];
         return;
     }
     [cluedistRequest getDispatchResult:clueKeyid withUsers:dispatchedUsersID];
@@ -75,15 +75,19 @@
 
 }
 
+- (void)back:(id)sender {  
+    [self.navigationController popViewControllerAnimated:YES];  
+}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		// 下一个界面的返回按钮  
         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
-        temporaryBarButtonItem.title = @"取消";  
+        temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
-        // temporaryBarButtonItem.action = @selector(back:);  
-        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        temporaryBarButtonItem.action = @selector(back:);  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
     return self;
@@ -251,7 +255,7 @@
     
     // Configure the cell...
     if ((dispatchedUsersName == nil) || [dispatchedUsersName isEqualToString:@""]) {
-        cell.textLabel.text = @"选择派发人";
+        cell.textLabel.text = @"选择被派发人";
     }else{
         cell.textLabel.text = dispatchedUsersName;
     }
@@ -288,7 +292,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
     treeViewCtrl.delegate = self;
-    treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择派发人"];
+    treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择被派发人"];
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
 }

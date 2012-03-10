@@ -14,6 +14,7 @@
 
 #define START_TIME_PICKER   101
 #define END_TIME_PICKER	    102
+#define kAlert_Back         103
 
 @implementation NewsClueDetailViewController
 @synthesize scrollView;
@@ -78,6 +79,11 @@
         [self alertInfo:@"标题不能为空" withTitle:@"数据错误"];
         return;
     }
+    if ([clueTitle.text length]>300) {
+        [self alertInfo:@"标题过长" withTitle:@"数据错误"];
+        return;
+    }
+
     if ([clueType.titleLabel.text length]<1) {
         [self alertInfo:@"类别不能为空" withTitle:@"数据错误"];
         return;
@@ -94,12 +100,16 @@
         [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
         return;
     }
+    if ([clueKeyword.text length]>300) {
+        [self alertInfo:@"关键字过长" withTitle:@"数据错误"];
+        return;
+    }
     if ([contents.text length]<1) {
         [self alertInfo:@"内容不能为空" withTitle:@"数据错误"];
         return;
     }
     if ([contents.text length]>2000) {
-        [self alertInfo:@"内容不能超过2000字" withTitle:@"数据错误"];
+        [self alertInfo:@"内容过长" withTitle:@"数据错误"];
         return;
     }
     
@@ -136,38 +146,46 @@
     newsclueRequest = [[NewsClueRequest alloc] init];
     newsclueRequest.delegate = self;
 
-        if ([clueTitle.text length]<1) {
-            [self alertInfo:@"标题不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([clueType.titleLabel.text length]<1) {
-            [self alertInfo:@"类别不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([btStartTime.titleLabel.text length]<1) {
-            [self alertInfo:@"开时时间不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([btEndTime.titleLabel.text length]<1) {
-            [self alertInfo:@"结束时间不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([clueKeyword.text length]<1) {
-            [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([contents.text length]<1) {
-            [self alertInfo:@"内容不能为空" withTitle:@"数据错误"];
-            return;
-        }
-        if ([contents.text length]>2000) {
-            [self alertInfo:@"内容不能超过2000字" withTitle:@"数据错误"];
-            return;
-        }
-
+    if ([clueTitle.text length]<1) {
+        [self alertInfo:@"标题不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([clueTitle.text length]>300) {
+        [self alertInfo:@"标题过长" withTitle:@"数据错误"];
+        return;
+    }
+    
+    if ([clueType.titleLabel.text length]<1) {
+        [self alertInfo:@"类别不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([btStartTime.titleLabel.text length]<1) {
+        [self alertInfo:@"开时时间不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([btEndTime.titleLabel.text length]<1) {
+        [self alertInfo:@"结束时间不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([clueKeyword.text length]<1) {
+        [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([clueKeyword.text length]>300) {
+        [self alertInfo:@"关键字过长" withTitle:@"数据错误"];
+        return;
+    }
+    if ([contents.text length]<1) {
+        [self alertInfo:@"内容不能为空" withTitle:@"数据错误"];
+        return;
+    }
+    if ([contents.text length]>2000) {
+        [self alertInfo:@"内容过长" withTitle:@"数据错误"];
+        return;
+    }
         
-        NSInteger nType=1;
-        for (NSString *temp in array) {
+    NSInteger nType=1;
+    for (NSString *temp in array) {
             if ([temp isEqualToString:clueType.titleLabel.text]) {
                 break;
             }
@@ -194,7 +212,7 @@
     self.btEndTime.enabled = YES;
     self.btStartTime.enabled = YES;
     self.clueKeyword.enabled = YES;
-    /*
+    
     if (bEnableChange) {
         self.clueTitle.enabled = YES;
         self.clueType.enabled = YES;
@@ -219,7 +237,24 @@
     if (isAddNewsClue) {
         self.btConfirm.hidden = NO;
         self.clueType.enabled = YES;
-    }*/
+    }
+
+}
+
+-(void) back:(id)sender{
+    if (bEnableChange) {
+        UIAlertView* alert1 = [[UIAlertView alloc] initWithTitle:@"提醒"
+                                                         message:@"正在编辑中，确定退出吗？"
+                                                        delegate:self
+                                               cancelButtonTitle:@"否"
+                                               otherButtonTitles:@"是",nil];
+        alert1.tag = kAlert_Back;
+        [alert1 show];
+        [alert1 release]; 
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -229,8 +264,8 @@
         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
         temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
-       // temporaryBarButtonItem.action = @selector(back:);  
-        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        temporaryBarButtonItem.action = @selector(back:);  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
     return self;
@@ -302,12 +337,15 @@
         self.bEnableAudit = NO;
     }
     
+    NSLog(@"-------%@",newsclueInfo.status);
+    if ([newsclueInfo.status isEqualToString:@"0"] || isAddNewsClue) {
 
         UIBarButtonItem *submitButton;
         submitButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(passAudit)];
         submitButton.style=UIBarButtonItemStylePlain;
         self.navigationItem.rightBarButtonItem=submitButton;
         [submitButton release];
+    }
     
 
 }
@@ -388,6 +426,15 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == kAlert_Back) {
+        if (buttonIndex == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }else{
+            return;
+        }
+    }
+    
     if (bTimeAlertView) {
         return;
     }

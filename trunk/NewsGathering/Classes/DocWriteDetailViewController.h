@@ -32,7 +32,7 @@
                                         UINavigationControllerDelegate, 
                                         UIAlertViewDelegate,
                                         ASIHTTPRequestDelegate,
-                                        DocRequestDelegate,UIViewPassValueDelegate> 
+                                        DocRequestDelegate,UIViewPassValueDelegate,UINavigationBarDelegate> 
 {
 
 	

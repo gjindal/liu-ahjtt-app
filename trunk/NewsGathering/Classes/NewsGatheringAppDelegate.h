@@ -15,11 +15,11 @@
 #define kNotificationTag    20
 
 
-
+@class NewsGatheringAppDelegate;
 @class AudioRecorder;
 
 @class NewsGatheringViewController;
-
+@class UpgradeChecker;
 
 @interface NewsGatheringAppDelegate : NSObject <UIApplicationDelegate,UIAlertViewDelegate> {
     UIWindow *window;
@@ -63,6 +63,8 @@
 @property (nonatomic, retain) LoginSuccessInfo *loginSuccessInfo;
 
 @property (nonatomic, retain) AudioRecorder     *recorder;
+
+- (void) checkUpgrade:(NSTimer *) timer;
 
 
 

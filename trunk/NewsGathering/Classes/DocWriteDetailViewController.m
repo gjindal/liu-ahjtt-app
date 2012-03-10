@@ -22,6 +22,7 @@
 
 #define kAudioRecord    1024
 #define kAudioPlay      1025
+#define kAlert_Back     1026
 
 @implementation DocWriteDetailViewController
 @synthesize fdTitle;
@@ -97,17 +98,6 @@
         [theTitle setTextAlignment:UITextAlignmentCenter];
         [subView addSubview:theTitle];
     }
-
-//    for (UIView *subView in alertView.subviews) {
-//        if(subView.tag == 1)
-//        {
-//            [subView setBackgroundColor:[UIColor redColor]];
-//            if([subView respondsToSelector:@selector(setTitle:)]) {
-//                
-//                [subView performSelector:@selector(setTitle:) withObject:@"xxxxx"];
-//            }
-//        }
-//    }
     
     [alertView show];
     [alertView release];
@@ -115,17 +105,12 @@
 }
 
 -(IBAction) getVideo {
-
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
-        videoCtrl.delegate = self;
-        videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
-        videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-        videoCtrl.videoQuality = UIImagePickerControllerQualityTypeLow;
-        [self presentModalViewController:videoCtrl animated:YES];
-        [videoCtrl release];
-    }
+    
+    menuType = MENUTYPE_VIDEO;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择视频", @"拍摄", nil];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+    [actionSheet release];
 
 }
 
@@ -188,8 +173,18 @@
         [alert hideWaiting];
         return;
     }
+    if( [fdTitle.text length]>300){
+        [self alertInfo:@"标题过长" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
     if( [fdKeyword.text length]<1){
         [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdKeyword.text length]>300){
+        [self alertInfo:@"关键字过长" withTitle:@"错误"];
         [alert hideWaiting];
         return;
     }
@@ -198,8 +193,18 @@
         [alert hideWaiting];
         return;
     }
+    if( [contents.text length]>2000){
+        [self alertInfo:@"内容过长" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
     if( [fdDocSource.text length]<1){
         [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
+        [alert hideWaiting];
+        return;
+    }
+    if( [fdDocSource.text length]>300){
+        [self alertInfo:@"稿源过长" withTitle:@"错误"];
         [alert hideWaiting];
         return;
     }
@@ -269,7 +274,7 @@
         [request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
         [request startAsynchronous];
     }
-        
+
 }
 
 -(void)shareToWB{
@@ -422,6 +427,42 @@
 #pragma UIActionSheet Delegate.
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (menuType == MENUTYPE_VIDEO) {
+        
+        UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+        imgPickerCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        imgPickerCtrl.delegate = self;
+        switch (buttonIndex) {
+            case 0:
+                [self presentModalViewController:imgPickerCtrl animated:YES];
+                //[self.navigationController pushViewController:imgPickerCtrl animated:YES];
+                [imgPickerCtrl release];
+                break;
+                
+            case 1:
+                if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    
+                    UIImagePickerController *videoCtrl = [[UIImagePickerController alloc] init];
+                    videoCtrl.delegate = self;
+                    videoCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    videoCtrl.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+                    videoCtrl.videoQuality = UIImagePickerControllerQualityTypeLow;
+                    videoCtrl.videoMaximumDuration = DBL_MAX;
+                    [self presentModalViewController:videoCtrl animated:YES];
+                    [videoCtrl release];
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+
+        
+    }
 
     if (menuType == MENUTYPE_MEDIALIB) {
         UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
@@ -630,6 +671,15 @@
     
     if(alertView.tag == kAudioPlay || alertView.tag == kAudioRecord)
         return;
+    
+    if (alertView.tag == kAlert_Back) {
+        if (buttonIndex == 1){
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }else{
+            return;
+        }
+    }
     
     if (buttonIndex == 1) {
         if ((tmpCellString == nil) || [tmpCellString length]<1) {
@@ -928,24 +978,36 @@
 }
 
 
--(void)recoverDoc{
-
+- (void)back:(id)sender {  
+    UIAlertView* alert1 = [[UIAlertView alloc] initWithTitle:@"提醒"
+                                                     message:@"正在编辑中，确定退出吗？"
+                                                    delegate:self
+                                           cancelButtonTitle:@"否"
+                                           otherButtonTitles:@"是",nil];
+    alert1.tag = kAlert_Back;
+    [alert1 show];
+    [alert1 release]; 
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		// 下一个界面的返回按钮  
-        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
+      /*  UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
         temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
-        temporaryBarButtonItem.action = @selector(back:);  
+        temporaryBarButtonItem.action = @selector(back);  
         self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
+        
+        //self.navigationController.navigationBar.delegate =self;*/
     }
+   // [self.navigationController.navigationBar setDelegate:self];
     
     return self;
 }
+
+ 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -1053,6 +1115,8 @@
         docRequest.delegate = self;
         [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",3]];
     }
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)] autorelease]; 
 }
 
 // Override to support conditional editing of the table view.

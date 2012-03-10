@@ -19,6 +19,7 @@ static const int STATE_APPSTORE     = 4;
 	int parsestate;
 	
 	NSMutableDictionary *_dict;
+    NSDictionary *verionDict;
 }
 
 @property(nonatomic) int parsestate;

@@ -9,6 +9,7 @@
 
 #import "UpgradeChecker.h"
 #import "NewsGatheringAppDelegate.h"
+#import "Version.h"
 
 @implementation UpgradeChecker
 
@@ -25,7 +26,7 @@
 -(void)main {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	NSURL *url            = [NSURL URLWithString:@"http://"];
+	NSURL *url            = [NSURL URLWithString:kUpdateURL];
 	NSMutableURLRequest *req     = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
 	//[req setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
 	
@@ -37,16 +38,58 @@
 		[parser parse];
 		[parser release];
 		
-		NewsGatheringAppDelegate *app = (NewsGatheringAppDelegate *) [UIApplication sharedApplication];
+		//NewsGatheringAppDelegate *app = (NewsGatheringAppDelegate *)[UIApplication sharedApplication];
 		NSTimer *timer = [NSTimer
-						  timerWithTimeInterval:0 target:app
+						  timerWithTimeInterval:0 target:self
 						  selector:@selector(checkUpgrade:)
 						  userInfo:_dict repeats:NO];
 		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 		
 	}
+    
+    NSLog(@"MAIN==========");
 	
 	[pool release];
+}
+
+- (void) checkUpgrade:(NSTimer *) timer {
+    
+    NSLog(@"checkUpgrade==========");
+    
+	verionDict = [[timer userInfo] retain];
+    
+	if ([[verionDict objectForKey:@"Version"] isEqualToString:@""] 
+		|| [verionDict objectForKey:@"Version"] == nil
+		|| [[verionDict objectForKey:@"Version"] length] == 0 ) {
+		return;
+	}
+	if (![[verionDict objectForKey:@"Version"] isEqualToString:VERSION_STRING]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+														message:@"新版本移动采编已发布，是否更新？"
+													   delegate:self
+											  cancelButtonTitle:@"否"
+											  otherButtonTitles:@"是",nil];
+		alert.tag = kUpgrageAlertTag;
+		[alert show];
+	}
+    
+    
+    NSLog(@"checkUpgrade==========END");
+}
+
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    NSLog(@"UPGRADE ALERT VIEW==========");
+    
+        if (buttonIndex != alertView.cancelButtonIndex) {
+            NSURL *url = [NSURL URLWithString:[verionDict objectForKey:@"AppStore"]];
+            NewsGatheringAppDelegate *appDelegate = [UIApplication sharedApplication];
+            [appDelegate openURL:url];
+        }
+    
+	[alertView release];
 }
 
 ////////////////////////////////
@@ -54,6 +97,9 @@
 ////////////////////////////////
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
 	
+    
+    NSLog(@"MAIN==========2");
+    
 	if (self.parsestate == STATE_ROOT) {
 		if ([elementName isEqualToString:@"VersionInfo"]) {
 			self.parsestate         = STATE_VERINFO;

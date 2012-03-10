@@ -10,5 +10,6 @@
 #define NewsGathering_Version_h
 
 #define VERSION_STRING @"1.0"
+#define kUpdateURL @""
 
 #endif

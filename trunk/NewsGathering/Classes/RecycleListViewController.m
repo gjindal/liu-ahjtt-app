@@ -23,6 +23,10 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (void)back:(id)sender {  
+    [self.navigationController popViewControllerAnimated:YES];  
+}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -31,7 +35,7 @@
         temporaryBarButtonItem.title = @"返回";  
         temporaryBarButtonItem.target = self;  
         temporaryBarButtonItem.action = @selector(back:);  
-        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;  
         [temporaryBarButtonItem release]; 
     }
     return self;
@@ -72,12 +76,6 @@
     [self getCycleListDidFinished:[NSArray array]];
     [self getAllCycleList];
 }
-
-- (void)back:(id)sender {  
-    
-    [self.navigationController popViewControllerAnimated:YES];  
-}
-
 #pragma -
 #pragma Private Methods.
 

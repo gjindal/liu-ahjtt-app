@@ -72,8 +72,8 @@
     
     //create upgrade checker thread
 	//if connection is available now,start it,otherwise do nothing
-	//upgradeChecker = [[UpgradeChecker alloc] init];
-    //[upgradeChecker start];
+	upgradeChecker = [[UpgradeChecker alloc] init];
+    [upgradeChecker start];
 
     return YES;
 }
@@ -157,39 +157,21 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    /*
+    NSLog(@"UPGRADE ALERT VIEW==========");
     
     if (alertView.tag == kUpgrageAlertTag) {
         if (buttonIndex != alertView.cancelButtonIndex) {
             NSURL *url = [NSURL URLWithString:[verionDict objectForKey:@"AppStore"]];
             [self openURL:url];
+
         }
     }else if(alertView.tag == kNotificationTag){
         
     }
-
+*/
 	[alertView release];
 }
-
-- (void) checkUpgrade:(NSTimer *) timer {
-	verionDict = [[timer userInfo] retain];
-    
-	if ([[verionDict objectForKey:@"Version"] isEqualToString:@""] 
-		|| [verionDict objectForKey:@"Version"] == nil
-		|| [[verionDict objectForKey:@"Version"] length] == 0 ) {
-		return;
-	}
-	if (![[verionDict objectForKey:@"Version"] isEqualToString:VERSION_STRING]) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
-														message:@"新版本移动采编已发布，是否更新？"
-													   delegate:self
-											  cancelButtonTitle:@"否"
-											  otherButtonTitles:@"是",nil];
-		alert.tag = kUpgrageAlertTag;
-		[alert show];
-	}
-	
-}
-
 
 #pragma mark -
 #pragma mark Memory management
