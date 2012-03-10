@@ -114,15 +114,40 @@
 
 -(IBAction)gotoDocChange{
 	DocChangeListViewController *viewCtrl = [[DocChangeListViewController alloc] initWithNibName:@"DocChangeListViewController" bundle:nil] ;
+    viewCtrl.docChangeType = DOCCHANGE_TYPE_UNFINISH;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
     [viewCtrl release];
 }
 
+-(IBAction)gotoFinishedDoc{
+	DocChangeListViewController *viewCtrl = [[DocChangeListViewController alloc] initWithNibName:@"DocChangeListViewController" bundle:nil] ;
+    viewCtrl.docChangeType = DOCCHANGE_TYPE_FINISHED;
+	[self.navigationController pushViewController:viewCtrl animated:YES];
+    [viewCtrl release];
+}
 
 -(IBAction)gotoRecycle{
 	RecycleListViewController *viewCtrl = [[RecycleListViewController alloc] initWithNibName:@"RecycleListViewController" bundle:nil] ;
 	[self.navigationController pushViewController:viewCtrl animated:YES];
     [viewCtrl release];
+}
+
+-(IBAction)gotoClearSystem{
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"警告" message:@"该操作将删除所有附件\n一旦删除将无法恢复，您确定继续？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    [alertView show];
+    [alertView release];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        _storeHelper = [[StorageHelper alloc] init];
+        for (NSString *fileName in [_storeHelper getSubFiles]) {
+            NSLog(@"------%@",fileName);
+            [_storeHelper deleteFileWithName:fileName];
+        }
+    }
 }
 
 - (void)back:(id)sender {  

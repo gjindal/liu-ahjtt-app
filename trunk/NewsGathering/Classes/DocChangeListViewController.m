@@ -18,6 +18,7 @@
 @synthesize docDetail;
 @synthesize docRequest;
 @synthesize currentFinishPageIndex;
+@synthesize docChangeType;
 
 
 #pragma mark -
@@ -70,7 +71,7 @@
 {
     segmentCtrl = (UISegmentedControl *)sender;
     NSLog(@"======%d",segmentCtrl.selectedSegmentIndex);
-    if (segmentCtrl.selectedSegmentIndex == 0) {
+    if (docChangeType == DOCCHANGE_TYPE_UNFINISH) {
         if (docSearchVtrl == nil) {
             docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
             docSearchVtrl.contributeInfo.title = @"";
@@ -86,7 +87,7 @@
                                 Endtime:docSearchVtrl.strEndTime];
     }
     
-    if (segmentCtrl.selectedSegmentIndex == 1) {
+    if (docChangeType == DOCCHANGE_TYPE_FINISHED) {
         if (docSearchVtrl == nil) {
             docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
             docSearchVtrl.contributeInfo.title = @"";
@@ -100,9 +101,8 @@
                                 Begtime:docSearchVtrl.strStartTime
                                 Endtime:docSearchVtrl.strEndTime
                                 Type:docSearchVtrl.contributeInfo.type
-                                Page:@"1" rp:@"15" sortName:@"conid"];
+                                Page:@"1" rp:@"6" sortName:@"conid"];
     }
-    
 }
 
 -(void) viewDidLoad{
@@ -117,7 +117,7 @@
 	self.navigationItem.rightBarButtonItem=searchButton;
 	[searchButton release];
     
-    
+    /*
     segmentCtrl= [[UISegmentedControl alloc]
                   initWithFrame:CGRectMake(225.0f, 6.0, 90.0f, 32.0f)];
 	[segmentCtrl insertSegmentWithTitle:@"未完成" atIndex:0 animated:YES]; 
@@ -126,7 +126,7 @@
 	[segmentCtrl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 	segmentCtrl.selectedSegmentIndex = 0;
     self.navigationItem.titleView = segmentCtrl;
-    
+    */
     
     dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     alertView = [[CustomAlertView alloc] init];
@@ -142,10 +142,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
-	//self.title= @"稿件管理";
-	self.navigationController.navigationBar.hidden=NO;
-
+    self.navigationController.navigationBar.hidden=NO;
+    if (docChangeType == DOCCHANGE_TYPE_UNFINISH) {
+        self.title= @"稿件管理";
+        
         if (docSearchVtrl == nil) {
             docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
             docSearchVtrl.contributeInfo.title = @"";
@@ -155,11 +155,30 @@
             docSearchVtrl.strEndTime = @"";
         }
         [docRequest getAppListWithTitle:docSearchVtrl.contributeInfo.title
-                            Keyword:docSearchVtrl.contributeInfo.keyword
-                               Type:docSearchVtrl.contributeInfo.type
-                            Begtime:docSearchVtrl.strStartTime
-                            Endtime:docSearchVtrl.strEndTime];
-    segmentCtrl.selectedSegmentIndex = -1;
+                                Keyword:docSearchVtrl.contributeInfo.keyword
+                                   Type:docSearchVtrl.contributeInfo.type
+                                Begtime:docSearchVtrl.strStartTime
+                                Endtime:docSearchVtrl.strEndTime];
+    }else{
+        self.title= @"已完成稿件";
+        if (docSearchVtrl == nil) {
+            docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
+            docSearchVtrl.contributeInfo.title = @"";
+            docSearchVtrl.contributeInfo.keyword = @"";
+            docSearchVtrl.contributeInfo.type = @"";
+            docSearchVtrl.strStartTime = @"";
+            docSearchVtrl.strEndTime = @"";
+        }
+        [docRequest getCompleteListWithTitle:docSearchVtrl.contributeInfo.title
+                                     Keyword:docSearchVtrl.contributeInfo.keyword
+                                     Begtime:docSearchVtrl.strStartTime
+                                     Endtime:docSearchVtrl.strEndTime
+                                        Type:docSearchVtrl.contributeInfo.type
+                                        Page:@"1" rp:@"6" sortName:@"conid"];
+    
+    }
+
+   // segmentCtrl.selectedSegmentIndex = 0;
 }
 
 
@@ -167,6 +186,9 @@
 #pragma mark Table view data source
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    if(docChangeType == DOCCHANGE_TYPE_UNFINISH) return;
+    
 	CGPoint offset = scrollView.contentOffset;       
     CGRect bounds = scrollView.bounds;       
     CGSize size = scrollView.contentSize;       
@@ -191,7 +213,7 @@
                                      Begtime:docSearchVtrl.strStartTime
                                      Endtime:docSearchVtrl.strEndTime
                                         Type:docSearchVtrl.contributeInfo.type
-                                        Page:[NSString stringWithFormat:@"%d", currentFinishPageIndex+1] rp:@"15" sortName:@"conid"];
+                                        Page:[NSString stringWithFormat:@"%d", currentFinishPageIndex+1] rp:@"6" sortName:@"conid"];
 
     }   	
 }

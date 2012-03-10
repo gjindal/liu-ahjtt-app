@@ -13,11 +13,7 @@
 #import "DocSearchViewController.h"
 #import "CustomAlertView.h"
 
-typedef enum{
-    NEXTPAGE_SEARCH,
-    NEXTPAGE_DETAIL,
-    NEXTPAGE_OTHERS
-}NEXTPAGE;
+
 
 @interface DocChangeListViewController : UITableViewController<DocRequestDelegate> {
 @private
@@ -35,13 +31,14 @@ typedef enum{
     int currentFinishPageIndex;
     
     UISegmentedControl *segmentCtrl;
-    
+    DOCCHANGE_TYPE docChangeType;
     
 }
 
 @property(nonatomic) int currentFinishPageIndex;
 @property(nonatomic,retain) DocDetail *docDetail;
 @property(nonatomic,retain) DocRequest *docRequest;
+@property(nonatomic) DOCCHANGE_TYPE docChangeType;
 
 -(void)searchDocs;
 

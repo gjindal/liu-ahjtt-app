@@ -286,6 +286,15 @@
 - (void)addDocDidFinished:(ContributeInfo *)contributeInfo1{
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         [self alertInfo:@"稿件上传成功" withTitle:nil];
+        
+        if(_docDetail != nil && transformType == TYPE_MODIFY) {
+            
+            DocDetailHelper *docDetailHelper = [[DocDetailHelper alloc] init];
+            _docDetail.status = DOC_STATUS_SUMMITED;
+            [docDetailHelper updateDoc:_docDetail];
+            [docDetailHelper release];
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     else

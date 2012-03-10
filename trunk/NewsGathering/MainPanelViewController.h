@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsClueRequest.h"
+#import "StorageHelper.h"
 
 
-@interface MainPanelViewController : UIViewController<NewsClueRequestDelegate> {
+@interface MainPanelViewController : UIViewController<NewsClueRequestDelegate,UIAlertViewDelegate> {
 
 	IBOutlet UIButton *newsClue;
 	IBOutlet UIButton *newsAlloc;
@@ -19,6 +20,7 @@
 	IBOutlet UIButton *recycle;
     
     NewsClueRequest *newsclueRequest;
+    StorageHelper *_storeHelper;
     
 
 }
@@ -35,6 +37,8 @@
 -(IBAction)gotoDocWrite;
 -(IBAction)gotoDocChange;
 -(IBAction)gotoRecycle;
+-(IBAction)gotoFinishedDoc;
+-(IBAction)gotoClearSystem;
 
 - (void)back:(id)sender;
 

@@ -24,6 +24,17 @@ typedef enum {
     TYPE_MODIFY
 }TRANSFORM_TYPE;
 
+typedef enum {
+    DOCCHANGE_TYPE_UNFINISH,
+    DOCCHANGE_TYPE_FINISHED
+}DOCCHANGE_TYPE;
+
+typedef enum{
+    NEXTPAGE_SEARCH,
+    NEXTPAGE_DETAIL,
+    NEXTPAGE_OTHERS
+}NEXTPAGE;
+
 #define kAttachID_Invalide @"-1"
 
 #define kServer_URL [[NSUserDefaults standardUserDefaults] stringForKey:@"ServerURL"]
