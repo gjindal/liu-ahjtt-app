@@ -861,7 +861,11 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (!enableEdit || alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
+    if (alertType == ALERTTABLE_LEVEL || alertType == ALERTTABLE_LEVEL) {
+        return;
+    }
+    if(!enableEdit){
+        [alert alertInfo:@"当前您不能删除该附件." withTitle:@"提醒"];
         return;
     }
     [self.attachTable beginUpdates];

@@ -157,6 +157,7 @@
             }
             
         }        
+
         SEL sel = nil;
         
         if(_currentFlag == kFlag_Contri_Add) {

@@ -123,7 +123,7 @@
     
     NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
     [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    _fileName = [[NSString stringWithFormat:@"Audio_%@.caf", [dataFormatter stringFromDate:[NSDate date]], nil] retain];
+    _fileName = [[NSString stringWithFormat:@"Audio_%@.aif", [dataFormatter stringFromDate:[NSDate date]], nil] retain];
     NSString *filePath = [_storeHelper.baseDirectory stringByAppendingPathComponent:_fileName];
 //    _fileName = [[NSString stringWithFormat:@"%@/Audio_%@.caf", storeHelper.baseDirectory, [dataFormatter stringFromDate:[NSDate date]], nil] retain];
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];

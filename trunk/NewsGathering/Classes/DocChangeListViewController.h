@@ -33,6 +33,8 @@
     UISegmentedControl *segmentCtrl;
     DOCCHANGE_TYPE docChangeType;
     
+    BOOL bSearch;
+    
 }
 
 @property(nonatomic) int currentFinishPageIndex;

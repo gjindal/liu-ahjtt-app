@@ -26,6 +26,7 @@
 
 -(void)searchDocs{
 
+    bSearch = YES;
     [self.navigationController pushViewController:docSearchVtrl animated:YES];
 
 }
@@ -56,15 +57,25 @@
 }
 
 -(void)getCompleteListDidFinished:(NSArray *)docList{
-    if ([docList count]<1) {
-        //[alertView alertInfo:@"已没有更多数据" withTitle:@"提醒"];
+    
+    if(bSearch){
+        bSearch = NO;
+        NSLog(@"-----------");
+        [dataArray removeAllObjects];
+        [dataArray addObjectsFromArray:docList];
+        [self.tableView reloadData];
         return;
     }else{
-        currentFinishPageIndex++;
+        NSLog(@"=======%d",[docList count]);
+        if ([docList count]<1) {
+            [alertView alertInfo:@"已没有更多数据" withTitle:@"提醒"];
+            return;
+        }else{
+            currentFinishPageIndex++;
+        }
+        [dataArray addObjectsFromArray:docList];
+        [self.tableView reloadData];
     }
-    //[dataArray removeAllObjects];
-    [dataArray addObjectsFromArray:docList];
-    [self.tableView reloadData];
 }
 
 -(void)segmentAction:(id)sender
@@ -89,6 +100,7 @@
     
     if (docChangeType == DOCCHANGE_TYPE_FINISHED) {
         if (docSearchVtrl == nil) {
+            bSearch = NO;
             docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
             docSearchVtrl.contributeInfo.title = @"";
             docSearchVtrl.contributeInfo.keyword = @"";
@@ -135,7 +147,7 @@
     
     docSearchVtrl = nil;
     
-    
+    bSearch = NO;
     currentFinishPageIndex = 1;
     nextPage = NEXTPAGE_OTHERS;//
 }

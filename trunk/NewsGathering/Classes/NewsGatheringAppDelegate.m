@@ -64,7 +64,7 @@
     //61.190.37.2
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary
-                                 dictionaryWithObjects:[NSArray arrayWithObjects:@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/", nil] 
+                                 dictionaryWithObjects:[NSArray arrayWithObjects:@"http://61.190.37.2:8086/editmobile/mobile/", nil] 
                                                forKeys:[NSArray arrayWithObjects:@"ServerURL", nil]];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
