@@ -323,7 +323,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    bSearch = YES;
     NSString *strID = ((ContributeInfo *)[dataArray objectAtIndex:[indexPath row]]).conid;
     [docRequest getDocDetailWithConid:strID];
     

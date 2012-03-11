@@ -964,6 +964,7 @@
         //[alert alertInfo:@"下载成功" withTitle:nil];
         
         [self showMediaWithFile:fileName]; 
+        [_storeHelper deleteFileWithName:fileName];
     }else{
         [alert hideWaiting];
         [alert alertInfo:@"下载失败" withTitle:@"错误"];
