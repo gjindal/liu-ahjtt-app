@@ -41,7 +41,7 @@
 - (void)start;
 - (void)threadMain:(id)arg;
 - (void)resume;
-- (void)stopWithStatus:(NSString *)statusString;
+- (void)stopWithStatus:(FTP_ERROR)ftpError;
 
 
 @property (nonatomic) id<FTPTransFileDelegate> *delegate;

@@ -9,12 +9,21 @@
 #import <Foundation/Foundation.h>
 #define kBufferSize 8000
 
+typedef enum {
+    FTP_ERROR_NO,
+    FTP_ERROR_NETWORK,
+    FTP_ERROR_WRITEFILE,
+    FTP_ERROR_READFILE,
+    FTP_ERROR_REMOTEFILE,
+    FTP_ERROR_OTHERS
+}FTP_ERROR;
+
 @protocol FTPTransFileDelegate <NSObject>
 @optional
 
 - (void)sendFileDidfinished;
 - (void)receiveFileDidfinished;
-- (void)sendFilePaused;
-- (void)receiveFilePaused;
+- (void)sendFileStoped:(FTP_ERROR) ftpError;
+- (void)receiveFileStoped:(FTP_ERROR) ftpError;
 
 @end

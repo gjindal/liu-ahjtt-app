@@ -201,7 +201,7 @@
 }
 
 
-- (void)stopWithStatus:(NSString *)statusString
+- (void)stopWithStatus:(FTP_ERROR)ftpError
 {
     if (self.ftpStream != nil) {
 		[self.ftpStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -213,11 +213,11 @@
         [self.fileStream close];
         self.fileStream = nil;
     }
-	if (statusString != nil) {
+	/*if (statusString != nil) {
 		self.strStatus = statusString;
 	} else {
 		self.strStatus = @"Downloading Completed.";
-	}
+	}*/
 	CFRunLoopStop(runLoop);
 }
 
