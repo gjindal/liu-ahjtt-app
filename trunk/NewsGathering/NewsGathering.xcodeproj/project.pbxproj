@@ -140,6 +140,9 @@
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
 		B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97D155114ED455E005E0A41 /* VideoPlayViewController.m */; };
 		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
+		B987BC69150CF347004E0E20 /* FTPStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC68150CF347004E0E20 /* FTPStoreHelper.m */; };
+		B987BC6D150CF3E3004E0E20 /* DocFTPInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */; };
+		B987BC70150CF3FD004E0E20 /* FileFTPInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */; };
 		B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */; };
 		B98AA16014FD0EC800E1E588 /* WorkflowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */; };
 		B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */; };
@@ -370,6 +373,12 @@
 		B97D155014ED455E005E0A41 /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
 		B97D155114ED455E005E0A41 /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
 		B97D155414ED48B7005E0A41 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B987BC67150CF347004E0E20 /* FTPStoreHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPStoreHelper.h; sourceTree = "<group>"; };
+		B987BC68150CF347004E0E20 /* FTPStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPStoreHelper.m; sourceTree = "<group>"; };
+		B987BC6B150CF3E3004E0E20 /* DocFTPInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocFTPInfo.h; sourceTree = "<group>"; };
+		B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocFTPInfo.m; sourceTree = "<group>"; };
+		B987BC6E150CF3FD004E0E20 /* FileFTPInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFTPInfo.h; sourceTree = "<group>"; };
+		B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFTPInfo.m; sourceTree = "<group>"; };
 		B98A253F1501EF7B0066FEEA /* CustomizeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeScrollView.h; sourceTree = "<group>"; };
 		B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeScrollView.m; sourceTree = "<group>"; };
 		B98AA15E14FD0EC800E1E588 /* WorkflowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowInfo.h; sourceTree = "<group>"; };
@@ -590,6 +599,8 @@
 				B2E6C9FE14F79427007B24F5 /* DocRequestDelegate.h */,
 				1AA7226614F9466A00317BE6 /* UIViewPassValueDelegate.h */,
 				1ABA32A81508A047002D00E3 /* Version.h */,
+				B987BC67150CF347004E0E20 /* FTPStoreHelper.h */,
+				B987BC68150CF347004E0E20 /* FTPStoreHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -617,6 +628,10 @@
 				B2E6C9F414F78F2B007B24F5 /* ContributeInfo.m */,
 				B98AA15E14FD0EC800E1E588 /* WorkflowInfo.h */,
 				B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */,
+				B987BC6B150CF3E3004E0E20 /* DocFTPInfo.h */,
+				B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */,
+				B987BC6E150CF3FD004E0E20 /* FileFTPInfo.h */,
+				B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1030,6 +1045,9 @@
 				1AB2F01C150B934800D57B0A /* FTPDownloadFile.m in Sources */,
 				1AB5404A150CD3BF007EBB34 /* FileInfo.m in Sources */,
 				1AB5404D150CD41F007EBB34 /* FTPUploadFile.m in Sources */,
+				B987BC69150CF347004E0E20 /* FTPStoreHelper.m in Sources */,
+				B987BC6D150CF3E3004E0E20 /* DocFTPInfo.m in Sources */,
+				B987BC70150CF3FD004E0E20 /* FileFTPInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,16 +1076,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-hoc";
@@ -1077,8 +1095,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1087,8 +1105,8 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 			};
 			name = Debug;
 		};
@@ -1097,16 +1115,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: CHENG JUN WANG (G535NMRFTK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CD6B26D-D88B-46BA-AA67-47BD2C7DD886";
+				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
