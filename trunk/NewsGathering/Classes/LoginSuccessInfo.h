@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "LoginResultInfo.h"
 
+@interface FTPInfo : NSObject {
+@private
+    NSString *_ftpUsername;
+    NSString *_ftpPassword;
+    NSString *_ftpURL;
+}
+@property (nonatomic, retain) NSString *ftpUsername;
+@property (nonatomic, retain) NSString *ftpPassword;
+@property (nonatomic, retain) NSString *ftpURL;
+
+@end
+
 @interface DirtInfo : NSObject {
 @private
     NSString *_dic_desc;
@@ -62,8 +74,10 @@
     NSString *_userName;
     NSMutableArray *_dictList;
     NSMutableArray *_menuList;
+    FTPInfo *_ftpInfo;
 }
 
+@property (nonatomic, retain) FTPInfo *ftpInfo;
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *roleName;
 @property (nonatomic, retain) NSString *sex;

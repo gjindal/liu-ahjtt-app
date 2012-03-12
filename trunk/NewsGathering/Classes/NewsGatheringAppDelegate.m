@@ -26,6 +26,7 @@
 @synthesize deptArray;
 @synthesize recorder = _recorder;
 @synthesize loginId;
+@synthesize ftpInfo;
 
 
 - (id)init 

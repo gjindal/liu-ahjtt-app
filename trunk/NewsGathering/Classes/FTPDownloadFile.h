@@ -14,7 +14,7 @@
 
 @interface FTPDownloadFile : NSObject<NSStreamDelegate> {	
 @private
-    id<FTPTransFileDelegate>   *delegate;
+    id<FTPTransFileDelegate>    delegate;
 	NSString *					userName;
 	NSString *					passWord;
 	
@@ -44,7 +44,7 @@
 - (void)stopWithStatus:(FTP_ERROR)ftpError;
 
 
-@property (nonatomic) id<FTPTransFileDelegate> *delegate;
+@property (nonatomic, retain) id<FTPTransFileDelegate> delegate;
 @property (nonatomic, retain) NSString * serverPath;
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSString * passWord;

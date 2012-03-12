@@ -19,6 +19,8 @@
 #import "CustomAlertView.h"
 #import "AuditOpinionViewController.h"
 #import "ImagePlayViewController.h"
+#import "FTPTransFileDelegate.h"
+#import "FTPDownloadFile.h"
 
 
 typedef enum {
@@ -38,7 +40,7 @@ typedef enum {
                                                              UIAlertViewDelegate,
                                                              ASIHTTPRequestDelegate,
                                                              DocRequestDelegate,UIViewPassValueDelegate,
-                                                            NSURLConnectionDataDelegate> 
+                                                            NSURLConnectionDataDelegate,FTPTransFileDelegate> 
 {
 	
     IBOutlet UIScrollView *scrollView;
@@ -76,7 +78,7 @@ typedef enum {
     ContributeInfo *contributeInfo;
     DocRequest *docRequest;
     StorageHelper *_storeHelper;
-    
+    FTPDownloadFile *ftpDownload;
     
     DOCTYPE docType;
     MENUTYPE menuType;

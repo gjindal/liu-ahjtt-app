@@ -40,7 +40,7 @@ void theWriteCallBack (CFWriteStreamRef stream,
             // If we don't have any data buffered, go read the next chunk of data.
             if (ud.bufferOffset == ud.bufferLimit) {
 				uint8_t * buffer = ud.buffer;
-                NSInteger bytesRead = [ud.fileStream read:buffer maxLength:kUploadBufferSize];
+                NSInteger bytesRead = [ud.fileStream read:buffer maxLength:kBufferSize];
                 if (bytesRead == -1) {
                     [ud stopWithStatus:@"local file read error!"];
                 } else if (bytesRead == 0) {
@@ -289,7 +289,7 @@ void theWriteCallBack (CFWriteStreamRef stream,
             if (self.bufferOffset == self.bufferLimit) {
                 NSInteger   bytesRead;
                 
-                bytesRead = [self.fileStream read:buf maxLength:kUploadBufferSize];
+                bytesRead = [self.fileStream read:buf maxLength:kBufferSize];
                 
                 if (bytesRead == -1) {
                     [self stopWithStatus:@"File read error"];

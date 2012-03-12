@@ -127,7 +127,7 @@ typedef enum{
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!getAppList_pass.do"     // 查询待审批稿件列表接口
 #define kInterface_Contri_Approve       [NSString stringWithFormat:@"%@contriM!submitUpdateStatus.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 稿件审核接口
-#define kInterface_Contri_Upload        [NSString stringWithFormat:@"%@contriM!submitUpdateStatus.do", kServer_URL, nil]
+#define kInterface_Contri_Upload        [NSString stringWithFormat:@"%@contriM!uploadFile.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!submitUpdateStatus.do"  // 附件上传接口
 #define kInterface_Contri_Download      [NSString stringWithFormat:@"%@contriM!downloadFile.do", kServer_URL, nil]
 //@"http://hfhuadi.vicp.cc:8080/editmobile/mobile/contriM!downloadFile.do"        // 附件下载接口

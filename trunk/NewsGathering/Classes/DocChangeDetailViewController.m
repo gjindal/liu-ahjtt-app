@@ -19,6 +19,7 @@
 #import "TreeViewController.h"
 #import "CustomAlertView.h"
 #import "Contants.h"
+#import "FTPDownloadFile.h"
 
 
 @implementation DocChangeDetailViewController
@@ -831,16 +832,34 @@
             if ([fileManager fileExistsAtPath:filePath]) {
                 [self showMediaWithFile:fileName]; 
             }else if(![attachID isEqualToString:kAttachID_Invalide]){
+                filePath = _storeHelper.baseDirectory;
                 [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
-                [docRequest beginDownloadWithID:attachID andFileName:fileName];
+                
+                ftpDownload = [[FTPDownloadFile alloc] initWithServerPath:@"ftp://hfhuadi.vicp.cc/TestImage1.png" 
+                                                                withLocal:filePath 
+                                                                withName:@"ftpuser1" 
+                                                                withPass:@"ok123456"];
+                ftpDownload.delegate = self;
+                [ftpDownload start];
+                
+                //[docRequest beginDownloadWithID:attachID andFileName:fileName];
             }/*else{
                 [self showMediaWithFile:fileName];                
             }*/
             [fileManager release];
         }
-        
     }
     
+}
+
+-(void) receiveFileStoped:(FTP_ERROR)ftpError{
+    [alert hideWaiting];
+    [alert alertInfo:@"文件下载失败，请检查网络后重试。" withTitle:@"错误"];
+}
+
+-(void) receiveFileDidfinished{
+    [alert hideWaiting];
+    [self showMediaWithFile:@"TestImage1.png"]; 
 }
 
 -(void) deleteAttachDidFinished:(ContributeInfo *)contributeInfo1{
@@ -975,12 +994,13 @@
 #pragma UIImagePickerController Delegate.
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [picker dismissModalViewControllerAnimated:YES];
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
+    [imageName appendFormat:@"%@_Image_%@.jpeg",appDelegate.loginId,[df stringFromDate:[NSDate date]]];
     
     AttLsInfo *attlsInfo = [[AttLsInfo alloc] init];
     attlsInfo.fileName = imageName;
@@ -1100,6 +1120,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [picker dismissModalViewControllerAnimated:YES];
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
@@ -1107,7 +1128,7 @@
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"%@_Image_%@.jpeg",appDelegate.loginId ,[df stringFromDate:[NSDate date]]];
 //        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         UIImage *image = [self scaleAndRotateImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
         //StorageHelper *helper = [[StorageHelper alloc] init];
@@ -1116,7 +1137,7 @@
         [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 0.1)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Video_%@.mp4",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"%@_Video_%@.mov",appDelegate.loginId ,[df stringFromDate:[NSDate date]]];
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         //StorageHelper *helper = [[StorageHelper alloc] init];
         [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];

@@ -256,7 +256,12 @@
         }
     }else{
         
-        NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,contributeInfo.flowID];
+        //计数，等文件上传完成后，再传文本
+        fileCount = 0;
+        NSString *fileName = [attachArray objectAtIndex:fileCount];
+        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName];
+        
+        NSString *url = [[NSString alloc] initWithFormat:@"%@contriM!uploadFile.do?usercode=%@&password=%@&filename=%@&flowid=%@",kServer_URL,appDelegate.username,appDelegate.password,fileName,contributeInfo.flowID];
         
         [request cancel];
         [request setRequestMethod:@"post"];    
@@ -267,11 +272,6 @@
         [request setDelegate:self];
         [request setDidFailSelector:@selector(respnoseFailed:)];
         [request setDidFinishSelector:@selector(responseComplete:)];
-        //计数，等文件上传完成后，再传文本
-        fileCount = 0;
-       NSString *filePath = [attachArray objectAtIndex:fileCount];
-       NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath];
-        [request setFile:tmp forKey:[NSString stringWithFormat:@"file",filePath]];
         [request startAsynchronous];
     }
 
@@ -827,12 +827,13 @@
 #pragma UIImagePickerController Delegate.
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [picker dismissModalViewControllerAnimated:YES];
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
+    [imageName appendFormat:@"%@_Image_%@.jpeg",appDelegate.loginId,[df stringFromDate:[NSDate date]]];
     
     [(NSMutableArray *)self.attachArray addObject:imageName];
     [imageName release];
@@ -949,6 +950,9 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
                                                                                                                                                                                                                                                                                                                      
     [picker dismissModalViewControllerAnimated:YES];
     NSMutableString *imageName = [[NSMutableString alloc] initWithCapacity:0] ;
@@ -956,7 +960,7 @@
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     if (CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeImage, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Image_%@.jpeg",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"%@_Image_%@.jpeg",appDelegate.loginId,[df stringFromDate:[NSDate date]]];
         UIImage *image = [self scaleAndRotateImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
                       
         //StorageHelper *helper = [[StorageHelper alloc] init];
@@ -965,7 +969,7 @@
         [_storeHelper createFileWithName:imageName data:UIImageJPEGRepresentation(image, 0.1)];
     }else if( CFStringCompare((CFStringRef) [info objectForKey:UIImagePickerControllerMediaType], kUTTypeMovie, 0) == kCFCompareEqualTo) {
         
-        [imageName appendFormat:@"Video_%@.mov",[df stringFromDate:[NSDate date]]];
+        [imageName appendFormat:@"%@_Video_%@.mov",appDelegate.loginId,[df stringFromDate:[NSDate date]]];
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
         //StorageHelper *helper = [[StorageHelper alloc] init];
         [_storeHelper createFileWithName:imageName data:[NSData dataWithContentsOfURL:videoURL]];

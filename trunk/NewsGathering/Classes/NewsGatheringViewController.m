@@ -265,6 +265,7 @@
             NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             appDelegate.loginSuccessInfo = (LoginSuccessInfo *)resultInfo;
             appDelegate.loginId = [appDelegate.loginSuccessInfo.id retain];
+            appDelegate.ftpInfo = [appDelegate.loginSuccessInfo.ftpInfo retain];
             
             MainPanelViewController *viewCtrl = [[MainPanelViewController alloc] initWithNibName:@"MainPanelView" bundle:nil] ;
             

@@ -59,7 +59,10 @@
     }else if([elementName isEqualToString:@"funcs"]) {
         
         _funcationInfo = [[FuncationInfo alloc] init];
+    }else if([elementName isEqualToString:@"ftp"]){
+        _ftpInfo = [[FTPInfo alloc] init];
     }
+    
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
@@ -122,7 +125,18 @@
         _loginSuccessInfo.roleName = _currentValue;
     }else if([elementName isEqualToString:@"sex"]) {
         _loginSuccessInfo.sex = _currentValue;
-    }else if([elementName isEqualToString:@"userName"]) {
+    }else if([elementName isEqualToString:@"ftppassword"]) {
+        _ftpInfo.ftpPassword = _currentValue;
+    }else if([elementName isEqualToString:@"ftpuser"]) {
+        _ftpInfo.ftpUsername = _currentValue;
+    }else if([elementName isEqualToString:@"ftpurl"]) {
+        _ftpInfo.ftpURL = _currentValue;
+    }else if([elementName isEqualToString:@"ftp"]) {
+        [_loginSuccessInfo setFtpInfo:_ftpInfo];
+        [_ftpInfo release];
+        _ftpInfo = nil;
+    }
+    else if([elementName isEqualToString:@"userName"]) {
         _loginSuccessInfo.userName = _currentValue;
     }else if([elementName isEqualToString:@"error"]) {
     

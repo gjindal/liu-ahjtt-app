@@ -10,6 +10,6 @@
 #define NewsGathering_Version_h
 
 #define VERSION_STRING @"1.0"
-#define kUpdateURL @""
+#define kUpdateURL @"http://61.190.37.2:8086/version/ahtrversion.xml"
 
 #endif

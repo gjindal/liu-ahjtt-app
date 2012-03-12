@@ -46,8 +46,11 @@
     AudioRecorder   *_recorder;
     int alertType;
     
+    FTPInfo *ftpInfo;
+    
 }
 
+@property (nonatomic, retain) FTPInfo *ftpInfo;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet NewsGatheringViewController *viewController;
 

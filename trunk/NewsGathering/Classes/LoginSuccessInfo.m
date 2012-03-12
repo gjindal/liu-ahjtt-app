@@ -11,6 +11,22 @@
 #pragma -
 #pragma DirtInfo Implementation.
 
+@implementation FTPInfo
+
+@synthesize ftpPassword = _ftpPassword;
+@synthesize ftpUsername = _ftpUsername;
+@synthesize ftpURL = _ftpURL;
+
+-(void) dealloc{
+    [_ftpPassword release];
+    [_ftpUsername release];
+    [_ftpURL release];
+    
+    [super dealloc];
+}
+
+@end
+
 @implementation DirtInfo
 
 @synthesize dic_desc = _dic_desc;
@@ -111,6 +127,7 @@
 @synthesize userName = _userName;
 @synthesize dictList = _dictList;
 @synthesize menuList = _menuList;
+@synthesize ftpInfo = _ftpInfo;
 
 - (id)init {
 

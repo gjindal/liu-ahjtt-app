@@ -25,6 +25,7 @@
     DirtInfo                        *_dictInfo;
     MenuInfo                        *_menuInfo;
     FuncationInfo                   *_funcationInfo;
+    FTPInfo                         *_ftpInfo;
 }
 
 @property (nonatomic, assign) id<LoginParserHelperDelegate> delegate;

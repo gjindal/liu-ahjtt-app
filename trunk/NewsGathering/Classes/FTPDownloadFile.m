@@ -8,6 +8,7 @@
 
 #import "FTPDownloadFile.h"
 #import "FileInfo.h"
+#import "FTPTransFileDelegate.h"
 
 @implementation FTPDownloadFile
 
@@ -44,7 +45,7 @@
 - (void)parseServerUrl:(NSString*)serverStr withLocal:(NSString*)localStr {
 	self.serverPath = serverStr;
 	self.fileName  = [serverStr lastPathComponent];
-	self.localPath = [FileInfo pathForDocument];
+	self.localPath = @"";//[FileInfo pathForDocument];
 	self.localPath = [self.localPath stringByAppendingPathComponent:localStr];
 	NSString * name = [self.localPath lastPathComponent];
 	if ([name compare:self.fileName] != NSOrderedSame){
@@ -148,7 +149,7 @@
 				[self.fileStream open];
 			} else {
 				NSLog(@"local file size >= server file, aborting...");
-				[self stopWithStatus:@"file size not match!"];
+				[self stopWithStatus:FTP_ERROR_REMOTEFILE];
 			}
         } break;
         case NSStreamEventHasBytesAvailable: {
@@ -159,10 +160,10 @@
             
             bytesRead = [self.ftpStream read:buffer maxLength:sizeof(buffer)];
             if (bytesRead == -1) {
-                [self stopWithStatus:@"Network read error"];
+                [self stopWithStatus:FTP_ERROR_NETWORK];
 				return;
             } else if (bytesRead == 0) {
-                [self stopWithStatus:nil];
+                [self stopWithStatus:FTP_ERROR_NO];
 				return;
             } else {
                 NSInteger   bytesWritten;
@@ -175,7 +176,7 @@
                     bytesWritten = [self.fileStream write:&buffer[bytesWrittenSoFar] maxLength:bytesRead - bytesWrittenSoFar];
                     assert(bytesWritten != 0);
                     if (bytesWritten == -1) {
-                        [self stopWithStatus:@"File write error"];
+                        [self stopWithStatus:FTP_ERROR_WRITEFILE];
                         break;
                     } else {
                         bytesWrittenSoFar += bytesWritten;
@@ -189,10 +190,10 @@
             assert(NO);     // should never happen for the output stream
         } break;
         case NSStreamEventErrorOccurred: {
-            [self stopWithStatus:@"Stream open error"];
+            [self stopWithStatus:FTP_ERROR_NETWORK];
         } break;
         case NSStreamEventEndEncountered: {
-            [self stopWithStatus:@"Download Completed."];
+            [self stopWithStatus:FTP_ERROR_NO];
         } break;
         default: {
             assert(NO);
@@ -213,11 +214,11 @@
         [self.fileStream close];
         self.fileStream = nil;
     }
-	/*if (statusString != nil) {
-		self.strStatus = statusString;
-	} else {
-		self.strStatus = @"Downloading Completed.";
-	}*/
+    if (ftpError == FTP_ERROR_NO) {
+        [self.delegate receiveFileDidfinished];
+    }else{
+        [self.delegate receiveFileStoped:ftpError];
+    }
 	CFRunLoopStop(runLoop);
 }
 

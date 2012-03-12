@@ -10,8 +10,8 @@
 #import "FTPTransFileDelegate.h"
 #import "StorageHelper.h"
 
-@interface FTPUploadFile : NSObject{
-    id<FTPTransFileDelegate>   *delegate;
+@interface FTPUploadFile : NSObject<NSStreamDelegate>{
+    id<FTPTransFileDelegate>    delegate;
 	NSString *					userName;
 	NSString *					passWord;
 	
@@ -48,7 +48,7 @@
 - (void)stopWithStatus:(NSString *)statusString;
 
 
-@property (nonatomic) id<FTPTransFileDelegate> *delegate;
+@property (nonatomic) id<FTPTransFileDelegate> delegate;
 @property (nonatomic, retain) NSString * serverPath;
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSString * passWord;
