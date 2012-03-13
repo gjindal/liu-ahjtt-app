@@ -12,7 +12,7 @@
 			<key>Key</key>
 			<string>ServerURL</string>
 			<key>DefaultValue</key>
-			<string>http://61.190.37.2:8086/editmobile/mobile/</string>
+			<string>http://hfhuadi.vicp.cc:8080/editmobile/mobile/</string>
 		</dict>
 	</array>
 	<key>Title</key>

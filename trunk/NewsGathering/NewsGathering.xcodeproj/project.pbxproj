@@ -78,9 +78,6 @@
 		1AB1C78614F8AC8F00E01B26 /* folder_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1C78314F8AC8F00E01B26 /* folder_small.png */; };
 		1AB1C78714F8AC8F00E01B26 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1C78414F8AC8F00E01B26 /* minus.png */; };
 		1AB1C78814F8AC8F00E01B26 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1C78514F8AC8F00E01B26 /* plus.png */; };
-		1AB2F01C150B934800D57B0A /* FTPDownloadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2F01B150B934800D57B0A /* FTPDownloadFile.m */; };
-		1AB5404A150CD3BF007EBB34 /* FileInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB54049150CD3BE007EBB34 /* FileInfo.m */; };
-		1AB5404D150CD41F007EBB34 /* FTPUploadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5404C150CD41F007EBB34 /* FTPUploadFile.m */; };
 		1AB88F1814FE23B4006B655A /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB88F1714FE23B4006B655A /* CustomAlertView.m */; };
 		1ABA32AB1508A377002D00E3 /* UpgradeChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA32AA1508A377002D00E3 /* UpgradeChecker.m */; };
 		1AC0537814E3A37B0026B115 /* NewsCLueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0537614E3A37B0026B115 /* NewsCLueListViewController.m */; };
@@ -116,6 +113,7 @@
 		1AD7FECE14EDB61100DAA354 /* contents_background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7FECD14EDB61000DAA354 /* contents_background2.png */; };
 		1AE778C914FA6FE700655201 /* DocSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE778C714FA6FE700655201 /* DocSearchViewController.m */; };
 		1AE778CA14FA6FE700655201 /* DocSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE778C814FA6FE700655201 /* DocSearchViewController.xib */; };
+		1AE8BD06150E600C00C10445 /* aps_developer_identity.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8BD05150E600C00C10445 /* aps_developer_identity.p12 */; };
 		1AF62CD814EFC3960022A2D9 /* add2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD514EFC3960022A2D9 /* add2.png */; };
 		1AF62CD914EFC3960022A2D9 /* contents_background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD614EFC3960022A2D9 /* contents_background3.png */; };
 		1AF62CDA14EFC3960022A2D9 /* panel_background320.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF62CD714EFC3960022A2D9 /* panel_background320.png */; };
@@ -140,9 +138,6 @@
 		B90ABD8914E6B98A00641FE1 /* microphone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = B90ABD8814E6B98A00641FE1 /* microphone 1.png */; };
 		B97D155214ED455E005E0A41 /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97D155114ED455E005E0A41 /* VideoPlayViewController.m */; };
 		B97D155514ED48B7005E0A41 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B97D155414ED48B7005E0A41 /* MediaPlayer.framework */; };
-		B987BC69150CF347004E0E20 /* FTPStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC68150CF347004E0E20 /* FTPStoreHelper.m */; };
-		B987BC6D150CF3E3004E0E20 /* DocFTPInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */; };
-		B987BC70150CF3FD004E0E20 /* FileFTPInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */; };
 		B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */; };
 		B98AA16014FD0EC800E1E588 /* WorkflowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */; };
 		B98B194C14F3DE9A00D33C2A /* NewsClueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B98B194B14F3DE9A00D33C2A /* NewsClueInfo.m */; };
@@ -283,13 +278,6 @@
 		1AB1C78314F8AC8F00E01B26 /* folder_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder_small.png; sourceTree = "<group>"; };
 		1AB1C78414F8AC8F00E01B26 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
 		1AB1C78514F8AC8F00E01B26 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
-		1AB2F01A150B934800D57B0A /* FTPDownloadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPDownloadFile.h; sourceTree = "<group>"; };
-		1AB2F01B150B934800D57B0A /* FTPDownloadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPDownloadFile.m; sourceTree = "<group>"; };
-		1AB2F01D150B93EC00D57B0A /* FTPTransFileDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPTransFileDelegate.h; sourceTree = "<group>"; };
-		1AB54048150CD3BD007EBB34 /* FileInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileInfo.h; sourceTree = "<group>"; };
-		1AB54049150CD3BE007EBB34 /* FileInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileInfo.m; sourceTree = "<group>"; };
-		1AB5404B150CD41F007EBB34 /* FTPUploadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPUploadFile.h; sourceTree = "<group>"; };
-		1AB5404C150CD41F007EBB34 /* FTPUploadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPUploadFile.m; sourceTree = "<group>"; };
 		1AB88F1614FE23B4006B655A /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		1AB88F1714FE23B4006B655A /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		1ABA32A81508A047002D00E3 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
@@ -336,6 +324,7 @@
 		1AE778C614FA6FE700655201 /* DocSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocSearchViewController.h; sourceTree = "<group>"; };
 		1AE778C714FA6FE700655201 /* DocSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocSearchViewController.m; sourceTree = "<group>"; };
 		1AE778C814FA6FE700655201 /* DocSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocSearchViewController.xib; path = Classes/DocSearchViewController.xib; sourceTree = "<group>"; };
+		1AE8BD05150E600C00C10445 /* aps_developer_identity.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_developer_identity.p12; sourceTree = "<group>"; };
 		1AF62CD514EFC3960022A2D9 /* add2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add2.png; sourceTree = "<group>"; };
 		1AF62CD614EFC3960022A2D9 /* contents_background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contents_background3.png; sourceTree = "<group>"; };
 		1AF62CD714EFC3960022A2D9 /* panel_background320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panel_background320.png; sourceTree = "<group>"; };
@@ -373,12 +362,6 @@
 		B97D155014ED455E005E0A41 /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
 		B97D155114ED455E005E0A41 /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
 		B97D155414ED48B7005E0A41 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		B987BC67150CF347004E0E20 /* FTPStoreHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPStoreHelper.h; sourceTree = "<group>"; };
-		B987BC68150CF347004E0E20 /* FTPStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPStoreHelper.m; sourceTree = "<group>"; };
-		B987BC6B150CF3E3004E0E20 /* DocFTPInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocFTPInfo.h; sourceTree = "<group>"; };
-		B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocFTPInfo.m; sourceTree = "<group>"; };
-		B987BC6E150CF3FD004E0E20 /* FileFTPInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileFTPInfo.h; sourceTree = "<group>"; };
-		B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFTPInfo.m; sourceTree = "<group>"; };
 		B98A253F1501EF7B0066FEEA /* CustomizeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeScrollView.h; sourceTree = "<group>"; };
 		B98A25401501EF7B0066FEEA /* CustomizeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeScrollView.m; sourceTree = "<group>"; };
 		B98AA15E14FD0EC800E1E588 /* WorkflowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkflowInfo.h; sourceTree = "<group>"; };
@@ -556,7 +539,6 @@
 		1A9DE9C814E1770C006E21E8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				1AB54047150CD1A3007EBB34 /* FTPLib */,
 				1ABA32A91508A377002D00E3 /* UpgradeChecker.h */,
 				1ABA32AA1508A377002D00E3 /* UpgradeChecker.m */,
 				1A1127BF14FBC50C0058F163 /* Reachability.h */,
@@ -599,8 +581,6 @@
 				B2E6C9FE14F79427007B24F5 /* DocRequestDelegate.h */,
 				1AA7226614F9466A00317BE6 /* UIViewPassValueDelegate.h */,
 				1ABA32A81508A047002D00E3 /* Version.h */,
-				B987BC67150CF347004E0E20 /* FTPStoreHelper.h */,
-				B987BC68150CF347004E0E20 /* FTPStoreHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -628,10 +608,6 @@
 				B2E6C9F414F78F2B007B24F5 /* ContributeInfo.m */,
 				B98AA15E14FD0EC800E1E588 /* WorkflowInfo.h */,
 				B98AA15F14FD0EC800E1E588 /* WorkflowInfo.m */,
-				B987BC6B150CF3E3004E0E20 /* DocFTPInfo.h */,
-				B987BC6C150CF3E3004E0E20 /* DocFTPInfo.m */,
-				B987BC6E150CF3FD004E0E20 /* FileFTPInfo.h */,
-				B987BC6F150CF3FD004E0E20 /* FileFTPInfo.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -677,20 +653,6 @@
 				1A42351B1503291500863017 /* AuditOpinionViewController.m */,
 			);
 			name = ViewContoller;
-			sourceTree = "<group>";
-		};
-		1AB54047150CD1A3007EBB34 /* FTPLib */ = {
-			isa = PBXGroup;
-			children = (
-				1AB2F01A150B934800D57B0A /* FTPDownloadFile.h */,
-				1AB2F01B150B934800D57B0A /* FTPDownloadFile.m */,
-				1AB5404B150CD41F007EBB34 /* FTPUploadFile.h */,
-				1AB5404C150CD41F007EBB34 /* FTPUploadFile.m */,
-				1AB2F01D150B93EC00D57B0A /* FTPTransFileDelegate.h */,
-				1AB54048150CD3BD007EBB34 /* FileInfo.h */,
-				1AB54049150CD3BE007EBB34 /* FileInfo.m */,
-			);
-			name = FTPLib;
 			sourceTree = "<group>";
 		};
 		1AC0537B14E3A5FA0026B115 /* image */ = {
@@ -798,6 +760,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1AE8BD05150E600C00C10445 /* aps_developer_identity.p12 */,
 				1AC3440015072A3A00BDF246 /* Entitlements.plist */,
 				1A1127BD14FBC4230058F163 /* libz.dylib */,
 				1A1127BB14FBC4140058F163 /* libxml2.dylib */,
@@ -955,6 +918,7 @@
 				1AC3440115072A3A00BDF246 /* Entitlements.plist in Resources */,
 				1AB09453150B563C00363F1C /* clean.png in Resources */,
 				1AB09455150B57AA00363F1C /* end.png in Resources */,
+				1AE8BD06150E600C00C10445 /* aps_developer_identity.p12 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,12 +1006,6 @@
 				B98A25411501EF7B0066FEEA /* CustomizeScrollView.m in Sources */,
 				1A42351D1503291500863017 /* AuditOpinionViewController.m in Sources */,
 				1ABA32AB1508A377002D00E3 /* UpgradeChecker.m in Sources */,
-				1AB2F01C150B934800D57B0A /* FTPDownloadFile.m in Sources */,
-				1AB5404A150CD3BF007EBB34 /* FileInfo.m in Sources */,
-				1AB5404D150CD41F007EBB34 /* FTPUploadFile.m in Sources */,
-				B987BC69150CF347004E0E20 /* FTPStoreHelper.m in Sources */,
-				B987BC6D150CF3E3004E0E20 /* DocFTPInfo.m in Sources */,
-				B987BC70150CF3FD004E0E20 /* FileFTPInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,16 +1034,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad-hoc";
@@ -1095,8 +1053,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1105,8 +1063,8 @@
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
@@ -1115,16 +1073,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zerg XiGua (42H86H6SL3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NewsGathering_Prefix.pch;
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NewsGathering-Info.plist";
 				PRODUCT_NAME = NewsGathering;
-				PROVISIONING_PROFILE = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F4DC44D3-7E75-45CD-B0C1-86C94754269A";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1173,7 +1131,7 @@
 				1AED9F1C1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Ad-hoc";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NewsGathering" */ = {
 			isa = XCConfigurationList;
@@ -1183,7 +1141,7 @@
 				1AED9F1B1504B16700D3BC73 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "Ad-hoc";
 		};
 /* End XCConfigurationList section */
 	};
