@@ -158,8 +158,8 @@ void theWriteCallBack (CFWriteStreamRef stream,
 }
 
 - (void)start {
-	[self resume];
-    //[NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
+	//[self resume];
+    [NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
     //[self threadMain:nil];
 }
 
@@ -171,9 +171,9 @@ void theWriteCallBack (CFWriteStreamRef stream,
 	NSLog(@" the current thread's loop is %p", p);
 	
 	//[self resumeRead];	
-	 [self resume];
-	// CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1000, NO);
-//	CFRunLoopRun();
+    [self resume];
+    CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1000, NO);
+    CFRunLoopRun();
 	
 	NSLog(@"thread exiting...");
 	[pool release];
@@ -224,30 +224,30 @@ void theWriteCallBack (CFWriteStreamRef stream,
         self.strStatus = @"Invalid URL";
         [self.delegate sendFileStoped:FTP_ERROR_NETWORK];
     } else {
-     /*
-		// Open a CFFTPStream for the URL.
-        self.ftpStream = CFWriteStreamCreateWithFTPURL(NULL, (CFURLRef) url);
-        
-		if (self.userName != 0) {
-            success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPUserName, self.userName);
-            assert(success);
-            success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPPassword, self.passWord);
-            assert(success);
-        }
-        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
-		success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyAppendToFile, kCFBooleanTrue);
-		
-		CFStreamClientContext context = {
-			0,  (void*)self, NULL, NULL, NULL
-		};
-		CFOptionFlags flag = kCFStreamEventOpenCompleted | kCFStreamEventCanAcceptBytes | kCFStreamEventErrorOccurred;
-		CFWriteStreamSetClient(self.ftpStream, flag, theWriteCallBack, &context);
-		
-		CFWriteStreamScheduleWithRunLoop (self.ftpStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-		CFWriteStreamOpen(self.ftpStream);*/
+        /*
+         // Open a CFFTPStream for the URL.
+         self.ftpStream = CFWriteStreamCreateWithFTPURL(NULL, (CFURLRef) url);
+         
+         if (self.userName != 0) {
+         success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPUserName, self.userName);
+         assert(success);
+         success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPPassword, self.passWord);
+         assert(success);
+         }
+         success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
+         success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyAppendToFile, kCFBooleanTrue);
+         
+         CFStreamClientContext context = {
+         0,  (void*)self, NULL, NULL, NULL
+         };
+         CFOptionFlags flag = kCFStreamEventOpenCompleted | kCFStreamEventCanAcceptBytes | kCFStreamEventErrorOccurred;
+         CFWriteStreamSetClient(self.ftpStream, flag, theWriteCallBack, &context);
+         
+         CFWriteStreamScheduleWithRunLoop (self.ftpStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+         CFWriteStreamOpen(self.ftpStream);*/
         
         // Open a CFFTPStream for the URL.
-
+        
         ftpStream = CFWriteStreamCreateWithFTPURL(NULL, (CFURLRef) url);
         assert(ftpStream != NULL);
         
@@ -260,12 +260,12 @@ void theWriteCallBack (CFWriteStreamRef stream,
             assert(success);
         }
         
-//        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
-//        NSLog(success?@"Offset success":@"Offset error");
-//		success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyAppendToFile, kCFBooleanFalse);
-//        NSLog(success?@"Append success":@"Append error");
-////        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPUsePassiveMode , kCFBooleanTrue);
-//        NSLog(success?@"Passive success":@"Passive error");
+        //        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
+        //        NSLog(success?@"Offset success":@"Offset error");
+        //		success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyAppendToFile, kCFBooleanFalse);
+        //        NSLog(success?@"Append success":@"Append error");
+        ////        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPUsePassiveMode , kCFBooleanTrue);
+        //        NSLog(success?@"Passive success":@"Passive error");
         self.networkStream.delegate = self;
         [self.networkStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [self.networkStream open];
@@ -274,7 +274,7 @@ void theWriteCallBack (CFWriteStreamRef stream,
         // has retained this for our persistent use.
         
         CFRelease(ftpStream);
-
+        
         
     }	
     
@@ -284,61 +284,61 @@ void theWriteCallBack (CFWriteStreamRef stream,
 // An NSStream delegate callback that's called when events happen on our 
 // network stream.
 {
-//    if (self.bStop) {
-//        [self stopWithStatus:@"be stopped!"];
-//        [self.delegate sendFileStoped:FTP_ERROR_STOPCMD];
-//        return;
-//    }
+    //    if (self.bStop) {
+    //        [self stopWithStatus:@"be stopped!"];
+    //        [self.delegate sendFileStoped:FTP_ERROR_STOPCMD];
+    //        return;
+    //    }
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted: {
             self.serverSize = 0;
-//			if (aStream == self.fileStream) {
-//				// get the server size from ftp
-//				self.serverSize = 0;
-//				// check server file's size
-//				NSNumber * cfSize = [self.fileStream propertyForKey:(id)kCFStreamPropertyFTPResourceSize];
-//				if (cfSize != nil) {
-//					uint64_t size = [cfSize unsignedLongLongValue];
-//					self.strStatus = [NSString stringWithFormat:@"Existing server size is %llu", size];
-//					self.serverSize = size;
-//				} else {
-//					self.serverSize = 0;
-//				}
-//              
-//				[self.fileStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-//				self.fileStream.delegate = nil;
-//				[self.fileStream close];
-//				self.fileStream = nil;
-//				
-//				// OK, let's start uploading now.
-//				[self resume];
-//				return;
-//			}
+            //			if (aStream == self.fileStream) {
+            //				// get the server size from ftp
+            //				self.serverSize = 0;
+            //				// check server file's size
+            //				NSNumber * cfSize = [self.fileStream propertyForKey:(id)kCFStreamPropertyFTPResourceSize];
+            //				if (cfSize != nil) {
+            //					uint64_t size = [cfSize unsignedLongLongValue];
+            //					self.strStatus = [NSString stringWithFormat:@"Existing server size is %llu", size];
+            //					self.serverSize = size;
+            //				} else {
+            //					self.serverSize = 0;
+            //				}
+            //              
+            //				[self.fileStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            //				self.fileStream.delegate = nil;
+            //				[self.fileStream close];
+            //				self.fileStream = nil;
+            //				
+            //				// OK, let's start uploading now.
+            //				[self resume];
+            //				return;
+            //			}
 			
-//			self.strStatus = @"Opened connection";
-//			NSLog(@"connection opened for %@", self.serverPath);
+            //			self.strStatus = @"Opened connection";
+            //			NSLog(@"connection opened for %@", self.serverPath);
             
-//            if(self.serverSize == self.localSize){
-//                [self stopWithStatus:@"file has been existed!"];
-//                [self.delegate sendFileStoped:FTP_ERROR_NO];
-//            }else
-//			// Open a stream for the file we're going to receive into.
-//			if (self.serverSize < self.localSize){
-//                NSLog(@"Open fileStream");
-				self.fileStream = [NSInputStream inputStreamWithFileAtPath: self.localPath];
-				[self.fileStream open];
-//				assert(self.fileStream != nil);
-//				uint64_t lsize = self.serverSize;
-//				[self.fileStream setProperty:[NSNumber numberWithUnsignedLongLong:lsize] forKey:NSStreamFileCurrentOffsetKey];
-//				self.strStatus = [NSString stringWithFormat:@"write to file from %llu", lsize];
-//                NSLog(@"%@", strStatus);
-//				
-//			} else {
-//				self.strStatus = @"local file size <= server file, aborting...";
-//				[self stopWithStatus:@"file size not match!"];
-//                 [self.delegate sendFileStoped:FTP_ERROR_NO];
-//			}
+            //            if(self.serverSize == self.localSize){
+            //                [self stopWithStatus:@"file has been existed!"];
+            //                [self.delegate sendFileStoped:FTP_ERROR_NO];
+            //            }else
+            //			// Open a stream for the file we're going to receive into.
+            //			if (self.serverSize < self.localSize){
+            //                NSLog(@"Open fileStream");
+            self.fileStream = [NSInputStream inputStreamWithFileAtPath: self.localPath];
+            [self.fileStream open];
+            //				assert(self.fileStream != nil);
+            //				uint64_t lsize = self.serverSize;
+            //				[self.fileStream setProperty:[NSNumber numberWithUnsignedLongLong:lsize] forKey:NSStreamFileCurrentOffsetKey];
+            //				self.strStatus = [NSString stringWithFormat:@"write to file from %llu", lsize];
+            //                NSLog(@"%@", strStatus);
+            //				
+            //			} else {
+            //				self.strStatus = @"local file size <= server file, aborting...";
+            //				[self stopWithStatus:@"file size not match!"];
+            //                 [self.delegate sendFileStoped:FTP_ERROR_NO];
+            //			}
 			
 			
         } break;
@@ -383,9 +383,9 @@ void theWriteCallBack (CFWriteStreamRef stream,
                     self.bufferOffset += bytesWritten;
 					self.serverSize += bytesWritten;
                 }
-               // sleep(100);
+                // sleep(100);
             }
-//			self.strStatus = [NSString stringWithFormat:@"sending %llu/%llu", self.serverSize, self.localSize];
+            //			self.strStatus = [NSString stringWithFormat:@"sending %llu/%llu", self.serverSize, self.localSize];
         } break;
         case NSStreamEventErrorOccurred: {
             
@@ -433,7 +433,7 @@ void theWriteCallBack (CFWriteStreamRef stream,
 	} else {
 		self.strStatus = @"Uploading Completed.";
 	}
-//	CFRunLoopStop(runLoop);
+	CFRunLoopStop(runLoop);
 }
 
 - (void)dealloc {

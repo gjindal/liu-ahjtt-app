@@ -60,6 +60,8 @@
 @synthesize storeHelper = _storeHelper;
 
 
+#define kAlert_Download 1024
+
 //////////
 
 #pragma mark - 
@@ -803,6 +805,17 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(alertView.tag == kAlert_Download) {
+    
+        [ftpDownload stopWithStatus:FTP_ERROR_STOPCMD];
+        if(ftpDownload.delegate == self) {
+        
+            [alert hideWaiting];
+            [alert alertInfo:@"中断下载。" withTitle:@"提示"];
+        }
+    }
+    
     if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
             [btType setTitle:tmpCellString forState:UIControlStateNormal];         
@@ -884,7 +897,10 @@
                 [self showMediaWithFile:fileName]; 
             }else if(![attachID isEqualToString:kAttachID_Invalide]){
                 filePath = _storeHelper.baseDirectory;
-                [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
+                [alert transFileAlertWithInfo:@"文件下载中" andTitle:@"请等待....."];
+                alert.uploadAlertView.delegate = self;
+                alert.uploadAlertView.tag = kAlert_Download;
+//                [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
                 NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
                 ftpDownload = [[FTPDownloadFile alloc] initWithServerPath:[appDelegate.ftpInfo.ftpURL stringByAppendingFormat:@"/%@", fileName]
                                                                 withLocal:filePath 
