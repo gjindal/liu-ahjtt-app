@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#define kBufferSize 1024
+#define kBufferSize 81920
 
 typedef enum {
     FTP_ERROR_NO,
