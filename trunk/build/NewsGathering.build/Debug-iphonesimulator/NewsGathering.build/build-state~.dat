@@ -1,0 +1,1142 @@
+TNewsGathering
+v7
+r0
+t350629449.190002
+cCheck dependencies
+cProcessInfoPlistFile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist NewsGathering-Info.plist
+cCompileXIB /Project/NewsGathering/NewsGathering/MainWindow.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png box1@2x.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png box2@2x.png
+cCompileXIB /Project/NewsGathering/NewsGathering/MainPanelView.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/NewsClueView.xib
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png mainbackground.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/xwpd.png xwpd.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/rxxw.png rxxw.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/hsz.png hsz.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/gjzx.png gjzx.png
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/gjbj.png gjbj.png
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib
+cCpResource build/Debug-iphonesimulator/NewsGathering.app/form_textview.png form_textview.png
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib
+cCompileXIB /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib
+cProcessPCH /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch.gch NewsGathering_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o /Project/NewsGathering/NewsGathering/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o /Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o /Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o /Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsCLueListViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueSearchViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocListViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteListViewController.o /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeListViewController.o /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleListViewController.o /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocSearchViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering normal i386
+cGenerateDSYMFile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
+cTouch /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk
+c000000004C8EA3B80000000000000132
+t1284416440
+s306
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+c000000004BFDFE57000000000018BC00
+t1274936919
+s1620992
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BFDFE39000000000027C7D0
+t1274936889
+s2607056
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BFDFE7C000000000029D5D0
+t1274936956
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BFDFE6E0000000000001466
+t1274936942
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c000000004BFDFF120000000000019D60
+t1274937106
+s105824
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004C04586B00000000000000C4
+t1275353195
+s196
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000004C0458E90000000000151D30
+t1275353321
+s1383728
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+c000000004BFDFDAA000000000005E690
+t1274936746
+s386704
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004C0470BB00000000000009CD
+t1275359419
+s2509
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004C0471620000000001D47210
+t1275359586
+s30700048
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/usr/lib/libz.1.2.3.dylib
+c000000004AD4F6ED0000000000005D2C
+t1255470829
+s23852
+
+N/Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m
+c000000004F3531C900000000000012E2
+t1328886217
+s4834
+i"MainPanelViewController.h"
+i"NewsGatheringViewController.h"
+i"NewsCLueListViewController.h"
+i"NewsAllocListViewController.h"
+i"DocWriteListViewController.h"
+i"DocChangeListViewController.h"
+i"RecycleListViewController.h"
+i<QuartzCore/QuartzCore.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.h
+c000000004F33E1A20000000000000101
+t1328800162
+s257
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m
+c000000004F33E1A200000000000005C6
+t1328800162
+s1478
+i"DocChangeDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib
+c000000004F33E1A20000000000001892
+t1328800162
+s6290
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.h
+c000000004F33DEA60000000000000102
+t1328799398
+s258
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m
+c000000004F352FA1000000000000162A
+t1328885665
+s5674
+i"DocChangeListViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib
+c000000004F33DEA60000000000001C9C
+t1328799398
+s7324
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.h
+c000000004F35E4D400000000000006CD
+t1328932052
+s1741
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m
+c000000004F35EFA00000000000002140
+t1328934816
+s8512
+i"DocWriteDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib
+c000000004F35EFC4000000000000C7B0
+t1328934852
+s51120
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.h
+c000000004F3516AF000000000000012F
+t1328879279
+s303
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m
+c000000004F3529AD0000000000001778
+t1328884141
+s6008
+i"DocWriteListViewController.h"
+i"DocWriteDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib
+c000000004F33DE7E0000000000001C99
+t1328799358
+s7321
+
+N/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.h
+c000000004F31DA94000000000000010F
+t1328667284
+s271
+i<Foundation/Foundation.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m
+c000000004F31DA9B00000000000002C5
+t1328667291
+s709
+i"MD5EncryptProcess.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.h
+c000000004F35F0E80000000000000101
+t1328935144
+s257
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m
+c000000004F35F0E800000000000005C6
+t1328935144
+s1478
+i"NewsAllocDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib
+c000000004F35F0E80000000000001892
+t1328935144
+s6290
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.h
+c000000004F35F0E8000000000000014E
+t1328935144
+s334
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m
+c000000004F35F0E8000000000000195B
+t1328935144
+s6491
+i"NewsAllocListViewController.h"
+i"NewsClueSearchViewController.h"
+i"NewsAllocDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib
+c000000004F35F0E80000000000001C9C
+t1328935144
+s7324
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.h
+c000000004F35F0E80000000000000101
+t1328935144
+s257
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m
+c000000004F35F0E800000000000005C6
+t1328935144
+s1478
+i"NewsAllocSearchViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib
+c000000004F35F0E80000000000001892
+t1328935144
+s6290
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.h
+c000000004F35F0E8000000000000014D
+t1328935144
+s333
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m
+c000000004F35F0E8000000000000190A
+t1328935144
+s6410
+i"NewsCLueListViewController.h"
+i"NewsClueSearchViewController.h"
+i"NewsClueDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib
+c000000004F35F0E80000000000001C99
+t1328935144
+s7321
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.h
+c000000004F35F0E800000000000000FF
+t1328935144
+s255
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m
+c000000004F35F0E800000000000005C3
+t1328935144
+s1475
+i"NewsClueDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib
+c000000004F35F0E800000000000076B7
+t1328935144
+s30391
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.h
+c000000004F35F0E80000000000000644
+t1328935144
+s1604
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m
+c000000004F35F0E80000000000001D0A
+t1328935144
+s7434
+i"NewsClueSearchViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.h
+c000000004F2FE638000000000000022A
+t1328539192
+s554
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m
+c000000004F3133190000000000000BBE
+t1328624409
+s3006
+i"NewsGatheringAppDelegate.h"
+i"NewsGatheringViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.h
+c000000004F31DB7A00000000000002CE
+t1328667514
+s718
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m
+c000000004F33C0C2000000000000186A
+t1328791746
+s6250
+i"NewsGatheringViewController.h"
+i"MD5EncryptProcess.h"
+i"MainPanelViewController.h"
+i<QuartzCore/QuartzCore.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.h
+c000000004F33E1DD00000000000000FD
+t1328800221
+s253
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m
+c000000004F33E1DD00000000000005C0
+t1328800221
+s1472
+i"RecycleDetailViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib
+c000000004F33E1DD000000000000188C
+t1328800221
+s6284
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.h
+c000000004F35317E0000000000000129
+t1328886142
+s297
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m
+c000000004F353196000000000000162C
+t1328886166
+s5676
+i"RecycleListViewController.h"
+
+N/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib
+c000000004F33DEEC0000000000001C96
+t1328799468
+s7318
+
+N/Project/NewsGathering/NewsGathering/MainPanelView.xib
+c000000004F351A610000000000009566
+t1328880225
+s38246
+
+N/Project/NewsGathering/NewsGathering/MainPanelViewController.h
+c000000004F337B230000000000000360
+t1328773923
+s864
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/MainWindow.xib
+c000000004F35F0EA0000000000004E71
+t1328935146
+s20081
+
+N/Project/NewsGathering/NewsGathering/NewsClueView.xib
+c000000004F35F0EA000000000000A77D
+t1328935146
+s42877
+
+N/Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib
+c000000004F35F0EA00000000000082B9
+t1328935146
+s33465
+
+N/Project/NewsGathering/NewsGathering/NewsGathering_Prefix.pch
+c000000004F35F0EA00000000000000C3
+t1328935146
+s195
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/box1@2x.png
+c000000004D95771000000000000003A5
+t1301640976
+s933
+
+N/Project/NewsGathering/NewsGathering/box2@2x.png
+c000000004D9576A4000000000000010B
+t1301640868
+s267
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
+t1328936649
+s986
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM
+t1328936649
+s102
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocChangeDetailViewController.nib
+t1328936646
+s764
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocChangeListViewController.nib
+t1328936644
+s979
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocWriteDetailViewController.nib
+t1328936646
+s5054
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocWriteListViewController.nib
+t1328936643
+s979
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist
+t1328936640
+s615
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainPanelView.nib
+t1328936642
+s3456
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainWindow.nib
+t1328936642
+s1135
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocDetailViewController.nib
+t1328936645
+s764
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocListViewController.nib
+t1328936643
+s979
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocSearchViewController.nib
+t1328936645
+s764
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsCLueListViewController.nib
+t1328936643
+s979
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueDetailViewController.nib
+t1328936645
+s2624
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueView.nib
+t1328936643
+s4013
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
+t1328936649
+s113072
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGatheringViewController.nib
+t1328936642
+s3070
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/PkgInfo
+t1328936640
+s8
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/RecycleDetailViewController.nib
+t1328936646
+s764
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/RecycleListViewController.nib
+t1328936644
+s979
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png
+t1328936642
+s933
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png
+t1328936642
+s267
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/form_textview.png
+t1328936643
+s828
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/gjbj.png
+t1328936642
+s12042
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/gjzx.png
+t1328936642
+s9260
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/hsz.png
+t1328936642
+s12466
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png
+t1328936642
+s596423
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/rxxw.png
+t1328936642
+s19329
+
+N/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/xwpd.png
+t1328936642
+s20648
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeDetailViewController.o
+t1328936648
+s34760
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeListViewController.o
+t1328936648
+s41648
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteDetailViewController.o
+t1328936648
+s85332
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteListViewController.o
+t1328936648
+s47904
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o
+t1328936648
+s7792
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o
+t1328936648
+s54808
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocDetailViewController.o
+t1328936648
+s34760
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocListViewController.o
+t1328936648
+s51356
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocSearchViewController.o
+t1328936648
+s34760
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsCLueListViewController.o
+t1328936648
+s51296
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueDetailViewController.o
+t1328936648
+s34740
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueSearchViewController.o
+t1328936648
+s72824
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGathering.LinkFileList
+c000000004F35F6C00000000000000A28
+t1328936640
+s2600
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o
+t1328936648
+s51648
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o
+t1328936648
+s58388
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleDetailViewController.o
+t1328936648
+s34720
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleListViewController.o
+t1328936648
+s42624
+
+N/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o
+t1328936647
+s6300
+
+N/Project/NewsGathering/NewsGathering/form_textview.png
+c000000004ED593E4000000000000033C
+t1322619876
+s828
+
+N/Project/NewsGathering/NewsGathering/gjbj.png
+c000000004E5DBF6C0000000000002F0A
+t1314766700
+s12042
+
+N/Project/NewsGathering/NewsGathering/gjzx.png
+c000000004E5DBF6C000000000000242C
+t1314766700
+s9260
+
+N/Project/NewsGathering/NewsGathering/hsz.png
+c000000004E5DBF6C00000000000030B2
+t1314766700
+s12466
+
+N/Project/NewsGathering/NewsGathering/main.m
+c000000004F35F0EA000000000000016C
+t1328935146
+s364
+i<UIKit/UIKit.h>
+
+N/Project/NewsGathering/NewsGathering/mainbackground.png
+c000000004F35F0EA00000000000919C7
+t1328935146
+s596423
+
+N/Project/NewsGathering/NewsGathering/rxxw.png
+c000000004E5DBF6C0000000000004B81
+t1314766700
+s19329
+
+N/Project/NewsGathering/NewsGathering/xwpd.png
+c000000004E5DBF6C00000000000050A8
+t1314766700
+s20648
+
+N/var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch.gch
+t1328936647
+s15232016
+
+NNewsGathering-Info.plist
+c000000004F35F0EA000000000000038D
+t1328935146
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies350629440#350629440#0(0"0(0#1#0"8621613184#0"0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.716506
+e350629448.797086
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeDetailViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m350629448#350629448#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m8635075424#2057"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeDetailViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeListViewController.o /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.425316
+e350629448.531469
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeListViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m350629448#350629448#0(0"0(0#0#74"/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m8633287456#2053"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocChangeListViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.647468
+e350629448.828992
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteDetailViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: In function '-[DocWriteDetailViewController tableView:didSelectRowAtIndexPath:]':
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:133: warning: unused variable 'cell'
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:139: warning: unused variable 'cell'
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: In function '-[DocWriteDetailViewController keyboardWasHidden:]':
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:243: warning: 'UIKeyboardBoundsUserInfoKey' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIWindow.h:118)
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: At top level:
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:286: warning: property 'imgContentsBgd' requires method '-imgContentsBgd' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:286: warning: property 'imgContentsBgd' requires the method 'setImgContentsBgd:' to be defined - use @synthesize, @dynamic or provide a method implementation
+lSLF07#2@83"Compile /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350629448#350629448#0(1377"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: In function '-[DocWriteDetailViewController tableView:didSelectRowAtIndexPath:]':/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:133: warning: unused variable 'cell'/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:139: warning: unused variable 'cell'/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: In function '-[DocWriteDetailViewController keyboardWasHidden:]':/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:243: warning: 'UIKeyboardBoundsUserInfoKey' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIWindow.h:118)/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m: At top level:/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:286: warning: property 'imgContentsBgd' requires method '-imgContentsBgd' to be defined - use @synthesize, @dynamic or provide a method implementation/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m:286: warning: property 'imgContentsBgd' requires the method 'setImgContentsBgd:' to be defined - use @synthesize, @dynamic or provide a method implementation6(22@22"Unused variable 'cell'350629448#159#113#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#133#0#133#0#19"unused variable '*'0(22@22"Unused variable 'cell'350629448#272#113#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#139#0#139#0#19"unused variable '*'0(22@206"'UIKeyboardBoundsUserInfoKey' is deprecated (declared at /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIWindow.h:118)350629448#528#297#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#243#0#243#0#33"'*' is deprecated (declared at *)0(23@13"At top level:350629448#825#91#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#0#0#0#0#0"0(22@136"Property 'imgContentsBgd' requires method '-imgContentsBgd' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#916#227#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#286#0#286#0#0"0(22@143"Property 'imgContentsBgd' requires the method 'setImgContentsBgd:' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#1143#234#0(6@75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m350627616#286#0#286#0#0"0(0#0#75"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m8617563904#2055"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteDetailViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteListViewController.o /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.391366
+e350629448.485061
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteListViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m350629448#350629448#0(0"0(0#0#73"/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m8634698560#2051"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/DocWriteListViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o /Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.018811
+e350629448.107727
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o
+x/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m: In function '+[MD5EncryptProcess md5:]':
+o/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m:23: warning: implicit declaration of function 'CC_MD5'
+lSLF07#2@72"Compile /Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m350629448#350629448#0(227"/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m: In function '+[MD5EncryptProcess md5:]':/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m:23: warning: implicit declaration of function 'CC_MD5'1(22@41"Implicit declaration of function 'CC_MD5'350629448#107#120#0(6@64"/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m350360091#23#0#23#0#36"implicit declaration of function '*'0(0#0#64"/Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m8633916544#2033"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/MD5EncryptProcess.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MD5EncryptProcess.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o /Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.107833
+e350629448.231661
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m350629448#350629448#0(0"0(0#0#73"/Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m8633027168#2048"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/../MainPanelViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/MainPanelViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.609457
+e350629448.716400
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocDetailViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m350629448#350629448#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m8621893440#2057"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocDetailViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocListViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.296109
+e350629448.391255
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocListViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m350629448#350629448#0(0"0(0#0#74"/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m8630160800#2053"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocListViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocSearchViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.531579
+e350629448.609346
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocSearchViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@84"Compile /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m350629448#350629448#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m8630489120#2057"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsAllocSearchViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsCLueListViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.195669
+e350629448.296004
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsCLueListViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m350629448#350629448#0(0"0(0#0#73"/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m8631006816#2051"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsCLueListViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.576450
+e350629448.647350
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueDetailViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@83"Compile /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m350629448#350629448#0(0"0(0#0#75"/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m8630113440#2055"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueDetailViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueSearchViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.231770
+e350629448.425204
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueSearchViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: property 'contentsBackground' requires method '-contentsBackground' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: property 'contentsBackground' requires the method 'setContentsBackground:' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: incomplete implementation of class 'NewsClueSearchViewController'
+o/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: method definition for '-scrollViewToCenterOfScreen:' not found
+lSLF07#2@83"Compile /Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m350629448#350629448#0(786"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: property 'contentsBackground' requires method '-contentsBackground' to be defined - use @synthesize, @dynamic or provide a method implementation/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: property 'contentsBackground' requires the method 'setContentsBackground:' to be defined - use @synthesize, @dynamic or provide a method implementation/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: incomplete implementation of class 'NewsClueSearchViewController'/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m:260: warning: method definition for '-scrollViewToCenterOfScreen:' not found4(22@144"Property 'contentsBackground' requires method '-contentsBackground' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#0#235#0(6@75"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m350627944#260#0#260#0#0"0(22@151"Property 'contentsBackground' requires the method 'setContentsBackground:' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#235#242#0(6@75"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m350627944#260#0#260#0#0"0(22@65"Incomplete implementation of class 'NewsClueSearchViewController'350629448#477#156#0(6@75"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m350627944#260#0#260#0#38"incomplete implementation of class '*'0(22@62"Method definition for '-scrollViewToCenterOfScreen:' not found350629448#633#153#0(6@75"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m350627944#260#0#260#0#35"method definition for '*' not found0(0#0#75"/Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m8630564064#2055"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsClueSearchViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsClueSearchViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o /Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629447.886939
+e350629448.018618
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@79"Compile /Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m350629447#350629448#0(0"0(0#0#71"/Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m8599773248#2047"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsGatheringAppDelegate.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringAppDelegate.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o /Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629447.966316
+e350629448.195405
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m:201: warning: property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation
+o/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m:201: warning: property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation
+lSLF07#2@82"Compile /Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m350629447#350629448#0(455"/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m:201: warning: property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m:201: warning: property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation2(22@134"Property 'rememberOrNot' requires method '-rememberOrNot' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#0#224#0(6@74"/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m350484546#201#0#201#0#0"0(22@141"Property 'rememberOrNot' requires the method 'setRememberOrNot:' to be defined - use @synthesize, @dynamic or provide a method implementation350629448#224#231#0(6@74"/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m350484546#201#0#201#0#0"0(0#0#74"/Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m8617628800#2053"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/NewsGatheringViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGatheringViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleDetailViewController.o /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.797188
+e350629448.883860
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleDetailViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@82"Compile /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m350629448#350629448#0(0"0(0#0#74"/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m8632410656#2053"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleDetailViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleListViewController.o /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629448.485168
+e350629448.576332
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleListViewController.o
+x/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@80"Compile /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m350629448#350629448#0(0"0(0#0#72"/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m8631151296#2049"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/RecycleListViewController.o0#
+
+CCompileC build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o /Project/NewsGathering/NewsGathering/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629447.885179
+e350629447.966200
+r1
+xCompileC
+xbuild/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o
+x/Project/NewsGathering/NewsGathering/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@51"Compile /Project/NewsGathering/NewsGathering/main.m350629447#350629447#0(0"0(0#0#43"/Project/NewsGathering/NewsGathering/main.m8611640768#1999"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -include /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch -c /Project/NewsGathering/NewsGathering/main.m -o /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/main.o0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib
+s350629445.873052
+e350629446.256477
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib
+lSLF07#2@52"CompileXIB Classes/DocChangeDetailViewController.xib350629445#350629446#0(0"0(0#0#78"/Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib8621914144#616"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocChangeDetailViewController.nib /Project/NewsGathering/NewsGathering/Classes/DocChangeDetailViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib
+s350629443.907676
+e350629444.317787
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib
+lSLF07#2@50"CompileXIB Classes/DocChangeListViewController.xib350629443#350629444#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib8630075392#612"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocChangeListViewController.nib /Project/NewsGathering/NewsGathering/Classes/DocChangeListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib
+s350629445.840333
+e350629446.503036
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib
+lSLF07#2@51"CompileXIB Classes/DocWriteDetailViewController.xib350629445#350629446#0(0"0(0#0#77"/Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib8630303456#614"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocWriteDetailViewController.nib /Project/NewsGathering/NewsGathering/Classes/DocWriteDetailViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib
+s350629443.406373
+e350629443.980919
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib
+lSLF07#2@49"CompileXIB Classes/DocWriteListViewController.xib350629443#350629443#0(0"0(0#0#75"/Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib8635100096#610"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/DocWriteListViewController.nib /Project/NewsGathering/NewsGathering/Classes/DocWriteListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib
+s350629445.496458
+e350629445.872954
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib
+lSLF07#2@52"CompileXIB Classes/NewsAllocDetailViewController.xib350629445#350629445#0(0"0(0#0#78"/Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib8617550912#616"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocDetailViewController.nib /Project/NewsGathering/NewsGathering/Classes/NewsAllocDetailViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib
+s350629443.203000
+e350629443.907565
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib
+lSLF07#2@50"CompileXIB Classes/NewsAllocListViewController.xib350629443#350629443#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib8630871456#612"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocListViewController.nib /Project/NewsGathering/NewsGathering/Classes/NewsAllocListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib
+s350629444.317885
+e350629445.496362
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib
+lSLF07#2@52"CompileXIB Classes/NewsAllocSearchViewController.xib350629444#350629445#0(0"0(0#0#78"/Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib8620021664#616"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsAllocSearchViewController.nib /Project/NewsGathering/NewsGathering/Classes/NewsAllocSearchViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib
+s350629442.952247
+e350629443.406280
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib
+lSLF07#2@49"CompileXIB Classes/NewsCLueListViewController.xib350629442#350629443#0(0"0(0#0#75"/Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib8632398624#610"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsCLueListViewController.nib /Project/NewsGathering/NewsGathering/Classes/NewsCLueListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib
+s350629444.839928
+e350629445.840239
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib
+lSLF07#2@51"CompileXIB Classes/NewsClueDetailViewController.xib350629444#350629445#0(0"0(0#0#77"/Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib8619047936#614"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueDetailViewController.nib /Project/NewsGathering/NewsGathering/Classes/NewsClueDetailViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib
+s350629446.256572
+e350629446.622409
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib
+lSLF07#2@50"CompileXIB Classes/RecycleDetailViewController.xib350629446#350629446#0(0"0(0#0#76"/Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib8633619104#612"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/RecycleDetailViewController.nib /Project/NewsGathering/NewsGathering/Classes/RecycleDetailViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib
+s350629443.981015
+e350629444.839793
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib
+lSLF07#2@48"CompileXIB Classes/RecycleListViewController.xib350629443#350629444#0(0"0(0#0#74"/Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib8621796448#608"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/RecycleListViewController.nib /Project/NewsGathering/NewsGathering/Classes/RecycleListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/MainPanelView.xib
+s350629442.147817
+e350629442.836691
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/MainPanelView.xib
+lSLF07#2@28"CompileXIB MainPanelView.xib350629442#350629442#0(0"0(0#0#54"/Project/NewsGathering/NewsGathering/MainPanelView.xib8612450496#576"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainPanelView.nib /Project/NewsGathering/NewsGathering/MainPanelView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/MainWindow.xib
+s350629440.975711
+e350629442.144740
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib350629440#350629442#0(0"0(0#0#51"/Project/NewsGathering/NewsGathering/MainWindow.xib8632096512#570"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/MainWindow.nib /Project/NewsGathering/NewsGathering/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/NewsClueView.xib
+s350629442.338121
+e350629443.202151
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/NewsClueView.xib
+lSLF07#2@27"CompileXIB NewsClueView.xib350629442#350629443#0(0"0(0#0#53"/Project/NewsGathering/NewsGathering/NewsClueView.xib8634699680#574"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsClueView.nib /Project/NewsGathering/NewsGathering/NewsClueView.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCompileXIB /Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib
+s350629440.976609
+e350629442.338031
+r1
+xCompileXIB
+x/Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib
+lSLF07#2@42"CompileXIB NewsGatheringViewController.xib350629440#350629442#0(0"0(0#0#68"/Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib8631686368#604"    cd /Project/NewsGathering/NewsGathering    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGatheringViewController.nib /Project/NewsGathering/NewsGathering/NewsGatheringViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/box1@2x.png box1@2x.png
+s350629442.144833
+e350629442.196268
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/box1@2x.png
+xbox1@2x.png
+lSLF07#2@16"Copy box1@2x.png350629442#350629442#0(0"0(0#0#48"/Project/NewsGathering/NewsGathering/box1@2x.png8613421600#455"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/box1@2x.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/box2@2x.png box2@2x.png
+s350629442.146874
+e350629442.196416
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/box2@2x.png
+xbox2@2x.png
+lSLF07#2@16"Copy box2@2x.png350629442#350629442#0(0"0(0#0#48"/Project/NewsGathering/NewsGathering/box2@2x.png8612704384#455"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/box2@2x.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/form_textview.png form_textview.png
+s350629443.202244
+e350629443.214702
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/form_textview.png
+xform_textview.png
+lSLF07#2@22"Copy form_textview.png350629443#350629443#0(0"0(0#0#54"/Project/NewsGathering/NewsGathering/form_textview.png8631388992#461"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/form_textview.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/gjbj.png gjbj.png
+s350629442.894179
+e350629442.958244
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/gjbj.png
+xgjbj.png
+lSLF07#2@13"Copy gjbj.png350629442#350629442#0(0"0(0#0#45"/Project/NewsGathering/NewsGathering/gjbj.png8632715872#452"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/gjbj.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/gjzx.png gjzx.png
+s350629442.853319
+e350629442.953835
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/gjzx.png
+xgjzx.png
+lSLF07#2@13"Copy gjzx.png350629442#350629442#0(0"0(0#0#45"/Project/NewsGathering/NewsGathering/gjzx.png8632772256#452"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/gjzx.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/hsz.png hsz.png
+s350629442.845816
+e350629442.953701
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/hsz.png
+xhsz.png
+lSLF07#2@12"Copy hsz.png350629442#350629442#0(0"0(0#0#44"/Project/NewsGathering/NewsGathering/hsz.png8632857600#451"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/hsz.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/mainbackground.png mainbackground.png
+s350629442.836868
+e350629442.953273
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/mainbackground.png
+xmainbackground.png
+lSLF07#2@23"Copy mainbackground.png350629442#350629442#0(0"0(0#0#55"/Project/NewsGathering/NewsGathering/mainbackground.png8633620608#462"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/mainbackground.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/rxxw.png rxxw.png
+s350629442.842803
+e350629442.953565
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/rxxw.png
+xrxxw.png
+lSLF07#2@13"Copy rxxw.png350629442#350629442#0(0"0(0#0#45"/Project/NewsGathering/NewsGathering/rxxw.png8633142432#452"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/rxxw.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CCpResource build/Debug-iphonesimulator/NewsGathering.app/xwpd.png xwpd.png
+s350629442.837925
+e350629442.953422
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/NewsGathering.app/xwpd.png
+xxwpd.png
+lSLF07#2@13"Copy xwpd.png350629442#350629442#0(0"0(0#0#45"/Project/NewsGathering/NewsGathering/xwpd.png8633245920#452"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Project/NewsGathering/NewsGathering/xwpd.png /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
+CGenerateDSYMFile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
+s350629449.130593
+e350629449.185527
+r1
+xGenerateDSYMFile
+x/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM
+x/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
+lSLF07#2@127"GenerateDSYMFile build/Debug-iphonesimulator/NewsGathering.app.dSYM build/Debug-iphonesimulator/NewsGathering.app/NewsGathering350629449#350629449#0(0"0(0#0#96"/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering8613212736#395"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering -o /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app.dSYM0#
+
+CLd /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering normal i386
+s350629448.883961
+e350629449.130497
+r1
+xLd
+x/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering
+xnormal
+xi386
+lSLF07#2@101"Link /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering350629448#350629449#0(0"0(0#0#0"8630440448#1024"    cd /Project/NewsGathering/NewsGathering    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -L/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -filelist /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/Objects-normal/i386/NewsGathering.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework CFNetwork -framework SystemConfiguration -lz.1.2.3 -framework OpenGLES -framework QuartzCore -o /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/NewsGathering0#
+
+CProcessInfoPlistFile /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist NewsGathering-Info.plist
+s350629440.971416
+e350629440.975628
+r1
+xProcessInfoPlistFile
+x/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist
+xNewsGathering-Info.plist
+lSLF07#2@32"Process NewsGathering-Info.plist350629440#350629440#0(0"0(0#0#61"/Project/NewsGathering/NewsGathering/NewsGathering-Info.plist8632720800#491"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility NewsGathering-Info.plist -genpkginfo /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app/Info.plist0#
+
+CProcessPCH /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch.gch NewsGathering_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s350629446.622532
+e350629447.884878
+r1
+xProcessPCH
+x/var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch.gch
+xNewsGathering_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@35"Precompile NewsGathering_Prefix.pch350629446#350629447#0(0"0(0#0#61"/Project/NewsGathering/NewsGathering/NewsGathering_Prefix.pch8619625504#1887"    cd /Project/NewsGathering/NewsGathering    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.0.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-generated-files.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-own-target-headers.hmap -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-all-target-headers.hmap -iquote /Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/NewsGathering-project-headers.hmap -F/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator -I/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/include -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources/i386 -I/Project/NewsGathering/NewsGathering/build/NewsGathering.build/Debug-iphonesimulator/NewsGathering.build/DerivedSources -c /Project/NewsGathering/NewsGathering/NewsGathering_Prefix.pch -o /var/folders/nS/nSt0IMFLFzqJRgxIcuDPRk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/NewsGathering_Prefix-hjbgpmluyujqmghfdmjlgetbypml/NewsGathering_Prefix.pch.gch0#
+
+CTouch /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
+s350629449.185616
+e350629449.189958
+r1
+xTouch
+x/Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app
+lSLF07#2@88"Touch /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app350629449#350629449#0(0"0(0#0#0"8612502400#280"    cd /Project/NewsGathering/NewsGathering    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Project/NewsGathering/NewsGathering/build/Debug-iphonesimulator/NewsGathering.app0#
+
