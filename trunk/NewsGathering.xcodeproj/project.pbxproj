@@ -48,6 +48,13 @@
 		1A9DE9D514E17AD1006E21E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9DE9D414E17AD1006E21E8 /* SystemConfiguration.framework */; };
 		1A9E19B714F778C600E4D851 /* ResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E19B614F778C600E4D851 /* ResultInfo.m */; };
 		1AA03B8C14EEA2F50032682F /* go.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA03B8814EEA2F50032682F /* go.png */; };
+		1AA3561415135CC100F879DE /* aps_production.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3560D15135CC100F879DE /* aps_production.p12 */; };
+		1AA3561515135CC100F879DE /* NewsGathering_Noenc.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3560E15135CC100F879DE /* NewsGathering_Noenc.pem */; };
+		1AA3561615135CC100F879DE /* aps_production.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3560F15135CC100F879DE /* aps_production.pem */; };
+		1AA3561715135CC100F879DE /* jinjia_app_distribution_1.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3561015135CC100F879DE /* jinjia_app_distribution_1.p12 */; };
+		1AA3561815135CC100F879DE /* aps_production.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3561115135CC100F879DE /* aps_production.cer */; };
+		1AA3561915135CC100F879DE /* JinJia_notification_release.certSigningRequest in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3561215135CC100F879DE /* JinJia_notification_release.certSigningRequest */; };
+		1AA3561A15135CC100F879DE /* JinJian_APP_distribution.certSigningRequest in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3561315135CC100F879DE /* JinJian_APP_distribution.certSigningRequest */; };
 		1AA3584214F7CA5100956DDE /* TreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3583E14F7CA5100956DDE /* TreeViewController.m */; };
 		1AA3584314F7CA5100956DDE /* TreeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3583F14F7CA5100956DDE /* TreeViewCell.m */; };
 		1AA3584614F7CA8B00956DDE /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3584414F7CA8B00956DDE /* TreeNode.m */; };
@@ -235,6 +242,13 @@
 		1A9E19B514F778C500E4D851 /* ResultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultInfo.h; sourceTree = "<group>"; };
 		1A9E19B614F778C600E4D851 /* ResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultInfo.m; sourceTree = "<group>"; };
 		1AA03B8814EEA2F50032682F /* go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = go.png; sourceTree = "<group>"; };
+		1AA3560D15135CC100F879DE /* aps_production.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_production.p12; sourceTree = "<group>"; };
+		1AA3560E15135CC100F879DE /* NewsGathering_Noenc.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewsGathering_Noenc.pem; sourceTree = "<group>"; };
+		1AA3560F15135CC100F879DE /* aps_production.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aps_production.pem; sourceTree = "<group>"; };
+		1AA3561015135CC100F879DE /* jinjia_app_distribution_1.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jinjia_app_distribution_1.p12; sourceTree = "<group>"; };
+		1AA3561115135CC100F879DE /* aps_production.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_production.cer; sourceTree = "<group>"; };
+		1AA3561215135CC100F879DE /* JinJia_notification_release.certSigningRequest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JinJia_notification_release.certSigningRequest; sourceTree = "<group>"; };
+		1AA3561315135CC100F879DE /* JinJian_APP_distribution.certSigningRequest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JinJian_APP_distribution.certSigningRequest; sourceTree = "<group>"; };
 		1AA3583D14F7CA5100956DDE /* TreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeViewController.h; sourceTree = "<group>"; };
 		1AA3583E14F7CA5100956DDE /* TreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeViewController.m; sourceTree = "<group>"; };
 		1AA3583F14F7CA5100956DDE /* TreeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeViewCell.m; sourceTree = "<group>"; };
@@ -593,6 +607,20 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		1AA3560C15135CA900F879DE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				1AA3560D15135CC100F879DE /* aps_production.p12 */,
+				1AA3560E15135CC100F879DE /* NewsGathering_Noenc.pem */,
+				1AA3560F15135CC100F879DE /* aps_production.pem */,
+				1AA3561015135CC100F879DE /* jinjia_app_distribution_1.p12 */,
+				1AA3561115135CC100F879DE /* aps_production.cer */,
+				1AA3561215135CC100F879DE /* JinJia_notification_release.certSigningRequest */,
+				1AA3561315135CC100F879DE /* JinJian_APP_distribution.certSigningRequest */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		1AAB809514E41C3800F61582 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,6 +810,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1AA3560C15135CA900F879DE /* Notification */,
 				1AC3440015072A3A00BDF246 /* Entitlements.plist */,
 				1A1127BD14FBC4230058F163 /* libz.dylib */,
 				1A1127BB14FBC4140058F163 /* libxml2.dylib */,
@@ -941,6 +970,13 @@
 				1AC3440115072A3A00BDF246 /* Entitlements.plist in Resources */,
 				1AB09453150B563C00363F1C /* clean.png in Resources */,
 				1AB09455150B57AA00363F1C /* end.png in Resources */,
+				1AA3561415135CC100F879DE /* aps_production.p12 in Resources */,
+				1AA3561515135CC100F879DE /* NewsGathering_Noenc.pem in Resources */,
+				1AA3561615135CC100F879DE /* aps_production.pem in Resources */,
+				1AA3561715135CC100F879DE /* jinjia_app_distribution_1.p12 in Resources */,
+				1AA3561815135CC100F879DE /* aps_production.cer in Resources */,
+				1AA3561915135CC100F879DE /* JinJia_notification_release.certSigningRequest in Resources */,
+				1AA3561A15135CC100F879DE /* JinJian_APP_distribution.certSigningRequest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

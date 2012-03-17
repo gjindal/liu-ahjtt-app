@@ -158,8 +158,8 @@ void theWriteCallBack (CFWriteStreamRef stream,
 }
 
 - (void)start {
-	//[self resume];
-    [NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
+	[self resume];
+    //[NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
     //[self threadMain:nil];
 }
 
@@ -260,7 +260,8 @@ void theWriteCallBack (CFWriteStreamRef stream,
             assert(success);
         }
         
-        //        success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
+       
+        //success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyFTPFileTransferOffset, [NSNumber numberWithUnsignedLongLong: self.serverSize]);
         //        NSLog(success?@"Offset success":@"Offset error");
         //		success = CFWriteStreamSetProperty(self.ftpStream, kCFStreamPropertyAppendToFile, kCFBooleanFalse);
         //        NSLog(success?@"Append success":@"Append error");
@@ -433,7 +434,7 @@ void theWriteCallBack (CFWriteStreamRef stream,
 	} else {
 		self.strStatus = @"Uploading Completed.";
 	}
-	CFRunLoopStop(runLoop);
+	//CFRunLoopStop(runLoop);
 }
 
 - (void)dealloc {

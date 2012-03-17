@@ -30,6 +30,8 @@
     NSMutableArray *dispatchedPersons;
     NSString *titleText;
     
+    NSIndexPath *lastSelect;
+    TreeNode  *lastNode;
     BOOL bMultiSelect;
     
 }

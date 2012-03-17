@@ -211,7 +211,7 @@
     float reload_distance = 0;       
     if((y >= h + reload_distance)) {           
         
-        NSLog(@"THE  %d PAGE DATA",currentFinishPageIndex+1);
+        NSLog(@"THE  %d PAGE DATA",currentFinishPageIndex);
         if (docSearchVtrl == nil) {
             docSearchVtrl = [[DocSearchViewController alloc] initWithNibName:@"DocSearchViewController" bundle:nil] ;
             docSearchVtrl.contributeInfo.title = @"";
@@ -225,7 +225,7 @@
                                      Begtime:docSearchVtrl.strStartTime
                                      Endtime:docSearchVtrl.strEndTime
                                         Type:docSearchVtrl.contributeInfo.type
-                                        Page:[NSString stringWithFormat:@"%d", currentFinishPageIndex+1] rp:@"6" sortName:@"conid"];
+                                        Page:[NSString stringWithFormat:@"%d", currentFinishPageIndex] rp:@"6" sortName:@"conid"];
 
     }   	
 }

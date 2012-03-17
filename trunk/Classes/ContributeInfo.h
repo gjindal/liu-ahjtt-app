@@ -48,12 +48,16 @@
     NSString *_flowID;
     NSString *_keyword;
     NSString *_source;
+    
+    NSString *_auditor;
+    
     NSArray  *_appsList;
     NSArray  *_attitudeList;
     NSArray  *_attLsList;
     NSArray  *_workLogList;
 }
 
+@property (nonatomic, retain) NSString *auditor;
 @property (nonatomic, retain) NSString *conid;
 @property (nonatomic, retain) NSString *level;
 @property (nonatomic, retain) NSString *note;

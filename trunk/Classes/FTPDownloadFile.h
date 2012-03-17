@@ -31,6 +31,9 @@
 	NSString *					strStatus;
 	
 	CFRunLoopRef		        runLoop;
+    NSRunLoop*                  currentRunLoop;
+    
+    BOOL                        bStop;
 }
 
 - initWithServerPath:(NSString *)serverStr withLocal:(NSString*)localStr withName:(NSString*)theName withPass:(NSString*)thePass;
@@ -44,6 +47,7 @@
 - (void)stopWithStatus:(FTP_ERROR)ftpError;
 
 
+@property (nonatomic) BOOL  bStop;
 @property (nonatomic, retain) id<FTPTransFileDelegate> delegate;
 @property (nonatomic, retain) NSString * serverPath;
 @property (nonatomic, retain) NSString * userName;

@@ -1,3 +1,4 @@
+
 //
 //  DocChangeDetailViewController.m
 //  NewsGathering
@@ -74,21 +75,21 @@
         [alert hideWaiting];
         return;
     }
-    if( [fdKeyword.text length]<1){
+   /* if( [fdKeyword.text length]<1){
         [alert alertInfo:@"关键字不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
-    }
+    }*/
     if( [contents.text length]<1){
         [alert alertInfo:@"内容不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
     }
-    if( [fdSource.text length]<1){
+   /* if( [fdSource.text length]<1){
         [alert alertInfo:@"稿源不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
-    }
+    }*/
     if( [btType.titleLabel.text length]<1){
         [alert alertInfo:@"类型不能为空" withTitle:@"错误"];
         [alert hideWaiting];
@@ -129,9 +130,12 @@
             continue;
         }
         NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,filePath.fileName];
+        
         //计数，等文件上传完成后，再传文本
-
-        [docRequest uploadFileWithFlowID:contributeInfo.flowID FileName:filePath.fileName];
+        NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
+        ftpUploadFile.delegate = self;
+        [ftpUploadFile performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
         
         isExistFiles = YES;
         break;
@@ -142,7 +146,7 @@
     }
     
 }
-
+/*
 - (void) sendFileStoped:(FTP_ERROR)ftpError{
     NSLog(@"Send File stop");
     [alert hideWaiting];
@@ -165,20 +169,62 @@
     }
     
 }
+*/
+
+
+- (void) sendFileStoped:(FTP_ERROR)ftpError{
+    NSLog(@"Send File stop");
+    [alert hideWaiting];
+    if (ftpError == FTP_ERROR_STOPCMD) {
+        [self saveDoc];
+        [alert alertInfo:[NSString stringWithFormat:@"%@\n被终止上传。",((AttLsInfo *)[attachArray objectAtIndex:fileCount]).fileName] withTitle:@"提醒"];
+    }else  if (ftpError == FTP_ERROR_NO) {//说明文件已经存在，不需要进行传输,给一个假200继续下一个文件传输
+        ContributeInfo *contriTemp = [[ContributeInfo alloc] init];
+        contriTemp.flag = @"200";
+        [self uploadFileDidFinished:contriTemp];
+    }else{//出现错误
+        
+        [self saveDoc];
+        [alert alertInfo:[NSString stringWithFormat:@"%@\n在上传时失败。",((AttLsInfo *)[attachArray objectAtIndex:fileCount]).fileName] withTitle:@"错误"];
+        
+    }
+}
+
+- (void) tempSendFileFinished:(NSString *)filename1{
+    NSLog(@"%@ has been sent",filename1);
+    [docRequest uploadFileWithFlowID:contributeInfo.flowID FileName:filename1];
+}
+
+- (void) sendFileDidfinished{
+    NSString *fileName1 = ((AttLsInfo *)[attachArray objectAtIndex:fileCount]).fileName;
+    NSLog(@"xxxxxxx%@", fileName1);
+    [self performSelectorOnMainThread:@selector(tempSendFileFinished:) withObject:fileName1 waitUntilDone:NO];
+}
+
+
 
 - (void) uploadFileDidFinished:(ContributeInfo *)contributeInfo1{
     
+    
     if ([contributeInfo1.flag isEqualToString:@"200"]) {
         
-        NSString *fileName1 = ((AttLsInfo *)[attachArray objectAtIndex:fileCount]).fileName;
-        NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName1];
+        NSLog(@"Send File end");
+        //fileCount--;//等待所有文件发送完成
+        fileCount++;
+
+        if (fileCount > [attachArray count]-1) {
+            [self sendContents];
+        }else{
+            NSString *fileName1 = ((AttLsInfo *)[attachArray objectAtIndex:fileCount]).fileName;
+            NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName1];
+            
+            NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
+            ftpUploadFile.delegate = self;
+            
+            [ftpUploadFile performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
         
-        NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
-        ftpUploadFile.delegate = self;
-        
-        [ftpUploadFile performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
-        //[ftpUploadFile start];
+        }
         
     }else{
         [alert hideWaiting];
@@ -341,22 +387,30 @@
             [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99" LogID:((WorkLog *)[contributeInfo.workLogList objectAtIndex:0]).logID];
             break;
         }
-        if ([contributeInfo.status isEqualToString:@"4"] && ([contributeInfo.level isEqualToString:@"3"])) {
+        if ([contributeInfo.status isEqualToString:@"4"] && ([contributeInfo.level isEqualToString:@"1"])) {
             if((nextReceptorUserID == nil) || ([nextReceptorUserID length]<1)){
-                [alert alertInfo:@"二级审核需要选择下一审核人" withTitle:@"提醒"];
+                nextStatus = @"99";
+                [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99" LogID:((WorkLog *)[contributeInfo.workLogList objectAtIndex:0]).logID];
                 break;
-               }
+            }
         }
         if ([flowInfo.endStatus intValue]<6 ) {
             continue;
         }else{
             [alert showWaitingWithTitle:@"提交中" andMessage:@"请等待....."];
             WorkLog *workLog = [contributeInfo.workLogList objectAtIndex:0];
-            [docRequest ApproveStatusWithLogID:workLog.logID Status:flowInfo.endStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:nextReceptorUserID];
-            nextStatus = flowInfo.endStatus;
+            if((nextReceptorUserID == nil) || ([nextReceptorUserID length]<1)){
+                nextStatus = @"99";
+                [docRequest approveWithConid:contributeInfo.conid Attitude:opinionViewController.opinion Status:@"99" LogID:((WorkLog *)[contributeInfo.workLogList objectAtIndex:0]).logID];
+                break;
+            }else{
+                [docRequest ApproveStatusWithLogID:workLog.logID Status:flowInfo.endStatus Attitude:opinionViewController.opinion  Conid:contributeInfo.conid RecuseuserID:nextReceptorUserID];
+                nextStatus = flowInfo.endStatus;
+            }
             break;
         }
     }
+
 }
 
 -(void) goBack{
@@ -395,7 +449,7 @@
     if (enableAudit) {
         enableEdit = NO;
         enableShare = NO;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过",@"打回",@"提交复审",nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"通过",@"打回",nil];
         actionSheet.delegate = self;
         [actionSheet showInView:self.view];
         [actionSheet release];
@@ -416,7 +470,6 @@
     }else{
         [alert alertInfo:@"当前状态您只能浏览." withTitle:@"提醒"];
     }
-        
 }
 
 
@@ -694,14 +747,15 @@
             break;
         }
     }
-    if(![tmpLevel isEqualToString:@"3"]){
-        [alert alertInfo:@"当前稿件不能增加审核人" withTitle:@"提醒"];
-        return;
-    }
+    //if(![tmpLevel isEqualToString:@"3"]){
+      //  [alert alertInfo:@"当前稿件不能增加审核人" withTitle:@"提醒"];
+       // return;
+    //}
     
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    treeViewCtrl.bMultiSelect = NO;
     treeViewCtrl.delegate = self;
-    treeViewCtrl.titleText = @"下一个审核人";
+    treeViewCtrl.titleText = @"选择审核人";
     [self.navigationController pushViewController:treeViewCtrl animated:YES];
     [treeViewCtrl release];
     
@@ -788,6 +842,7 @@
         cell.textLabel.text = ((DirtInfo *)[levelArray objectAtIndex:indexPath.row]).dic_value;
         cell.accessoryType = (row == oldRow && lastLevelIndexPath != nil) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }else{
+        NSLog(@"--------%@",((AttLsInfo *)[self.attachArray objectAtIndex:indexPath.row]).fileName);
         cell.textLabel.text = ((AttLsInfo *)[self.attachArray objectAtIndex:indexPath.row]).fileName;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType =   UITableViewCellAccessoryDisclosureIndicator;
@@ -808,15 +863,14 @@
     
     if(alertView.tag == kAlert_Download) {
     
-        [ftpDownload stopWithStatus:FTP_ERROR_STOPCMD];
-        if(ftpDownload.delegate == self) {
+        ftpDownload.bStop = YES;
+        //[ftpDownload stopWithStatus:FTP_ERROR_STOPCMD];
+        /*if(ftpDownload.delegate == self){
         
-            [alert hideWaiting];
-            [alert alertInfo:@"中断下载。" withTitle:@"提示"];
-        }
-    }
-    
-    if (buttonIndex == 1) {
+            [self receiveFileStoped:FTP_ERROR_STOPCMD];
+        }*/
+
+    } else   if (buttonIndex == 1) {
         if (alertType == ALERTTABLE_DOCTYPE) {
             [btType setTitle:tmpCellString forState:UIControlStateNormal];         
         }else{
@@ -902,6 +956,10 @@
                 alert.uploadAlertView.tag = kAlert_Download;
 //                [alert showWaitingWithTitle:@"文件加载中" andMessage:@"请等待..."];
                 NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+                
+                if (ftpDownload != nil) {
+                    [ftpDownload release];
+                }
                 ftpDownload = [[FTPDownloadFile alloc] initWithServerPath:[appDelegate.ftpInfo.ftpURL stringByAppendingFormat:@"/%@", fileName]
                                                                 withLocal:filePath 
                                                                 withName:appDelegate.ftpInfo.ftpUsername 
@@ -921,13 +979,18 @@
 
 -(void) receiveFileStoped:(FTP_ERROR)ftpError{
     [alert hideWaiting];
-    [alert alertInfo:@"文件下载失败，请检查网络后重试。" withTitle:@"错误"];
+    if (ftpError == FTP_ERROR_STOPCMD) {
+        [alert alertInfo:@"文件下载失败，被用户终止。" withTitle:@"提醒"];
+    }else{
+        [alert alertInfo:@"文件下载失败，请检查网络后重试。" withTitle:@"错误"];
+    }
+   // [_storeHelper deleteFileWithName:fileName];
 }
 
 -(void) receiveFileDidfinished{
     [alert hideWaiting];
     [self showMediaWithFile:fileName]; 
-    [_storeHelper deleteFileWithName:fileName];
+   // [_storeHelper deleteFileWithName:fileName];
 }
 
 -(void) deleteAttachDidFinished:(ContributeInfo *)contributeInfo1{
@@ -993,6 +1056,7 @@
         }else if([fileType isEqualToString:kMediaType_Video]) {
             
             NSString *filePath = [_storeHelper.baseDirectory stringByAppendingFormat:@"/%@", fileName1];
+            NSLog(@"-------%@",filePath);
             MPMoviePlayerViewController *videoPlayCtrl = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
             //videoPlayCtrl.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 480.0f);
             //[self.navigationController pushViewController:videoPlayCtrl animated:YES];
@@ -1044,6 +1108,8 @@
     }*/
 }
 
+
+
 -(void) downloadDidFinished:(BOOL)isSuccess{
 
     if (isSuccess) {
@@ -1051,7 +1117,7 @@
         //[alert alertInfo:@"下载成功" withTitle:nil];
         
         [self showMediaWithFile:fileName]; 
-        [_storeHelper deleteFileWithName:fileName];
+      //  [_storeHelper deleteFileWithName:fileName];
     }else{
         [alert hideWaiting];
         [alert alertInfo:@"下载失败" withTitle:@"错误"];
@@ -1246,13 +1312,13 @@
 	self.title= @"稿件管理";
 	self.navigationController.navigationBar.hidden=NO;
 	
-    if (![contributeInfo.status isEqualToString:@"3"]){
+  // if (![contributeInfo.status isEqualToString:@"3"]){
         
         UIBarButtonItem *passButton=[[UIBarButtonItem alloc]initWithTitle: @"提交" style:UIBarButtonItemStyleBordered target:self action:@selector(submitDoc)];
         passButton.style=UIBarButtonItemStylePlain;
         self.navigationItem.rightBarButtonItem=passButton;
         [passButton release];
-    }
+  //  }
     
     if (alert == nil) {
         alert = [[CustomAlertView alloc] init];
@@ -1290,8 +1356,9 @@
     }
     
     //设置下一审核人
-    [btNextReceptor setTitle:nextReceptorUserName forState:UIControlStateNormal];
-    
+    if ((nextReceptorUserName != nil) &&([nextReceptorUserName length]>=1)) {
+            [btNextReceptor setTitle:nextReceptorUserName forState:UIControlStateNormal];
+    }
     alertType = ALERTTABLE_OTHERS;
 
 	
@@ -1361,6 +1428,11 @@
     }else{
         enableAudit = NO;
     }
+    
+    if ([info.userID isEqualToString: appDelegate.loginId] ) {
+        [btNextReceptor setTitle:contributeInfo.auditor forState:UIControlStateNormal];
+    }
+    NSLog(@"------%@",contributeInfo.auditor);
     //查询是否可修改
     //[docRequest getEditListWithLevel:contributeInfo.level];
     
@@ -1517,6 +1589,17 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    for(AttLsInfo *filePath in attachArray){
+        if ([fileManager fileExistsAtPath:filePath.fileName]) {
+            [_storeHelper deleteFileWithName:filePath.fileName];
+        }
+    }
+    [fileManager release];
 }
 
 - (void)viewDidUnload {

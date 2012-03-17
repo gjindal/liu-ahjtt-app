@@ -23,6 +23,7 @@
 @synthesize strStatus;
 @synthesize serverSize;
 @synthesize localSize;
+@synthesize bStop;
 
 - initWithServerPath:(NSString *)serverStr withLocal:(NSString*)localStr
 			withName:(NSString*)theName withPass:(NSString*)thePass {
@@ -33,7 +34,7 @@
 	
 	self.userName = theName;
 	self.passWord = thePass;
-	
+	self.bStop = NO;
 	return self;
 }
 
@@ -58,7 +59,9 @@
 }
 
 - (void)start {
-	[NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
+    
+   [self resume];
+	///[NSThread detachNewThreadSelector:@selector(threadMain:) toTarget:self withObject:nil];
 }
 
 - (void)threadMain:(id)arg {
@@ -69,7 +72,7 @@
 	NSLog(@" the current thread's loop is %p", p);
 	
 	[self resume];	
-	// CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1000, NO);
+	 //CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1000, NO);
 	CFRunLoopRun();
     
 	NSLog(@"thread exiting...");
@@ -78,6 +81,12 @@
 }
 
 - (void)resume {
+    
+    if (bStop) {
+        [self stopWithStatus:FTP_ERROR_STOPCMD];
+        return;
+    }
+    
 	// First get and check the URL.
     NSLog(@"=========%@",self.serverPath);
     NSURL * url = [FileInfo smartURLForString: self.serverPath];
@@ -98,11 +107,12 @@
 			assert(success);
 		}
 		
-		success = [self.ftpStream setProperty:(id)kCFBooleanTrue forKey:(id)kCFStreamPropertyFTPFetchResourceInfo];
-		uint64_t lsize = self.localSize;
-		success = [self.ftpStream setProperty:[NSNumber numberWithUnsignedLongLong:lsize] forKey:(id)kCFStreamPropertyFTPFileTransferOffset];
+		//success = [self.ftpStream setProperty:(id)kCFBooleanTrue forKey:(id)kCFStreamPropertyFTPFetchResourceInfo];
+		//uint64_t lsize = self.localSize;
+		//success = [self.ftpStream setProperty:[NSNumber numberWithUnsignedLongLong:lsize] forKey:(id)kCFStreamPropertyFTPFileTransferOffset];
         
         self.ftpStream.delegate = self;
+        currentRunLoop = [[NSRunLoop currentRunLoop] retain];
         [self.ftpStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [self.ftpStream open];
 		
@@ -114,6 +124,11 @@
 // An NSStream delegate callback that's called when events happen on our 
 // network stream.
 {
+    
+    if (bStop) {
+        [self stopWithStatus:FTP_ERROR_STOPCMD];
+        return;
+    }
 #pragma unused(aStream)
     assert(aStream == self.ftpStream);
 	
@@ -208,22 +223,41 @@
 
 - (void)stopWithStatus:(FTP_ERROR)ftpError
 {
+    
+    if (ftpError == FTP_ERROR_NO) {
+//        [self.delegate performSelector:@selector(receiveFileDidfinished)];
+//        [((NSObject *)delegate) performSelectorOnMainThread:@selector(receiveFileDidfinished) withObject:nil waitUntilDone:NO];
+        [self.delegate receiveFileDidfinished];
+    }else{
+//        [((NSObject *)delegate) performSelectorOnMainThread:@selector(receiveFileStoped:) withObject:[NSNumber numberWithInt:ftpError] waitUntilDone:NO];
+        //        [self.delegate performSelector:@selector(receiveFileStoped:) withObject:[NSNumber numberWithInt:ftpError]];
+        [self.delegate receiveFileStoped:ftpError];
+    }
+    
+    
     if (self.ftpStream != nil) {
-		[self.ftpStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        @try {
+            [self.ftpStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"======%@", [exception reason]);
+        }
+        @finally {
+            
+        }
+
         self.ftpStream.delegate = nil;
         [self.ftpStream close];
         self.ftpStream = nil;
+        [currentRunLoop release];
+        currentRunLoop = nil;
     }
     if (self.fileStream != nil) {
         [self.fileStream close];
         self.fileStream = nil;
     }
-    if (ftpError == FTP_ERROR_NO) {
-        [self.delegate receiveFileDidfinished];
-    }else{
-        [self.delegate receiveFileStoped:ftpError];
-    }
-	CFRunLoopStop(runLoop);
+
+	//CFRunLoopStop(runLoop);
 }
 
 - (void)dealloc {
