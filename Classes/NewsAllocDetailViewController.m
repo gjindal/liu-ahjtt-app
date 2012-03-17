@@ -291,6 +291,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    treeViewCtrl.bMultiSelect = YES;
     treeViewCtrl.delegate = self;
     treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择被派发人"];
     [self.navigationController pushViewController:treeViewCtrl animated:YES];

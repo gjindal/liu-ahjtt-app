@@ -180,11 +180,11 @@
         [alert hideWaiting];
         return;
     }
-    if( [fdKeyword.text length]<1){
+   /* if( [fdKeyword.text length]<1){
         [self alertInfo:@"关键字不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
-    }
+    }*/
     if( [fdKeyword.text length]>300){
         [self alertInfo:@"关键字过长" withTitle:@"错误"];
         [alert hideWaiting];
@@ -200,11 +200,11 @@
         [alert hideWaiting];
         return;
     }
-    if( [fdDocSource.text length]<1){
+   /* if( [fdDocSource.text length]<1){
         [self alertInfo:@"稿源不能为空" withTitle:@"错误"];
         [alert hideWaiting];
         return;
-    }
+    }*/
     if( [fdDocSource.text length]>300){
         [self alertInfo:@"稿源过长" withTitle:@"错误"];
         [alert hideWaiting];
@@ -670,6 +670,7 @@
         return;
     }
     TreeViewController *treeViewCtrl = [[TreeViewController alloc] init];
+    treeViewCtrl.bMultiSelect = NO;
     treeViewCtrl.delegate = self;
     treeViewCtrl.titleText = [[NSString alloc] initWithFormat:@"选择接收人"];
     [self.navigationController pushViewController:treeViewCtrl animated:YES];

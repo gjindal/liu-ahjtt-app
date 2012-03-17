@@ -38,6 +38,7 @@ typedef enum {
                                                              UIActionSheetDelegate, 
                                                              UIImagePickerControllerDelegate, 
                                                              UINavigationControllerDelegate, 
+                                                            
                                                              UIAlertViewDelegate,
                                                              ASIHTTPRequestDelegate,
                                                              DocRequestDelegate,UIViewPassValueDelegate,

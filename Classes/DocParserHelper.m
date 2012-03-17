@@ -221,6 +221,9 @@
     }else if([elementName isEqualToString:@"keyword"]) {
         
         _info.keyword = _currentValue;
+    }else if([elementName isEqualToString:@"auditor"]) {
+        
+        _info.auditor = _currentValue;
     }
     else if([elementName isEqualToString:@"time"]) {
         

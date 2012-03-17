@@ -230,6 +230,18 @@
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
 	if (cell.accessoryType == UITableViewCellAccessoryNone)		{
+        if (bMultiSelect == NO) {
+            if (lastSelect == nil) {
+                lastSelect = indexPath;
+            }else if (lastSelect != indexPath) {
+                lastNode.bChecked = NO;
+                lastNode = node;
+                UITableViewCell *cellLast = [tableView cellForRowAtIndexPath:lastSelect];
+                cellLast.accessoryType = UITableViewCellAccessoryNone;
+                lastSelect = indexPath;
+            }
+        }
+        lastSelect = [indexPath retain];
         node.bChecked = YES;
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		cell.textLabel.textColor=[UIColor blueColor];

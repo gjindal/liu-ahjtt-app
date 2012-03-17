@@ -67,6 +67,7 @@
 @synthesize source = _source;
 @synthesize attLsList = _attLsList;
 @synthesize workLogList = _workLogList;
+@synthesize auditor = _auditor;
 
 - (id)init {
 
@@ -96,7 +97,9 @@
     [_source release];
     [_attLsList release];
     [_workLogList release];
+    [_auditor release];
      
+    _auditor = nil;
     _keyword = nil;
     _conid = nil;
     _level = nil;

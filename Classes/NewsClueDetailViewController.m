@@ -96,10 +96,10 @@
         [self alertInfo:@"结束时间不能为空" withTitle:@"数据错误"];
         return;
     }
-    if ([clueKeyword.text length]<1) {
+   /* if ([clueKeyword.text length]<1) {
         [self alertInfo:@"关键字不能为空" withTitle:@"数据错误"];
         return;
-    }
+    }*/
     if ([clueKeyword.text length]>300) {
         [self alertInfo:@"关键字过长" withTitle:@"数据错误"];
         return;
