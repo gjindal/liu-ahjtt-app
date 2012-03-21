@@ -16,13 +16,15 @@
 #import "NetRequest.h"
 
 
-@interface DocRequest : NetRequest<DocParserHelperDelegate,NSURLConnectionDataDelegate> {
+@interface DocRequest : NetRequest<DocParserHelperDelegate,NSURLConnectionDataDelegate,NetRequestDelegate> {
 @private
     id<DocRequestDelegate>      _delegate;
     DocParserHelper            *_parser;
     NSURLConnection            *_urlConnection;
     NSMutableData               *receivedData;
     NSString                    *fileName;
+    
+    NetRequest                  *netRequest;
 }
 
 @property (nonatomic, assign) id<DocRequestDelegate> delegate;

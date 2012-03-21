@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/NewsClueRequest.m"
-         timestampString = "352904516.178755"
+         timestampString = "353969300.016428"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
          landmarkName = "-updateNewsClueWithTitle:Keyid:Keyword:Note:Begtime:Endtime:Type:IsSubmit:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/NewsClueRequest.m"
-         timestampString = "352790106.52886"
+         timestampString = "353969300.016428"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "94"
-         endingLineNumber = "94"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-addNewsClueWithTitle:Keyword:Note:Begtime:Endtime:Type:IsSubmit:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -79,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/NewsGatheringAppDelegate.m"
-         timestampString = "353003651.996117"
+         timestampString = "353775009.446357"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "186"
-         endingLineNumber = "186"
+         startingLineNumber = "188"
+         endingLineNumber = "188"
          landmarkName = "@implementation NewsGatheringAppDelegate"
          landmarkType = "3">
       </FileBreakpoint>
@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/NewsGatheringAppDelegate.m"
-         timestampString = "353001913.4854"
+         timestampString = "353775009.446357"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -222,163 +222,9 @@
          timestampString = "353685227.338354"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "410"
-         endingLineNumber = "410"
-         landmarkName = "-stream:handleEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353685227.338354"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
          startingLineNumber = "346"
          endingLineNumber = "346"
          landmarkName = "-stream:handleEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353510873.045107"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "299"
-         endingLineNumber = "299"
-         landmarkName = "-addDocDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "324"
-         endingLineNumber = "324"
-         landmarkName = "-addDocForApproveDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "344"
-         endingLineNumber = "344"
-         landmarkName = "-submitDocDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "349"
-         endingLineNumber = "349"
-         landmarkName = "-sendFileStoped:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "448"
-         endingLineNumber = "448"
-         landmarkName = "-uploadFileDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "365"
-         endingLineNumber = "365"
-         landmarkName = "-tempSendFileFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "370"
-         endingLineNumber = "370"
-         landmarkName = "-sendFileDidfinished"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512175.161815"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "280"
-         endingLineNumber = "280"
-         landmarkName = "-addDocDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512498.746491"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "327"
-         endingLineNumber = "327"
-         landmarkName = "-submitDocDidFinished:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/DocWriteDetailViewController.m"
-         timestampString = "353512185.609233"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "302"
-         endingLineNumber = "302"
-         landmarkName = "-addDocForApproveDidFinished:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -457,82 +303,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353682057.267324"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
-         landmarkName = "-initWithLocalPath:withServer:withName:withPass:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353682061.443833"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
-         landmarkName = "-initWithLocalPath:withServer:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353682063.484437"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "144"
-         endingLineNumber = "144"
-         landmarkName = "-parseLocalPath:withServer:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
          timestampString = "353682067.627222"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "183"
          endingLineNumber = "183"
          landmarkName = "-resumeRead"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353682076.344079"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "215"
-         endingLineNumber = "215"
-         landmarkName = "-resume"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Classes/FTPUploadFile.m"
-         timestampString = "353685227.338354"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "284"
-         endingLineNumber = "284"
-         landmarkName = "-stream:handleEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -603,6 +379,566 @@
          startingLineNumber = "123"
          endingLineNumber = "123"
          landmarkName = "-stream:handleEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930195.4875"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "225"
+         endingLineNumber = "225"
+         landmarkName = "-resume"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930199.963284"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
+         landmarkName = "theWriteCallBack()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930203.996106"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "theWriteCallBack()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930207.644914"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
+         landmarkName = "theWriteCallBack()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930210.733393"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
+         landmarkName = "theWriteCallBack()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930214.85314"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "405"
+         endingLineNumber = "405"
+         landmarkName = "-stream:handleEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930216.415264"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "401"
+         endingLineNumber = "401"
+         landmarkName = "-stream:handleEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930221.070749"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "380"
+         endingLineNumber = "380"
+         landmarkName = "-stream:handleEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/FTPUploadFile.m"
+         timestampString = "353930226.559768"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "362"
+         endingLineNumber = "362"
+         landmarkName = "-stream:handleEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocWriteDetailViewController.m"
+         timestampString = "353937181.42457"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "388"
+         endingLineNumber = "388"
+         landmarkName = "-sendFileStoped:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/TreeViewController.m"
+         timestampString = "353946365.905658"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NetRequest.m"
+         timestampString = "353967164.348724"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
+         landmarkName = "-startPost:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsGatheringViewController.m"
+         timestampString = "353957224.062589"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353962585.205614"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353963009.545071"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
+         landmarkName = "-getDocListWithTitle:Keyword:Type:Begtime:Endtime:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353968514.839637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "368"
+         endingLineNumber = "368"
+         landmarkName = "-getAppListWithTitle:Keyword:Type:Begtime:Endtime:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "292"
+         endingLineNumber = "292"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocParserHelper.m"
+         timestampString = "353963869.419915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
+         landmarkName = "-parser:didEndElement:namespaceURI:qualifiedName:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocChangeListViewController.m"
+         timestampString = "353963735.693926"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "342"
+         endingLineNumber = "342"
+         landmarkName = "-getDocDetailDidFinished:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353968514.839637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "709"
+         endingLineNumber = "709"
+         landmarkName = "-getDocDetailDidFinished:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353963949.949709"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353968514.839637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "226"
+         endingLineNumber = "226"
+         landmarkName = "-getDocDetailWithConid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NetRequest.m"
+         timestampString = "353967164.348724"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-PostData:withRequestString:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/ClueDistRequest.m"
+         timestampString = "353968514.839637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
+         landmarkName = "-getListWithTitle:Keyword:Note:Status:BegTime:EndTime:Type:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/ClueDistRequest.m"
+         timestampString = "353968514.839637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
+         landmarkName = "-getDetailWithKeyID:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/ClueDistRequest.m"
+         timestampString = "353964851.04588"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "78"
+         endingLineNumber = "78"
+         landmarkName = "-getDispatchResult:withUsers:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsCLueListViewController.m"
+         timestampString = "353965219.530096"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "106"
+         endingLineNumber = "106"
+         landmarkName = "-viewWillAppear:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/ClueDistRequest.m"
+         timestampString = "353965512.854899"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsCLueListViewController.m"
+         timestampString = "353966164.99796"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
+         landmarkName = "-viewWillAppear:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsClueRequest.m"
+         timestampString = "353969300.016428"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
+         landmarkName = "-deleteNewsClueWithKeyID:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/DocRequest.m"
+         timestampString = "353967012.47698"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "43"
+         endingLineNumber = "43"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NetRequest.m"
+         timestampString = "353967159.981754"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "-connection:didReceiveData:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NetRequest.m"
+         timestampString = "353967230.110037"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "78"
+         endingLineNumber = "78"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsClueRequest.m"
+         timestampString = "353969300.016428"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "61"
+         endingLineNumber = "61"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/NewsClueRequest.m"
+         timestampString = "353969192.093969"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-didFinishedRequest:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Classes/ClueDistRequest.m"
+         timestampString = "353969599.919079"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
+         landmarkName = "-didFinishedRequest:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

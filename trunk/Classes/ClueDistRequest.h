@@ -12,10 +12,12 @@
 #import "ClueDistRequestDelegate.h"
 #import "ClueDistParserHelper.h"
 
-@interface ClueDistRequest : NetRequest {
+@interface ClueDistRequest : NetRequest<NetRequestDelegate> {
 @private
     id<ClueDistRequestDelegate> _delegate;
     ClueDistParserHelper        *_parser;
+    
+    NetRequest *netRequest;
 }
 
 @property (nonatomic, assign) id<ClueDistRequestDelegate> delegate;

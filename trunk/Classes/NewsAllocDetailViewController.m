@@ -69,7 +69,11 @@
 
 -(void)writeDoc{
     DocWriteDetailViewController *viewCtrl = [[DocWriteDetailViewController alloc] initWithNibName:@"DocWriteDetailViewController" bundle:nil] ;
-
+    viewCtrl.detailFromClue = [[DocDetail alloc] init];
+    viewCtrl.detailFromClue.docType = [clueType.text retain];
+    viewCtrl.detailFromClue.key = [clueKeyword.text retain];
+    viewCtrl.detailFromClue.title = [clueTitle.text retain];
+    viewCtrl.detailFromClue.content = [contents.text retain];
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 	[viewCtrl release];
 

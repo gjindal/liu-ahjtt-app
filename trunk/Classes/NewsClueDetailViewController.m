@@ -327,9 +327,14 @@
         [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
         NSString*locationString=[formatter stringFromDate: [NSDate date]];
         NSString* endtime = [NSString stringWithFormat:@"%@ 18:00:00",[locationString substringToIndex:10]];
-        NSString* starttime = [NSString stringWithFormat:@"%@ 08:00:00",[locationString substringToIndex:10]];
-        [btEndTime setTitle:endtime forState:UIControlStateNormal];
+        NSString*starttime=[formatter stringFromDate: [NSDate date]];
+
         [btStartTime setTitle:starttime forState:UIControlStateNormal];
+        NSTimeInterval  interval = 24*60*60*2; //1:天数
+        NSDate *date1 = [[NSDate date] initWithTimeIntervalSinceNow:+interval];
+        locationString=[formatter stringFromDate: date1];
+        [btEndTime setTitle:locationString forState:UIControlStateNormal];
+        
         [formatter release];
         
         //新建的时候可以保存，不可以派发

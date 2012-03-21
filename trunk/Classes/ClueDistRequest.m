@@ -34,6 +34,44 @@
     [super dealloc];
 }
 
+-(void) didFinishedRequest:(NSData *)result{
+
+    NSData *returnData = result;
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_ClueDist_Submit]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Submit];
+            [returnString release];
+        }
+    }else if([netRequest.strRequestType isEqualToString:kInterface_ClueDist_List]){
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_List];
+            [returnString release];
+        }
+    }else if([netRequest.strRequestType isEqualToString:kInterface_ClueDist_Detail]){
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Detail];
+            [returnString release];
+        }
+    }else if([netRequest.strRequestType isEqualToString:kInterface_ClueDist_Dept]){
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Dept];
+            [returnString release];
+        }
+    }else if([netRequest.strRequestType isEqualToString:kInterface_ClueDist_User]){
+    
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_User];
+            [returnString release];
+        }
+    }
+}
+
 #pragma -
 #pragma Public Methods.
 
@@ -46,12 +84,16 @@
     }
     
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&userids=%@",[UserHelper userName],[UserHelper password],keyid,users,nil];
-    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_Submit withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Submit];
-        [returnString release];
+    
+    
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_ClueDist_Submit withRequestString:post];
+
 
 }
 
@@ -82,12 +124,14 @@
         type = @"";
     }
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&status=%@&begtime=%@&endtime=%@&type=%@",[UserHelper userName],[UserHelper password],title,keyword,note,status,begtime,endtime,type];
-    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_List withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_List];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+        netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_ClueDist_List withRequestString:post];
+
 }
 
 - (void)getDetailWithKeyID:(NSString *)keyid {
@@ -97,23 +141,28 @@
     }
     
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@",[UserHelper userName],[UserHelper password],keyid, nil];
-    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_Detail withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Detail];
-        [returnString release];
+    
+    if (netRequest != nil) {
+        [netRequest release];
     }
+        netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_ClueDist_Detail withRequestString:post];
+
 }
 
 - (void)getDept {
 
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@", [UserHelper userName], [UserHelper password], nil];
-    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_Dept withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_Dept];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+        netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_ClueDist_Dept withRequestString:post];
+
 }
 
 - (void)getUserWithDeptID:(NSString *)deptid {
@@ -122,12 +171,15 @@
         deptid = @"";
     }
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&deptid=%@", [UserHelper userName], [UserHelper password], deptid, nil];
-    NSData *returnData = [NetRequest PostData:kInterface_ClueDist_User withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_ClueDist_User];
-        [returnString release];
+   
+    if (netRequest != nil) {
+        [netRequest release];
     }
+        netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_ClueDist_User withRequestString:post];
+
 }
 
 #pragma -

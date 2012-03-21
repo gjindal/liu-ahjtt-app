@@ -173,7 +173,6 @@
 }
 
 
-
 //如果你想在选中某一个节点时，发生自定义行为，在子类中覆盖此方法
 -(void)onSelectedRow:(NSIndexPath*)indexPath :(TreeNode *)node{
     
@@ -235,7 +234,7 @@
                 lastSelect = indexPath;
             }else if (lastSelect != indexPath) {
                 lastNode.bChecked = NO;
-                lastNode = node;
+                //lastNode = node;
                 UITableViewCell *cellLast = [tableView cellForRowAtIndexPath:lastSelect];
                 cellLast.accessoryType = UITableViewCellAccessoryNone;
                 lastSelect = indexPath;
@@ -243,6 +242,7 @@
         }
         lastSelect = [indexPath retain];
         node.bChecked = YES;
+        lastNode = node;
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		cell.textLabel.textColor=[UIColor blueColor];
 		NSLog(@"-----text---,%@",cell.textLabel.text);

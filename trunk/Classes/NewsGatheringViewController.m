@@ -54,7 +54,11 @@
     NSLog(@"%@", [MD5EncryptProcess md5:password]);
     NSString *url = [[NSString alloc] initWithFormat:kInterface_Login];
 
-	NSData *returnData = [NetRequest PostData:url withRequestString:post];    
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
+    }
+    netRequest.delegate = self;
+	NSData *returnData = [netRequest PostData:url withRequestString:post];    
     //记下用户名密码，以便发送请求时带上
 	appDelegate.username = username;
     appDelegate.password = [MD5EncryptProcess md5:password];
@@ -63,6 +67,19 @@
     [url release];
 	return returnData;
 
+}
+
+-(void)didFinishedRequest:(NSData *)result{
+    NSData *returnData = [result retain];
+
+    NSString *strResult = [[NSString alloc] initWithData:returnData
+											 encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@", strResult);
+    
+    _loginParserHelper = [[LoginParserHelper alloc] init];
+    _loginParserHelper.delegate = self;
+    [_loginParserHelper startWithString:strResult];
 }
 
 - (void) setUserFunction{
@@ -199,19 +216,24 @@
     
 	
 	NSData *resultData = [self login:fdUsername.text andpassword:fdUserpassword.text];
-	NSString *result = [[NSString alloc] initWithData:resultData
-											 encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@", result);
-    
-    _loginParserHelper = [[LoginParserHelper alloc] init];
-    _loginParserHelper.delegate = self;
-    [_loginParserHelper startWithString:result];
+//	NSString *result = [[NSString alloc] initWithData:resultData
+//											 encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"%@", result);
+//    
+//    _loginParserHelper = [[LoginParserHelper alloc] init];
+//    _loginParserHelper.delegate = self;
+//    [_loginParserHelper startWithString:result];
     
 }
 
 -(void) saveLoginInfo{
   
+}
+
+-(IBAction) telService{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",btTel.titleLabel.text]]];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
