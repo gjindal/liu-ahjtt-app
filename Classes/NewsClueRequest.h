@@ -14,11 +14,12 @@
 #import "UserHelper.h"
 #import "NewsClueRequestDelegate.h"
 
-@interface NewsClueRequest : NetRequest<NewsClueParserHelperDelegate> {
+@interface NewsClueRequest : NetRequest<NewsClueParserHelperDelegate,NetRequestDelegate> {
 @private
     id<NewsClueRequestDelegate>  _delegate;
     NewsClueParserHelper        *_parser;
     int                          _currentFlag;
+    NetRequest                  *netRequest;
 }
 
 @property (nonatomic, assign) id<NewsClueRequestDelegate> delegate;

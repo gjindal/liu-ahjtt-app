@@ -53,6 +53,7 @@
 @synthesize dispatchedUsersName;
 @synthesize docDetail = _docDetail;
 @synthesize ftpUploadFile;
+@synthesize detailFromClue;
 
 @synthesize storeHelper = _storeHelper;
 
@@ -67,8 +68,25 @@
     [alertView release];
 }
 
--(IBAction) getPhoto {
+- (void)hideKeyboard{
 
+    for (UIView *subView in scrollView.subviews) {
+        if([subView isKindOfClass:[UITextView class]]) {
+            
+            [subView resignFirstResponder];
+        }
+        
+        if([subView isKindOfClass:[UITextField class]]) {
+            
+            [subView resignFirstResponder];
+        }
+    }
+}
+
+-(IBAction) getPhoto {
+    
+    [self hideKeyboard];
+    
     menuType = MENUTYPE_MEDIALIB;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择照片", @"拍照", nil];
     actionSheet.delegate = self;
@@ -78,6 +96,7 @@
 
 -(IBAction) getRecord {
 
+    [self hideKeyboard];
     AudioRecorder *alertView = [[AudioRecorder alloc] initWithTitle:@"录音" message:@"\r\r\r\r\r\r\r\r" delegate:self cancelButtonTitle:nil otherButtonTitles:@"",@"退出", nil];
     alertView.tag = kAudioRecord;
     alertView.cancelButtonIndex = 1;
@@ -107,7 +126,7 @@
 }
 
 -(IBAction) getVideo {
-    
+    [self hideKeyboard];
     menuType = MENUTYPE_VIDEO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择视频", @"拍摄", nil];
     actionSheet.delegate = self;
@@ -168,6 +187,12 @@
 }
 
 -(void)submitForAudit{
+    
+    if ((_docDetail != nil)&&([_docDetail.status isEqualToString:DOC_STATUS_SUMMITED])) {
+        [self alertInfo:@"文档已经提交，不能再提交。" withTitle:@"提醒"];
+        [alert hideWaiting];
+        return;
+    }
     
     //上传前验证必填项
     if( [fdTitle.text length]<1){
@@ -262,7 +287,7 @@
         fileCount = 0;
         NSString *fileName = [attachArray objectAtIndex:fileCount];
         NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName];
-        
+        nTransTimes = 0;//第一次，可以重试1次
         NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
         ftpUploadFile.delegate = self;
@@ -355,9 +380,19 @@
         contriTemp.flag = @"200";
         [self uploadFileDidFinished:contriTemp];
     }else{//出现错误
-        
+        if(nTransTimes > 1){
         [self saveDoc];
-    [alert alertInfo:[NSString stringWithFormat:@"%@\n在上传时失败。",[attachArray objectAtIndex:fileCount]] withTitle:@"错误"];
+        [alert alertInfo:[NSString stringWithFormat:@"%@\n在上传时失败。",[attachArray objectAtIndex:fileCount]] withTitle:@"错误"];
+        }else
+        {
+            nTransTimes++;
+            NSString *fileName = [attachArray objectAtIndex:fileCount];
+            NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName];
+            NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
+            ftpUploadFile.delegate = self;
+            [ftpUploadFile performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
+        }
 
     }
 }
@@ -435,6 +470,7 @@
             
             NSString *fileName = [attachArray objectAtIndex:fileCount];
             NSString *tmp = [NSString stringWithFormat:@"%@/%@",self.storeHelper.baseDirectory,fileName];
+            nTransTimes = 0;
             
             NewsGatheringAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             ftpUploadFile = [[FTPUploadFile alloc] initWithLocalPath:tmp withServer:appDelegate.ftpInfo.ftpURL withName:appDelegate.ftpInfo.ftpUsername withPass:appDelegate.ftpInfo.ftpPassword];
@@ -511,9 +547,14 @@
 }
 
 -(void)submitDoc{
+    [self hideKeyboard];
     
     menuType = MENUTYPE_SUBMIT;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到本地",@"提交审核",nil];
+    NSString *strSubmit = @"提交审核";
+    if ([workflowInfo.opttype isEqualToString:@"2"]) {
+        strSubmit = @"提交完成";
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提交目的" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到本地",strSubmit,nil];
     actionSheet.delegate = self;
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -522,7 +563,7 @@
 #pragma -
 #pragma UIAlertView Delegate.
 
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if(buttonIndex == 0 && alertView.tag == kAudioRecord){ 
         [attachArray addObject:((AudioRecorder *)alertView).fileName];
@@ -537,6 +578,58 @@
         
         [self.attachTable reloadData];
     }
+    
+    
+    if(alertView.tag == kAudioPlay || alertView.tag == kAudioRecord)
+        return;
+    
+    if (alertView.tag == kAlert_Upload) {
+        if (buttonIndex == 0) {
+            
+            [ftpUploadFile stopWithStatus:@""];
+            if(ftpUploadFile.delegate == self) {
+                if (nTransTimes <2) {
+                   [self sendFileStoped:FTP_ERROR_STOPCMD];                 
+                }
+            }
+            //ftpUploadFile.bStop = YES;
+        }
+        alertType = ALERTTABLE_OTHERS;
+        return;
+    }
+    
+    if (alertView.tag == kAlert_Back) {
+        if (buttonIndex == 1){
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }else{
+            return;
+        }
+    }
+    
+    if (buttonIndex == 1) {
+        if ((tmpCellString == nil) || [tmpCellString length]<1) {
+            return;
+        }
+        if (alertType == ALERTTABLE_DOCTYPE) {
+            [btType setTitle:tmpCellString forState:UIControlStateNormal];         
+        }else if(alertType == ALERTTABLE_LEVEL){
+            [btLevel setTitle:tmpCellString forState:UIControlStateNormal];
+            docRequest.delegate = self;
+            
+            for (DirtInfo *info in levelArray) {
+                if ([info.dic_value isEqualToString:tmpCellString]) {
+                    [docRequest getWorkflowWithLevel:info.dic_type];
+                    break;
+                }
+            }
+            
+        }
+    }
+    alertType = ALERTTABLE_OTHERS;
+	printf("User Pressed Button %d\n",buttonIndex+1);
+
+    
 }
 
 #pragma -
@@ -628,6 +721,8 @@
 
 -(IBAction)setLevel:(id)sender{
     
+    [self hideKeyboard];
+    
     alertType = ALERTTABLE_LEVEL;
     tmpCellString = [[NSString alloc] initWithString:@""];
     
@@ -645,6 +740,7 @@
 }
 
 -(IBAction)setType:(id)sender{
+    [self hideKeyboard];
     
     alertType = ALERTTABLE_DOCTYPE;
     
@@ -665,6 +761,7 @@
 
 -(IBAction)setReceptor:(id)sender{
 
+    [self hideKeyboard];
     if ([workflowInfo.endStatus isEqualToString:@"99"]) {
         [alert alertInfo:@"快讯不需要接收人" withTitle:@"提醒"];
         return;
@@ -787,57 +884,6 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if(alertView.tag == kAudioPlay || alertView.tag == kAudioRecord)
-        return;
-    
-    if (alertView.tag == kAlert_Upload) {
-        if (buttonIndex == 0) {
-            
-            [ftpUploadFile stopWithStatus:@""];
-            if(ftpUploadFile.delegate == self) {
-            
-                [self sendFileStoped:FTP_ERROR_STOPCMD];
-            }
-            
-            //ftpUploadFile.bStop = YES;
-        }
-        alertType = ALERTTABLE_OTHERS;
-        return;
-    }
-    
-    if (alertView.tag == kAlert_Back) {
-        if (buttonIndex == 1){
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }else{
-            return;
-        }
-    }
-    
-    if (buttonIndex == 1) {
-        if ((tmpCellString == nil) || [tmpCellString length]<1) {
-            return;
-        }
-        if (alertType == ALERTTABLE_DOCTYPE) {
-            [btType setTitle:tmpCellString forState:UIControlStateNormal];         
-        }else{
-            [btLevel setTitle:tmpCellString forState:UIControlStateNormal];
-            docRequest.delegate = self;
-           
-            for (DirtInfo *info in levelArray) {
-                if ([info.dic_value isEqualToString:tmpCellString]) {
-                    [docRequest getWorkflowWithLevel:info.dic_type];
-                    break;
-                }
-            }
-            
-        }
-    }
-    alertType = ALERTTABLE_OTHERS;
-	printf("User Pressed Button %d\n",buttonIndex+1);
-}
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	//NSLog(@"----hello----,%@",indexPath);
@@ -1172,7 +1218,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//[scrollView setFrame: CGRectMake(0.0f, 0.0f, 320.0f, 460.0f)];
-	[scrollView setContentSize:CGSizeMake(320, 1200)];
+	[scrollView setContentSize:CGSizeMake(320, 900)];
 	scrollView.scrollEnabled = YES;
     scrollView.delegate = self;
 	
@@ -1215,44 +1261,53 @@
     workflowInfo = [[WorkflowInfo alloc] init];
         
     
-    [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+
     [btLevel setTitle:((DirtInfo *)[levelArray objectAtIndex:0]).dic_value forState:UIControlStateNormal];
     [btReceptor setTitle:dispatchedUsersName forState:UIControlStateNormal];
     
-    if(_docDetail != nil && transformType == TYPE_MODIFY && bEnableFill) {
-        
-        bEnableFill = NO;
-        fdTitle.text    = _docDetail.title;
-        [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
-        fdKeyword.text      = _docDetail.key;
-        fdDocSource.text   = _docDetail.source;
-        [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
-        NSLog(@"-----%@",_docDetail.recevicer);
-        [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
-        dispatchedUsersName = _docDetail.recevicer;
-        dispatchedUsersID = _docDetail.receptorid;
-        contents.text  = _docDetail.content;
-        
-        if([attachArray count] > 0)
-            [attachArray removeAllObjects];
-        [attachArray addObjectsFromArray:_docDetail.attachments];
-        [self.attachTable reloadData];
-        
-        //初始时要获取流程
-        docRequest.delegate = self;
-        for(DirtInfo *info in levelArray)
-        {
-            if([info.dic_value isEqualToString:_docDetail.level])
-            {
-                [docRequest getWorkflowWithLevel:info.dic_type];
-                break;
-            }
-        }
-        
-    }else{
-        //初始时要获取流程
-        docRequest.delegate = self;
+    if (detailFromClue != nil) {//从线索带过来的
+        [btType setTitle:detailFromClue.docType forState:UIControlStateNormal];
+        fdKeyword.text = detailFromClue.key;
+        fdTitle.text = detailFromClue.title;
+        contents.text = detailFromClue.content;
         [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",3]];
+    }else{
+        
+        [btType setTitle:[typeArray objectAtIndex:0] forState:UIControlStateNormal];
+        if(_docDetail != nil && transformType == TYPE_MODIFY && bEnableFill) {
+            bEnableFill = NO;
+            fdTitle.text    = _docDetail.title;
+            [btType setTitle:_docDetail.docType forState:UIControlStateNormal];
+            fdKeyword.text      = _docDetail.key;
+            fdDocSource.text   = _docDetail.source;
+            [btLevel setTitle:_docDetail.level forState:UIControlStateNormal];
+            NSLog(@"-----%@",_docDetail.recevicer);
+            [btReceptor setTitle:_docDetail.recevicer forState:UIControlStateNormal];
+            dispatchedUsersName = _docDetail.recevicer;
+            dispatchedUsersID = _docDetail.receptorid;
+            contents.text  = _docDetail.content;
+            
+            if([attachArray count] > 0)
+                [attachArray removeAllObjects];
+            [attachArray addObjectsFromArray:_docDetail.attachments];
+            [self.attachTable reloadData];
+            
+            //初始时要获取流程
+            docRequest.delegate = self;
+            for(DirtInfo *info in levelArray)
+            {
+                if([info.dic_value isEqualToString:_docDetail.level])
+                {
+                    [docRequest getWorkflowWithLevel:info.dic_type];
+                    break;
+                }
+            }
+            
+        }else{
+            //初始时要获取流程
+            docRequest.delegate = self;
+            [docRequest getWorkflowWithLevel:[NSString stringWithFormat:@"%d",3]];
+        }
     }
     
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)] autorelease]; 

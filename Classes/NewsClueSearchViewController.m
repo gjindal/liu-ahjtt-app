@@ -63,8 +63,12 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     NSString*locationString=[formatter stringFromDate: [NSDate date]];
+    [endTime setTitle:locationString forState:UIControlStateNormal]; 
+    NSTimeInterval  interval = 24*60*60*3;
+    NSDate *date1 = [[NSDate date] initWithTimeIntervalSinceNow:-interval];
+    locationString=[formatter stringFromDate: date1];    
     [startTime setTitle:locationString forState:UIControlStateNormal];
-    [endTime setTitle:locationString forState:UIControlStateNormal];
+    
     [newsStatus setTitle:@"" forState:UIControlStateNormal];
     
     [formatter release];

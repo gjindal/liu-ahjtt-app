@@ -92,11 +92,14 @@
     
     ContributeInfo *contributeInfo;
     DocDetail      *_docDetail;
+    DocDetail      *detailFromClue;
     BOOL bEnableFill;
     
     FTPUploadFile *ftpUploadFile;
+    int  nTransTimes;
 }
 
+@property (retain, nonatomic) DocDetail  *detailFromClue; 
 @property (retain, nonatomic) FTPUploadFile *ftpUploadFile;
 @property (retain, nonatomic) NSString *dispatchedUsersName;
 @property (retain, nonatomic) NSString *dispatchedUsersID;
@@ -136,6 +139,7 @@
 -(IBAction)setLevel:(id)sender;
 -(IBAction)setType:(id)sender;
 -(IBAction)setReceptor:(id)sender;
+- (void)hideKeyboard;
 
 -(void)saveDoc;
 -(void)submitForAudit;

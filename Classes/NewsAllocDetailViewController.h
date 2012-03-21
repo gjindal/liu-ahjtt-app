@@ -37,6 +37,8 @@
     NSMutableArray *array;
     NSString *dispatchedUsersName;
     NSString *dispatchedUsersID;
+    
+    
 
 }
 

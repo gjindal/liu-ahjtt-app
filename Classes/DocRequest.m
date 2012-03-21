@@ -35,6 +35,155 @@
     [super dealloc];
 }
 
+-(void) didFinishedRequest:(NSData *)result{
+
+    returnData = result;
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_List]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_List];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Detail]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Detail];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Add]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Add];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Add_Approve]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Add_Approve];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Update]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Update];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Delete]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Delete];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Submit]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Submit];
+            [returnString release];
+        }
+    }    
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Resume]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Resume];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Remove]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Remove];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_AppList]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_AppList];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Approve]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Get_App_Workflow ]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_App_Workflow];
+            [returnString release];
+        }   
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Get_Workflow] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Get_Workflow];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Download] ) {
+
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Get_Cycle_List] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Cycle_List];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Get_Edit_List] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Edit_List];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Send_Weibo] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Send_Weibo];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Approve_Status ]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve_Status];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:KInterface_Contri_Delete_Attach] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            NSLog(@"-----%@",returnString);
+            [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Delete_Attach];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:KInterface_Contri_Get_Complet_List] ) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Complet_List];
+            [returnString release];
+        }
+    }
+    if ([netRequest.strRequestType isEqualToString:kInterface_Contri_Upload]) {
+        if(returnData != nil) {
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString flag:kFlag_Contri_UploadFile];
+            [returnString release];
+        }
+    }
+}
+
 #pragma -
 #pragma Public Methods.
 
@@ -64,24 +213,28 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, type, begtime, endtime];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_List withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_List];
-        [returnString release];
+    
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_List withRequestString:post];
+
 }
 
 - (void)getDocDetailWithConid:(NSString *)conid {
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Detail withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Detail];
-        [returnString release];
+    NSLog(@"%@===========%@",kInterface_Contri_Detail,post);
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Detail withRequestString:post];
+
 }
 
 - (void)addDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -97,12 +250,14 @@
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&status=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID,status,conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Add withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Add];
-        [returnString release];
+    
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Add withRequestString:post];
+
 }
 
 - (void)addDocForApproveWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -121,12 +276,15 @@
     NSString *post = [NSString stringWithFormat:
                       @"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&flowid=%@&receptuserid=%@&status=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, flowID, receptuserid,status,conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Add_Approve withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Add_Approve];
-        [returnString release];
+    
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Add_Approve withRequestString:post];
+
 }
 
 - (void)updateDocWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -140,24 +298,27 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&source=%@&type=%@&level=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, note, source, type, level, conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Update withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Update];
-        [returnString release];
+    
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Update withRequestString:post];
+
 }
 
 - (void)deleteDocWithConid:(NSString *)conid {
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Delete withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Delete];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Delete withRequestString:post];
+
 }
 
 - (void)submitDocWithConid:(NSString *)conid Receptuserid:(NSString *)receptuserid
@@ -169,36 +330,39 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&receptuserid=%@&status=%@",
                       [UserHelper userName], [UserHelper password], conid, receptuserid, status];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Submit withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Submit];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Submit withRequestString:post];
+
 }
 
 - (void)resumeDocWithConid:(NSString *)conid {
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Resume withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Resume];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Resume withRequestString:post];
+
 }
 
 - (void)removeDocWithConid:(NSString *)conid {
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@",
                       [UserHelper userName], [UserHelper password], conid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Remove withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Remove];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Remove withRequestString:post];
+
 }
 
 - (void)getAppListWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -227,12 +391,13 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, type, begtime, endtime];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_AppList withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_AppList];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_AppList withRequestString:post];
+
 }
 
 - (void)approveWithConid:(NSString *)conid Attitude:(NSString *)attitude Status:(NSString *)status LogID:(NSString *)logid{
@@ -248,12 +413,13 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&conid=%@&attitude=%@&status=%@&logid=%@",
                       [UserHelper userName], [UserHelper password], conid, attitude, status,logid];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Approve withRequestString:post];
+
 }
 
 - (void)getAppWorkflowWithLevel:(NSString *)level Status:(NSString *)status {
@@ -271,29 +437,36 @@
     }
     
     NSString *post = [NSString stringWithFormat:@"&level=%@&status=%@",level, status];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_App_Workflow withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_App_Workflow];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Get_App_Workflow withRequestString:post];
+
 }
 
 - (void)getWorkflowWithLevel:(NSString *)level {
 
     NSString *post = [NSString stringWithFormat:@"&level=%@", level];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Workflow withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Get_Workflow];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Get_Workflow withRequestString:post];
+
 }
 
 
 - (NSData *)dowloadAttachWithID:(NSString *)ID{
     NSString *post = [NSString stringWithFormat:@"&id=%@", ID];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Download withRequestString:post];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
+    }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Download withRequestString:post];
     return returnData;
 }
 
@@ -325,12 +498,13 @@
     NSString *post = [NSString stringWithFormat:
                       @"&usercode=%@&password=%@&title=%@&keyword=%@&type=%@&begtime=%@&endtime=%@",
                       [UserHelper userName], [UserHelper password],title, keyword, type, begtime, endtime];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Cycle_List withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Cycle_List];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Get_Cycle_List withRequestString:post];
+
 }
 
 - (void)getEditListWithLevel:(NSString *)level {
@@ -341,12 +515,13 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&level=%@",
                       [UserHelper userName], [UserHelper password], level];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Get_Edit_List withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Edit_List];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Get_Edit_List withRequestString:post];
+
 }
 
 - (void)sendWeiboWithType:(NSString *)type Note:(NSString *)note FilePath:(NSString *)filePath {
@@ -360,12 +535,13 @@
     
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&type=%@&note=%@&filepath=%@",
                       [UserHelper userName], [UserHelper password], type, note, filePath];
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Send_Weibo withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Send_Weibo];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Send_Weibo withRequestString:post];
+
 }
 
 - (void)ApproveStatusWithLogID:(NSString *)logID Status:(NSString *)status 
@@ -380,24 +556,25 @@
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&logid=%@&status=%@&attitude=%@&conid=%@&recuseuserid=%@",
                       [UserHelper userName], [UserHelper password], logID, status, attitude, conid, recuseuserID];
     NSLog(@"=============%@",post);
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Approve_Status withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Approve_Status];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Approve_Status withRequestString:post];
+
 }
 - (void)deleteAttachWithID:(NSString *)flowID {
 
     NSString *post = [NSString stringWithFormat:@"&usercode=%@&password=%@&id=%@",
                       [UserHelper userName], [UserHelper password], flowID];
-    NSData *returnData = [NetRequest PostData:KInterface_Contri_Delete_Attach withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        NSLog(@"-----%@",returnString);
-        [_parser startWithXMLInfo:returnString flag:KFlag_Contri_Delete_Attach];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:KInterface_Contri_Delete_Attach withRequestString:post];
+
 }
 
 - (void)getCompleteListWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -424,12 +601,13 @@
     NSString *post = [NSString stringWithFormat:
                       @"&usercode=%@&password=%@&title=%@&keyword=%@&begtime=%@&endtime=%@&type=%@&page=%@&rp=%@&sortName=%@",
                       [UserHelper userName], [UserHelper password], title, keyword, begtime, endtime, type, page, rp, sortName];
-    NSData *returnData = [NetRequest PostData:KInterface_Contri_Get_Complet_List withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_Get_Complet_List];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:KInterface_Contri_Get_Complet_List withRequestString:post];
+
 }
 
 - (void)uploadFileWithFlowID:(NSString *)flowID FileName:(NSString *)filename {
@@ -446,12 +624,13 @@
                       @"&usercode=%@&password=%@&flowid=%@&filename=%@",
                       [UserHelper userName], [UserHelper password], flowID, filename];
     NSLog(@"-------%@",post);
-    NSData *returnData = [NetRequest PostData:kInterface_Contri_Upload withRequestString:post];
-    if(returnData != nil) {
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString flag:kFlag_Contri_UploadFile];
-        [returnString release];
+    if (netRequest == nil) {
+        netRequest = [[NetRequest alloc] init];
     }
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_Contri_Upload withRequestString:post];
+
 }
 
 #pragma mark - 

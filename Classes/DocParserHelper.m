@@ -125,6 +125,7 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
+    NSLog(@"-----------------%@",string);
     [_currentValue appendString:[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 }
 

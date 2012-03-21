@@ -12,13 +12,14 @@
 #import "LoginParserHelper.h"
 #import "ClueDistRequest.h"
 
-@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate, LoginParserHelperDelegate,ClueDistRequestDelegate> {
+@interface NewsGatheringViewController : UIViewController<UITextFieldDelegate, LoginParserHelperDelegate,ClueDistRequestDelegate,NetRequestDelegate> {
 
 	UIButton *btLogin;
 	UITextField *fdUsername;
 	UITextField *fdUserpassword;
     LoginParserHelper *_loginParserHelper;
 	
+    IBOutlet UIButton *btTel;
     IBOutlet UIButton *rememberOrNot;
 	BOOL isRemember;
     NSMutableArray *loginData;
@@ -26,6 +27,7 @@
     
     ClueDistRequest *cluedistRequest;
     DeptInfo *deptInfo;
+    NetRequest *netRequest;
     
 }
 
@@ -35,6 +37,7 @@
 
 -(IBAction) loginSystem:(id)sender;
 -(IBAction) remPressed;
+-(IBAction) telService;
 -(void) saveLoginInfo;
 
 -(void) setUserFunction;

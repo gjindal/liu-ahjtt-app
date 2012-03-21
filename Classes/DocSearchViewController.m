@@ -91,9 +91,12 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
     NSString*locationString=[formatter stringFromDate: [NSDate date]];
-    [btStartTime setTitle:locationString forState:UIControlStateNormal];
     [btEndTime setTitle:locationString forState:UIControlStateNormal];
-    
+    NSTimeInterval  interval = 24*60*60*3; //1:天数
+    NSDate *date1 = [[NSDate date] initWithTimeIntervalSinceNow:-interval];
+    locationString=[formatter stringFromDate: date1];
+    [btStartTime setTitle:locationString forState:UIControlStateNormal];
+
     [super viewWillDisappear:animated];
     
 }

@@ -18,6 +18,7 @@
     self = [super init];
     if(self != nil) {
     
+        
         _parser = [[NewsClueParserHelper alloc] init];
         _parser.delegate = self;
     }
@@ -31,6 +32,76 @@
     _parser = nil;
     
     [super dealloc];
+}
+-(void) didFinishedRequest:(NSData *)result{
+    
+    returnData = result;
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_List]){
+        if(returnData != nil) {
+            _currentFlag = kFlag_NewsClue_List;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_Detail]){
+        if(returnData != nil) {
+            
+            _currentFlag = kFlag_NewsClue_Detail;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_Update]){
+        if(returnData != nil) {
+            
+            _currentFlag = kFlag_NewsClue_Update;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_Add]){
+        if(returnData != nil) {
+            
+            _currentFlag = kFlag_NewsClue_Add;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
+    
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_Delete]){
+        if(returnData != nil) {
+            
+            _currentFlag = kFlag_NewsClue_Delete;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
+    
+    if([netRequest.strRequestType isEqualToString:kInterface_NewsClue_Submit]){
+        if(returnData != nil) {
+            
+            _currentFlag = kFlag_NewsClue_Submit;
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            [_parser startWithXMLInfo:returnString];
+            [returnString release];
+        }
+        return;
+    }
 }
 
 #pragma -
@@ -68,27 +139,31 @@
     }
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&title=%@&keyword=%@&note=%@&status=%@&begtime=%@&endtime=%@&type=%@",
         [UserHelper userName],[UserHelper password],title,keyword,note,status,begtime,endtime,type];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_List withRequestString:post];
-    if(returnData != nil) {
-        _currentFlag = kFlag_NewsClue_List;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_List withRequestString:post];
+    
+
 }
 
 - (void)getNewsClueDetailWithKeyID:(NSString *)keyID {
 
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@",
                       [UserHelper userName],[UserHelper password],keyID];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Detail withRequestString:post];
-    if(returnData != nil) {
-        
-        _currentFlag = kFlag_NewsClue_Detail;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_Detail withRequestString:post];
+
 }
 
 - (void)addNewsClueWithTitle:(NSString *)title Keyword:(NSString *)keyword
@@ -102,14 +177,14 @@
     
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&type=%@&begtime=%@&endtime=%@&title=%@&keyword=%@&note=%@&issubmit=%@",
                       [UserHelper userName],[UserHelper password],type,begtime,endtime,title,keyword,note,issubmit];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Add withRequestString:post];
-    if(returnData != nil) {
-        
-        _currentFlag = kFlag_NewsClue_Add;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_Add withRequestString:post];
+
 }
 
 - (void)updateNewsClueWithTitle:(NSString *)title Keyid:(NSString *)keyid 
@@ -121,14 +196,15 @@
                                                 IsSubmit:(NSString *)issubmit{
     
     NSString *post = [[NSString alloc] initWithFormat:@"&usercode=%@&password=%@&keyid=%@&title=%@&keyword=%@&note=%@&begtime=%@&endtime=%@&type=%@&issubmit=%@",[UserHelper userName],[UserHelper password],keyid,title,keyword,note,begtime,endtime,type,issubmit];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Update withRequestString:post];
-    if(returnData != nil) {
-        
-        _currentFlag = kFlag_NewsClue_Update;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_Update withRequestString:post];
+
 }
 
 - (void)deleteNewsClueWithKeyID:(NSString *)keyID {
@@ -138,14 +214,14 @@
                       [UserHelper password],
                       keyID,
                       nil];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Delete withRequestString:post];
-    if(returnData != nil) {
-        
-        _currentFlag = kFlag_NewsClue_Delete;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_Delete withRequestString:post];
+
 }
 
 - (void)submitNewsClueWithKeyID:(NSString *)keyID {
@@ -155,14 +231,14 @@
                       [UserHelper password],
                       keyID,
                       nil];
-    NSData *returnData = [NetRequest PostData:kInterface_NewsClue_Submit withRequestString:post];
-    if(returnData != nil) {
-        
-        _currentFlag = kFlag_NewsClue_Submit;
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        [_parser startWithXMLInfo:returnString];
-        [returnString release];
+    if (netRequest != nil) {
+        [netRequest release];
     }
+    netRequest = [[NetRequest alloc] init];
+    if(netRequest.resultData != nil)[netRequest.resultData release];
+    netRequest.delegate = self;
+    NSData *returnData = [netRequest PostData:kInterface_NewsClue_Submit withRequestString:post];
+
 }
 
 #pragma -
